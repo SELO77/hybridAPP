@@ -1,0 +1,258 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge"> <!-- -->
+  <title>DodamDodam</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1 minimum-scale=1, maximum-scale=1, user-scalable=no"> <!-- 모바일 친화적 뷰 설정 -->
+
+   <meta name="description" content="">
+   <meta name="author" content="">
+  <!-- Place favicon.ico in the root directory -->
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+  <link rel="stylesheet" href="css/__main.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link href="css/shop-item.css" rel="stylesheet">
+  <link rel="import" href="import/diaryList.html">
+  <link rel="stylesheet" href="css/fileuploadstyle.css">
+  <link rel="stylesheet" href="css/jquery.fileupload.css">
+  <link rel="stylesheet" href="css/jquery.fileupload-ui.css">
+        </head>
+      <body >
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+            <![endif]-->
+
+            <!-- Add your site or application content here -->   
+         
+                   <!-- .sb-site -->    
+      <!--   <div id="sb-site">
+      main
+        <main role="main" style="margin-top:50px"> -->
+
+          <div class="container" id="diaryHandle" >
+          <center>
+          <div class="well" style="padding: 15px; padding-bottom: 3px"> 
+             <form class="form-horizontal" role="form" enctype="multipart/form-data">
+               <div class="form-group" style="padding:5px; margin-bottom: 0">
+                <textarea class="form-control" placeholder="오늘의 일기를 작성해주세요.."style="margin-bottom:20px" id="dContent"></textarea>
+                <button class="btn btn-primary pull-right" type="button" id="submitDiary">Post</button>
+                  <span class="fileinput-button  pull-left" style="padding-top:6px">
+                    <ul class="list-inline" style="font-size: 23px; text-align: left;">
+                      <li style="padding-top: 7px"><a href="#">
+                      <li>
+                        <a href="">
+                        <i class="glyphicon glyphicon-camera"></i>
+                        </a>
+                      </li>
+                    </ul>
+                    <input type="file" name="files[]" id="fileJARI" multiple >
+                  </span>
+                  <div id="imgJARI">
+                    
+                  </div>
+              </div>
+            <input type="hidden" id="uNo" name="uNo" value="">
+             </form>
+          </div>
+                  </center>
+        </div>
+
+
+      <!--기본 라이브러리 추가-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
+      <script type="text/javascript" src="cordova.js"></script>
+      <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+
+        <!-- bootStrap.js CDN -->
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>    
+                    
+          
+         
+          <script src="js/handlebars-v4.0.5.js" ></script>
+            <!--[시용] 핸들바스 모듈html 임포트 및 ajax요청으로 userDiaryList 요청-->
+          <script>
+            var link = document.querySelector('link[rel="import"]');
+            $(document).ready(function loadDiary(){
+              //alert('여기는 loadDiary');
+              var userValue = window.localStorage.getItem("userKey");
+              var user = JSON.parse(userValue);
+              //alert(temp.uNo);
+              $.ajax("http://192.168.0.3:8080/diary/json/getUserDiaryList",{
+                method: "post",
+                crossDomain : true,
+                dataType : "json",
+                contentType: "application/json; charset=UTF-8",
+                data: JSON.stringify({
+                   uNo : user.uNo
+                }),
+                success: function(result){
+                  //alert("Ajax success");
+                  var temp = link.import;
+                  console.log(result);
+                  var source = temp.querySelector('#entry-template').text;
+                        //console.log(source);
+                    var template = Handlebars.compile(source);
+
+                  //for(var i = 0; i< result.diaries.length; i++){
+                      var html = template(result);
+                      $('#diaryHandle').append(html);
+                  //}
+                }
+              });
+              });
+          </script>
+
+         
+        <!-- [시용] fileUpload를 위한 자바 스크립트 Start-->
+        <!-- [시용] 라이브러리 추가 및 스크립트 작성-->    
+      <script src="js/vendor/jquery.ui.widget.js"></script>  
+      <script src="js/jquery.fileupload.js"></script>
+      <script>
+        $(function(){
+          $("#fileJARI").change(function () {
+              if (typeof (FileReader) != "undefined") {
+                  var dvPreview = $("#imgJARI");
+                  dvPreview.html("");
+                  var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                  $($(this)[0].files).each(function () {
+                      var file = $(this);
+                      if (regex.test(file[0].name.toLowerCase())) {
+                          var reader = new FileReader();
+                          reader.onload = function (e) {
+                              var img = $("<img />");
+                              img.attr("name",file[0].name);
+                              img.attr("id","multi");
+                              img.attr("style", "width:100px; height:100px; margin-right: 10px;margin-top: 10px;");
+                              img.attr("src", e.target.result);
+                              
+                              dvPreview.append(img);
+                            
+                          }
+                          reader.readAsDataURL(file[0]);
+                      } else {
+                          //디버깅
+                          //alert(file[0].name + " is not a valid image file.");
+                          dvPreview.html("");
+                          return false;
+                      }
+                  });
+              } else {
+                  alert("This browser does not support HTML5 FileReader.");
+              }
+          });
+       });
+      // [시용] fileUpload를 위한 자바 스크립트 end
+      
+      // [시용] 다이어리 쓰기 버튼 이벤트처리
+       $(function(){
+           $("#submitDiary").on("click" , function() {
+              fncAddJsonDiary();
+              setTimeout( location.reload(true),1000*6);
+          });
+       
+       });
+       
+
+       //[시용] 다이어리 ajax 전송
+       function  fncAddJsonDiary(){
+          
+           var length = $("div#imgJARI > img").length;
+           alert(length);
+         
+          
+          var imgs = "";
+         for(var i=0 ; i<$("div#imgJARI > img").length ; i++){
+         /* for each ($("div.images > img:last").length in obj) */
+         if(i == ($("div#imgJARI > img").length - 1)){
+            imgs +=$("div#imgJARI > img:eq("+i+")").attr('name');
+         }else{
+            imgs += $("div#imgJARI > img:eq("+i+")").attr('name') +",";
+         }
+          } 
+          //디버깅
+          //alert(imgs);
+              var userValue = window.localStorage.getItem("userKey");
+              var user = JSON.parse(userValue);
+             $.ajax({
+                url : "http://192.168.0.3:8080/diary/json/addDiary",
+                method:"POST",
+                dataType:"application/json",
+                crossDomain : true,
+                contentType: "application/json;",
+                data: JSON.stringify({
+                   dPic : imgs,
+                   uNo : user.uNo,
+                   dContent : $("#dContent").val(),
+
+                }),
+                success:function(result){
+                  if(result){
+                  alert("ajax success");
+                }
+                }
+             });
+          }
+       
+
+       //[시용, JS, start] : 파일을 서버에 저장하기 위한 AJAX function
+        $(function() { 
+    
+         $('#fileJARI').fileupload({
+              dataType: 'json',
+              url:'http://192.168.0.3:8080/diary/json/uploadImg',
+              add: function (e, data) {
+                 alert('!!!!!');
+                 $("#submitDiary").click(function () {
+                      
+                       data.submit();
+
+                      //location.reload(true);
+
+                   });
+
+              }
+          });
+      });  
+      //[시용, JS, end] : 파일을 서버에 저장하기 위한 AJAX function
+    </script>
+
+
+
+      <!-- 기본 script-->
+      <script>
+          /*document.addEventListener("backbutton", onBackKeyDown, false);
+             function onBackKeyDown(){
+               //window.plugins.toast.show('Really Exit?'.'short'.'center',)
+                testLogoutSheet();      
+             }*/
+
+            //Action sheet
+
+            function testLogoutSheet() {
+              var options = {
+                'androidTheme' : window.plugins.actionsheet.ANDROID_THEMES.THEME_HOLO_LIGHT,
+                'title': 'Are you sure to close it?',
+                'buttonLabels': ['No','Yes'],
+                'androidEnableCancelButton' : true,
+                'winphoneEnableCancelButton' : true,
+                  //'addCancelButtonWithLabel': 'Cancel'
+                };  
+                window.plugins.actionsheet.show(options, callback);
+              }
+
+              var callback = function(buttonIndex) {
+                setTimeout(function() {
+                  //alert('button index clicked: ' + buttonIndex);
+                  if (buttonIndex == 2) {
+                   navigator.app.exitApp();
+                 };
+               });
+              };
+      </script> 
+
+       </body>
+      </html>

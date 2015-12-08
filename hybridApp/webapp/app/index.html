@@ -1,0 +1,444 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge"> <!-- -->
+	<title>DodamDodam</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, heigth=device-height , initial-scale=1"> <!-- 모바일 친화적 뷰 설정 -->
+
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<!-- Place favicon.ico in the root directory -->
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<link rel="stylesheet" href="css/__main.css">
+	<link rel="stylesheet" href="css/slidebars.css">
+
+</head>
+<body onload="searchSession();">
+				<!--[if lt IE 8]>
+						<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+						<![endif]-->
+
+						<!-- Add your site or application content here -->
+
+						<!-- .sb-site -->
+
+
+						<!-- Modal -->
+						<div class="modal fade" id="myModal" role="dialog">
+							<div class="modal-dialog">
+
+								<!-- Modal content-->
+								<div class="modal-content">
+									<div class="modal-header" style="padding:20px 20px;" align="center">
+										<span style="font-size:30px">J O I N</span>
+									</div>
+
+									<div class="modal-body" style="padding:40px 50px;">
+										<!-- form-->
+										<form role="form">
+
+											<div class="form-group">
+												<label for="email"><span class="fa fa-envelope"></span> Your Email</label>
+												<input type="text" class="form-control" id="e-mail" placeholder="Your Email">
+												<div id="checkmailresult"></div>
+											</div>
+
+											<div class="form-group">
+												<label for="nickname"><span class="fa fa-user"></span> Nick Name</label>
+												<input type="text" class="form-control" id="nickname" placeholder="Nick Name">
+												<div id="checknicknameresult"></div>
+											</div>
+
+											<div class="form-group">
+												<label for="psw"><span class="fa fa-unlock-alt"></span> Password</label>
+												<input type="password" class="form-control" id="password" placeholder="Password">
+												<div id="passwordLengthCheck"></div>                    
+
+												<input type="password" class="form-control" id="checkpassword" placeholder="Password Check">
+												<div id="checkpasswordresult"></div>
+											</div>
+
+											<hr>
+
+											<button type="button" class="btn btn-primary btn-lg btn-block  fa   " id="joinUser" style="background-color:#77777">JOIN</button>
+											<div id='checkJoin'></div>
+
+										</form>
+										<!-- form -->
+									</div>
+									<div class="modal-footer">
+										<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal" ><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+									</div>
+								</div>
+
+							</div>
+						</div> 
+						<!-- / modal-->
+
+
+						<div class="container" id="diaryHandle">
+							<!-- <div class="row"> -->
+
+
+
+						</div>   
+
+
+						<!-- 메인 html시작 [진영]-->
+
+						<br>
+
+
+						<div  style="margin:40% 0 20% 0" align="center">
+							<img src="img/dodam872.png"/><br>
+						</div>
+
+						<div class="modal-body" style="padding:0px 50px;">
+							<form role="form">
+
+								<div class="form-group">
+									<h4><span class="fa fa-envelope"></span>&nbsp;Email</h4>
+									<input type="text" class="form-control" id="loginEmail"   style=""  placeholder="E-mail">
+								</div>
+								<div class="form-group">
+									<h4><span class="fa fa-key"></span>&nbsp;Password</h4>
+									<input type="password" class="form-control" id="loginPass"   style=""  placeholder="Password">
+								</div>
+								
+								<button type="button" id="loginButton" class="btn btn-primary btn-md btn-block">Login</button>
+								<div id="loginFailed"></div>
+								<div style="margin:8px"></div>
+								<button type="button" id="facebookLoginButton" class="btn btn-primary btn-md btn-block">FaceBook Login</button>
+								<hr>
+								<div align="center"  style="margin: 0 0 5% 0">
+									<div data-toggle="modal" data-target="#myModal">
+										<span class="fa fa-user-plus">&nbsp;Sign Up</span>
+									</div>
+									<br>
+									<div>																
+										<span class="fa fa-unlock">&nbsp;Forgot Password?</span>
+									</div>
+								</div>
+							</form>
+						</div>
+
+						<!-- 메인 html끝 [진영]-->
+
+
+						<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+						<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
+
+						<script src="cordova.js"></script>
+						<script src="js/bootstrap/modal.js"></script>
+
+						<!-- script plug in start -->
+						<script src="js/vendor/modernizr-2.8.3.min.js"></script>
+						<script src="js/vendor/jquery-1.11.3.min.js" ></script>
+
+						
+						
+						<!--[시용] session 생성 스크립트 시작-->
+						<script>
+							function searchSession(){
+								var value= window.localStorage.getItem("userKey");
+								if(value != null){
+									self.location="mainIndex.html";	
+								}
+							}
+						</script>
+
+
+
+
+
+
+
+						<!-- Login 관련 JS by SELO-->					
+						<script>
+
+							var responseURL = "mainIndex.html";
+
+
+
+							$('#loginButton').on('click', function() {
+								console.log('Click LoginButton');
+								$('#loginFailed').empty();
+								var formData = {
+									mail:$('#loginEmail').val(),
+									password:$('#loginPass').val()
+								}
+								console.log('mail :'+formData.mail+'  password :'+formData.password);
+
+								$.ajax({
+									url: requestUrl+'loginUser',
+									type: 'POST',									
+									contentType: 'application/json',
+									data: JSON.stringify(formData),
+									dataType: 'json',
+									success : function(responseData){
+										alert("this is 1st success");
+										if ( responseData.result ) {
+											console.log(responseData);
+											//getUser ajax start
+											$.ajax({
+												url : requestUrl+'getMailUser',
+												type: 'POST',
+												contentType: 'application/json',
+												data: JSON.stringify(formData),
+												dataType: 'json',
+												success : function(resultUser){
+													alert("this is 2st success");
+													console.log(resultUser.user);
+													var temp = resultUser.user;
+													alert(temp.uNo);
+													var temp2 = JSON.stringify(temp);
+													console.log(temp2);
+													window.localStorage.setItem("userKey", temp2);
+													
+													self.location =  responseURL;
+												}
+											});	
+										} else{
+											$('#loginFailed').append('아이디 또는 비밀번호를 확인하세요.');
+											$('#loginFailed').css({
+												color: 'red',
+												align: 'center'
+											});
+										};										
+									}
+								});// /ajax
+								
+							});// /onClick
+
+
+
+						</script>
+						<!-- 회원가입 관련 Modal JS by SELO-->
+						<script>            
+							var requestUrl = 'http://192.168.0.3:8080/user/json/';
+							var checkingMail;
+							var checkingNickname;
+							var checkingPassword;
+
+							var checkValidations;
+
+							$('input').focus(function() {
+								$(this).attr('placeholder', '');
+								$('#loginFailed').empty();
+							}); 
+
+                        /////////////////////////////////////
+                        // ValidationChek Email
+                        $('#e-mail').focusout(function() {                      
+                        	var checkmail = $('#e-mail').val(); 
+                        	if ( checkmail.indexOf('@') == -1 || checkmail.length ==0 ) {
+                        		$('#checkmailresult').append('올바른 형식이 아닙니다.');
+                        		$('#checkmailresult').css('color', 'red');
+                        	}else{
+                        		var formData ={
+                        			mail:checkmail
+                        		}                       
+                        		console.log("requestData :"+formData.mail);                 
+                        		$.ajax({
+                        			url: requestUrl+'checkDuplication',
+                        			type: 'POST',
+                        			contentType:'application/json',
+                        			dataType: 'json',
+                        			data: JSON.stringify(formData),
+                        			success : function(responseData){
+                        				console.log("response success :"+responseData.result);
+                        				if (responseData.result) {
+                        					$('#checkmailresult').append('가입 가능한 이메일');
+                        					checkingMail = true;
+                        				}else{                                  
+                        					$('#checkmailresult').append('이미 가입된 이메일');
+                        					$('#checkmailresult').css('color', 'red');
+                        				};
+                        			}
+                        		});
+                            }// end of else                                         
+                        });// focusout 
+
+
+$('#e-mail').focus(function() {
+	$('#checkmailresult').empty();
+	$('#checkmailresult').css('color', 'black');
+	$('#checkJoin').empty();
+	checkingMail = false;
+                        });// focus
+
+                                            //////////////////////////////////////////////
+                                            // ValidationCheck Nickname
+                                            $('#nickname').focusout(function() {                        
+                                            	var checknickname = $('#nickname').val();   
+                                            	console.log(checknickname.length);
+                                            	if (  checknickname.length == 0  ) {
+                                            		$('#checknicknameresult').append('별명을 입력해주세요.');
+                                            		$('#checknicknameresult').css('color', 'red');
+                                            	}else{
+                                            		var formData ={
+                                            			nickname:checknickname
+                                            		}                       
+                                            		console.log("requestData :"+formData.nickname);             
+                                            		$.ajax({
+                                            			url: requestUrl+'checkDuplication',
+                                            			type: 'POST',
+                                            			contentType:'application/json',
+                                            			dataType: 'json',
+                                            			data: JSON.stringify(formData),
+                                            			success : function(responseData){
+                                            				console.log("response success :"+responseData.result);
+                                            				if (responseData.result) {
+                                            					$('#checknicknameresult').append('사용 가능한 닉네임');
+                                            					checkingNickname = true;
+                                            				}else{                                  
+                                            					$('#checknicknameresult').append('이미 사용중인 닉네임');
+                                            					$('#checknicknameresult').css('color', 'red');
+                                            				};
+                                            			}
+                                                }); //end of ajax
+
+                                            }//end of else
+                                            
+                                    });// focusout
+
+$('#nickname').focus(function() {
+	$('#checknicknameresult').empty();
+	$('#checknicknameresult').css('color', 'black');
+	checkingNickname = false;
+                                    });// focus
+
+                                            //////////////////
+                                            //validation of passwordLength              
+                                            $('#password').focusout(function() {
+                                            	var passwordLength = $('#password').val();                      
+                                            	if ( passwordLength.length < 8 || passwordLength.length >14) {
+                                            		$('#passwordLengthCheck').append('8 ~ 14자 입력하세요.');
+                                            		$('#passwordLengthCheck').css('color', 'red');
+                                            	}else{
+                                            		$('#passwordLengthCheck').append('사용가능한 패스워드입니다.');
+                                            	}
+                                            });//end of focusout
+
+                                            $('#password').focus(function() {
+                                            	$('#passwordLengthCheck').empty();
+                                            	$('#passwordLengthCheck').css('color', 'black');
+                                            	$('#checkJoin').empty();
+                                            	checkingPassword = false;
+                                            });// focus
+
+                                            ///////////////////
+                                            //validation of againPassword
+
+                                            $('#checkpassword').focusout(function() {
+                                            	var secondPassword = $('#checkpassword').val();
+                                            	var firstPassword = $('#password').val();
+                                            	if ( secondPassword == firstPassword) {
+                                            		checkingPassword = true;
+                                            	} else{
+                                            		$('#checkpasswordresult').append('비밀번호를 확인하세요.');
+                                            		$('#checkpasswordresult').css('color', 'red');
+                                            	}
+                                            });//end of focusOut
+
+                                            $('#checkpassword').focus(function() {                                         
+                                            	$('#checkpasswordresult').empty();
+                                            	$('#checkpasswordresult').css('color', 'black');         
+                                            	checkingPassword = false;                                     
+                                            });
+
+
+
+
+
+
+                    ///////////////
+                    // joinUser
+                    $('#joinUser').on('click', function() {                        
+
+                    	console.log('Click to send data to Server');
+                    	var formData = {
+                    		mail:$('#e-mail').val(),
+                    		password:$('#password').val(),
+                    		nickname:$('#nickname').val()
+                    	}
+                    	console.log( JSON.stringify(formData) );
+
+                    	if ( checkingMail&&checkingNickname &&checkingPassword) {
+                    		alert('checking success');
+                    		checkValidations = true;
+                    	};
+
+                    	if ( checkValidations ) {
+                    		$.ajax({
+                    			url: requestUrl+'insertUser',
+                    			type: 'POST',
+                    			contentType:'application/json',
+                    			dataType: 'json',
+                    			data: JSON.stringify(formData),
+                    			success : function(responseData, status){
+                    				console.log('status'+status);
+                    				//self.location = requestUrl+"index.html";
+                    				self.location = "index.html";
+                    			}
+                                    });//end of ajax   
+
+                    	}else{                   
+                    		$('#checkJoin').empty();         
+                    		$('#checkJoin').append('가입 정보를 확인하세요.');
+                    		$('#checkJoin').css('color', 'red');
+                    	}                                                              
+                    });//end of onClick
+
+
+</script>
+<!-- 회원가입 처리 Script 끝-->
+<!-- 스크립트 끝 이곳 벗어나지마시오 -->
+
+
+
+
+<script>
+	document.addEventListener("backbutton", onBackKeyDown, false);
+	function onBackKeyDown(){
+							 //window.plugins.toast.show('Really Exit?'.'short'.'center',)
+							 testLogoutSheet();
+							}
+
+						//Action sheet
+
+						function testLogoutSheet() {
+							var options = {
+								'androidTheme' : window.plugins.actionsheet.ANDROID_THEMES.THEME_HOLO_LIGHT,
+								'title': 'Are you sure to close it?',
+								'buttonLabels': ['No','Yes'],
+								'androidEnableCancelButton' : true,
+								'winphoneEnableCancelButton' : true,
+									//'addCancelButtonWithLabel': 'Cancel'
+								};
+								window.plugins.actionsheet.show(options, callback);
+							}
+
+							var callback = function(buttonIndex) {
+								setTimeout(function() {
+									//alert('button index clicked: ' + buttonIndex);
+									if (buttonIndex == 2) {
+										navigator.app.exitApp();
+									};
+								});
+							};
+
+
+						</script>
+
+
+
+						<script>
+
+
+						</script>
+					</div>
+				</body>
+				</html>

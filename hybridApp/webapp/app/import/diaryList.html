@@ -1,0 +1,48 @@
+<script id="entry-template" type="text/x-handlebars-template">
+  {{#diaries}}
+  <div class="col-md-8 col-md-offset-2">
+                <input type="hidden" name="dNo" id="dNo" value="{{dNo}}">
+                <div class="thumbnail">
+                {{#dPics}}
+                    <img class="img-responsive" src="http://192.168.0.3:8080/resources/thumbnail/diary/{{this}}">
+                {{/dPics}}
+                    <div class="caption-full">
+                        <h3><a href="#">{{dTag}}</a>
+                        </h3>
+                        <p><strong>{{dDate}}</strong></p>
+                         <p>{{dContent}}</p>
+                    </div>
+                    <div class="ratings">
+                        <p class="pull-right"><a data-toggle="collapse" href="#collapseExample{{@key}}" aria-expanded="false" aria-controls="collapseExample{{@key}}">댓글 {{replyCount}}</a></p>
+                       <a href="#">좋아요 <span class="badge"> 42</span></a>
+                    </div>
+                    <br>
+                <div class="collapse" id="collapseExample{{@key}}">
+                <div class="well" style="padding-top:1px; margin-bottom:0px;">
+                    <div class="col-xs-8 col-sm-10 col-md-10 form-group">
+                        <label for="insertReply"></label>
+                        <input type="text" class="form-control" id="insertReply" placeholder="댓글을 입력하세요.">
+                      </div>
+                      <br>
+                      <div class="text-right col-xs-2 col-md-2">
+                      <button type="submit" class="btn btn-default">입력</button>
+                      </div>
+                    <br>
+                    {{#replyList}}
+                    <div class="row">
+                     <hr>
+                        <div class="col-md-12">
+                           <strong><a href="#"> {{rName}} </a></strong>
+                            <span class="pull-right">{{rDate}}</span>
+                            <p>{{rContent}}</p>
+                        </div>
+                    </div>
+                    {{/replyList}}
+         
+                </div>
+            </div>
+                </div>
+         
+            </div>
+            {{/diaries}}
+</script>
