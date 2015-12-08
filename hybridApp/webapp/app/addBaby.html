@@ -51,7 +51,7 @@
 								<input type="file" id="bPhoto" name="bPhoto" style="display:none">
 								<div id="uploadImage" onclick=$("#bPhoto").click()></div>
 
-								<img id="defaultImg" src="img/defaultImage.jpg" width="100px" onclick="imgChange()" class="img-rounded">
+								<img id="defaultImg" src="img/defaultImage.jpg" width="100px" class="img-rounded">
 
 								<!-- <input type="image" class="img-rounded" id="imageb" onclick="$('#bPhoto').click();" src="img/defaultImage.jpg" width="100" onchange="babyImg();"> -->
 
@@ -285,33 +285,27 @@
 												}
 												reader.readAsDataURL(file[0]);
 											} else {
-												alert(file[0].name + " is not a valid image file.");
+												alert(file[0].name + " : 이미지 형식이 잘못됬습니다.");
 												dvPreview.html("");
 												return false;
 											}
 										});
 									} else {
-										alert("This browser does not support HTML5 FileReader.");
+										alert("상위 버전 브라우저를 이용해주세요.");
 											}
 										});
 									}); 
 
-										$(function(){
-											$("#btn01").on("click" , function() {
-												fncAddJsonDodam();
-												/* fncFileUploadTrace(); */
-											});
+										
+										$("#btn01").on("click" , function() {
+											fncAddJsonDodam();
+											/* fncFileUploadTrace(); */
+										});										
 
-										});
-
-										var babyImage = "";
+										var babyImage;
 										function  fncAddJsonDodam(){
 
-											var iiii = $("div#uploadImage > img").length;
-											alert(iiii);
-
-
-											
+											var iiii = $("div#uploadImage > img").length;											
 											for(var i=0 ; i<$("div#uploadImage > img").length ; i++){
 												if(i == ($("div#uploadImage > img").length - 1)){
 													babyImage +=$("div#uploadImage > img:eq("+i+")").attr('name');
@@ -319,9 +313,8 @@
 													babyImage += $("div#uploadImage > img:eq("+i+")").attr('name') +",";
 												}
 											} 
-											alert(babyImage);
-												  
-												  $.ajax({
+											consol.log("==babyImage :"+babyImage);											  
+												$.ajax({
 													type:"POST",
 													async:false,
 													headers : {
@@ -337,39 +330,30 @@
 													url:"http://127.0.0.1:8080/baby/json/addBaby",
 													dataType:"json",
 													success:function(data, status){
-
+														console.log('==response status :'+status);
 													}
 												  });// /ajax
 												}// end of fnc
 
 
 
-												$(function() { 
+												
 
-													$('#bPhoto').fileupload({
-														dataType: 'json',
-														url:'http://127.0.0.1:8080/baby/json/uploadImg',
-														add: function (e, data) {
-															$("#btn01").click(function () {
-
-																data.submit();
-															});
-														}
+											$('#bPhoto').fileupload({
+												dataType: 'json',
+												url:'http://127.0.0.1:8080/baby/json/uploadImg',
+												add: function (e, data) {
+													$("#btn01").click(function () {
+														data.submit();
 													});
-												}); 
+												}
+											});												//[시용,근한] fileupload를 위한 javascript 추가 끝
 
 
-												//[시용,근한] fileupload를 위한 javascript 추가 끝
-
-
-											//[근한] fileupload를 위한 이미지버튼 추가
-											function imgChange(){ 
-												$("#bPhoto").onchange=
-												$("#defaultImg").attr("style","display:none");
-												$("#defaultImg").onclick=$("#bPhoto").click();
-											}
-											//[근한] fileupload를 위한 이미지버튼 추가 끝
-											
+											$('#defaultImg').on('click',function(event) {								
+												$("#bPhoto").onchange = $("#defaultImg").attr("style","display:none");
+												$("#defaultImg").onClick=$("#bPhoto").click();
+											});											
 
 
 											//[근한] 숫자만 입력받게 onkeyDown 이벤트 추가 
@@ -378,12 +362,7 @@
 												if((kc<48 || kc>57) && (kc<96 || kc>105) && kc!=32 && kc!=8 && kc!=9 && kc!=46 && kc!=35 && kc!=189 && kc!=110 && kc!=106 && kc!=110 && kc!=190 ){
 													$("#bBirth").blur();
 													$("#height").blur();
-													$("#weight").blur();
-													setTimeout(function(){
-														$("#bBirth").focus();
-														$("#height").focus();
-														$("#weight").focus();
-													},30);
+													$("#weight").blur();								
 												} 
 											}
 											//[근한] 숫자만 입력받게 onkeyDown 이벤트 추가 끝
