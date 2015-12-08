@@ -25,49 +25,9 @@
 						<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 						<![endif]-->
 
-						<!-- Add your site or application content here -->
-
-						<!-- .sb-site -->
-			<!--   <div id="sb-site">
-			main
-			<main role="main" style="margin-top:50px"> -->
 
 				<div class="container" id="diaryHandle">
-					<!-- <div class="row"> -->
-					<style type="text/css">
-
-						.onepost1{
-							border: 1px solid ;
-							/*border-radius: 8px;*/
-							margin-top: 20px;
-							padding: 0 10px 15px 10px;
-						}
-
-						.posttop{
-							margin: 10px 0 10px 0
-						}
-
-						.contents{
-							/*border-radius: 50%;*/
-							width: 95%;
-							height: auto;
-							margin: 0 10px 0 10px;
-						}
-
-						.postimg{
-							border-radius: 5px;
-						}
-
-						.text1{
-							margin-top: 10px;
-						}
-
-						.postprofileimg{
-							width: 30px;
-							height: auto;
-						}
-
-					</style>
+					
 
 					<!-- 메인 html시작 [진영]-->
 
@@ -362,23 +322,23 @@
 											alert(babyImage);
 												  
 												  $.ajax({
-												  	type:"POST",
-												  	async:false,
-												  	headers : {
-												  		"Accept" : "application/json",
-												  		"Content-Type" : "application/json"
-												  	},
-												  	data: JSON.stringify({
-												  		bPhoto : babyImage,
-												  		text : {
-												  			uploadFormData
-												  		},
-												  	}),
-												  	url:"http://127.0.0.1:8080/baby/json/addBaby",
-												  	dataType:"json",
-												  	success:function(data, status){
+													type:"POST",
+													async:false,
+													headers : {
+														"Accept" : "application/json",
+														"Content-Type" : "application/json"
+													},
+													data: JSON.stringify({
+														bPhoto : babyImage,
+														text : {
+															uploadFormData
+														},
+													}),
+													url:"http://127.0.0.1:8080/baby/json/addBaby",
+													dataType:"json",
+													success:function(data, status){
 
-												  	}
+													}
 												  });// /ajax
 												}// end of fnc
 
