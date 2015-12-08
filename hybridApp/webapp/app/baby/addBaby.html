@@ -1,0 +1,437 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge"> <!-- -->
+	<title>DodamDodam</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1 minimum-scale=1, maximum-scale=1, user-scalable=no"> <!-- 모바일 친화적 뷰 설정 -->
+
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<!-- Place favicon.ico in the root directory -->
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<link rel="stylesheet" href="css/__main.css">
+	<link rel="stylesheet" href="css/slidebars.css">
+
+
+
+
+
+
+</head>
+<body >
+				<!--[if lt IE 8]>
+						<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+						<![endif]-->
+
+						<!-- Add your site or application content here -->
+
+						<!-- .sb-site -->
+			<!--   <div id="sb-site">
+			main
+			<main role="main" style="margin-top:50px"> -->
+
+				<div class="container" id="diaryHandle">
+					<!-- <div class="row"> -->
+					<style type="text/css">
+
+						.onepost1{
+							border: 1px solid ;
+							/*border-radius: 8px;*/
+							margin-top: 20px;
+							padding: 0 10px 15px 10px;
+						}
+
+						.posttop{
+							margin: 10px 0 10px 0
+						}
+
+						.contents{
+							/*border-radius: 50%;*/
+							width: 95%;
+							height: auto;
+							margin: 0 10px 0 10px;
+						}
+
+						.postimg{
+							border-radius: 5px;
+						}
+
+						.text1{
+							margin-top: 10px;
+						}
+
+						.postprofileimg{
+							width: 30px;
+							height: auto;
+						}
+
+					</style>
+
+					<!-- 메인 html시작 [진영]-->
+
+					<br>
+
+
+					<div  style="padding:10px" align="center">
+						<img src="img/logo40.png" /><br>
+						<!-- <img src="img/profile1.jpg" width="100"  class="img-circle"   /> -->
+						<!-- <button class="circle"><img src="img/profile1.jpg" width="100"  class="rounded"/></button> -->
+
+
+
+					</div>
+
+					<div class="modal-body" style="padding:0px 50px;">
+						<form role="form">
+
+							<div class="form-group" align="center">
+								<!-- <input type="file" name="bPhoto" id="bPhoto" src="img/defaultImage.jpg" class="img-rounded" width="100"> -->
+								<input type="file" id="bPhoto" name="bPhoto" style="display:none">
+								<div id="uploadImage" onclick=$("#bPhoto").click()></div>
+
+								<img id="defaultImg" src="img/defaultImage.jpg" width="100px" onclick="imgChange()" class="img-rounded">
+
+								<!-- <input type="image" class="img-rounded" id="imageb" onclick="$('#bPhoto').click();" src="img/defaultImage.jpg" width="100" onchange="babyImg();"> -->
+
+							</div>
+
+							<div class="form-group" >
+								<span style="font-size:12px;">&nbsp;이름</span>
+								<input type="text" class="form-control" name="bName" id="bName" style="border-right:0;border-top:0px; border-left:0px; boder-bottom:1px;"  placeholder="태명,별명도 입력가능"
+								style="color:#ff0000">
+								<div id="nameCheck"></div>
+							</div>
+
+							<div class="form-group" >
+								<span style="font-size:12px;">&nbsp;생일</span>
+								<input type="text" class="form-control" name="bBirth" id="bBirth"   style="border-right:0; border-top:0px; border-left:0px; boder-bottom:1px;"  placeholder="ex(2015-12-07)" onkeydown="onlyNumber(event)">
+							</div>
+							<div class="form-group" >
+								<span style="font-size:12px;">&nbsp;키</span>
+								<input type="text" class="form-control" name="height" id="height"   style="border-right:0; border-top:0px; border-left:0px; boder-bottom:1px;"  placeholder="키             (cm)" onkeydown="onlyNumber(event)">
+							</div>
+							<div class="form-group" >
+								<span style="font-size:12px;">&nbsp;체중</span>
+								<input type="text" class="form-control" name="weight" id="weight"  style="border-right:0; border-top:0px; border-left:0px; boder-bottom:1px;"  placeholder="체중          (kg)" onkeydown="onlyNumber(event)">
+							</div>
+							<div class="form-group" align="center">
+								<h5><span class="fa fa-venus-mars"></span>성별</h5>
+								<label class="radio-inline">
+									<input type="radio" name="bSex" id="male" value="1"><span class="fa fa-mars" selected></span>
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="bSex" id="female" value="2"><span class="fa fa-venus"></span>
+								</label>
+							</div>
+							<div class="form-group" align="center">
+								<h5><span class="fa fa-heartbeat"></span>혈액형</h5>
+								<label class="radio-inline">
+									<input type="radio" name="bType" id="AType" value="A">A형
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="bType" id="BType" value="B">B형
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="bType" id="OType" value="O">O형
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="bType" id="ABType" value="AB">AB형
+								</label>
+							</div>
+
+							<button type="button" class="btn btn-primary btn-lg btn-block ; fa  " id="btn01" style="">등록하기</button>
+
+						</form>
+					</div>
+
+					<!-- 메인 html끝 [진영]-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+					<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
+
+
+
+
+					<!-- script plug in start -->
+					<script src="js/vendor/modernizr-2.8.3.min.js"></script>
+
+					<!-- [근한] 파일업로드를 위한 js파일 추가 -->
+					<script src="js/vendor/jquery.ui.widget.js"></script>      
+					<script src="js/jquery.fileupload.js"></script>
+					<!-- /[근한] 파일업로드를 위한 js파일 추가 끝 -->
+
+
+
+					<script>
+						document.addEventListener("backbutton", onBackKeyDown, false);
+						function onBackKeyDown(){
+							 //window.plugins.toast.show('Really Exit?'.'short'.'center',)
+							 testLogoutSheet();
+							}
+
+						//Action sheet
+
+						function testLogoutSheet() {
+							var options = {
+								'androidTheme' : window.plugins.actionsheet.ANDROID_THEMES.THEME_HOLO_LIGHT,
+								'title': 'Are you sure to close it?',
+								'buttonLabels': ['No','Yes'],
+								'androidEnableCancelButton' : true,
+								'winphoneEnableCancelButton' : true,
+									//'addCancelButtonWithLabel': 'Cancel'
+								};
+								window.plugins.actionsheet.show(options, callback);
+							}
+
+							var callback = function(buttonIndex) {
+								setTimeout(function() {
+									if (buttonIndex == 2) {
+										navigator.app.exitApp();
+									};
+								});
+							};
+
+
+							//[근한] focus event를 위한 jQuery 추가
+							$("#bName").focusout(function(){
+
+								$("#bName").attr({
+									placeholder: '태명,별명도 입력가능'
+								});
+							});
+
+
+							$("#bBirth").focusout(function(){
+								$("#bBirth").attr({
+									placeholder: 'ex(2015-12-07)'
+								});
+							});
+
+							$("#height").focusout(function(){
+								$("#height").attr({
+									placeholder: '키             (cm)'
+								});
+							});
+
+							$("#weight").focusout(function(){
+								$("#weight").attr({
+									placeholder: '체중          (kg)'
+								});
+							});
+
+							$('input').focus(function() {
+
+								$(this).attr('placeholder', '');								
+							});
+
+							$("#bName").focusin(function(){
+								$("#nameCheck").empty();
+							});
+							//[근한] focus event를 위한 jQuery 추가 끝
+
+							
+
+							//[근한] 이름 null check를 위한 jQuery 추가
+							$("#btn01").on("click",function() {
+								
+								if($("#bName").val()!=null && $("#bName").val()!=""){
+
+									add_baby_test();
+								}
+								else{
+									$("#bName").attr({
+										placeholder: '태명,별명도 입력가능'
+									});
+
+									$("#nameCheck").append("이름을 입력하고 등록해주세요.");
+									$("#nameCheck").css("color","red");
+								}
+							}); 
+							//[근한] 이름 null check를 위한 jQuery 추가 끝
+
+
+
+
+							//[시용,근한] fileupload를 위한 javascript 추가
+							var uploadFormData;
+							function add_baby_test(){
+								var formData = {
+									bName:$("input[name='bName']").val(),
+									bBirth:$("input[name='bBirth']").val(),
+									bSex:$("input[name='bSex']").val(),
+									bType:$("input[name='bType']").val(),
+									height:$("input[name='height']").val(),
+									weight:$("input[name='weight']").val(),
+									bPhoto:babyImage,
+									uNo:100001
+								}
+
+								uploadFormData = formData;
+
+								$.ajax(
+								{
+									url:"http://127.0.0.1:8080/baby/json/addBaby",
+									method:"POST",
+									dataType:"application/json",
+									data:JSON.stringify(formData),
+									contentType:"application/json",
+									success:function(){
+										alert(JSON.stringify(formData)+" success");
+									},
+									error:function(){
+										alert(JSON.stringify(formData));
+									}
+
+								});
+							}
+
+
+							$(function(){
+								$("#bPhoto").change(function () {
+									if (typeof (FileReader) != "undefined") {
+										var dvPreview = $("#uploadImage");
+										dvPreview.html("");
+										var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+										$($(this)[0].files).each(function () {
+											var file = $(this);
+											if (regex.test(file[0].name.toLowerCase())) {
+												var reader = new FileReader();
+												reader.onload = function (e) {
+													var img = $("<img />");
+													img.attr("name",file[0].name);
+													img.attr("id","multi");
+													img.attr("style", "width:100px; height:100px; margin-right: 10px;margin-top: 10px;");
+													img.attr("src", e.target.result);
+													img.attr("class","img-rounded");
+
+													dvPreview.append(img);
+
+												}
+												reader.readAsDataURL(file[0]);
+											} else {
+												alert(file[0].name + " is not a valid image file.");
+												dvPreview.html("");
+												return false;
+											}
+										});
+									} else {
+										alert("This browser does not support HTML5 FileReader.");
+											}
+										});
+									}); 
+
+										$(function(){
+											$("#btn01").on("click" , function() {
+												fncAddJsonDodam();
+												/* fncFileUploadTrace(); */
+											});
+
+										});
+
+										var babyImage = "";
+										function  fncAddJsonDodam(){
+
+											var iiii = $("div#uploadImage > img").length;
+											alert(iiii);
+
+
+											
+											for(var i=0 ; i<$("div#uploadImage > img").length ; i++){
+												if(i == ($("div#uploadImage > img").length - 1)){
+													babyImage +=$("div#uploadImage > img:eq("+i+")").attr('name');
+												}else{
+													babyImage += $("div#uploadImage > img:eq("+i+")").attr('name') +",";
+												}
+											} 
+											alert(babyImage);
+												  
+												  $.ajax({
+												  	type:"POST",
+												  	async:false,
+												  	headers : {
+												  		"Accept" : "application/json",
+												  		"Content-Type" : "application/json"
+												  	},
+												  	data: JSON.stringify({
+												  		bPhoto : babyImage,
+												  		text : {
+												  			uploadFormData
+												  		},
+												  	}),
+												  	url:"http://127.0.0.1:8080/baby/json/addBaby",
+												  	dataType:"json",
+												  	success:function(data, status){
+
+												  	}
+												  });// /ajax
+												}// end of fnc
+
+
+
+												$(function() { 
+
+													$('#bPhoto').fileupload({
+														dataType: 'json',
+														url:'http://127.0.0.1:8080/baby/json/uploadImg',
+														add: function (e, data) {
+															$("#btn01").click(function () {
+
+																data.submit();
+															});
+														}
+													});
+												}); 
+
+
+												//[시용,근한] fileupload를 위한 javascript 추가 끝
+
+
+											//[근한] fileupload를 위한 이미지버튼 추가
+											function imgChange(){ 
+												$("#bPhoto").onchange=
+												$("#defaultImg").attr("style","display:none");
+												$("#defaultImg").onclick=$("#bPhoto").click();
+											}
+											//[근한] fileupload를 위한 이미지버튼 추가 끝
+											
+
+
+											//[근한] 숫자만 입력받게 onkeyDown 이벤트 추가 
+											function onlyNumber(event){
+												var kc=event.keyCode;
+												if((kc<48 || kc>57) && (kc<96 || kc>105) && kc!=32 && kc!=8 && kc!=9 && kc!=46 && kc!=35 && kc!=189 && kc!=110 && kc!=106 && kc!=110 && kc!=190 ){
+													$("#bBirth").blur();
+													$("#height").blur();
+													$("#weight").blur();
+													setTimeout(function(){
+														$("#bBirth").focus();
+														$("#height").focus();
+														$("#weight").focus();
+													},30);
+												} 
+											}
+											//[근한] 숫자만 입력받게 onkeyDown 이벤트 추가 끝
+
+
+
+</script>
+
+</div>
+</body>
+</html>
