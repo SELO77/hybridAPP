@@ -13,12 +13,18 @@
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 	<link rel="stylesheet" href="css/__main.css">
 	<link rel="stylesheet" href="css/slidebars.css">
+	<!-- [SELO77] css -->
+	<style>
+		#defaultImg{
+			border-width: thin;
+			border-style: solid;
+			width:100px;
+		}
 
-
-
-
-
-
+		.form-group span {
+			font-size: 14px;
+		}		
+	</style>
 </head>
 <body >
 				<!--[if lt IE 8]>
@@ -26,87 +32,72 @@
 						<![endif]-->
 
 
-				<div class="container" id="diaryHandle">
-					
-
-					<!-- 메인 html시작 [진영]-->
-
-					<br>
-
-
-					<div  style="padding:10px" align="center">
-						<img src="img/logo40.png" /><br>
-						<!-- <img src="img/profile1.jpg" width="100"  class="img-circle"   /> -->
-						<!-- <button class="circle"><img src="img/profile1.jpg" width="100"  class="rounded"/></button> -->
 
 
 
-					</div>
 
-					<div class="modal-body" style="padding:0px 50px;">
-						<form role="form">
+						<br>
+						<br>
+						<div class="modal-body" style="padding:0px 40px;">
+							<form role="form">
 
-							<div class="form-group" align="center">
-								<!-- <input type="file" name="bPhoto" id="bPhoto" src="img/defaultImage.jpg" class="img-rounded" width="100"> -->
-								<input type="file" id="bPhoto" name="bPhoto" style="display:none">
-								<div id="uploadImage" onclick=$("#bPhoto").click()></div>
+								<div class="form-group" align="center">
+									<input type="file" id="bPhoto" name="bPhoto" style="display:none">
+									<div id="uploadImage" onclick=$("#bPhoto").click()></div>
 
-								<img id="defaultImg" src="img/defaultImage.jpg" width="100px" class="img-rounded">
+									<img id="defaultImg" src="img/baby/defaultImagae.png"  class="img-rounded">
+								</div>
 
-								<!-- <input type="image" class="img-rounded" id="imageb" onclick="$('#bPhoto').click();" src="img/defaultImage.jpg" width="100" onchange="babyImg();"> -->
+								<div class="form-group" >
+									<span><icon class="fa fa-user"></icon>&nbsp;아가 이름</span>
+									<input type="text" class="form-control" name="bName" id="bName"  placeholder="뱃속에 아기는 태명으로~"
+									style="color:#ff0000">
+									<div id="nameCheck"></div>
+								</div>
 
-							</div>
+								<div class="form-group" >
+									<span><icon class="fa fa-user"></icon>&nbsp;언제 태어났어요?</span>
+									<input type="text" class="form-control" name="bBirth" id="bBirth" placeholder="예) 2016-01-18" onkeydown="onlyNumber(event)">
+								</div>
+								<div class="form-group" >
+									<span><icon class="fa fa-arrows-v"></icon>&nbsp;키</span>
+									<input type="text" class="form-control" name="height" id="height" placeholder="무럭 무럭 클거에요~" onkeydown="onlyNumber(event)">
+								</div>
+								<div class="form-group" >
+									<span><icon class="fa fa-arrows-h"></icon>&nbsp;몸무게</span>
+									<input type="text" class="form-control" name="weight" id="weight" placeholder="몸무게" onkeydown="onlyNumber(event)">
+								</div>
+								<div class="form-group" align="center">
+									
+									<label class="radio-inline">
+										<input type="radio" name="bSex" id="male" value="1" selected><span class="fa fa-mars">&nbsp;남</span>
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="bSex" id="female" value="2" ><span class="fa fa-venus">&nbsp;여</span>
+									</label>
+								</div>
+								<div class="form-group" align="center">
+									
+									<label class="radio-inline">
+										<input type="radio" name="bType" id="AType" value="A">A형
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="bType" id="BType" value="B">B형
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="bType" id="OType" value="O">O형
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="bType" id="ABType" value="AB">AB형
+									</label>
+								</div>
 
-							<div class="form-group" >
-								<span style="font-size:12px;">&nbsp;이름</span>
-								<input type="text" class="form-control" name="bName" id="bName" style="border-right:0;border-top:0px; border-left:0px; boder-bottom:1px;"  placeholder="태명,별명도 입력가능"
-								style="color:#ff0000">
-								<div id="nameCheck"></div>
-							</div>
+								<button type="button" class="btn btn-primary btn-lg btn-block ; fa  " id="btn01" style="">등록하기</button>
 
-							<div class="form-group" >
-								<span style="font-size:12px;">&nbsp;생일</span>
-								<input type="text" class="form-control" name="bBirth" id="bBirth"   style="border-right:0; border-top:0px; border-left:0px; boder-bottom:1px;"  placeholder="ex(2015-12-07)" onkeydown="onlyNumber(event)">
-							</div>
-							<div class="form-group" >
-								<span style="font-size:12px;">&nbsp;키</span>
-								<input type="text" class="form-control" name="height" id="height"   style="border-right:0; border-top:0px; border-left:0px; boder-bottom:1px;"  placeholder="키             (cm)" onkeydown="onlyNumber(event)">
-							</div>
-							<div class="form-group" >
-								<span style="font-size:12px;">&nbsp;체중</span>
-								<input type="text" class="form-control" name="weight" id="weight"  style="border-right:0; border-top:0px; border-left:0px; boder-bottom:1px;"  placeholder="체중          (kg)" onkeydown="onlyNumber(event)">
-							</div>
-							<div class="form-group" align="center">
-								<h5><span class="fa fa-venus-mars"></span>성별</h5>
-								<label class="radio-inline">
-									<input type="radio" name="bSex" id="male" value="1"><span class="fa fa-mars" selected></span>
-								</label>
-								<label class="radio-inline">
-									<input type="radio" name="bSex" id="female" value="2"><span class="fa fa-venus"></span>
-								</label>
-							</div>
-							<div class="form-group" align="center">
-								<h5><span class="fa fa-heartbeat"></span>혈액형</h5>
-								<label class="radio-inline">
-									<input type="radio" name="bType" id="AType" value="A">A형
-								</label>
-								<label class="radio-inline">
-									<input type="radio" name="bType" id="BType" value="B">B형
-								</label>
-								<label class="radio-inline">
-									<input type="radio" name="bType" id="OType" value="O">O형
-								</label>
-								<label class="radio-inline">
-									<input type="radio" name="bType" id="ABType" value="AB">AB형
-								</label>
-							</div>
+							</form>
+						</div>
 
-							<button type="button" class="btn btn-primary btn-lg btn-block ; fa  " id="btn01" style="">등록하기</button>
-
-						</form>
-					</div>
-
-					<!-- 메인 html끝 [진영]-->
+						<!-- 메인 html끝 [진영]-->
 
 
 
@@ -122,25 +113,25 @@
 
 
 
-					<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-					<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
+						<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+						<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
 
 
 
 
-					<!-- script plug in start -->
-					<script src="js/vendor/modernizr-2.8.3.min.js"></script>
+						<!-- script plug in start -->
+						<script src="js/vendor/modernizr-2.8.3.min.js"></script>
 
-					<!-- [근한] 파일업로드를 위한 js파일 추가 -->
-					<script src="js/vendor/jquery.ui.widget.js"></script>      
-					<script src="js/jquery.fileupload.js"></script>
-					<!-- /[근한] 파일업로드를 위한 js파일 추가 끝 -->
+						<!-- [근한] 파일업로드를 위한 js파일 추가 -->
+						<script src="js/vendor/jquery.ui.widget.js"></script>      
+						<script src="js/jquery.fileupload.js"></script>
+						<!-- /[근한] 파일업로드를 위한 js파일 추가 끝 -->
 
 
 
-					<script>
-						document.addEventListener("backbutton", onBackKeyDown, false);
-						function onBackKeyDown(){
+						<script>
+							document.addEventListener("backbutton", onBackKeyDown, false);
+							function onBackKeyDown(){
 							 //window.plugins.toast.show('Really Exit?'.'short'.'center',)
 							 testLogoutSheet();
 							}
@@ -292,46 +283,46 @@
 										});
 									} else {
 										alert("상위 버전 브라우저를 이용해주세요.");
-											}
-										});
-									}); 
+									}
+								});
+}); 
 
-										
-										$("#btn01").on("click" , function() {
-											fncAddJsonDodam();
-											/* fncFileUploadTrace(); */
-										});										
 
-										var babyImage;
-										function  fncAddJsonDodam(){
+$("#btn01").on("click" , function() {
+	fncAddJsonDodam();
+	/* fncFileUploadTrace(); */
+});										
 
-											var iiii = $("div#uploadImage > img").length;											
-											for(var i=0 ; i<$("div#uploadImage > img").length ; i++){
-												if(i == ($("div#uploadImage > img").length - 1)){
-													babyImage +=$("div#uploadImage > img:eq("+i+")").attr('name');
-												}else{
-													babyImage += $("div#uploadImage > img:eq("+i+")").attr('name') +",";
-												}
-											} 
-											consol.log("==babyImage :"+babyImage);											  
-												$.ajax({
-													type:"POST",
-													async:false,
-													headers : {
-														"Accept" : "application/json",
-														"Content-Type" : "application/json"
-													},
-													data: JSON.stringify({
-														bPhoto : babyImage,
-														text : {
-															uploadFormData
-														},
-													}),
-													url:"http://127.0.0.1:8080/baby/json/addBaby",
-													dataType:"json",
-													success:function(data, status){
-														console.log('==response status :'+status);
-													}
+var babyImage;
+function  fncAddJsonDodam(){
+
+	var iiii = $("div#uploadImage > img").length;											
+	for(var i=0 ; i<$("div#uploadImage > img").length ; i++){
+		if(i == ($("div#uploadImage > img").length - 1)){
+			babyImage +=$("div#uploadImage > img:eq("+i+")").attr('name');
+		}else{
+			babyImage += $("div#uploadImage > img:eq("+i+")").attr('name') +",";
+		}
+	} 
+	consol.log("==babyImage :"+babyImage);											  
+	$.ajax({
+		type:"POST",
+		async:false,
+		headers : {
+			"Accept" : "application/json",
+			"Content-Type" : "application/json"
+		},
+		data: JSON.stringify({
+			bPhoto : babyImage,
+			text : {
+				uploadFormData
+			},
+		}),
+		url:"http://127.0.0.1:8080/baby/json/addBaby",
+		dataType:"json",
+		success:function(data, status){
+			console.log('==response status :'+status);
+		}
 												  });// /ajax
 												}// end of fnc
 
@@ -339,21 +330,21 @@
 
 												
 
-											$('#bPhoto').fileupload({
-												dataType: 'json',
-												url:'http://127.0.0.1:8080/baby/json/uploadImg',
-												add: function (e, data) {
-													$("#btn01").click(function () {
-														data.submit();
-													});
-												}
+												$('#bPhoto').fileupload({
+													dataType: 'json',
+													url:'http://127.0.0.1:8080/baby/json/uploadImg',
+													add: function (e, data) {
+														$("#btn01").click(function () {
+															data.submit();
+														});
+													}
 											});												//[시용,근한] fileupload를 위한 javascript 추가 끝
 
 
-											$('#defaultImg').on('click',function(event) {								
-												$("#bPhoto").onchange = $("#defaultImg").attr("style","display:none");
-												$("#defaultImg").onClick=$("#bPhoto").click();
-											});											
+												$('#defaultImg').on('click',function(event) {								
+													$("#bPhoto").onchange = $("#defaultImg").attr("style","display:none");
+													$("#defaultImg").onClick=$("#bPhoto").click();
+												});											
 
 
 											//[근한] 숫자만 입력받게 onkeyDown 이벤트 추가 
@@ -369,8 +360,8 @@
 
 
 
-</script>
+										</script>
 
-</div>
-</body>
-</html>
+									</div>
+								</body>
+								</html>
