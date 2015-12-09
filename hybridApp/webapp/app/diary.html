@@ -78,12 +78,14 @@
            
             <!--[시용] 핸들바스 모듈html 임포트 및 ajax요청으로 userDiaryList 요청-->
           <script>
-            var requestURL = "http://192.168.0.3:8080/diary/json/"
+            var requestURL = "http://192.168.0.3:8080/diary/json/";
+            var requestIP="http://192.168.0.3:8080/";
             var link = document.querySelector('link[rel="import"]');
+            var userValue = window.localStorage.getItem("userKey");
+            var user = JSON.parse(userValue);
             $(document).ready(function loadDiary(){
               //alert('여기는 loadDiary');
-              var userValue = window.localStorage.getItem("userKey");
-              var user = JSON.parse(userValue);
+             
               //alert(temp.uNo);
               $.ajax(requestURL+"getUserDiaryList",{
                 method: "post",
@@ -99,9 +101,20 @@
                   console.log(result);
                   var source = temp.querySelector('#entry-template').text;
                         //console.log(source);
-                    var template = Handlebars.compile(source);
+                    
 
                   //for(var i = 0; i< result.diaries.length; i++){
+                      Handlebars.registerHelper('userCheck', function (rUNo) {
+                            alert(rUNo);
+                            var userhtml ="<strong> <a href='#' class='updateReply'>  <span class='fa fa-pencil' aria-hidden='true'></span> </a> </strong>  <strong> <a href='#' class='removeReply'> <span class='fa fa-trash-o' aria-hidden='true'></span>  </a> </strong>";
+                            if(rUNo == user.uNo){
+                                return userhtml;
+                            }else{
+                              return '';
+                            }
+                      });
+
+                      var template = Handlebars.compile(source);
                       var html = template(result);
                       $('#diaryHandle').append(html);
                   //}
@@ -113,7 +126,22 @@
 
           //[시용] 댓글달기 동적 이벤트 처리
           $(document).on("click","#reply",function(){
-              alert($(this).parent().children('input').val());
+              var dNo=$(this).parent().children('input').val();
+              var rContent=$(this).parent().parent().children('#replyButton').children('#insertReply').val();
+              $.ajax(requestIP+"replies/json/addReplies",{
+                method: "post",
+                crossDomain : true,
+                dataType : "json",
+                contentType: "application/json; charset=UTF-8",
+                data: JSON.stringify({
+                   rUNo : user.uNo,
+                   dNo : dNo,
+                   rContent : rContent 
+                }),
+                success: function(result){
+                  location.reload(true);
+                }
+              });
           }
           );
          
