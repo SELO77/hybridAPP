@@ -2,120 +2,120 @@
 <html class="no-js" lang="en">
 <head>
 
-	<meta charset="utf-8">
-	<meta http-equiv="x-ua-compatible" content="ie=edge"> <!-- -->
-	<title>DodamDodam</title>
-	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1 minimum-scale=1, maximum-scale=1, user-scalable=no"> <!-- 모바일 친화적 뷰 설정 -->
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<!-- -->
+<title>DodamDodam</title>
+<meta name="description" content="">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1 minimum-scale=1, maximum-scale=1, user-scalable=no">
+<!-- 모바일 친화적 뷰 설정 -->
 
-	<link rel="apple-touch-icon" href="apple-touch-icon.png">
-	<!-- Place favicon.ico in the root directory -->
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-	<link rel="stylesheet" href="css/__main.css">
-	<link rel="stylesheet" href="css/slidebars.css">
-	<!-- [SELO77] css -->
-	<style>
-		#defaultImg{
-			border-width: thin;
-			border-style: solid;
-			width:100px;
-		}
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!-- Place favicon.ico in the root directory -->
+<link rel="stylesheet"
+	href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" href="css/__main.css">
+<link rel="stylesheet" href="css/slidebars.css">
+<!-- [SELO77] css -->
+<style>
+#defaultImg {
+	border-width: thin;
+	border-style: solid;
+	width: 100px;
+}
 
-		.form-group span {
-			font-size: 14px;
-		}		
-	</style>
+.form-group span {
+	font-size: 14px;
+}
+</style>
 </head>
-<body >
-				<!--[if lt IE 8]>
+<body>
+	<!--[if lt IE 8]>
 						<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 						<![endif]-->
+	
+	<div style="padding: 0px 40px;">
+		<form role="form">
+
+			<div class="form-group" align="center">
+				<input type="file" id="bPhoto" name="bPhoto" style="display: none">
+				<div id="uploadImage" onclick=$("#bPhoto").click()></div>
+
+				<img id="defaultImg" src="img/baby/defaultImagae.png"
+					class="img-rounded">
+			</div>
+
+			<div class="form-group">
+				<span><icon class="fa fa-user"></icon>&nbsp;아가 이름</span> <input
+					type="text" class="form-control" name="bName" id="bName"
+					placeholder="뱃속에 아기는 태명으로~" style="color: #ff0000">
+				<div id="nameCheck"></div>
+			</div>
+
+			<div class="form-group">
+				<span><icon class="fa fa-user"></icon>&nbsp;언제 태어났어요?</span> <input
+					type="text" class="form-control" name="bBirth" id="bBirth"
+					placeholder="예) 2016-01-18" onkeydown="onlyNumber(event)">
+			</div>
+			<div class="form-group">
+				<span><icon class="fa fa-arrows-v"></icon>&nbsp;키</span> <input
+					type="text" class="form-control" name="height" id="height"
+					placeholder="무럭 무럭 클거에요~" onkeydown="onlyNumber(event)">
+			</div>
+			<div class="form-group">
+				<span><icon class="fa fa-arrows-h"></icon>&nbsp;몸무게</span> <input
+					type="text" class="form-control" name="weight" id="weight"
+					placeholder="몸무게" onkeydown="onlyNumber(event)">
+			</div>
+			<div class="form-group" align="center">
+
+				<label class="radio-inline"> <input type="radio" name="bSex"
+					id="male" value="1" selected><span class="fa fa-mars">&nbsp;남</span>
+				</label> <label class="radio-inline"> <input type="radio"
+					name="bSex" id="female" value="2"><span
+					class="fa fa-venus">&nbsp;여</span>
+				</label>
+			</div>
+			<div class="form-group" align="center">
+
+				<label class="radio-inline"> <input type="radio"
+					name="bType" id="AType" value="A">A형
+				</label> <label class="radio-inline"> <input type="radio"
+					name="bType" id="BType" value="B">B형
+				</label> <label class="radio-inline"> <input type="radio"
+					name="bType" id="OType" value="O">O형
+				</label> <label class="radio-inline"> <input type="radio"
+					name="bType" id="ABType" value="AB">AB형
+				</label>
+			</div>
+
+			<button type="button" class="btn btn-primary btn-lg btn-block ; fa  "
+				id="btn01" style="">등록하기</button>
+
+		</form>
+	</div>
+
+	<!-- 메인 html끝 [진영]-->
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
 
 
 
 
+	<!-- script plug in start -->
+	<script src="js/vendor/modernizr-2.8.3.min.js"></script>
 
-
-						<br>
-						<br>
-						<div class="modal-body" style="padding:0px 40px;">
-							<form role="form">
-
-								<div class="form-group" align="center">
-									<input type="file" id="bPhoto" name="bPhoto" style="display:none">
-									<div id="uploadImage" onclick=$("#bPhoto").click()></div>
-
-									<img id="defaultImg" src="img/baby/defaultImagae.png"  class="img-rounded">
-								</div>
-
-								<div class="form-group" >
-									<span><icon class="fa fa-user"></icon>&nbsp;아가 이름</span>
-									<input type="text" class="form-control" name="bName" id="bName"  placeholder="뱃속에 아기는 태명으로~"
-									style="color:#ff0000">
-									<div id="nameCheck"></div>
-								</div>
-
-								<div class="form-group" >
-									<span><icon class="fa fa-user"></icon>&nbsp;언제 태어났어요?</span>
-									<input type="text" class="form-control" name="bBirth" id="bBirth" placeholder="예) 2016-01-18" onkeydown="onlyNumber(event)">
-								</div>
-								<div class="form-group" >
-									<span><icon class="fa fa-arrows-v"></icon>&nbsp;키</span>
-									<input type="text" class="form-control" name="height" id="height" placeholder="무럭 무럭 클거에요~" onkeydown="onlyNumber(event)">
-								</div>
-								<div class="form-group" >
-									<span><icon class="fa fa-arrows-h"></icon>&nbsp;몸무게</span>
-									<input type="text" class="form-control" name="weight" id="weight" placeholder="몸무게" onkeydown="onlyNumber(event)">
-								</div>
-								<div class="form-group" align="center">
-									
-									<label class="radio-inline">
-										<input type="radio" name="bSex" id="male" value="1" selected><span class="fa fa-mars">&nbsp;남</span>
-									</label>
-									<label class="radio-inline">
-										<input type="radio" name="bSex" id="female" value="2" ><span class="fa fa-venus">&nbsp;여</span>
-									</label>
-								</div>
-								<div class="form-group" align="center">
-									
-									<label class="radio-inline">
-										<input type="radio" name="bType" id="AType" value="A">A형
-									</label>
-									<label class="radio-inline">
-										<input type="radio" name="bType" id="BType" value="B">B형
-									</label>
-									<label class="radio-inline">
-										<input type="radio" name="bType" id="OType" value="O">O형
-									</label>
-									<label class="radio-inline">
-										<input type="radio" name="bType" id="ABType" value="AB">AB형
-									</label>
-								</div>
-
-								<button type="button" class="btn btn-primary btn-lg btn-block ; fa  " id="btn01" style="">등록하기</button>
-
-							</form>
-						</div>
-
-						<!-- 메인 html끝 [진영]-->
-
-						<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-						<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
+	<!-- [근한] 파일업로드를 위한 js파일 추가 -->
+	<script src="js/vendor/jquery.ui.widget.js"></script>
+	<script src="js/jquery.fileupload.js"></script>
+	<!-- /[근한] 파일업로드를 위한 js파일 추가 끝 -->
 
 
 
-
-						<!-- script plug in start -->
-						<script src="js/vendor/modernizr-2.8.3.min.js"></script>
-
-						<!-- [근한] 파일업로드를 위한 js파일 추가 -->
-						<script src="js/vendor/jquery.ui.widget.js"></script>      
-						<script src="js/jquery.fileupload.js"></script>
-						<!-- /[근한] 파일업로드를 위한 js파일 추가 끝 -->
-
-
-
-						<script>
+	<script>
 							document.addEventListener("backbutton", onBackKeyDown, false);
 							function onBackKeyDown(){
 							 //window.plugins.toast.show('Really Exit?'.'short'.'center',)
@@ -348,6 +348,6 @@ function  fncAddJsonDodam(){
 
 										</script>
 
-									</div>
-								</body>
-								</html>
+	</div>
+</body>
+</html>
