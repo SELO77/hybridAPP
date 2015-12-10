@@ -148,7 +148,7 @@ html, body, iframe {
   <div id="sb-site" name="sb-site" style="height: device;">
     <iframe name="innerframe" id="innerframe"
       scrolling="auto" src="" frameborder="0"
-      style="overflow: hidden; height: 95%; width: 100%" ></iframe>
+      style="height: 95%; width: 100%" ></iframe>
 
 
 
@@ -196,6 +196,11 @@ html, body, iframe {
 
             $('#homeBtn').on('click', function() {
                  self.location = 'mainIndex.html';
+            });
+
+            $('iframe').on('click', function() {
+               console.log('sb-site click check');
+               $('sb-toggle-right').mouse();
             });                  
 	 </script>
   <!-- 새로 스크립트 끝 -->
@@ -253,12 +258,14 @@ html, body, iframe {
   <script type="text/javascript">
        
             //Swipeleft to remove a post
-            $(".col-sm-6").swipe({
-              swipeLeft:function(event,direction,distance,duration,fingerCount){
-                $(this).remove();
-              },
-              thereshold:0
-            });// /.swipe
+            // $("").swipe({
+            //   swipeLeft:function(event,direction,distance,duration,fingerCount){
+            //     $(this).remove();
+            //   },
+            //   thereshold:0
+            // });// /.swipe
+
+            
 
             //slidebar( sidebar )
             $.slidebars();
