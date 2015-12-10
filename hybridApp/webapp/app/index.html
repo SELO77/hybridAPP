@@ -2,44 +2,45 @@
 <html class="no-js" lang="en">
 <head>
 
-	<meta charset="utf-8">
-	<meta http-equiv="x-ua-compatible" content="ie=edge"> <!-- -->
-	<title>DodamDodam</title>
-	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 모바일 친화적 뷰 설정 -->
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<!-- -->
+<title>DodamDodam</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 모바일 친화적 뷰 설정 -->
 
-	<link rel="apple-touch-icon" href="apple-touch-icon.png">
-	<!-- Place favicon.ico in the root directory -->
-	<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
-	<link rel="stylesheet" href="css/__main.css">
-	<link rel="stylesheet" href="css/slidebars.css">
-	<!-- 장비 높이에 따른 출력 -->	
-	<style>
-	
-		@media (min-device-height: 299px)  and (max-device-height: 580px){
-			div.mainLogo{
-				margin : 5% 0 5% 0;
-			}
-		}
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!-- Place favicon.ico in the root directory -->
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+<link rel="stylesheet" href="css/__main.css">
+<link rel="stylesheet" href="css/slidebars.css">
+<!-- 장비 높이에 따른 출력 -->
+<style>
+@media ( min-device-height : 299px) and (max-device-height: 580px) {
+	div.mainLogo {
+		margin: 5% 0 5% 0;
+	}
+}
 
-		@media  (min-device-height: 580px) and (max-device-height: 729px){
-			div.mainLogo{
-				margin:25% 0 20% 0;
-			}
-		}
+@media ( min-device-height : 580px) and (max-device-height: 729px) {
+	div.mainLogo {
+		margin: 25% 0 20% 0;
+	}
+}
 
-		@media all and (min-device-height: 730px){
-			div.mainLogo{
-				margin:45% 0 20% 0;
-			}
-		}	
-	</style>
+@media all and (min-device-height: 730px) {
+	div.mainLogo {
+		margin: 45% 0 20% 0;
+	}
+}
+</style>
 
 
 </head>
 <body onload="searchSession();">
-				<!--[시용 session 생성 스크립트 시작-->
-				<script>
+	<!--[시용 session 생성 스크립트 시작-->
+	<script>
 					function searchSession(){
 						var value= window.localStorage.getItem("userKey");
 						if(value != null){
@@ -48,129 +49,155 @@
 					}
 				</script>
 
-				<!--[if lt IE 8]>
+	<!--[if lt IE 8]>
 						<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 						<![endif]-->
 
-						<!-- Add your site or application content here -->
+	<!-- Add your site or application content here -->
 
-						<!-- .sb-site -->
+	<!-- .sb-site -->
 
 
-						<!-- Modal -->
-						<div class="modal fade" id="myModal" role="dialog">
-							<div class="modal-dialog">
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
 
-								<!-- Modal content-->
-								<div class="modal-content">
-									<div class="modal-header" style="padding:20px 20px;" align="center">
-										<span style="font-size:30px">J O I N</span>
-									</div>
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header" style="padding: 20px 20px;" align="center">
+					<span style="font-size: 30px">J O I N</span>
+				</div>
 
-									<div class="modal-body" style="padding:40px 50px;">
-										<!-- form-->
-										<form role="form">
+				<div class="modal-body" style="padding: 40px 50px;">
+					<!-- form-->
+					<form role="form">
 
-											<div class="form-group">
-												<label for="email"><span class="fa fa-envelope"></span> Your Email</label>
-												<input type="text" class="form-control" id="e-mail" placeholder="Your Email">
-												
-												<div >&nbsp;<span id="checkmailresult"></span></div>  
-											</div>
+						<div class="form-group">
+							<label for="email"><span class="fa fa-envelope"></span>
+								Your Email</label> <input type="text" class="form-control" id="e-mail"
+								placeholder="Your Email">
 
-											<div class="form-group">
-												<label for="nickname"><span class="fa fa-user"></span> Nick Name</label>
-												<input type="text" class="form-control" id="nickname" placeholder="Nick Name">
-												
-												<div >&nbsp;<span id="checknicknameresult"></span></div>       
-											</div>
-
-											<div class="form-group">
-												<label for="psw"><span class="fa fa-unlock-alt"></span> Password</label>
-												<input type="password" class="form-control" id="password" placeholder="Password">
-												<div >&nbsp;<span id="passwordLengthCheck"></span></div>                    
-
-												<input type="password" class="form-control" id="checkpassword" placeholder="Password Check">
-												<div>&nbsp;<span id="checkpasswordresult"></span></div>
-											</div>
-
-											<hr>
-
-											<button type="button" class="btn btn-primary btn-lg btn-block  fa   " id="joinUser" style="background-color:#77777">JOIN</button>
-											<div id='checkJoin'></div>
-
-										</form>
-										<!-- form -->
-									</div>
-									<div class="modal-footer">
-										<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal" ><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-									</div>
-								</div>
-
+							<div>
+								&nbsp;<span id="checkmailresult"></span>
 							</div>
-						</div> 
-						<!-- / modal-->
-
-						<!-- 메인 html시작 [진영]-->
-
-						<br>
-
-					
-						<div  class="mainLogo"  align="center">
-							<img src="img/dodam872.png"/><br>
 						</div>
 
-						<div class="modal-body" style="padding:0px 50px;">
-							<form role="form">
+						<div class="form-group">
+							<label for="nickname"><span class="fa fa-user"></span>
+								Nick Name</label> <input type="text" class="form-control" id="nickname"
+								placeholder="Nick Name">
 
-								<div class="form-group">
-									<h4><span class="fa fa-envelope"></span>&nbsp;Email</h4>
-									<input type="text" class="form-control" id="loginEmail"   style=""  placeholder="E-mail">
-								</div>
-								<div class="form-group">
-									<h4><span class="fa fa-key"></span>&nbsp;Password</h4>
-									<input type="password" class="form-control" id="loginPass"   style=""  placeholder="Password">
-								</div>
-								
-								<button type="button" id="loginButton" class="btn btn-primary btn-md btn-block">Login</button>
-								<div id="loginFailed"></div>
-								<div style="margin:8px"></div>
-								<button type="button" id="facebookLoginButton" class="btn btn-primary btn-md btn-block">FaceBook Login</button>
-								<hr>
-								<div align="center"  style="margin: 0 0 5% 0">
-									<div data-toggle="modal" data-target="#myModal">
-										<span class="fa fa-user-plus">&nbsp;Sign Up</span>
-									</div>
-									<br>
-									<div>																
-										<span class="fa fa-unlock">&nbsp;Forgot Password?</span>
-									</div>
-								</div>
-							</form>
+							<div>
+								&nbsp;<span id="checknicknameresult"></span>
+							</div>
 						</div>
-				
 
-						<!-- 메인 html끝 [진영]-->
+						<div class="form-group">
+							<label for="psw"><span class="fa fa-unlock-alt"></span>
+								Password</label> <input type="password" class="form-control"
+								id="password" placeholder="Password">
+							<div>
+								&nbsp;<span id="passwordLengthCheck"></span>
+							</div>
 
-						
-						<script src="cordova.js"></script>
-						<script src="js/bootstrap/modal.js"></script>
+							<input type="password" class="form-control" id="checkpassword"
+								placeholder="Password Check">
+							<div>
+								&nbsp;<span id="checkpasswordresult"></span>
+							</div>
+						</div>
 
-						<!-- script plug in start -->
-						<script src="js/vendor/modernizr-2.8.3.min.js"></script>
-						<script src="js/vendor/jquery-1.11.3.min.js" ></script>		
-						<!-- ip 등 meta data 가져오기 -->
-						<script src="js/jihoon/getMetaData.js"></script>
+						<hr>
+
+						<button type="button"
+							class="btn btn-primary btn-lg btn-block  fa   " id="joinUser"
+							style="background-color: #77777">JOIN</button>
+						<div id='checkJoin'></div>
+
+					</form>
+					<!-- form -->
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-danger btn-default pull-left"
+						data-dismiss="modal">
+						<span class="glyphicon glyphicon-remove"></span> Cancel
+					</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- / modal-->
+
+	<!-- 메인 html시작 [진영]-->
+
+	<br>
+
+
+	<div class="mainLogo" align="center">
+		<img src="img/dodam872.png" /><br>
+	</div>
+
+	<div class="modal-body" style="padding: 0px 50px;">
+		<form role="form">
+
+			<div class="form-group">
+				<h4>
+					<span class="fa fa-envelope"></span>&nbsp;Email
+				</h4>
+				<input type="text" class="form-control" id="loginEmail" style=""
+					placeholder="E-mail">
+			</div>
+			<div class="form-group">
+				<h4>
+					<span class="fa fa-key"></span>&nbsp;Password
+				</h4>
+				<input type="password" class="form-control" id="loginPass" style=""
+					placeholder="Password">
+			</div>
+
+			<button type="button" id="loginButton"
+				class="btn btn-primary btn-md btn-block">Login</button>
+			<div id="loginFailed">
+				<span>&nbsp;</span>
+			</div>
+			<div style="margin: 8px"></div>
+			<button type="button" id="facebookLoginButton"
+				class="btn btn-primary btn-md btn-block">FaceBook Login</button>
+			<hr>
+			<div align="center" style="margin: 0 0 5% 0">
+				<div data-toggle="modal" data-target="#myModal">
+					<span class="fa fa-user-plus">&nbsp;Sign Up</span>
+				</div>
+				<br>
+				<div>
+					<span class="fa fa-unlock">&nbsp;Forgot Password?</span>
+				</div>
+			</div>
+		</form>
+	</div>
+
+
+	<!-- 메인 html끝 [진영]-->
+	<script src="js/vendor/jquery-1.11.3.min.js"></script>
+	<script src="js/vendor/modernizr-2.8.3.min.js"></script>
+
+	<script src="cordova.js"></script>
+	<script src="js/bootstrap/modal.js"></script>
+
+	<!-- script plug in start -->
+
+	<!-- ip 등 meta data 가져오기 -->
+	<script src="js/jihoon/getMetaData.js"></script>
 
 
 
-						<!-- Login 관련 JS by SELO-->					
-						<script>
+	<!-- Login 관련 JS by SELO-->
+	<script>
 
 							var responseURL = "mainIndex.html";
 
-
-
+							// Login Logic
 							$('#loginButton').on('click', function() {
 								console.log('Click LoginButton');
 								$('#loginFailed').empty();
@@ -188,7 +215,7 @@
 									dataType: 'json',
 									success : function(responseData){
 										alert("this is 1st success");
-										if ( responseData.result ) {
+										if ( responseData.result == 2 ) {
 											console.log(responseData);
 											//getUser ajax start
 											$.ajax({
@@ -198,10 +225,9 @@
 												data: JSON.stringify(formData),
 												dataType: 'json',
 												success : function(resultUser){
-													alert("this is 2st success");
+													console.log("this is 2st success");
 													console.log(resultUser.user);
-													var temp = resultUser.user;
-													alert(temp.uNo);
+													var temp = resultUser.user;				
 													var temp2 = JSON.stringify(temp);
 													console.log(temp2);
 													window.localStorage.setItem("userKey", temp2);
@@ -209,13 +235,19 @@
 													self.location =  responseURL;
 												}
 											});	
-										} else{
+										} else if( responseData.result == 0){
 											$('#loginFailed').append('아이디 또는 비밀번호를 확인하세요.');
 											$('#loginFailed').css({
 												color: 'red',
 												align: 'center'
 											});
-										};										
+										} else if( responseData.result == 1){
+											$('#loginFailed').append('이메일을 인증해주세요.');
+											$('#loginFailed').css({
+												color: 'red',
+												align: 'center'
+											});
+										}										
 									}
 								});// /ajax
 								
@@ -224,8 +256,8 @@
 
 
 						</script>
-						<!-- 회원가입 관련 Modal JS by SELO-->
-						<script>            
+	<!-- 회원가입 관련 Modal JS by SELO-->
+	<script>            
 							var requestUrl = getMetaData('ip')+'user/json/';
 							var checkingMail;
 							var checkingNickname;
@@ -376,7 +408,7 @@ $('#nickname').focus(function() {
                     	console.log( JSON.stringify(formData) );
 
                     	if ( checkingMail&&checkingNickname &&checkingPassword) {
-                    		alert('checking success');
+                    		
                     		checkValidations = true;
                     	};
 
@@ -403,13 +435,13 @@ $('#nickname').focus(function() {
 
 
 </script>
-<!-- 회원가입 처리 Script 끝-->
-<!-- 스크립트 끝 이곳 벗어나지마시오 -->
+	<!-- 회원가입 처리 Script 끝-->
+	<!-- 스크립트 끝 이곳 벗어나지마시오 -->
 
 
 
 
-<script>
+	<script>
 	document.addEventListener("backbutton", onBackKeyDown, false);
 	function onBackKeyDown(){
 							 //window.plugins.toast.show('Really Exit?'.'short'.'center',)
@@ -444,10 +476,10 @@ $('#nickname').focus(function() {
 
 
 
-						<script>
+	<script>
 
 
 						</script>
-					</div>
-				</body>
-				</html>
+	</div>
+</body>
+</html>
