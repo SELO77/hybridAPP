@@ -3,7 +3,6 @@ function getMetaData(param){
 	var data;
 
 	var requestIP="http://192.168.0.3:8080/";
-	var friendURL = requestIP+"friend/json/";
 	var user = JSON.parse(window.localStorage.getItem("userKey"));
 
 	
@@ -12,8 +11,6 @@ function getMetaData(param){
 		data = requestIP;
 	}else if(param=="user"){
 		data = user;
-	}else if(param=="friendURL"){
-		data = friendURL;
 	
 	/*}else if(param==""){*/
 	}else{

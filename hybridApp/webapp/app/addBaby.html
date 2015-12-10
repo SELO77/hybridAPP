@@ -113,6 +113,8 @@
 	<script src="js/jquery.fileupload.js"></script>
 	<!-- /[근한] 파일업로드를 위한 js파일 추가 끝 -->
 
+	<!-- ip 등 meta data 가져오기 -->
+	<script src="js/jihoon/getMetaData.js"></script>
 
 
 	<script>
@@ -223,7 +225,7 @@
 
 								$.ajax(
 								{
-									url:"http://127.0.0.1:8080/baby/json/addBaby",
+									url:getMetaData('ip')+"baby/json/addBaby",
 									method:"POST",
 									dataType:"application/json",
 									data:JSON.stringify(formData),
@@ -304,7 +306,7 @@ function  fncAddJsonDodam(){
 				uploadFormData
 			},
 		}),
-		url:"http://127.0.0.1:8080/baby/json/addBaby",
+		url:getMetaData('ip')+"baby/json/addBaby",
 		dataType:"json",
 		success:function(data, status){
 			console.log('==response status :'+status);
@@ -318,7 +320,7 @@ function  fncAddJsonDodam(){
 
 												$('#bPhoto').fileupload({
 													dataType: 'json',
-													url:'http://127.0.0.1:8080/baby/json/uploadImg',
+													url:getMetaData('ip')+'baby/json/uploadImg',
 													add: function (e, data) {
 														$("#btn01").click(function () {
 															data.submit();

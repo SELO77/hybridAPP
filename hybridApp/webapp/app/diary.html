@@ -69,6 +69,9 @@
         <!-- [시용] 라이브러리 추가 및 스크립트 작성-->    
       <script src="js/vendor/jquery.ui.widget.js"></script>  
       <script src="js/jquery.fileupload.js"></script>
+      <!-- ip 등 meta data 가져오기 -->
+      <script src="js/jihoon/getMetaData.js"></script>
+      
         <!-- bootStrap.js CDN -->
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>    
                     
@@ -78,22 +81,22 @@
            
             <!--[시용] 핸들바스 모듈html 임포트 및 ajax요청으로 userDiaryList 요청-->
           <script>
-            var requestURL = "http://192.168.0.3:8080/diary/json/";
-            var requestIP="http://192.168.0.3:8080/";
+            //var requestURL = "http://192.168.0.3:8080/diary/json/";
+            //var requestIP="http://192.168.0.3:8080/";
             var link = document.querySelector('link[rel="import"]');
-            var userValue = window.localStorage.getItem("userKey");
-            var user = JSON.parse(userValue);
+            //var userValue = window.localStorage.getItem("userKey");
+            //var user = JSON.parse(userValue);
             $(document).ready(function loadDiary(){
               //alert('여기는 loadDiary');
              
               //alert(temp.uNo);
-              $.ajax(requestURL+"getUserDiaryList",{
+              $.ajax(getMetaData('ip')+"diary/json/getUserDiaryList",{
                 method: "post",
                 crossDomain : true,
                 dataType : "json",
                 contentType: "application/json; charset=UTF-8",
                 data: JSON.stringify({
-                   uNo : user.uNo
+                   uNo : getMetaData('user').uNo;
                 }),
                 success: function(result){
                   //alert("Ajax success");

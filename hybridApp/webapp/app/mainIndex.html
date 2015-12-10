@@ -161,7 +161,7 @@ html, body, iframe {
   <div class="navbar navbar-default navbar-fixed-bottom">
     <div class="container" style="">
       <span class="col-xs-2"> <icon class="fa fa-book"></icon>
-      </span> <span class="col-xs-2"> <icon class="fa fa-users"></icon>
+      </span> <span class="col-xs-2"> <icon class="fa fa-users" id="friendBtn"></icon>
       </span> <span class="col-xs-2"> <icon class="fa fa-pencil-square-o"></icon>
       </span> <span class="col-xs-2"> <icon class="fa fa-home" id="homeBtn"></icon>
       </span> <span class="col-xs-2"> <icon class="fa fa-calendar"
@@ -186,6 +186,8 @@ html, body, iframe {
   <script src="js/vendor/modernizr-2.8.3.min.js"></script>
   <!-- swipe 추가 -->
   <script text="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
+  <!-- ip 등 meta data 가져오기 -->
+  <script src="js/jihoon/getMetaData.js"></script>
 
   <!-- 시작 Script by Chan-->
  	 <script>
@@ -218,6 +220,12 @@ html, body, iframe {
                    $('frame[name="innerframe"]').attr('scrolling', 'auto');
                    /*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
                    $(window.parent.frames["innerframe"].document.location).attr("href","diary.html");
+                });
+
+                //[지훈] friend Link
+                $('#friendBtn').on('click', function() {
+                  $('frames["innerframe"]').attr('scrolling', 'auto');
+                  $(window.parent.frames["innerframe"].document.location).attr("href", "friend.html");
                 });
 
                 //logout Function 호출

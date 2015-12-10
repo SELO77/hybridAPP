@@ -162,7 +162,8 @@
 						<!-- script plug in start -->
 						<script src="js/vendor/modernizr-2.8.3.min.js"></script>
 						<script src="js/vendor/jquery-1.11.3.min.js" ></script>		
-
+						<!-- ip 등 meta data 가져오기 -->
+						<script src="js/jihoon/getMetaData.js"></script>
 
 
 
@@ -228,7 +229,7 @@
 						</script>
 						<!-- 회원가입 관련 Modal JS by SELO-->
 						<script>            
-							var requestUrl = 'http://192.168.0.3:8080/user/json/';
+							var requestUrl = getMetaData('ip')+'user/json/';
 							var checkingMail;
 							var checkingNickname;
 							var checkingPassword;
