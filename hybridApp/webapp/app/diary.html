@@ -81,7 +81,7 @@
            
             <!--[시용] 핸들바스 모듈html 임포트 및 ajax요청으로 userDiaryList 요청-->
           <script>
-            //var requestURL = "http://192.168.0.3:8080/diary/json/";
+            var requestURL = getMetaData("ip")+"diary/json/";
             //var requestIP="http://192.168.0.3:8080/";
             var link = document.querySelector('link[rel="import"]');
             //var userValue = window.localStorage.getItem("userKey");
@@ -90,7 +90,7 @@
               //alert('여기는 loadDiary');
              
               //alert(temp.uNo);
-              $.ajax(getMetaData('ip')+"diary/json/getUserDiaryList",{
+              $.ajax(requestURL+"getUserDiaryList",{
                 method: "post",
                 crossDomain : true,
                 dataType : "json",
