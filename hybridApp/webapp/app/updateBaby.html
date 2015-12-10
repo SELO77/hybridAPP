@@ -10,7 +10,7 @@
 
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
 	<!-- Place favicon.ico in the root directory -->
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
 	<link rel="stylesheet" href="css/__main.css">
 	<link rel="stylesheet" href="css/slidebars.css">
 
@@ -162,10 +162,8 @@
 
 
 
-					<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-					<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
 
-
+					<script src="js/vendor/jquery-1.11.3.min.js" ></script>
 
 
 					<!-- script plug in start -->
@@ -258,7 +256,7 @@
 											}
 										$.ajax(
 											{
-											url:"http://127.0.0.1:8080/baby/json/getBaby",
+											url:getMetaData("ip")+"baby/json/getBaby",
 											method:"POST",
 											contentType:"application/json",
 											dataType:"json",
@@ -355,7 +353,7 @@
 
 								$.ajax(
 								{
-									url:"http://127.0.0.1:8080/baby/json/updateBaby",
+									url:getMetaData("ip")+"baby/json/updateBaby",
 									method:"POST",
 									dataType:"application/json",
 									data:JSON.stringify(formData),
@@ -443,7 +441,7 @@
 												  			uploadFormData
 												  		},
 												  	}),
-												  	url:"http://127.0.0.1:8080/baby/json/addBaby",
+												  	url:getMetaData("ip")+"baby/json/addBaby",
 												  	dataType:"json",
 												  	success:function(data, status){
 
@@ -457,7 +455,7 @@
 
 													$('#bPhoto').fileupload({
 														dataType: 'json',
-														url:'http://127.0.0.1:8080/baby/json/uploadImg',
+														url:getMetaData("ip")+"baby/json/uploadImg",
 														add: function (e, data) {
 															$("#btn01").click(function () {
 
