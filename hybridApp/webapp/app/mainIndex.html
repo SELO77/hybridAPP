@@ -224,7 +224,7 @@ html, body, iframe {
 
                 //[지훈] friend Link
                 $('#friendBtn').on('click', function() {
-                  $('frames["innerframe"]').attr('scrolling', 'auto');
+                  $('frame[name="innerframe"]').attr('scrolling', 'auto');
                   $(window.parent.frames["innerframe"].document.location).attr("href", "friend.html");
                 });
 
