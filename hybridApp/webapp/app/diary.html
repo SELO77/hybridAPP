@@ -11,16 +11,17 @@
    <meta name="description" content="">
    <meta name="author" content="">
   <!-- Place favicon.ico in the root directory -->
-  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
   <link rel="stylesheet" href="css/__main.css">
   <link rel="stylesheet" href="css/bootstrap.css">
   <link href="css/shop-item.css" rel="stylesheet">
-  <link rel="import" href="import/diaryList.html">
+  <link rel="import" href="import/diaryList.html" name="diaryImport">
+  <link rel="import" href="import/reply.html" name="replyImport">
   <link rel="stylesheet" href="css/fileuploadstyle.css">
   <link rel="stylesheet" href="css/jquery.fileupload.css">
   <link rel="stylesheet" href="css/jquery.fileupload-ui.css">
         </head>
-      <body >
+      <body style="padding-top: 0; padding-bottom: 0;">
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
             <![endif]-->
@@ -66,14 +67,13 @@
       <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
       <script type="text/javascript" src="cordova.js"></script>
       <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-        <!-- [시용] 라이브러리 추가 및 스크립트 작성-->    
-      <script src="js/vendor/jquery.ui.widget.js"></script>  
-      <script src="js/jquery.fileupload.js"></script>
       <!-- ip 등 meta data 가져오기 -->
       <script src="js/jihoon/getMetaData.js"></script>
-      
+       <!-- [시용] 라이브러리 추가 및 스크립트 작성-->    
+      <script src="js/vendor/jquery.ui.widget.js"></script>  
+      <script src="js/jquery.fileupload.js"></script>
         <!-- bootStrap.js CDN -->
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>    
+        <script src="js/bootstrap.min.js"></script>    
                     
           
          
@@ -81,12 +81,22 @@
            
             <!--[시용] 핸들바스 모듈html 임포트 및 ajax요청으로 userDiaryList 요청-->
           <script>
+            //전역변수 선언
             var requestURL = getMetaData("ip")+"diary/json/";
+            var requestIP = getMetaData("ip");
             //var requestIP="http://192.168.0.3:8080/";
-            var link = document.querySelector('link[rel="import"]');
+            var diaryLink = document.querySelector('link[name="diaryImport"]');
+            var replyLink = document.querySelector('link[name="replyImport"]');
+            var user = getMetaData('user');
             //var userValue = window.localStorage.getItem("userKey");
             //var user = JSON.parse(userValue);
-            $(document).ready(function loadDiary(){
+            
+            //페이지 로드시 diary 호출            
+            $(document).ready(loadDiary());
+
+
+            //다이어리 호출 함수
+            function loadDiary(){
               //alert('여기는 loadDiary');
              
               //alert(temp.uNo);
@@ -96,41 +106,71 @@
                 dataType : "json",
                 contentType: "application/json; charset=UTF-8",
                 data: JSON.stringify({
-                   uNo : getMetaData('user').uNo
+                   uNo : user.uNo
                 }),
                 success: function(result){
                   //alert("Ajax success");
-                  var temp = link.import;
+                  var temp = diaryLink.import;
                   console.log(result);
                   var source = temp.querySelector('#entry-template').text;
-                        //console.log(source);
-                    
-
-                  //for(var i = 0; i< result.diaries.length; i++){
-                      Handlebars.registerHelper('userCheck', function (rUNo) {
-                            alert(rUNo);
-                            var userhtml ="<strong> <a href='#' class='updateReply'>  <span class='fa fa-pencil' aria-hidden='true'></span> </a> </strong>  <strong> <a href='#' class='removeReply'> <span class='fa fa-trash-o' aria-hidden='true'></span>  </a> </strong>";
-                            if(rUNo == user.uNo){
-                                return userhtml;
-                            }else{
-                              return '';
-                            }
-                      });
-
                       var template = Handlebars.compile(source);
                       var html = template(result);
                       $('#diaryHandle').append(html);
                   //}
                 }
               });
-              });
-         
+              }
+                function callReply(result){
+                  var temp = replyLink.import;
+                  console.log(result);
+                  var source = temp.querySelector('#reply-template').text;
+                  Handlebars.registerHelper('userCheck', function (rUNo) {
+                            //alert(rUNo);
+                            var userhtml ="<strong> <a class='updateReply'>  <span class='fa fa-pencil' aria-hidden='true'></span> </a> </strong>  <strong> <a class='removeReply'> <span class='fa fa-trash-o' aria-hidden='true'></span>  </a> </strong>";
+                            if(rUNo == user.uNo){
+                                return userhtml;
+                            }else{
+                              return '';
+                            }
+                      });
+                      var template = Handlebars.compile(source);
+                      var html = template(result);
+                      console.log(html);
+                      return html;
+                   }
+
+
+           //댓글 가져오기.
+          $(document).on("click", "#callReply", function(){
+              setTimeout('',1000*6);
+              $('deletePoint').remove();
+              var dNo = $(this).prev('input').val();
+              var thisBtn = $(this);
+              //alert(dNo);
+
+
+              $.ajax({
+                url: requestIP+'replies/json/getRepliesList',
+                type: 'POST',
+                crossDomain : true,
+                dataType: 'JSON',
+                contentType: "application/json; charset=UTF-8",
+                data: JSON.stringify({
+                  dNo: dNo
+                }),
+                success: function(result){
+                         var html = callReply(result);
+                         $('#'+dNo).before(html);
+                }
+                });
+              }
+            );
           
 
           //[시용] 댓글달기 동적 이벤트 처리
           $(document).on("click","#reply",function(){
-              var dNo=$(this).parent().children('input').val();
-              var rContent=$(this).parent().parent().children('#replyButton').children('#insertReply').val();
+              var dNo=$(this).prev('input').val();
+              var rContent=$(this).parent().parent().children('#replyButton').children('#insertReply');
               $.ajax(requestIP+"replies/json/addReplies",{
                 method: "post",
                 crossDomain : true,
@@ -139,15 +179,79 @@
                 data: JSON.stringify({
                    rUNo : user.uNo,
                    dNo : dNo,
-                   rContent : rContent 
+                   rContent : rContent.val() 
                 }),
                 success: function(result){
-                  location.reload(true);
+                        $.ajax({
+                        url: requestIP+'replies/json/getRepliesList',
+                        type: 'POST',
+                        crossDomain : true,
+                        dataType: 'JSON',
+                        contentType: "application/json; charset=UTF-8",
+                        data: JSON.stringify({
+                          dNo: dNo
+                        }),
+                        success: function(result){
+                                $('deletePoint').remove();
+                                 var html = callReply(result);
+                                 $('#'+dNo).before(html);
+                                 rContent.val('');
+                        }
+                        });
+                        $.ajax(requestIP+"replies/json/getReplyCount",{
+                        method: "post",
+                        crossDomain : true,
+                        dataType : "json",
+                        contentType: "application/json; charset=UTF-8",
+                        data: JSON.stringify({
+                          dNo : dNo
+                        }), success: function(result){
+                            $('replyCount').text(result.replyCount);
+                        }
+                        });
+                      }
+                });
+              });
+
+
+
+        //[시용] 댓글삭제
+        $(document).on("click", ".removeReply", function(){
+              var replySpan=$(this).parent().parent().children($('input[class="hiddenRNo"]'));
+              //alert(replySpan.val());
+              var diarySpan=$(this).parent().parent().children('#'+replySpan.val());
+              //alert(diarySpan.val());
+              //alert(replySpan.val());
+              $.ajax(requestIP+"replies/json/deleteReplies",{
+                method: "post",
+                crossDomain : true,
+                dataType : "json",
+                contentType: "application/json; charset=UTF-8",
+                data: JSON.stringify({
+                  rNo : replySpan.val()
+                }),
+                success: function(result){
+                  //alert(result);
+                  if(result){
+                      $.ajax(requestIP+"replies/json/getReplyCount",{
+                        method: "post",
+                        crossDomain : true,
+                        dataType : "json",
+                        contentType: "application/json; charset=UTF-8",
+                        data: JSON.stringify({
+                          dNo : diarySpan.val()
+                        }), success: function(result){
+                            //alert(diarySpan.val());
+                            //alert(result.replyCount);
+                            replySpan.parent().parent().parent().remove();
+                            $('replyCount').text(result.replyCount);
+                        }
+                    });
+                  }
+                  
                 }
               });
-          }
-          );
-         
+        });         
 
 
         // [시용] fileUpload를 위한 자바 스크립트 Start
@@ -205,8 +309,6 @@
           
            var length = $("div#imgJARI > img").length;
            //alert(length);
-         
-          
           var imgs = "";
          for(var i=0 ; i<$("div#imgJARI > img").length ; i++){
          /* for each ($("div.images > img:last").length in obj) */
