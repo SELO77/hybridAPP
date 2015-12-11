@@ -2,85 +2,87 @@
 <html class="no-js" lang="">
 <head>
 
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge"> <!-- -->
-  <title>DodamDodam</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1 minimum-scale=1, maximum-scale=1, user-scalable=no"> <!-- 모바일 친화적 뷰 설정 -->
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<!-- -->
+<title>DodamDodam</title>
+<meta name="description" content="">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1 minimum-scale=1, maximum-scale=1, user-scalable=no">
+<!-- 모바일 친화적 뷰 설정 -->
 
-   <meta name="description" content="">
-   <meta name="author" content="">
-  <!-- Place favicon.ico in the root directory -->
-  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
-  <link rel="stylesheet" href="css/__main.css">
-  <link rel="stylesheet" href="css/bootstrap.css">
-  <link href="css/shop-item.css" rel="stylesheet">
-  <link rel="import" href="import/diaryList.html" name="diaryImport">
-  <link rel="import" href="import/reply.html" name="replyImport">
-  <link rel="stylesheet" href="css/fileuploadstyle.css">
-  <link rel="stylesheet" href="css/jquery.fileupload.css">
-  <link rel="stylesheet" href="css/jquery.fileupload-ui.css">
-        </head>
-      <body style="padding-top: 0; padding-bottom: 0;">
-        <!--[if lt IE 8]>
+<meta name="description" content="">
+<meta name="author" content="">
+<!-- Place favicon.ico in the root directory -->
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" href="css/__main.css">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link href="css/shop-item.css" rel="stylesheet">
+<link rel="import" href="import/diaryList.html" name="diaryImport">
+<link rel="import" href="import/reply.html" name="replyImport">
+<link rel="stylesheet" href="css/fileuploadstyle.css">
+<link rel="stylesheet" href="css/jquery.fileupload.css">
+<link rel="stylesheet" href="css/jquery.fileupload-ui.css">
+</head>
+<body style="padding-top: 0; padding-bottom: 0;">
+	<!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
             <![endif]-->
 
-            <!-- Add your site or application content here -->   
-         
-                   <!-- .sb-site -->    
-      <!--   <div id="sb-site">
+	<!-- Add your site or application content here -->
+
+	<!-- .sb-site -->
+	<!--   <div id="sb-site">
       main
         <main role="main" style="margin-top:50px"> -->
 
-          <div class="container" id="diaryHandle" >
-          <center>
-          <div class="well" style="padding: 15px; padding-bottom: 3px"> 
-             <form class="form-horizontal" role="form" enctype="multipart/form-data">
-               <div class="form-group" style="padding:5px; margin-bottom: 0">
-                <textarea class="form-control" placeholder="오늘의 일기를 작성해주세요.."style="margin-bottom:20px" id="dContent"></textarea>
-                <button class="btn btn-primary pull-right" type="button" id="submitDiary">Post</button>
-                  <span class="fileinput-button  pull-left" style="padding-top:6px">
-                    <ul class="list-inline" style="font-size: 23px; text-align: left;">
-                      <li style="padding-top: 7px"><a href="#">
-                      <li>
-                        <a href="">
-                        <i class="glyphicon glyphicon-camera"></i>
-                        </a>
-                      </li>
-                    </ul>
-                    <input type="file" name="files[]" id="fileJARI" multiple >
-                  </span>
-                  <div id="imgJARI">
-                    
-                  </div>
-              </div>
-            <input type="hidden" id="uNo" name="uNo" value="">
-             </form>
-          </div>
-                  </center>
-        </div>
+	<div class="container" id="diaryHandle">
+		<center>
+			<div class="well" style="padding: 15px; padding-bottom: 3px">
+				<form class="form-horizontal" role="form"
+					enctype="multipart/form-data">
+					<div class="form-group" style="padding: 5px; margin-bottom: 0">
+						<textarea class="form-control" placeholder="오늘의 일기를 작성해주세요.."
+							style="margin-bottom: 20px" id="dContent"></textarea>
+						<button class="btn btn-primary pull-right" type="button"
+							id="submitDiary">Post</button>
+						<span class="fileinput-button  pull-left" style="padding-top: 6px">
+							<ul class="list-inline"
+								style="font-size: 23px; text-align: left;">
+								<li style="padding-top: 7px"><a href="#">
+										<li><a href=""> <i class="glyphicon glyphicon-camera"></i>
+										</a></li>
+							</ul> <input type="file" name="files[]" id="fileJARI" multiple>
+						</span>
+						<div id="imgJARI"></div>
+					</div>
+					<input type="hidden" id="uNo" name="uNo" value="">
+				</form>
+			</div>
+		</center>
+	</div>
 
 
-      <!--기본 라이브러리 추가-->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-      <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
-      <script type="text/javascript" src="cordova.js"></script>
-      <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-      <!-- ip 등 meta data 가져오기 -->
-      <script src="js/jihoon/getMetaData.js"></script>
-       <!-- [시용] 라이브러리 추가 및 스크립트 작성-->    
-      <script src="js/vendor/jquery.ui.widget.js"></script>  
-      <script src="js/jquery.fileupload.js"></script>
-        <!-- bootStrap.js CDN -->
-        <script src="js/bootstrap/bootstrap.min.js"></script>    
-                    
-          
-         
-          <script src="js/handlebars-v4.0.5.js" ></script>
-           
-            <!--[시용] 핸들바스 모듈html 임포트 및 ajax요청으로 userDiaryList 요청-->
-          <script>
+	<!--기본 라이브러리 추가-->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script src="js/vendor/modernizr-2.8.3.min.js"></script>
+	<!-- ip 등 meta data 가져오기 -->
+	<script src="js/jihoon/getMetaData.js"></script>
+	<!-- [시용] 라이브러리 추가 및 스크립트 작성-->
+	<script src="js/vendor/jquery.ui.widget.js"></script>
+	<script src="js/jquery.fileupload.js"></script>
+	<!-- bootStrap.js CDN -->
+	<script src="js/bootstrap/bootstrap.min.js"></script>
+
+
+
+	<script src="js/handlebars-v4.0.5.js"></script>
+
+	<!--[시용] 핸들바스 모듈html 임포트 및 ajax요청으로 userDiaryList 요청-->
+	<script>
             //전역변수 선언
             var requestURL = getMetaData("ip")+"diary/json/";
             var requestIP = getMetaData("ip");
@@ -367,8 +369,8 @@
 
 
 
-      <!-- 기본 script-->
-      <script>
+	<!-- 기본 script-->
+	<script>
           /*document.addEventListener("backbutton", onBackKeyDown, false);
              function onBackKeyDown(){
                //window.plugins.toast.show('Really Exit?'.'short'.'center',)
@@ -397,7 +399,7 @@
                  };
                });
               };
-      </script> 
+      </script>
 
-       </body>
-      </html>
+</body>
+</html>

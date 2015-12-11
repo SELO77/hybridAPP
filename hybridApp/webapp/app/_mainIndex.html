@@ -3,94 +3,149 @@
 <html class="no-js" lang="">
 <head>
 
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge"> <!-- -->
-  <title>DodamDodam</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1 minimum-scale=1, maximum-scale=1, user-scalable=no"> <!-- 모바일 친화적 뷰 설정 -->
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<!-- -->
+<title>DodamDodam</title>
+<meta name="description" content="">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1 minimum-scale=1, maximum-scale=1, user-scalable=no">
+<!-- 모바일 친화적 뷰 설정 -->
 
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <!-- Place favicon.ico in the root directory -->
-  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
-  <link rel="stylesheet" href="css/__main.css">
-  <link rel="stylesheet" href="css/slidebars.css">
-  
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!-- Place favicon.ico in the root directory -->
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+<link rel="stylesheet" href="css/__main.css">
+<link rel="stylesheet" href="css/slidebars.css">
 
-  <link rel="import" href="import/diaryList.html">
 
-      <style type="text/css">
-        html, body, iframe{
-          height: 100%; 
-        }
-        #sb-site{
-            height: 100%; 
-        }
-        .cb-enable, .cb-disable, .cb-enable span, .cb-disable span { background: url(switch.gif) repeat-x; display: block; float: left; }
-        .cb-enable span, .cb-disable span { line-height: 30px; display: block; background-repeat: no-repeat; font-weight: bold; }
-        .cb-enable span { background-position: left -90px; padding: 0 10px; }
-        .cb-disable span { background-position: right -180px;padding: 0 10px; }
-        .cb-disable.selected { background-position: 0 -30px; }
-        .cb-disable.selected span { background-position: right -210px; color: #fff; }
-        .cb-enable.selected { background-position: 0 -60px; }
-        .cb-enable.selected span { background-position: left -150px; color: #fff; }
-        .switch label { cursor: pointer; }
-      </style>
- 
+<link rel="import" href="import/diaryList.html">
 
-      </head>
-      <body style="border:2px solid black; overflow:hidden">
-      <div class="modal fade modal-content" id="layerpop" style="margin-left: 15px">
+<style type="text/css">
+html, body, iframe {
+	height: 100%;
+}
 
-        <div class="modal-header" style="padding:20px 20px;" align="center">
-        <img src="img/logo40.png" /><br>
-        <button type="button" class="close" data-dismiss="modal">×</button>
-        </div>
+#sb-site {
+	height: 100%;
+}
 
-        <div class="modal-body" style="padding:40px 50px;">
-          <form role="form">
-            <div class="form-group">
-              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Your Email</label>
-              <input type="text" class="form-control" id="usrname" placeholder="Enter email">
-            </div>
-            <div class="form-group">
-              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-              <input type="text" class="form-control" id="psw" placeholder="Enter password">
-            </div>
+.cb-enable, .cb-disable, .cb-enable span, .cb-disable span {
+	background: url(switch.gif) repeat-x;
+	display: block;
+	float: left;
+}
 
-            <button type="button" class="btn btn-primary btn-lg btn-block fa  fa-envelope" style="background-color:#9a9a9a">    E-mail Login</button>
-            <button type="button" class="btn btn-primary btn-lg btn-block  fa fa-facebook-square " style="background-color:#2E5DA4">     Login</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal" style="background-color:#9a9a9a;border-color:black"><span class="glyphicon glyphicon-remove" ></span> Cancel</button>
-        </div>
-      </div>
-        <!--[if lt IE 8]>
+.cb-enable span, .cb-disable span {
+	line-height: 30px;
+	display: block;
+	background-repeat: no-repeat;
+	font-weight: bold;
+}
+
+.cb-enable span {
+	background-position: left -90px;
+	padding: 0 10px;
+}
+
+.cb-disable span {
+	background-position: right -180px;
+	padding: 0 10px;
+}
+
+.cb-disable.selected {
+	background-position: 0 -30px;
+}
+
+.cb-disable.selected span {
+	background-position: right -210px;
+	color: #fff;
+}
+
+.cb-enable.selected {
+	background-position: 0 -60px;
+}
+
+.cb-enable.selected span {
+	background-position: left -150px;
+	color: #fff;
+}
+
+.switch label {
+	cursor: pointer;
+}
+</style>
+
+
+</head>
+<body style="border: 2px solid black; overflow: hidden">
+	<div class="modal fade modal-content" id="layerpop"
+		style="margin-left: 15px">
+
+		<div class="modal-header" style="padding: 20px 20px;" align="center">
+			<img src="img/logo40.png" /><br>
+			<button type="button" class="close" data-dismiss="modal">×</button>
+		</div>
+
+		<div class="modal-body" style="padding: 40px 50px;">
+			<form role="form">
+				<div class="form-group">
+					<label for="usrname"><span class="glyphicon glyphicon-user"></span>
+						Your Email</label> <input type="text" class="form-control" id="usrname"
+						placeholder="Enter email">
+				</div>
+				<div class="form-group">
+					<label for="psw"><span class="glyphicon glyphicon-eye-open"></span>
+						Password</label> <input type="text" class="form-control" id="psw"
+						placeholder="Enter password">
+				</div>
+
+				<button type="button"
+					class="btn btn-primary btn-lg btn-block fa  fa-envelope"
+					style="background-color: #9a9a9a">E-mail Login</button>
+				<button type="button"
+					class="btn btn-primary btn-lg btn-block  fa fa-facebook-square "
+					style="background-color: #2E5DA4">Login</button>
+			</form>
+		</div>
+		<div class="modal-footer">
+			<button type="submit" class="btn btn-danger btn-default pull-left"
+				data-dismiss="modal"
+				style="background-color: #9a9a9a; border-color: black">
+				<span class="glyphicon glyphicon-remove"></span> Cancel
+			</button>
+		</div>
+	</div>
+	<!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
             <![endif]-->
 
-            <!-- Add your site or application content here -->   
-         
-           <!-- /.sb-slidebar  -->
-           <header role="banner" >
-              <nav role="navigation" class="navbar navbar-default navbar-fixed-top">
-                <div class="container">
+	<!-- Add your site or application content here -->
 
-                  <div class="navbar-header">
-                    <button type="button" class="navbar-toggle sb-toggle-left" data-toggle="collapse" data-target=".navbar-collapse">
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                    </button>
+	<!-- /.sb-slidebar  -->
+	<header role="banner">
+		<nav role="navigation" class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
 
-                    <a href="mainIndex.html"><img src="img/logo41.png" class="img-responsive img-rounded" style="position:absolute;left:48%;top:10%; margin-left:-40px;"/></a>
-                 </div><!-- /.navbar-header -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle sb-toggle-left"
+						data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
 
-                </div><!--/. container  -->
+					<a href="mainIndex.html"><img src="img/logo41.png"
+						class="img-responsive img-rounded"
+						style="position: absolute; left: 48%; top: 10%; margin-left: -40px;" /></a>
+				</div>
+				<!-- /.navbar-header -->
+
+			</div>
+			<!--/. container  -->
 
 
-              </nav>
-           <!-- <div class="sb-slidebar sb-left" style="background-color: #ffffff;border:2px solid black; margin-top: 50px" >
+		</nav>
+		<!-- <div class="sb-slidebar sb-left" style="background-color: #ffffff;border:2px solid black; margin-top: 50px" >
             style="border:2px solid black;border-radius:0.5em"
             <img src="img/logo48.png" />
            
@@ -127,73 +182,79 @@
            
            
            </div> -->
-           <!-- sb-slidebar left -->
-          <div class="sb-slidebar sb-left" style="background-color: #ffffff;border:2px solid black; margin-top: 45px" >
-            <!-- style="border:2px solid black;border-radius:0.5em" -->
-            <div class="photo" align="center">
-            <img src="img/logo40.png" /><br>
-              </div>
-              <div >
-            <img src="img/profile1.jpg" width="100"  class="img-circle"   />
-            <span style="font-size:20px"><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#layerpop"></button></span>
+		<!-- sb-slidebar left -->
+		<div class="sb-slidebar sb-left"
+			style="background-color: #ffffff; border: 2px solid black; margin-top: 45px">
+			<!-- style="border:2px solid black;border-radius:0.5em" -->
+			<div class="photo" align="center">
+				<img src="img/logo40.png" /><br>
+			</div>
+			<div>
+				<img src="img/profile1.jpg" width="100" class="img-circle" /> <span
+					style="font-size: 20px"><button type="button"
+						class="btn btn-primary btn-lg" data-toggle="modal"
+						data-target="#layerpop"></button></span>
 
-            <hr>
-            <hr>
-          </div>
-            <h3>
-              <fieldset>
-              <ul class="nav navbar-nav" style="">
+				<hr>
+				<hr>
+			</div>
+			<h3>
+				<fieldset>
+					<ul class="nav navbar-nav" style="">
 
-                <li class="active"><a href="#" name="DiaryLink"><span class="fa fa-home"></span> Home</a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdwon-toggle" data-toggle="dropdown" style="color: black"><i class="fa fa-book"></i> Diary
-                    <b class="caret"></b></a>
+						<li class="active"><a href="#" name="DiaryLink"><span
+								class="fa fa-home"></span> Home</a></li>
+						<li class="dropdown"><a href="#" class="dropdwon-toggle"
+							data-toggle="dropdown" style="color: black"><i
+								class="fa fa-book"></i> Diary <b class="caret"></b></a>
 
-                    <ul class="dropdown-menu" >
-                      <h3 style="padding-left:40px">
-                       <li><a href="#" style="color: black"><span class="fa fa-pencil-square-o"></span> Pan</a></li>
-                       <li><a href="index.html" style="color: black"><span class="fa fa-trash"></span> TrashCan</a></li>
-                      </h3>
+							<ul class="dropdown-menu">
+								<h3 style="padding-left: 40px">
+									<li><a href="#" style="color: black"><span
+											class="fa fa-pencil-square-o"></span> Pan</a></li>
+									<li><a href="index.html" style="color: black"><span
+											class="fa fa-trash"></span> TrashCan</a></li>
+								</h3>
 
-                   </ul>
+							</ul></li>
+						<li class="active"><a href="join.html"><span
+								class="fa fa-exclamation-triangle"></span> Alert</a></li>
+						<li class="active"><a href="Login.html"><span
+								class="fa fa-history"></span> Clock</a></li>
+						<li><a href="index.html" style="color: black"><span
+								class="fa fa-trash"></span> TrashCan</a></li>
+					</ul>
+				</fieldset>
+			</h3>
 
-                 </li>
-                <li class="active"><a href="join.html"><span class="fa fa-exclamation-triangle"></span> Alert</a></li>
-                <li class="active"><a href="Login.html"><span class="fa fa-history"></span> Clock</a></li>
-                <li><a href="index.html" style="color: black"><span class="fa fa-trash"></span> TrashCan</a></li>
-               </ul>
-             </fieldset>
-             </h3>
+
+			<span class="fa fa-volume-up">
+				<p class="field switch  ">
+
+					<label class="cb-enable"><span>On</span></label> <label
+						class="cb-disable selected"><span>Off</span></label>
+				</p>
+			</span> <span class="fa fa-ship">
+				<p class="field switch">
+					<label class="cb-enable"><span>On</span></label> <label
+						class="cb-disable selected"><span>Off</span></label>
+				</p>
+			</span>
+
+			<div class="modal-footer" align="bottom:200px">
+				<button type="submit" class="btn btn-danger btn-default pull-center"
+					data-dismiss="modal" id="logout">Logout</button>
+			</div>
+		</div>
+	</header>
+
+	<!-- .sb-site -->
+	<div id="sb-site" name="sb-site" style="height: device;">
+		<!-- header -->
 
 
-             <span class="fa fa-volume-up">
-             <p class="field switch  ">
-
-               <label class="cb-enable"><span>On</span></label>
-               <label class="cb-disable selected"><span>Off</span></label>
-             </p>
-           </span>
-
-             <span class="fa fa-ship">
-             <p class="field switch">
-               <label class="cb-enable"><span>On</span></label>
-               <label class="cb-disable selected"><span>Off</span></label>
-             </p>
-             </span>
-
-             <div class="modal-footer" align="bottom:200px">
-            <button type="submit" class="btn btn-danger btn-default pull-center" data-dismiss="modal" id="logout"> Logout</button>
-          </div>
-         </div>
-            </header>
-
-           <!-- .sb-site -->    
-           <div id="sb-site" name="sb-site" style="height:device;">
-            <!-- header -->
-           
-
-            <!-- main -->
-<!--           <main role="main" style="margin-top:50px">
+		<!-- main -->
+		<!--           <main role="main" style="margin-top:50px">
 
 <div class="container">     
      <div class="row">
@@ -234,152 +295,166 @@
 </style>
          </div>/.container
       </main> -->
-      <!-- /.main-->
-     <iframe name="innerframe" id="innerframe" width="100%" scrolling="auto" src="" frameborder="0"  style="overflow:hidden;height:100%;width:100%" height="100%" width="100%"></iframe>
- 
-      <!-- Script trend -->
-      <!-- Script -->
-      <script type="text/javascript">
-        function setIFrameHeight(obj){
-                obj.height = obj.contentWindow.document.body.scrollHeight;
-        }
-      </script>
+		<!-- /.main-->
+		<iframe name="innerframe" id="innerframe" width="100%"
+			scrolling="auto" src="" frameborder="0"
+			style="overflow: hidden; height: 100%; width: 100%" height="100%"
+			width="100%"></iframe>
 
-      <script src="js/vendor/jquery-1.11.3.min.js" ></script>
-      <!-- plugin.js main.js cordova.js-->
+		<!-- Script trend -->
+		<!-- Script -->
+		<script type="text/javascript">
+			function setIFrameHeight(obj) {
+				obj.height = obj.contentWindow.document.body.scrollHeight;
+			}
+		</script>
 
-      <script src="js/plugins.js"></script>
-      <script src="js/main.js"></script>      
-      <script type="text/javascript" src="cordova.js"></script>
+		<script src="js/vendor/jquery-1.11.3.min.js"></script>
+		<!-- plugin.js main.js cordova.js-->
 
-      <!-- ip 등 meta data 가져오기 -->
-      <script src="js/jihoon/getMetaData.js"></script>
-      
-      <!-- script plug in start -->
-      <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+		<script src="js/plugins.js"></script>
+		<script src="js/main.js"></script>
+		<script type="text/javascript" src="cordova.js"></script>
 
-      <!-- swipe 추가 -->
-      <script text="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
-      <script type="text/javascript">
+		<!-- ip 등 meta data 가져오기 -->
+		<script src="js/jihoon/getMetaData.js"></script>
 
+		<!-- script plug in start -->
+		<script src="js/vendor/modernizr-2.8.3.min.js"></script>
 
+		<!-- swipe 추가 -->
+		<script text="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
+		<script type="text/javascript">
+			$(".fa-trash").on('click', function() {
+				$(this).parent().parent().parent().remove();
+			});
 
-        $(".fa-trash").on('click',function(){
-          $(this).parent().parent().parent().remove();
-        });
+			$(".fa-star, fa-star-o").on('click', function() {
+				$(this).toggleClass("fa-star-o");
+				$(this).toggleClass("fa-star");
+			});
 
+			//Swipeleft to remove a post
+			$(".col-sm-6").swipe(
+					{
+						swipeLeft : function(event, direction, distance,
+								duration, fingerCount) {
+							$(this).remove();
+						},
+						thereshold : 0
+					});// /.swipe
 
-        $(".fa-star, fa-star-o").on('click',function(){
-          $(this).toggleClass("fa-star-o");
-          $(this).toggleClass("fa-star");
-        });
+			//slidebar( sidebar )
+			$.slidebars();
 
-            //Swipeleft to remove a post
-            $(".col-sm-6").swipe({
-              swipeLeft:function(event,direction,distance,duration,fingerCount){
-                $(this).remove();
-              },
-              thereshold:0
-            });// /.swipe
+			document.addEventListener("deviceready", onDeviceReady, false);
+			function onDeviceReady() {
 
-            //slidebar( sidebar )
-            $.slidebars();
+				//loadDiary();
+			}
 
+			document.addEventListener("backbutton", onBackKeyDown, false);
+			function onBackKeyDown() {
+				//window.plugins.toast.show('Really Exit?'.'short'.'center',)
+				testLogoutSheet();
+			}
 
-            document.addEventListener("deviceready", onDeviceReady, false);
-            function onDeviceReady() {
-               
-               //loadDiary();
-             }
+			//Action sheet
 
-             document.addEventListener("backbutton", onBackKeyDown, false);
-             function onBackKeyDown(){
-               //window.plugins.toast.show('Really Exit?'.'short'.'center',)
-               testLogoutSheet();      
-             }
+			function testLogoutSheet() {
+				var options = {
+					'androidTheme' : window.plugins.actionsheet.ANDROID_THEMES.THEME_HOLO_LIGHT,
+					'title' : 'Are you sure to close it?',
+					'buttonLabels' : [ 'No', 'Yes' ],
+					'androidEnableCancelButton' : true,
+					'winphoneEnableCancelButton' : true,
+				//'addCancelButtonWithLabel': 'Cancel'
+				};
+				window.plugins.actionsheet.show(options, callback);
+			}
 
-            //Action sheet
+			var callback = function(buttonIndex) {
+				setTimeout(function() {
+					//alert('button index clicked: ' + buttonIndex);
+					if (buttonIndex == 2) {
+						navigator.app.exitApp();
+					}
+					;
+				});
+			};
+		</script>
+		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+		<script>
+			(function(b, o, i, l, e, r) {
+				b.GoogleAnalyticsObject = l;
+				b[l] || (b[l] = function() {
+					(b[l].q = b[l].q || []).push(arguments)
+				});
+				b[l].l = +new Date;
+				e = o.createElement(i);
+				r = o.getElementsByTagName(i)[0];
+				e.src = 'https://www.google-analytics.com/analytics.js';
+				r.parentNode.insertBefore(e, r)
+			}(window, document, 'script', 'ga'));
+			ga('create', 'UA-XXXXX-X', 'auto');
+			ga('send', 'pageview');
+		</script>
+	</div>
 
-            function testLogoutSheet() {
-              var options = {
-                'androidTheme' : window.plugins.actionsheet.ANDROID_THEMES.THEME_HOLO_LIGHT,
-                'title': 'Are you sure to close it?',
-                'buttonLabels': ['No','Yes'],
-                'androidEnableCancelButton' : true,
-                'winphoneEnableCancelButton' : true,
-                  //'addCancelButtonWithLabel': 'Cancel'
-                };
-                window.plugins.actionsheet.show(options, callback);
-              }
+	<script type="text/javascript">
+		$(function() {
 
-              var callback = function(buttonIndex) {
-                setTimeout(function() {
-                  //alert('button index clicked: ' + buttonIndex);
-                  if (buttonIndex == 2) {
-                   navigator.app.exitApp();
-                 };
-               });
-              };
+			//Diary Link 
+			$('a[name="DiaryLink"]')
+					.click(
+							function() {
+								$('frame[name="innerframe"]').attr('scrolling',
+										'auto');
+								/*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
+								$(
+										window.parent.frames["innerframe"].document.location)
+										.attr("href", "diary.html");
+							});
 
-            </script>    
-            <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-            <script>
-              (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-                function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-              e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-              e.src='https://www.google-analytics.com/analytics.js';
-              r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-              ga('create','UA-XXXXX-X','auto');ga('send','pageview');
-            </script>
-          </div>
- 
-          <script type="text/javascript">
-            $(function (){
+			//logout Function 호출
+			$('button[id="logout"]').click(function() {
+				$('frame[name="innerframe"]').attr('scrolling', 'auto');
+				/*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
+				window.localStorage.removeItem("userKey");
+				self.location = "index.html";
 
-                //Diary Link 
-                $('a[name="DiaryLink"]').click(function(){
-                   $('frame[name="innerframe"]').attr('scrolling', 'auto');
-                   /*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
-                   $(window.parent.frames["innerframe"].document.location).attr("href","diary.html");
-                });
-
-                //logout Function 호출
-                $('button[id="logout"]').click(function(){
-                   $('frame[name="innerframe"]').attr('scrolling', 'auto');
-                   /*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
-                   window.localStorage.removeItem("userKey");
-                   self.location =  "index.html";
-
-                });
-            });
-            $(document).ready( function(){
-                 $(".cb-enable").click(function(){
-                     var parent = $(this).parents('.switch');
-                       $('.cb-disable',parent).removeClass('selected');
-                                         $(this).addClass('selected');
-                    $('.checkbox',parent).attr('checked', true);
-                  });
-                  $(".cb-disable").click(function(){
-                    var parent = $(this).parents('.switch');
-                    $('.cb-enable',parent).removeClass('selected');
-                    $(this).addClass('selected');
-                    $('.checkbox',parent).attr('checked', false);
-                  });
-                  $('frame[name="innerframe"]').attr('scrolling', 'auto');
-                   /*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
-                   var users = window.localStorage.getItem("userKey");
-                   //console.log(userValue);
-                   //console.log(userValue.uNo);
-                   //var temp = userValue.text();
-                   //console.log(temp);
-                   //var temp2 = JSON.parse(temp);
-                   //var temp3 = JSON.stringify(temp);
-                   //console.log(temp2);  
-                   console.log(users);  
-                   var temp = JSON.parse(users);
-                   console.log(temp.uNo);
-                   $(window.parent.frames["innerframe"].document.location).attr("href","diary.html");
-                });
-             </script>
-        </body>
-        </html>
+			});
+		});
+		$(document).ready(
+				function() {
+					$(".cb-enable").click(function() {
+						var parent = $(this).parents('.switch');
+						$('.cb-disable', parent).removeClass('selected');
+						$(this).addClass('selected');
+						$('.checkbox', parent).attr('checked', true);
+					});
+					$(".cb-disable").click(function() {
+						var parent = $(this).parents('.switch');
+						$('.cb-enable', parent).removeClass('selected');
+						$(this).addClass('selected');
+						$('.checkbox', parent).attr('checked', false);
+					});
+					$('frame[name="innerframe"]').attr('scrolling', 'auto');
+					/*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
+					var users = window.localStorage.getItem("userKey");
+					//console.log(userValue);
+					//console.log(userValue.uNo);
+					//var temp = userValue.text();
+					//console.log(temp);
+					//var temp2 = JSON.parse(temp);
+					//var temp3 = JSON.stringify(temp);
+					//console.log(temp2);  
+					console.log(users);
+					var temp = JSON.parse(users);
+					console.log(temp.uNo);
+					$(window.parent.frames["innerframe"].document.location)
+							.attr("href", "diary.html");
+				});
+	</script>
+</body>
+</html>

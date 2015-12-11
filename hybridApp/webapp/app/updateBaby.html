@@ -2,17 +2,20 @@
 <html class="no-js" lang="en">
 <head>
 
-	<meta charset="utf-8">
-	<meta http-equiv="x-ua-compatible" content="ie=edge"> <!-- -->
-	<title>DodamDodam</title>
-	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1 minimum-scale=1, maximum-scale=1, user-scalable=no"> <!-- 모바일 친화적 뷰 설정 -->
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<!-- -->
+<title>DodamDodam</title>
+<meta name="description" content="">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1 minimum-scale=1, maximum-scale=1, user-scalable=no">
+<!-- 모바일 친화적 뷰 설정 -->
 
-	<link rel="apple-touch-icon" href="apple-touch-icon.png">
-	<!-- Place favicon.ico in the root directory -->
-	<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
-	<link rel="stylesheet" href="css/__main.css">
-	<link rel="stylesheet" href="css/slidebars.css">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!-- Place favicon.ico in the root directory -->
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+<link rel="stylesheet" href="css/__main.css">
+<link rel="stylesheet" href="css/slidebars.css">
 
 
 
@@ -21,141 +24,139 @@
 
 </head>
 <body onload="getBaby();">
-				<!--[if lt IE 8]>
+	<!--[if lt IE 8]>
 						<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 						<![endif]-->
 
-						<!-- Add your site or application content here -->
+	<!-- Add your site or application content here -->
 
-						<!-- .sb-site -->
-			<!--   <div id="sb-site">
+	<!-- .sb-site -->
+	<!--   <div id="sb-site">
 			main
 			<main role="main" style="margin-top:50px"> -->
 
-				<div class="container" id="diaryHandle">
-					<!-- <div class="row"> -->
-					<style type="text/css">
+	<div class="container" id="diaryHandle">
+		<!-- <div class="row"> -->
+		<style type="text/css">
+.onepost1 {
+	border: 1px solid;
+	/*border-radius: 8px;*/
+	margin-top: 20px;
+	padding: 0 10px 15px 10px;
+}
 
-						.onepost1{
-							border: 1px solid ;
-							/*border-radius: 8px;*/
-							margin-top: 20px;
-							padding: 0 10px 15px 10px;
-						}
+.posttop {
+	margin: 10px 0 10px 0
+}
 
-						.posttop{
-							margin: 10px 0 10px 0
-						}
+.contents {
+	/*border-radius: 50%;*/
+	width: 95%;
+	height: auto;
+	margin: 0 10px 0 10px;
+}
 
-						.contents{
-							/*border-radius: 50%;*/
-							width: 95%;
-							height: auto;
-							margin: 0 10px 0 10px;
-						}
+.postimg {
+	border-radius: 5px;
+}
 
-						.postimg{
-							border-radius: 5px;
-						}
+.text1 {
+	margin-top: 10px;
+}
 
-						.text1{
-							margin-top: 10px;
-						}
+.postprofileimg {
+	width: 30px;
+	height: auto;
+}
+</style>
 
-						.postprofileimg{
-							width: 30px;
-							height: auto;
-						}
+		<!-- 메인 html시작 [진영]-->
 
-					</style>
-
-					<!-- 메인 html시작 [진영]-->
-
-					<br>
+		<br>
 
 
-					<div  style="padding:10px" align="center">
-						<img src="img/logo40.png" /><br>
-						<!-- <img src="img/profile1.jpg" width="100"  class="img-circle"   /> -->
-						<!-- <button class="circle"><img src="img/profile1.jpg" width="100"  class="rounded"/></button> -->
+		<div style="padding: 10px" align="center">
+			<img src="img/logo40.png" /><br>
+			<!-- <img src="img/profile1.jpg" width="100"  class="img-circle"   /> -->
+			<!-- <button class="circle"><img src="img/profile1.jpg" width="100"  class="rounded"/></button> -->
 
 
 
-					</div>
+		</div>
 
-					<div class="modal-body" style="padding:0px 50px;">
-						<form role="form">
+		<div class="modal-body" style="padding: 0px 50px;">
+			<form role="form">
 
-							<div class="form-group" align="center">
-								<!-- <input type="file" name="bPhoto" id="bPhoto" src="img/defaultImage.jpg" class="img-rounded" width="100"> -->
-								<input type="file" id="bPhoto" name="bPhoto" style="display:none">
-								<div id="uploadImage" onclick=$("#bPhoto").click()></div>
+				<div class="form-group" align="center">
+					<!-- <input type="file" name="bPhoto" id="bPhoto" src="img/defaultImage.jpg" class="img-rounded" width="100"> -->
+					<input type="file" id="bPhoto" name="bPhoto" style="display: none">
+					<div id="uploadImage" onclick=$("#bPhoto").click()></div>
 
-								<!-- <img id="defaultImg" src="img/defaultImage.jpg" width="100px" onclick="imgChange()" class="img-rounded"> -->
+					<!-- <img id="defaultImg" src="img/defaultImage.jpg" width="100px" onclick="imgChange()" class="img-rounded"> -->
 
-								<!-- <input type="image" class="img-rounded" id="imageb" onclick="$('#bPhoto').click();" src="img/defaultImage.jpg" width="100" onchange="babyImg();"> -->
+					<!-- <input type="image" class="img-rounded" id="imageb" onclick="$('#bPhoto').click();" src="img/defaultImage.jpg" width="100" onchange="babyImg();"> -->
 
-							</div>
+				</div>
 
-							<div class="form-group" >
-								<span style="font-size:12px;">&nbsp;이름</span>
-								<input type="text" class="form-control" name="bName" id="bName" style="border-right:0;border-top:0px; border-left:0px; boder-bottom:1px;"  placeholder="태명,별명도 입력가능"
-								style="color:#ff0000">
-								<div id="nameCheck"></div>
-							</div>
+				<div class="form-group">
+					<span style="font-size: 12px;">&nbsp;이름</span> <input type="text"
+						class="form-control" name="bName" id="bName"
+						style="border-right: 0; border-top: 0px; border-left: 0px; boder-bottom: 1px;"
+						placeholder="태명,별명도 입력가능" style="color:#ff0000">
+					<div id="nameCheck"></div>
+				</div>
 
-							<div class="form-group" >
-								<span style="font-size:12px;">&nbsp;생일</span>
-								<input type="text" class="form-control" name="bBirth" id="bBirth"   style="border-right:0; border-top:0px; border-left:0px; boder-bottom:1px;"  placeholder="ex(2015-12-07)" onkeydown="onlyNumber(event)">
-							</div>
-							<div class="form-group" >
-								<span style="font-size:12px;">&nbsp;키</span>
-								<input type="text" class="form-control" name="height" id="height"   style="border-right:0; border-top:0px; border-left:0px; boder-bottom:1px;"  placeholder="키             (cm)">
-							</div>
-							<div class="form-group" >
-								<span style="font-size:12px;">&nbsp;체중</span>
-								<input type="text" class="form-control" name="weight" id="weight"  style="border-right:0; border-top:0px; border-left:0px; boder-bottom:1px;"  placeholder="체중          (kg)">
-							</div>
-							<div class="form-group" align="center">
-								<h5><span class="fa fa-venus-mars"></span>성별</h5>
-								<label class="radio-inline">
-									<input type="radio" name="bSex" id="male" value="1"><span class="fa fa-mars"></span>
-								</label>
-								<label class="radio-inline">
-									<input type="radio" name="bSex" id="female" value="2"><span class="fa fa-venus"></span>
-								</label>
-							</div>
-							<div class="form-group" align="center">
-								<h5><span class="fa fa-heartbeat"></span>혈액형</h5>
-								<label class="radio-inline">
-									<input type="radio" name="bType" id="AType" value="A">A형
-								</label>
-								<label class="radio-inline">
-									<input type="radio" name="bType" id="BType" value="B">B형
-								</label>
-								<label class="radio-inline">
-									<input type="radio" name="bType" id="OType" value="O">O형
-								</label>
-								<label class="radio-inline">
-									<input type="radio" name="bType" id="ABType" value="AB">AB형
-								</label>
-							</div>
+				<div class="form-group">
+					<span style="font-size: 12px;">&nbsp;생일</span> <input type="text"
+						class="form-control" name="bBirth" id="bBirth"
+						style="border-right: 0; border-top: 0px; border-left: 0px; boder-bottom: 1px;"
+						placeholder="ex(2015-12-07)" onkeydown="onlyNumber(event)">
+				</div>
+				<div class="form-group">
+					<span style="font-size: 12px;">&nbsp;키</span> <input type="text"
+						class="form-control" name="height" id="height"
+						style="border-right: 0; border-top: 0px; border-left: 0px; boder-bottom: 1px;"
+						placeholder="키             (cm)">
+				</div>
+				<div class="form-group">
+					<span style="font-size: 12px;">&nbsp;체중</span> <input type="text"
+						class="form-control" name="weight" id="weight"
+						style="border-right: 0; border-top: 0px; border-left: 0px; boder-bottom: 1px;"
+						placeholder="체중          (kg)">
+				</div>
+				<div class="form-group" align="center">
+					<h5>
+						<span class="fa fa-venus-mars"></span>성별
+					</h5>
+					<label class="radio-inline"> <input type="radio"
+						name="bSex" id="male" value="1"><span class="fa fa-mars"></span>
+					</label> <label class="radio-inline"> <input type="radio"
+						name="bSex" id="female" value="2"><span
+						class="fa fa-venus"></span>
+					</label>
+				</div>
+				<div class="form-group" align="center">
+					<h5>
+						<span class="fa fa-heartbeat"></span>혈액형
+					</h5>
+					<label class="radio-inline"> <input type="radio"
+						name="bType" id="AType" value="A">A형
+					</label> <label class="radio-inline"> <input type="radio"
+						name="bType" id="BType" value="B">B형
+					</label> <label class="radio-inline"> <input type="radio"
+						name="bType" id="OType" value="O">O형
+					</label> <label class="radio-inline"> <input type="radio"
+						name="bType" id="ABType" value="AB">AB형
+					</label>
+				</div>
 
-							<button type="button" class="btn btn-primary btn-lg btn-block ; fa  " id="btn01" style="">수정하기</button>
+				<button type="button"
+					class="btn btn-primary btn-lg btn-block ; fa  " id="btn01" style="">수정하기</button>
 
-						</form>
-					</div>
+			</form>
+		</div>
 
-					<!-- 메인 html끝 [진영]-->
-
-
-
-
-
-
-
-
-
+		<!-- 메인 html끝 [진영]-->
 
 
 
@@ -163,20 +164,29 @@
 
 
 
-					<script src="js/vendor/jquery-1.11.3.min.js" ></script>
-
-
-					<!-- script plug in start -->
-					<script src="js/vendor/modernizr-2.8.3.min.js"></script>
-
-					<!-- [근한] 파일업로드를 위한 js파일 추가 -->
-					<script src="js/vendor/jquery.ui.widget.js"></script>      
-					<script src="js/jquery.fileupload.js"></script>
-					<!-- /[근한] 파일업로드를 위한 js파일 추가 끝 -->
 
 
 
-					<script>
+
+
+
+
+
+
+		<script src="js/vendor/jquery-1.11.3.min.js"></script>
+
+
+		<!-- script plug in start -->
+		<script src="js/vendor/modernizr-2.8.3.min.js"></script>
+
+		<!-- [근한] 파일업로드를 위한 js파일 추가 -->
+		<script src="js/vendor/jquery.ui.widget.js"></script>
+		<script src="js/jquery.fileupload.js"></script>
+		<!-- /[근한] 파일업로드를 위한 js파일 추가 끝 -->
+
+
+
+		<script>
 						document.addEventListener("backbutton", onBackKeyDown, false);
 						function onBackKeyDown(){
 							 //window.plugins.toast.show('Really Exit?'.'short'.'center',)
@@ -498,6 +508,6 @@
 
 </script>
 
-</div>
+	</div>
 </body>
 </html>

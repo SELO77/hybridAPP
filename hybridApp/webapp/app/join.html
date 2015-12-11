@@ -2,66 +2,67 @@
 <html class="no-js" lang="">
 <head>
 
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge"> <!-- -->
-  <title>DodamDodam</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1 minimum-scale=1, maximum-scale=1, user-scalable=no"> <!-- 모바일 친화적 뷰 설정 -->
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<!-- -->
+<title>DodamDodam</title>
+<meta name="description" content="">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1 minimum-scale=1, maximum-scale=1, user-scalable=no">
+<!-- 모바일 친화적 뷰 설정 -->
 
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <!-- Place favicon.ico in the root directory -->
-  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
-  <link rel="stylesheet" href="css/__main.css">
-  <link rel="stylesheet" href="css/slidebars.css">
-  </head>
-      <body >
-        <!--[if lt IE 8]>
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!-- Place favicon.ico in the root directory -->
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+<link rel="stylesheet" href="css/__main.css">
+<link rel="stylesheet" href="css/slidebars.css">
+</head>
+<body>
+	<!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
             <![endif]-->
 
-            <!-- Add your site or application content here -->   
-         
-                   <!-- .sb-site -->    
-      <!--   <div id="sb-site">
+	<!-- Add your site or application content here -->
+
+	<!-- .sb-site -->
+	<!--   <div id="sb-site">
       main
         <main role="main" style="margin-top:50px"> -->
 
-          <div class="container" id="diaryHandle">     
-               <!-- <div class="row"> -->
-          <style type="text/css">            
+	<div class="container" id="diaryHandle">
+		<!-- <div class="row"> -->
+		<style type="text/css">
+.onepost1 {
+	border: 1px solid;
+	/*border-radius: 8px;*/
+	margin-top: 20px;
+	padding: 0 10px 15px 10px;
+}
 
-          .onepost1{
-            border: 1px solid ;
-            /*border-radius: 8px;*/
-            margin-top: 20px;                
-            padding: 0 10px 15px 10px;            
-          }
+.posttop {
+	margin: 10px 0 10px 0
+}
 
-          .posttop{
-            margin: 10px 0 10px 0  
-          }
+.contents {
+	/*border-radius: 50%;*/
+	width: 95%;
+	height: auto;
+	margin: 0 10px 0 10px;
+}
 
-          .contents{
-              /*border-radius: 50%;*/
-              width: 95%;
-              height: auto;
-              margin: 0 10px 0 10px;
-          }         
+.postimg {
+	border-radius: 5px;
+}
 
-          .postimg{
-            border-radius: 5px;
-          }
+.text1 {
+	margin-top: 10px;
+}
 
-          .text1{
-            margin-top: 10px;
-          }
-
-          .postprofileimg{
-            width: 30px;
-            height: auto;
-          }
-            
-          </style>
+.postprofileimg {
+	width: 30px;
+	height: auto;
+}
+</style>
 
 
 
@@ -73,46 +74,46 @@
 
 
 
-      <script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript" src="cordova.js"></script>
 
 
-      <!-- script plug in start -->
-      <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-          <script src="js/vendor/jquery-1.11.3.min.js" ></script>
-          <script>
-         document.addEventListener("backbutton", onBackKeyDown, false);
-             function onBackKeyDown(){
-               //window.plugins.toast.show('Really Exit?'.'short'.'center',)
-               testLogoutSheet();      
-             }
+		<!-- script plug in start -->
+		<script src="js/vendor/modernizr-2.8.3.min.js"></script>
+		<script src="js/vendor/jquery-1.11.3.min.js"></script>
+		<script>
+			document.addEventListener("backbutton", onBackKeyDown, false);
+			function onBackKeyDown() {
+				//window.plugins.toast.show('Really Exit?'.'short'.'center',)
+				testLogoutSheet();
+			}
 
-            //Action sheet
+			//Action sheet
 
-            function testLogoutSheet() {
-              var options = {
-                'androidTheme' : window.plugins.actionsheet.ANDROID_THEMES.THEME_HOLO_LIGHT,
-                'title': 'Are you sure to close it?',
-                'buttonLabels': ['No','Yes'],
-                'androidEnableCancelButton' : true,
-                'winphoneEnableCancelButton' : true,
-                  //'addCancelButtonWithLabel': 'Cancel'
-                };
-                window.plugins.actionsheet.show(options, callback);
-              }
+			function testLogoutSheet() {
+				var options = {
+					'androidTheme' : window.plugins.actionsheet.ANDROID_THEMES.THEME_HOLO_LIGHT,
+					'title' : 'Are you sure to close it?',
+					'buttonLabels' : [ 'No', 'Yes' ],
+					'androidEnableCancelButton' : true,
+					'winphoneEnableCancelButton' : true,
+				//'addCancelButtonWithLabel': 'Cancel'
+				};
+				window.plugins.actionsheet.show(options, callback);
+			}
 
-              var callback = function(buttonIndex) {
-                setTimeout(function() {
-                  //alert('button index clicked: ' + buttonIndex);
-                  if (buttonIndex == 2) {
-                   navigator.app.exitApp();
-                 };
-               });
-              };
-          </script>
-          <script>
-
-          
-          </script>
-        </div>
-        </body>
-        </html>
+			var callback = function(buttonIndex) {
+				setTimeout(function() {
+					//alert('button index clicked: ' + buttonIndex);
+					if (buttonIndex == 2) {
+						navigator.app.exitApp();
+					}
+					;
+				});
+			};
+		</script>
+		<script>
+			
+		</script>
+	</div>
+</body>
+</html>
