@@ -33,36 +33,36 @@
 
 	<!-- HTML 코드 작성 부분 입니다 -->
 	<!-- [지훈] 친구 관리 화면 Start -->
-
-	<div id="friend_req_list">
-		<ul class="list-group">
+	<div class="container" style="padding-bottom: 90px; padding-left: 0px; padding-right: 0px;">
+		<div id="friend_req_list">
 			<li class="list-group-item">친구 요청 <span class="badge"
 				id="req_count">+</span>
 			</li>
-		</ul>
-	</div>
+		</div>
 
-	<div id="friend_list">
-		&nbsp;
-		<!-- &nbsp; 지우면  <li class="list-group-item"> 상하 크기 커짐! 지우지말것! -->
-		<ul class="list-group">
+		<div id="friend_list">
+			&nbsp;
+			<!-- &nbsp; 지우면  <li class="list-group-item"> 상하 크기 커짐! 지우지말것! -->
 			<li class="list-group-item">내 친구 목록<span class="badge"
 				id="fr_count">+</span>
 			</li>
-		</ul>
-	</div>
+		</div>
 
+		<img src="img/add_friend.jpg" style="border-radius: 50px; box-shadow: 3px 3px 10px rgba(0, 0, 0, .8); position: fixed; bottom: 90px; right: 2%; height: 50px; width: 50px;">
+		</img>
+	</div>
 	<!-- [지훈] 친구 관리 화면 End -->
+
+	<!-- script plug in start -->
+	
+	<script type="text/javascript" src="cordova.js"></script>
 	<!-- ip 등 meta data 가져오기 -->
 	<script src="js/jihoon/getMetaData.js"></script>
-
-	<script type="text/javascript" src="cordova.js"></script>
-	<!-- script plug in start -->
-	<script src="js/vendor/modernizr-2.8.3.min.js"></script>
-	<!-- bootStrap.js CDN -->
-	<script src="js/bootstrap/bootstrap.min.js"></script>
 	<script src="js/vendor/jquery-1.11.3.min.js"></script>
 	<script src="js/vendor/jquery.ui.widget.js"></script>
+	<script src="js/vendor/modernizr-2.8.3.min.js"></script>
+	<script src="js/bootstrap/bootstrap.min.js"></script>
+
 
 	<!--  아래는 스크립트 라이브러리 추가 및 스크립트 작성 영역입니다.-->
 	<!-- [작성자] 추가 라이브러리 요약 -->
@@ -71,42 +71,85 @@
 	<!-- 스크립트 작성 부분입니다 -->
 	<script>
 		//이 곳을 벗어나 스크립트를 작성하지마시오.
+
+		// 전역변수 선언
 		var fr_req_link = document
 				.querySelector('link[href="import/friendReqList.html"]');
 		var fr_link = document
 				.querySelector('link[href="import/friendList.html"]');
 
-		$.ajax(getMetaData('ip') + "friend/json/getFriendList", {
+		var user = getMetaData("user");
+		var requestIP = getMetaData('ip');
+
+		//친구요청, 목록 count 동적 이벤트 처리를 위한 변수
+		var frReqCount;
+		var frCount;
+
+		$.ajax(requestIP+"friend/json/getFriendList", {
 			method : "post",
 			crossDomain : true,
 			dataType : "json",
 			contentType : "application/json; charset=UTF-8",
 			data : JSON.stringify({
-				uNo : getMetaData("user").uNo
+				uNo : user.uNo
 			}),
 			success : function(result) {
 
-				$("#req_count").text(result.frReqCount);
-				$("#fr_count").text(result.frCount);
+				frReqCount = result.frReqCount;
+				frCount = result.frCount;
+
+				$("#req_count").text(frReqCount);
+				$("#fr_count").text(frCount);
+
 				var frReqTemp = fr_req_link.import;
 				var frTemp = fr_link.import;
 
 				/*친구 요청목록 Handlebars 사용부분 */
-				var reqSource = frReqTemp
-						.querySelector('#friendReqList_template').text;
-				console.log(reqSource);
+				var reqSource = frReqTemp.querySelector('#friendReqList_template').text;
 				var reqTemplate = Handlebars.compile(reqSource);
 				var reqHtml = reqTemplate(result);
 				$('#friend_req_list').append(reqHtml);
 
 				/*친구 목록 Handlebars 사용부분 */
 				var frSource = frTemp.querySelector('#friend_template').text;
-				console.log(frSource);
 				var reqTemplate = Handlebars.compile(frSource);
 				var frHtml = reqTemplate(result);
 				$('#friend_list').append(frHtml);
 			}
 		});
+
+		//[지훈]친구요청 수락 동적 이벤트 처리
+		$(document).on("click", ".aproveFriend", function(){
+			var frNo = $(this).parent().children('#frNo').val();			
+			var target = $(this).parent().parent();
+			$.ajax(requestIP+"friend/json/approveFriend", {
+				method : "post",
+				crossDomain : true,
+				dataType : "json",
+				contentType : "application/json; charset=UTF-8",
+				data : JSON.stringify({
+					frNo : frNo
+				}),
+				success: function(result){
+
+					frReqCount = frReqCount-1;
+					frCount = frCount+1;
+					$("#req_count").text(frReqCount);
+					$("#fr_count").text(frCount);
+					
+					//수락한 항목 화면에서 제거
+					target.remove();
+
+					var frTemp = fr_link.import;
+
+					var frSource = frTemp.querySelector('#friend_template').text;
+					var reqTemplate = Handlebars.compile(frSource);
+					var frHtml = reqTemplate(result);
+					$('#friend_list').append(frHtml);
+				}
+			});
+		});
+
 	</script>
 	<!-- 스크립트 작성 부분 끝입니다. -->
 

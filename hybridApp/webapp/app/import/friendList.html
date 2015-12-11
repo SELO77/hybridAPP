@@ -1,23 +1,32 @@
 <script id="friend_template" type="text/x-handlebars-template">
 	{{#friendList}}
-		<div class="col-xs-12 col-sm-12 col-md-12" style="padding: 5px; height: 100px;">
+	<friendTag>
+		<div class="col-xs-12 col-sm-12 col-md-12" style="padding: 5px; height: 80px;">
 			<input type="hidden" name="frNo" id="frNo" value="{{frNo}}">
 
-			<span class="img-responsive"style="float: left; max-height: 100px; max-width: 100px; padding: 5px;">
+			<span class="img-responsive"style="float: left; max-height: 80px; max-width: 80px; padding: 5px;">
 				<img class="img-thumbnail" src="http://192.168.1.2:8080/resources/thumbnail/user/{{user.uPic}}"/>
 			</span>
 
 
-			<span class="col-xs-7 col-sm-10 col-md-10" style="float: left; max-height: 100px; padding-top: 20px;">{{user.nickname}}
+			<span class="col-xs-7 col-sm-10 col-md-10" 
+				style="float: left; max-height: 80px; padding-top: 10px; padding-left:2%; margin-left:3%;">
+				{{user.nickname}}
 			</span>
 
-			<span class="col-xs-6 col-sm-5 col-md-5" style="float: left; margin-top: 15px; width: maximum; padding: 1%">
-				<button type="button" class="btn btn-default" id="aproveFriend" style="width: 100%">친구 일기보기</button>
-			</span>
-			<span class="col-xs-2 col-sm-5 col-md-5" style="float: left; margin-top: -5px; width: maximum; padding: 1%">
-				<button type="button" class="btn btn-default" id="denyFriend" style="width: 100%; background-color: #EAEAEA">
-				<small><small>친구<br/>삭제</small></small></button>
-			</span>
+			<friendTag class="friendDiary" value="{{frMate}}">
+				<span class="col-xs-6 col-sm-5 col-md-5" style="float: left; margin-top: 5px; margin-left: 3%; width: maximum; padding: 1%">
+					<button type="button" class="btn btn-default" style="width: 100%">친구 일기보기</button>
+				</span>
+			</friendTag>
+
+			<friendTag class="deleteFriend" value="{{frNo}}">
+				<span class="col-xs-2 col-sm-5 col-md-5" style="float: left; margin-top: -15px; width: maximum; padding: 1%">
+					<button type="button" class="btn btn-default" style="width: 100%; background-color: #EAEAEA">
+					<small><small>친구<br/>삭제</small></small></button>
+				</span>
+			</friendTag>
 		</div> 
+	</friendTag>
 	{{/friendList}}
 </script>
