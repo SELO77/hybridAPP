@@ -153,18 +153,12 @@ html, body, iframe {
 		<!-- 하단 고정 바 -->
 		<div class="navbar navbar-default navbar-fixed-bottom">
 			<div class="container" style="">
-				<span class="col-xs-2"> <icon class="fa fa-book"></icon>
-				</span> <span class="col-xs-2"> <icon class="fa fa-users"
-						id="friendBtn"></icon>
-				</span> <span class="col-xs-2"> <icon class="fa fa-pencil-square-o"></icon>
-				</span> <span class="col-xs-2"> <icon class="fa fa-home"
-						id="homeBtn"></icon>
-				</span> <span class="col-xs-2"> <icon class="fa fa-calendar"
-						id="calendarBtn"></icon>
-				</span> <span class="col-xs-2"> <icon
-						class="fa fa-cog sb-toggle-right"></icon>
-				</span>
-
+				<span class="col-xs-2"> <icon class="fa fa-home" id="homeBtn"></icon></span> 
+				<span class="col-xs-2"> <icon class="fa fa-book" id="diaryBtn"></icon></span>
+				<span class="col-xs-2"> <icon class="fa fa-pencil-square-o" id="writeDiaryBtn"></icon></span>
+				<span class="col-xs-2"> <icon class="fa fa-calendar"id="calendarBtn"></icon></span> 
+				<span class="col-xs-2"> <icon class="fa fa-users"id="friendBtn"></icon></span>
+				<span class="col-xs-2"> <icon class="fa fa-cog sb-toggle-right"></icon></span>
 			</div>
 		</div>
 		<!-- /.하단 고정 바 -->
@@ -218,6 +212,23 @@ html, body, iframe {
 					/*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
 					$(window.parent.frames["innerframe"].document.location)
 							.attr("href", "diary.html");
+				});
+				//Diary Link 
+		$('#diaryBtn').click(
+				function() {
+					$('frame[name="innerframe"]').attr('scrolling', 'auto');
+					/*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
+					$(window.parent.frames["innerframe"].document.location)
+							.attr("href", "diary.html");
+							//self.location = "diary.html";
+				});
+		$('#writeDiaryBtn').click(
+				function() {
+					$('frame[name="innerframe"]').attr('scrolling', 'auto');
+					/*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
+					$(window.parent.frames["innerframe"].document.location)
+							.attr("href", "writeDiary.html");
+					//self.location = "writeDiary.html";
 				});
 
 		//[지훈] friend Link

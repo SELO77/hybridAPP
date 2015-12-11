@@ -14,9 +14,10 @@
   <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
   <link rel="stylesheet" href="css/__main.css">
   <link rel="stylesheet" href="css/bootstrap.css">
-  <link href="css/shop-item.css" rel="stylesheet">
+
   <link rel="import" href="import/diaryList.html" name="diaryImport">
   <link rel="import" href="import/reply.html" name="replyImport">
+  <link href="css/shop-item.css" rel="stylesheet">
   <link rel="stylesheet" href="css/fileuploadstyle.css">
   <link rel="stylesheet" href="css/jquery.fileupload.css">
   <link rel="stylesheet" href="css/jquery.fileupload-ui.css">
@@ -33,32 +34,10 @@
       main
         <main role="main" style="margin-top:50px"> -->
 
-          <div class="container" id="diaryHandle" style="padding-bottom: 70px" >
+          <div class="container" id="diaryHandle" style="padding-bottom: 70px; padding-top: 60px;" >
           <center>
-          <div class="well" style="padding: 15px; padding-bottom: 3px"> 
-             <form class="form-horizontal" role="form" enctype="multipart/form-data">
-               <div class="form-group" style="padding:5px; margin-bottom: 0">
-                <textarea class="form-control" placeholder="오늘의 일기를 작성해주세요.."style="margin-bottom:20px" id="dContent"></textarea>
-                <button class="btn btn-primary pull-right" type="button" id="submitDiary">Post</button>
-                  <span class="fileinput-button  pull-left" style="padding-top:6px">
-                    <ul class="list-inline" style="font-size: 23px; text-align: left;">
-                      <li style="padding-top: 7px"><a href="#">
-                      <li>
-                        <a href="">
-                        <i class="glyphicon glyphicon-camera"></i>
-                        </a>
-                      </li>
-                    </ul>
-                    <input type="file" name="files[]" id="fileJARI" multiple >
-                  </span>
-                  <div id="imgJARI">
-                    
-                  </div>
-              </div>
-            <input type="hidden" id="uNo" name="uNo" value="">
-             </form>
-          </div>
-                  </center>
+
+          </center>
         </div>
 
 
@@ -73,7 +52,7 @@
       <script src="js/vendor/jquery.ui.widget.js"></script>  
       <script src="js/jquery.fileupload.js"></script>
         <!-- bootStrap.js CDN -->
-        <script src="js/bootstrap.min.js"></script>    
+        <script src="js/bootstrap/bootstrap.min.js"></script>    
                     
           
          
@@ -142,7 +121,8 @@
 
            //댓글 가져오기.
           $(document).on("click", ".callReply", function(){
-              setTimeout('',1000*6);
+             // setTimeout('',1000*6);
+             // $('collapse').dropdown(); 
               $('deletePoint').remove();
               var dNo = $(this).prev('input').val();
               var thisBtn = $(this);
