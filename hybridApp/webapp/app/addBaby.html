@@ -42,14 +42,14 @@
 				<div id="uploadImage" onclick=$("#bPhoto").click()></div>
 
 				<img id="defaultImg" src="img/baby/defaultImagae.png"
-					class="img-rounded">
+					class="img-rounded" onclick=$("#bPhoto").click()>
 			</div>
 
 			<div class="form-group">
 				<span><icon class="fa fa-user"></icon>&nbsp;아가 이름</span> <input
 					type="text" class="form-control" name="bName" id="bName"
-					placeholder="뱃속에 아기는 태명으로~" style="color: #ff0000">
-				<div id="nameCheck"></div>
+					placeholder="뱃속에 아기는 태명으로~">
+				<div id="nameCheck" style="color: #ff0000"></div>
 			</div>
 
 			<div class="form-group">
@@ -258,6 +258,10 @@
 
 													dvPreview.append(img);
 
+													$("#defaultImg").attr("style","display:none");	
+
+
+
 												}
 												reader.readAsDataURL(file[0]);
 											} else {
@@ -323,14 +327,8 @@ function  fncAddJsonDodam(){
 															data.submit();
 														});
 													}
-											});												//[시용,근한] fileupload를 위한 javascript 추가 끝
-
-
-												$('#defaultImg').on('click',function(event) {								
-													$("#bPhoto").onchange = $("#defaultImg").attr("style","display:none");
-													$("#defaultImg").onClick=$("#bPhoto").click();
-												});											
-
+											});										
+										
 
 											//[근한] 숫자만 입력받게 onkeyDown 이벤트 추가 
 											function onlyNumber(event){
