@@ -2,87 +2,85 @@
 <html class="no-js" lang="">
 <head>
 
-<meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<!-- -->
-<title>DodamDodam</title>
-<meta name="description" content="">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1 minimum-scale=1, maximum-scale=1, user-scalable=no">
-<!-- 모바일 친화적 뷰 설정 -->
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge"> <!-- -->
+  <title>DodamDodam</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1 minimum-scale=1, maximum-scale=1, user-scalable=no"> <!-- 모바일 친화적 뷰 설정 -->
 
-<meta name="description" content="">
-<meta name="author" content="">
-<!-- Place favicon.ico in the root directory -->
-<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
-<link rel="stylesheet" href="css/__main.css">
-<link rel="stylesheet" href="css/bootstrap.css">
-<link href="css/shop-item.css" rel="stylesheet">
-<link rel="import" href="import/diaryList.html" name="diaryImport">
-<link rel="import" href="import/reply.html" name="replyImport">
-<link rel="stylesheet" href="css/fileuploadstyle.css">
-<link rel="stylesheet" href="css/jquery.fileupload.css">
-<link rel="stylesheet" href="css/jquery.fileupload-ui.css">
-</head>
-<body style="padding-top: 0; padding-bottom: 0;">
-	<!--[if lt IE 8]>
+   <meta name="description" content="">
+   <meta name="author" content="">
+  <!-- Place favicon.ico in the root directory -->
+  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+  <link rel="stylesheet" href="css/__main.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link href="css/shop-item.css" rel="stylesheet">
+  <link rel="import" href="import/diaryList.html" name="diaryImport">
+  <link rel="import" href="import/reply.html" name="replyImport">
+  <link rel="stylesheet" href="css/fileuploadstyle.css">
+  <link rel="stylesheet" href="css/jquery.fileupload.css">
+  <link rel="stylesheet" href="css/jquery.fileupload-ui.css">
+        </head>
+      <body style="padding-top: 0; padding-bottom: 0;">
+        <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
             <![endif]-->
 
-	<!-- Add your site or application content here -->
-
-	<!-- .sb-site -->
-	<!--   <div id="sb-site">
+            <!-- Add your site or application content here -->   
+         
+                   <!-- .sb-site -->    
+      <!--   <div id="sb-site">
       main
         <main role="main" style="margin-top:50px"> -->
 
-	<div class="container" id="diaryHandle">
-		<center>
-			<div class="well" style="padding: 15px; padding-bottom: 3px">
-				<form class="form-horizontal" role="form"
-					enctype="multipart/form-data">
-					<div class="form-group" style="padding: 5px; margin-bottom: 0">
-						<textarea class="form-control" placeholder="오늘의 일기를 작성해주세요.."
-							style="margin-bottom: 20px" id="dContent"></textarea>
-						<button class="btn btn-primary pull-right" type="button"
-							id="submitDiary">Post</button>
-						<span class="fileinput-button  pull-left" style="padding-top: 6px">
-							<ul class="list-inline"
-								style="font-size: 23px; text-align: left;">
-								<li style="padding-top: 7px"><a href="#">
-										<li><a href=""> <i class="glyphicon glyphicon-camera"></i>
-										</a></li>
-							</ul> <input type="file" name="files[]" id="fileJARI" multiple>
-						</span>
-						<div id="imgJARI"></div>
-					</div>
-					<input type="hidden" id="uNo" name="uNo" value="">
-				</form>
-			</div>
-		</center>
-	</div>
+          <div class="container" id="diaryHandle" style="padding-bottom: 70px" >
+          <center>
+          <div class="well" style="padding: 15px; padding-bottom: 3px"> 
+             <form class="form-horizontal" role="form" enctype="multipart/form-data">
+               <div class="form-group" style="padding:5px; margin-bottom: 0">
+                <textarea class="form-control" placeholder="오늘의 일기를 작성해주세요.."style="margin-bottom:20px" id="dContent"></textarea>
+                <button class="btn btn-primary pull-right" type="button" id="submitDiary">Post</button>
+                  <span class="fileinput-button  pull-left" style="padding-top:6px">
+                    <ul class="list-inline" style="font-size: 23px; text-align: left;">
+                      <li style="padding-top: 7px"><a href="#">
+                      <li>
+                        <a href="">
+                        <i class="glyphicon glyphicon-camera"></i>
+                        </a>
+                      </li>
+                    </ul>
+                    <input type="file" name="files[]" id="fileJARI" multiple >
+                  </span>
+                  <div id="imgJARI">
+                    
+                  </div>
+              </div>
+            <input type="hidden" id="uNo" name="uNo" value="">
+             </form>
+          </div>
+                  </center>
+        </div>
 
 
-	<!--기본 라이브러리 추가-->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
-	<script type="text/javascript" src="cordova.js"></script>
-	<script src="js/vendor/modernizr-2.8.3.min.js"></script>
-	<!-- ip 등 meta data 가져오기 -->
-	<script src="js/jihoon/getMetaData.js"></script>
-	<!-- [시용] 라이브러리 추가 및 스크립트 작성-->
-	<script src="js/vendor/jquery.ui.widget.js"></script>
-	<script src="js/jquery.fileupload.js"></script>
-	<!-- bootStrap.js CDN -->
-	<script src="js/bootstrap/bootstrap.min.js"></script>
-
-
-
-	<script src="js/handlebars-v4.0.5.js"></script>
-
-	<!--[시용] 핸들바스 모듈html 임포트 및 ajax요청으로 userDiaryList 요청-->
-	<script>
+      <!--기본 라이브러리 추가-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
+      <script type="text/javascript" src="cordova.js"></script>
+      <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+      <!-- ip 등 meta data 가져오기 -->
+      <script src="js/jihoon/getMetaData.js"></script>
+       <!-- [시용] 라이브러리 추가 및 스크립트 작성-->    
+      <script src="js/vendor/jquery.ui.widget.js"></script>  
+      <script src="js/jquery.fileupload.js"></script>
+        <!-- bootStrap.js CDN -->
+        <script src="js/bootstrap.min.js"></script>    
+                    
+          
+         
+          <script src="js/handlebars-v4.0.5.js" ></script>
+           
+            <!--[시용] 핸들바스 모듈html 임포트 및 ajax요청으로 userDiaryList 요청-->
+          <script>
             //전역변수 선언
             var requestURL = getMetaData("ip")+"diary/json/";
             var requestIP = getMetaData("ip");
@@ -143,7 +141,7 @@
 
 
            //댓글 가져오기.
-          $(document).on("click", "#callReply", function(){
+          $(document).on("click", ".callReply", function(){
               setTimeout('',1000*6);
               $('deletePoint').remove();
               var dNo = $(this).prev('input').val();
@@ -208,7 +206,7 @@
                         data: JSON.stringify({
                           dNo : dNo
                         }), success: function(result){
-                            $('replyCount').text(result.replyCount);
+                            $('#callReply'+dNo).children('replyCount').text(result.replyCount);
                         }
                         });
                       }
@@ -246,15 +244,71 @@
                             //alert(diarySpan.val());
                             //alert(result.replyCount);
                             replySpan.parent().parent().parent().remove();
-                            $('replyCount').text(result.replyCount);
+                            $('#callReply'+diarySpan.val()).children('replyCount').text(result.replyCount);
                         }
                     });
                   }
                   
                 }
               });
-        });         
+        });
 
+        //[시용] 댓글수정1
+        $(document).on("click", ".updateReply", function(){
+                var replySpan=$(this).parent().parent().children($('input[class="hiddenRNo"]'));
+                var replyNo = replySpan.val();
+                var updateReply = $(this).parent().parent().next();
+                var text = updateReply.text();
+                //alert(replySpan.val());
+                  //alert(text);
+                  replySpan.parent().parent().parent().remove();
+                  var html="<updateDelete><br><div class=row><div class='col-xs-8 col-sm-8 col-md-8'><input type='text' class='pull-left form-control' id='updateReply' value='"+text+"'></div><div class='col-xs-3 col-sm-3 col-md-3'><input type='hidden' value='"+replyNo+"'><button type='submit' class='btn btn-default updateButton' id='submit"+replyNo+"'>수정</button></div></div></updateDelete>"
+                  $('#update'+replyNo).after(html);
+                  $("#updateReply").focus();
+                 });        
+        
+        //[시용] 댓글수정2
+        $(document).on("click", ".updateButton", function(){
+                var replyNo = $(this).prev().val();
+                //alert(replyNo);
+                var updateContent = $(this).parent().prev().children('input').val();
+                //alert(updateContent);
+                $.ajax({
+                  url: requestIP+"replies/json/updateReplies",
+                  type: 'POST',
+                  dataType: 'JSON',
+                  contentType: "application/json; charset=UTF-8",
+                  data: JSON.stringify({
+                    rNo : replyNo,
+                    rContent : updateContent
+                  }),
+                  success : function(result){
+                      if(result.result != false){
+                        var dNo = result.result.dNo;
+                        $('deletePoint').remove();
+                          $.ajax({
+                          url: requestIP+'replies/json/getRepliesList',
+                          type: 'POST',
+                          crossDomain : true,
+                          dataType: 'JSON',
+                          contentType: "application/json; charset=UTF-8",
+                          data: JSON.stringify({
+                            dNo: dNo
+                          }),
+                          success: function(result){
+                                    $('updateDelete').remove();
+                                   var html = callReply(result);
+                                   $('#'+dNo).before(html);
+                                },
+                          fail: function(){
+                                  alert('댓글수정에 실패했습니다.');
+                              }
+                          });
+                      }
+                  }
+                })
+                                
+        });
 
         // [시용] fileUpload를 위한 자바 스크립트 Start
         $(function(){
@@ -369,8 +423,8 @@
 
 
 
-	<!-- 기본 script-->
-	<script>
+      <!-- 기본 script-->
+      <script>
           /*document.addEventListener("backbutton", onBackKeyDown, false);
              function onBackKeyDown(){
                //window.plugins.toast.show('Really Exit?'.'short'.'center',)
@@ -399,7 +453,7 @@
                  };
                });
               };
-      </script>
+      </script> 
 
-</body>
-</html>
+       </body>
+      </html>

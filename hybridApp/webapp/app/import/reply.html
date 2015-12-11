@@ -1,5 +1,6 @@
 <script id="reply-template" type="text/x-handlebars-template">
 {{#replyList}}
+<div id="update{{rNo}}"></div>
 <deletePoint>
 <div class="row">
   <hr>
@@ -9,8 +10,8 @@
     <span class="pull-right">
       <input type="hidden" class="hiddenRNo" value="{{rNo}}">
       <input type="hidden" id="{{rNo}}" value="{{dNo}}">
-      {{{userCheck rUser.uNo}}}
       {{rDate}}
+      {{{userCheck rUser.uNo}}}
     </span>
     <p>{{rContent}}</p>
   </div>
