@@ -2,168 +2,186 @@
 <html class="no-js" lang="en">
 <head>
 
-<meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<!-- -->
-<title>DodamDodam</title>
-<meta name="description" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- 모바일 친화적 뷰 설정 -->
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<!-- -->
+	<title>DodamDodam</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- 모바일 친화적 뷰 설정 -->
 
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<!-- Place favicon.ico in the root directory -->
-<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
-<link rel="stylesheet" href="css/__main.css">
-<link rel="stylesheet" href="css/slidebars.css">
-<!-- 장비 높이에 따른 출력 -->
-<style>
-@media ( min-device-height : 299px) and (max-device-height: 580px) {
-	div.mainLogo {
-		margin: 5% 0 5% 0;
-	}
-}
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<!-- Place favicon.ico in the root directory -->
+	<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" href="css/__main.css">
+	<link rel="stylesheet" href="css/slidebars.css">
+	<!-- 장비 높이에 따른 출력 -->
+	<style>
+		@media ( min-device-height : 299px) and (max-device-height: 580px) {
+			div.mainLogo {
+				margin: 5% 0 5% 0;
+			}
+		}
 
-@media ( min-device-height : 580px) and (max-device-height: 729px) {
-	div.mainLogo {
-		margin: 25% 0 20% 0;
-	}
-}
+		@media ( min-device-height : 580px) and (max-device-height: 729px) {
+			div.mainLogo {
+				margin: 25% 0 20% 0;
+			}
+		}
 
-@media all and (min-device-height: 730px) {
-	div.mainLogo {
-		margin: 45% 0 20% 0;
-	}
-}
-</style>
+		@media all and (min-device-height: 730px) {
+			div.mainLogo {
+				margin: 45% 0 20% 0;
+			}
+		}
+	</style>
 
 
 </head>
 <body onload="searchSession();">
+
+	<!-- 아래 태그 내부는  facebook javascript SDK 사용을 위한 코드-->
+	
+
+
+
+
 	<!--[시용 session 생성 스크립트 시작-->
+
+
+
+
 	<script>
-					function searchSession(){
-						var value= window.localStorage.getItem("userKey");
-						if(value != null){
-							self.location="mainIndex.html";	
-						}
-					}
-				</script>
+		function searchSession(){
+			var value= window.localStorage.getItem("userKey");
+			if(value != null){
+				self.location="mainIndex.html";	
+			}
+		}
+	</script>
 
 	<!--[if lt IE 8]>
 						<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 						<![endif]-->
 
-	<!-- Add your site or application content here -->
+						<!-- Add your site or application content here -->
 
-	<!-- .sb-site -->
-
-
-	<!-- Modal -->
-	<div class="modal fade" id="myModal" role="dialog">
-		<div class="modal-dialog">
-
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header" style="padding: 20px 20px;" align="center">
-					<span style="font-size: 30px">J O I N</span>
-				</div>
-
-				<div class="modal-body" style="padding: 40px 50px;">
-					<!-- form-->
-					<form role="form">
-
-						<div class="form-group">
-							<label for="email"><span class="fa fa-envelope"></span>
-								Your Email</label> <input type="text" class="form-control" id="e-mail"
-								placeholder="Your Email">
-
-							<div>
-								&nbsp;<span id="checkmailresult"></span>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="nickname"><span class="fa fa-user"></span>
-								Nick Name</label> <input type="text" class="form-control" id="nickname"
-								placeholder="Nick Name">
-
-							<div>
-								&nbsp;<span id="checknicknameresult"></span>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="psw"><span class="fa fa-unlock-alt"></span>
-								Password</label> <input type="password" class="form-control"
-								id="password" placeholder="Password">
-							<div>
-								&nbsp;<span id="passwordLengthCheck"></span>
-							</div>
-
-							<input type="password" class="form-control" id="checkpassword"
-								placeholder="Password Check">
-							<div>
-								&nbsp;<span id="checkpasswordresult"></span>
-							</div>
-						</div>
-
-						<hr>
-
-						<button type="button"
-							class="btn btn-primary btn-lg btn-block  fa   " id="joinUser"
-							style="background-color: #77777">JOIN</button>
-						<div id='checkJoin'></div>
-
-					</form>
-					<!-- form -->
-				</div>
-				<div class="modal-footer">
-					<button type="submit" class="btn btn-danger btn-default pull-left"
-						data-dismiss="modal">
-						<span class="glyphicon glyphicon-remove"></span> Cancel
-					</button>
-				</div>
-			</div>
-
-		</div>
-	</div>
-	<!-- / modal-->
-
-	<!-- 메인 html시작 [진영]-->
-
-	<br>
+						<!-- .sb-site -->
 
 
-	<div class="mainLogo" align="center">
-		<img src="img/dodam872.png" /><br>
-	</div>
+						<!-- Modal -->
+						<div class="modal fade" id="myModal" role="dialog">
+							<div class="modal-dialog">
 
-	<div class="modal-body" style="padding: 0px 50px;">
-		<form role="form">
+								<!-- Modal content-->
+								<div class="modal-content">
+									<div class="modal-header" style="padding: 20px 20px;" align="center">
+										<span style="font-size: 30px">J O I N</span>
+									</div>
 
-			<div class="form-group">
-				<h4>
-					<span class="fa fa-envelope"></span>&nbsp;Email
-				</h4>
-				<input type="text" class="form-control" id="loginEmail" style=""
-					placeholder="E-mail">
-			</div>
-			<div class="form-group">
-				<h4>
-					<span class="fa fa-key"></span>&nbsp;Password
-				</h4>
-				<input type="password" class="form-control" id="loginPass" style=""
-					placeholder="Password">
-			</div>
+									<div class="modal-body" style="padding: 40px 50px;">
+										<!-- form-->
+										<form role="form">
 
-			<button type="button" id="loginButton"
-				class="btn btn-primary btn-md btn-block">Login</button>
-			<div id="loginFailed">
-				<span>&nbsp;</span>
-			</div>
-			<div style="margin: 8px"></div>
-			<button type="button" id="facebookLoginButton"
-				class="btn btn-primary btn-md btn-block">FaceBook Login</button>
+											<div class="form-group">
+												<label for="email"><span class="fa fa-envelope"></span>
+													Your Email</label> <input type="text" class="form-control" id="e-mail"
+													placeholder="Your Email">
+
+													<div>
+														&nbsp;<span id="checkmailresult"></span>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label for="nickname"><span class="fa fa-user"></span>
+														Nick Name</label> <input type="text" class="form-control" id="nickname"
+														placeholder="Nick Name">
+
+														<div>
+															&nbsp;<span id="checknicknameresult"></span>
+														</div>
+													</div>
+
+													<div class="form-group">
+														<label for="psw"><span class="fa fa-unlock-alt"></span>
+															Password</label> <input type="password" class="form-control"
+															id="password" placeholder="Password">
+															<div>
+																&nbsp;<span id="passwordLengthCheck"></span>
+															</div>
+
+															<input type="password" class="form-control" id="checkpassword"
+															placeholder="Password Check">
+															<div>
+																&nbsp;<span id="checkpasswordresult"></span>
+															</div>
+														</div>
+
+														<hr>
+
+														<button type="button"
+														class="btn btn-primary btn-lg btn-block  fa   " id="joinUser"
+														style="background-color: #77777">JOIN</button>
+														<div id='checkJoin'></div>
+
+													</form>
+													<!-- form -->
+												</div>
+												<div class="modal-footer">
+													<button type="submit" class="btn btn-danger btn-default pull-left"
+													data-dismiss="modal">
+													<span class="glyphicon glyphicon-remove"></span> Cancel
+												</button>
+											</div>
+										</div>
+
+									</div>
+								</div>
+								<!-- / modal-->
+
+								<!-- 메인 html시작 [진영]-->
+
+								<br>
+
+
+								<div class="mainLogo" align="center">
+									<img src="img/dodam872.png" /><br>
+								</div>
+
+								<div class="modal-body" style="padding: 0px 50px;">
+									<form role="form">
+
+										<div class="form-group">
+											<h4>
+												<span class="fa fa-envelope"></span>&nbsp;Email
+											</h4>
+											<input type="text" class="form-control" id="loginEmail" style=""
+											placeholder="E-mail">
+										</div>
+										<div class="form-group">
+											<h4>
+												<span class="fa fa-key"></span>&nbsp;Password
+											</h4>
+											<input type="password" class="form-control" id="loginPass" style=""
+											placeholder="Password">
+										</div>
+
+										<button type="button" id="loginButton"
+										class="btn btn-primary btn-md btn-block">Login</button>
+										<div id="loginFailed">
+											<span>&nbsp;</span>
+										</div>
+										<div style="margin: 8px"></div>
+
+										<button type="button" id="facebookLoginButton"
+										scope="public_profile,email" 
+										class="btn btn-primary btn-md btn-block">FaceBook Login</button>
+
+			<!-- <fb:login-button type="button" scope="public_profile,email" onclick="checkLoginState();"  style=
+			class="">Facebook Login</fb:login-button> -->
+
+
 			<hr>
 			<div align="center" style="margin: 0 0 5% 0">
 				<div data-toggle="modal" data-target="#myModal">
@@ -173,6 +191,8 @@
 				<div>
 					<span class="fa fa-unlock">&nbsp;Forgot Password?</span>
 				</div>
+
+
 			</div>
 		</form>
 	</div>
@@ -189,13 +209,103 @@
 
 	<!-- ip 등 meta data 가져오기 -->
 	<script src="js/jihoon/getMetaData.js"></script>
+	<!-- facebook  관련 -->
 
+	<script src="js/login/facebookLogin.js"></script>
 
-
-	<!-- Login 관련 JS by SELO-->
 	<script>
+		// FB LOgin 
+		$('#facebookLoginButton').on('click' , function() {
 
-							var responseURL = "mainIndex.html";
+
+						FB.login(function(response){
+							console.log('statusChangeCallback');
+							console.log(response);
+						// The response object is returned with a status field that lets the
+						// app know the current login status of the person.
+						// Full docs on the response object can be found in the documentation
+						// for FB.getLoginStatus().
+						if (response.status === 'connected') {
+							// Logged into your app and Facebook.
+							console.log('facebook Login Success');
+							var accessToken = response.authResponse.accessToken;
+							console.log('accessToken :' + accessToken);
+
+							//var  for Graph API 
+							var graphAPI = '/me?fields=name,email,id,picture{url}'
+							FB.api(graphAPI, function(response) {
+
+								var mailToServer = response.email;
+
+								console.log('Successful login for: ' + response.name);
+								console.log('facebookLogin User email :' + mailToServer + "$");
+								console.log('facebookLogin User id :' + response.id + "$");
+								console.log('facebookLogin User picture url :'
+									+ response.picture.data.url + "$");
+
+								if (mailToServer == null) {
+									mailToServer = "noEmail@SNSLoginUser";
+								};
+
+								var formData = {
+									mail : mailToServer,
+									nickname : response.name,
+									uPic : response.picture.data.url,
+									socialNo : response.id
+								};
+								var requestURL = 'http://dodam.java74.com:8080/user/json/';
+								
+
+								// Insert SNS User Logic
+								$.ajax({
+									url : requestURL + 'insertUser',
+									type : 'POST',
+									contentType : 'application/json',
+									data : JSON.stringify(formData),
+									dataType : 'json',
+									success : function(responseData) {
+										alert(responseData);
+										console.log('responseData.user :' + responseData.user);
+										var cookieUser = JSON.stringify(responseData.user);
+										console.log('cookieUser :'+cookieUser);
+										window.localStorage.setItem("userKey", cookieUser);
+										self.location = 'mainIndex.html';;
+									}// success
+								});// /. Inser SNS User 							
+
+							});// FB.api
+				
+
+					} else if (response.status === 'not_authorized') {
+							// The person is logged into Facebook, but not your app.
+							// document.getElementById('status').innerHTML = 'Please log '
+							// 		+ 'into this app.';
+							alert('Dodam App 에서 페이스북으로 로그인해주세요.');
+						} else {
+							// The person is not logged into Facebook, so we're not sure if
+							// they are logged into this app or not.
+							// document.getElementById('status').innerHTML = 'Please log '
+							// 		+ 'into Facebook.';
+							alert('Facebook에 로그인 되어있지 않습니다.');
+						}
+
+					});//end of FB.login()
+
+					
+		 });// facebookLoginButton click event end
+
+</script>
+
+
+
+
+
+
+
+<!-- Login 관련 JS by SELO-->
+<script>
+
+	var responseURL = "mainIndex.html";
 
 							// Login Logic
 							$('#loginButton').on('click', function() {
@@ -250,25 +360,25 @@
 										}										
 									}
 								});// /ajax
-								
+
 							});// /onClick
 
 
 
-						</script>
-	<!-- 회원가입 관련 Modal JS by SELO-->
-	<script>            
-							var requestUrl = getMetaData('ip')+'user/json/';
-							var checkingMail;
-							var checkingNickname;
-							var checkingPassword;
+</script>
+<!-- 회원가입 관련 Modal JS by SELO-->
+<script>            
+	var requestUrl = getMetaData('ip')+'user/json/';
+	var checkingMail;
+	var checkingNickname;
+	var checkingPassword;
 
-							var checkValidations;
+	var checkValidations;
 
-							$('input').focus(function() {
-								$(this).attr('placeholder', '');
-								$('#loginFailed').empty();
-							}); 
+	$('input').focus(function() {
+		$(this).attr('placeholder', '');
+		$('#loginFailed').empty();
+	}); 
 
                         /////////////////////////////////////
                         // ValidationChek Email
@@ -435,13 +545,13 @@ $('#nickname').focus(function() {
 
 
 </script>
-	<!-- 회원가입 처리 Script 끝-->
-	<!-- 스크립트 끝 이곳 벗어나지마시오 -->
+<!-- 회원가입 처리 Script 끝-->
+<!-- 스크립트 끝 이곳 벗어나지마시오 -->
 
 
 
 
-	<script>
+<script>
 	document.addEventListener("backbutton", onBackKeyDown, false);
 	function onBackKeyDown(){
 							 //window.plugins.toast.show('Really Exit?'.'short'.'center',)
@@ -472,14 +582,28 @@ $('#nickname').focus(function() {
 							};
 
 
-						</script>
+						</script>	
 
 
+						<script>
 
-	<script>
+		window.fbAsyncInit = function() {
+			FB.init({
+				appId      : '1681810372061784',
+				xfbml      : true,
+				version    : 'v2.5'
+			});
+		};
 
+		(function(d, s, id){
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) {return;}
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/en_US/sdk.js";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>			
 
-						</script>
-	</div>
-</body>
-</html>
+					</div>
+				</body>
+				</html>
