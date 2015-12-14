@@ -178,6 +178,20 @@ html, body, iframe {
 
 	<!-- 시작 Script by Chan-->
 	<script>
+	
+		//////////////
+		//bottom button Event	
+		
+		$('#calendarBtn').on(
+				'click',
+				function() {
+					//self.location ='addBaby.html';
+					$(window.parent.frames["innerframe"].document.location).attr("href", "template.html");
+		});
+
+
+
+
 		$('#addBaby').on(
 				'click',
 				function() {
