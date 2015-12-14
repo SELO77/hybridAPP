@@ -23,10 +23,20 @@
 <link rel="import" href="import/friendReqList.html">
 <link rel="import" href="import/friendList.html">
 
+<!-- [지훈] style 설정  -->
+<style type="text/css">
+	.modal-backdrop{
+		z-index: -1;
+	}
+	img{
+		box-shadow: 3px 3px 10px rgba(0, 0, 0, .8);
+	}
+
+</style>
 
 
 </head>
-<body>
+<body style="padding-top: 0px;">
 	<!--[if lt IE 8]>
 					<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 			<![endif]-->
@@ -48,9 +58,45 @@
 			</li>
 		</div>
 
-		<img src="img/add_friend.jpg" style="border-radius: 50px; box-shadow: 3px 3px 10px rgba(0, 0, 0, .8); position: fixed; bottom: 90px; right: 2%; height: 50px; width: 50px;">
-		</img>
+		<div data-toggle="modal" data-target="#fr_option_modal">
+			<img src="img/add_friend.jpg" id="fr_option" style="border-radius: 50px;
+																position: fixed; bottom: 90px; right: 2%; height: 50px; width: 50px;">
+			</img>
+		</div>
+
 	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="fr_option_modal" role="dialog">
+		<div class="modal-dialog" style="position: fixed; bottom: 150px; right: 2%;">
+
+			<!-- Modal content-->
+			<div id="searchFriend">
+				<img src="img/search-friend.jpg" style="border-radius: 40px; height: 40px; width: 40px; 
+														position: relative; left: -50px; bottom: -35px;">
+				</img>
+				<div class="modal-content" style="margin-bottom: 5px;">
+					<div class="modal-body" style="padding: 0px;">
+						<span><big>&nbsp;친구 검색&nbsp;</big></span>
+					</div>
+				</div>
+			</div>
+
+
+			<div id="denyList">
+				<img src="img/deny-friend.jpg" style="border-radius: 40px; height: 40px; width: 40px; 
+														position: relative; left: -50px; bottom: -33px;">
+				</img>
+				<div class="modal-content">
+					<div class="modal-body" style="padding: 0px;">
+						<span style="text-height: 15px"><big>&nbsp;거부 목록&nbsp;</big></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+ 
+	
 	<!-- [지훈] 친구 관리 화면 End -->
 
 	<!-- script plug in start -->
@@ -102,7 +148,7 @@
 				$("#fr_count").text(frCount);
 
 				var frReqTemp = fr_req_link.import;
-				var frTemp = fr_link.import;
+				var frTemp = fr_link.import;	
 
 				/*친구 요청목록 Handlebars 사용부분 */
 				var reqSource = frReqTemp.querySelector('#friendReqList_template').text;
@@ -118,10 +164,19 @@
 			}
 		});
 
+		//[지훈] 친구 검색 동적 이벤트 처리
+		$(document).on("click", "#searchFriend", function(){
+			$('frame[name="innerframe"]').attr('scrolling', 'auto');
+			$(window.parent.frames["innerframe"].document.location)
+				.attr("href", "searchFriend.html");
+		});
+
 		//[지훈]친구요청 수락 동적 이벤트 처리
 		$(document).on("click", ".aproveFriend", function(){
 			var frNo = $(this).parent().children('#frNo').val();			
 			var target = $(this).parent().parent();
+
+
 			$.ajax(requestIP+"friend/json/approveFriend", {
 				method : "post",
 				crossDomain : true,
@@ -131,7 +186,6 @@
 					frNo : frNo
 				}),
 				success: function(result){
-
 					frReqCount = frReqCount-1;
 					frCount = frCount+1;
 					$("#req_count").text(frReqCount);
@@ -149,6 +203,32 @@
 				}
 			});
 		});
+
+
+		//[지훈]친구요청 거부 동적 이벤트 처리
+		$(document).on("click", ".denyFriend", function(){
+			var frNo = $(this).parent().children('#frNo').val();			
+			var target = $(this).parent().parent();
+			$.ajax(requestIP+"friend/json/denyFriend", {
+				method : "post",
+				crossDomain : true,
+				dataType : "json",
+				contentType : "application/json; charset=UTF-8",
+				data : JSON.stringify({
+					frNo : frNo
+				}),
+				success: function(result){
+					frReqCount = frReqCount-1;
+					
+					$("#req_count").text(frReqCount);
+				
+					//항목 화면에서 제거
+					target.remove();
+				}
+			});
+		});
+
+
 
 	</script>
 	<!-- 스크립트 작성 부분 끝입니다. -->
