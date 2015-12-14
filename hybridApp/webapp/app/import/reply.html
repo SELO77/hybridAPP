@@ -1,21 +1,20 @@
 <script id="reply-template" type="text/x-handlebars-template">
 {{#replyList}}
 <div id="update{{rNo}}"></div>
-<deletePoint>
-<div class="row">
-  <hr>
-  <div class="col-md-12">
-    <input type="hidden" class="hiddenRUNo" value="{{rUser.uNo}}">
-    <strong><a href="#" class="replyUser"> {{rUser.nickname}} </a></strong>
-    <span class="pull-right">
-      <input type="hidden" class="hiddenRNo" value="{{rNo}}">
-      <input type="hidden" id="{{rNo}}" value="{{dNo}}">
-      {{rDate}}
-      {{{userCheck rUser.uNo}}}
-    </span>
-    <p>{{rContent}}</p>
+  <deletePoint>
+    <div class="row">
+      <div class="col-md-12">
+      <input type="hidden" class="hiddenRUNo" value="{{rUser.uNo}}">
+      <strong><a href="#" class="replyUser"> {{rUser.nickname}} </a></strong>
+      <span class="pull-right">
+        <input type="hidden" class="hiddenRNo" value="{{rNo}}">
+        <input type="hidden" id="{{rNo}}" value="{{dNo}}">
+        {{rDate}}
+        {{{userCheck rUser.uNo}}}
+      </span>
+      <p>{{rContent}}</p>
+    </div>
   </div>
-</div>
-</deletePoint>
+  </deletePoint>
 {{/replyList}}
 </script>
