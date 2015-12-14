@@ -232,29 +232,23 @@
 							console.log('accessToken :' + accessToken);
 
 							//var  for Graph API 
-							var graphAPI = '/me?fields=name,email,id,picture{url}'
-							FB.api(graphAPI, function(response) {
-
-								var mailToServer = response.email;
+							var graphAPI = '/me?fields=name,id,picture{url}'
+							FB.api(graphAPI, function(response) {								
 
 								console.log('Successful login for: ' + response.name);
-								console.log('facebookLogin User email :' + mailToServer + "$");
+								//console.log('facebookLogin User email :' + mailToServer + "$");
 								console.log('facebookLogin User id :' + response.id + "$");
 								console.log('facebookLogin User picture url :'
-									+ response.picture.data.url + "$");
-
-								if (mailToServer == null) {
-									mailToServer = "noEmail@SNSLoginUser";
-								};
+									+ response.picture.data.url + "$");								
 
 								var formData = {
-									mail : mailToServer,
+									//mail : mailToServer,
 									nickname : response.name,
 									uPic : response.picture.data.url,
 									socialNo : response.id
 								};
 								var requestURL = 'http://dodam.java74.com:8080/user/json/';
-								
+								alert('facebookLogin Check befor ajax');
 
 								// Insert SNS User Logic
 								$.ajax({
@@ -264,12 +258,16 @@
 									data : JSON.stringify(formData),
 									dataType : 'json',
 									success : function(responseData) {
-										alert(responseData);
-										console.log('responseData.user :' + responseData.user);
-										var cookieUser = JSON.stringify(responseData.user);
-										console.log('cookieUser :'+cookieUser);
-										window.localStorage.setItem("userKey", cookieUser);
-										self.location = 'mainIndex.html';;
+										alert('responseData.result :' + responseData.result);										
+										if (responseData.result == 1) {										
+																					
+											alert('responseData.user :' + responseData.user);
+											var cookieUser = JSON.stringify(responseData.user);
+											console.log('cookieUser :'+cookieUser);
+											window.localStorage.setItem("userKey", cookieUser);
+											self.location = 'mainIndex.html';
+										};	
+										
 									}// success
 								});// /. Inser SNS User 							
 
