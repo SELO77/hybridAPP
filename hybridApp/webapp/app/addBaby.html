@@ -115,6 +115,11 @@
 
 
 	<script>
+
+
+							var user=getMetaData('user');
+							var responseURL="mainIndex.html";
+
 							document.addEventListener("backbutton", onBackKeyDown, false);
 							function onBackKeyDown(){
 							 //window.plugins.toast.show('Really Exit?'.'short'.'center',)
@@ -227,8 +232,11 @@
 									dataType:"application/json",
 									data:JSON.stringify(formData),
 									contentType:"application/json",
-									success:function(){
+									success:function(result){
 										alert(JSON.stringify(formData)+" success");
+										console.log(result);
+										self.location=responseURL;
+
 									},
 									error:function(){
 										alert(JSON.stringify(formData));
@@ -282,18 +290,18 @@ $("#btn01").on("click" , function() {
 	/* fncFileUploadTrace(); */
 });										
 
-var babyImage;
+var babyImage="";
 function  fncAddJsonDodam(){
 
-	var iiii = $("div#uploadImage > img").length;											
-	for(var i=0 ; i<$("div#uploadImage > img").length ; i++){
-		if(i == ($("div#uploadImage > img").length - 1)){
+	var imageLength = $("div#uploadImage > img").length;											
+	for(var i=0 ; i<imageLength; i++){
+		if(i == (imageLength - 1)){
 			babyImage +=$("div#uploadImage > img:eq("+i+")").attr('name');
 		}else{
 			babyImage += $("div#uploadImage > img:eq("+i+")").attr('name') +",";
 		}
 	} 
-	consol.log("==babyImage :"+babyImage);											  
+	console.log("==babyImage :"+babyImage);											  
 	$.ajax({
 		type:"POST",
 		async:false,
