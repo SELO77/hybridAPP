@@ -216,7 +216,7 @@
 		$(document).on("click", ".reqDeny", function(){
 			var frNo = $(this).parent().children('#frNo').val();			
 			var target = $(this).parent().parent();
-			$.ajax(requestIP+"friend/json/denyFriend", {
+			$.ajax(requestIP+"friend/json/deleteFriend", {
 				method : "post",
 				crossDomain : true,
 				dataType : "json",
@@ -236,7 +236,7 @@
 		});
 
 
-		//[지훈]친구 수신거부 동적 이벤트 처리
+		//[지훈]친구 차단 동적 이벤트 처리
 		$(document).on("click", ".denyFriend", function(){
 
 			var frNo = $(this).parent().children('#frNo').val();			
@@ -251,9 +251,9 @@
 					frNo : frNo
 				}),
 				success: function(result){
-					frReqCount = frReqCount-1;
+					frCount = frCount-1;
 					
-					$("#req_count").text(frReqCount);
+					$("#fr_count").text(frCount);
 				
 					//항목 화면에서 제거
 					target.remove();
