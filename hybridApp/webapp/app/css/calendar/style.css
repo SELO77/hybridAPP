@@ -161,7 +161,7 @@ input[type=checkbox]:checked + .checkbox:before {
 .content2 {
 
     margin:auto;
-    padding:10px;
+
 }
 .content2 h1 {
 	font-size:35px;
@@ -179,9 +179,6 @@ input[type=checkbox]:checked + .checkbox:before {
 }
 .cal1 .clndr .clndr-table tr .day .today .event .day-contents {
 	color:#fff !important;
-}
-.column_right_grid.calender {
-	background-color:#f6f7f9;
 }
 .cal1 .clndr .clndr-table .header-days .header-day {
 	border-left:1px solid #D8D8D8;
