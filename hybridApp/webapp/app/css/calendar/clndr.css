@@ -55,7 +55,8 @@
 	vertical-align:middle;
 }
 .cal1 .clndr .clndr-table tr .day.today {
-	background: rgba(206,108,134,1);
+	
+	background: rgba(234,5,26,0.5);
 	color: #FFF;
 }
 .dat-c{
