@@ -1,8 +1,9 @@
 <script id="entry-template" type="text/x-handlebars-template">
   {{#diaries}}
+<removePoint id="deleteDiary{{dNo}}">
   <div class="col-md-8 col-md-offset-2">
-    <div class="thumbnail">
-      <div class="row center-block">
+    <div class="thumbnail" id="appendDiary{{dNo}}">
+      <div class="row center-block" id="updateDiary{{dNo}}">
       <center>
       {{#dPics}}
         <img class="img-rounded" src="http://192.168.0.3:8080/resources/thumbnail/diary/{{this}}" style="width: 40%; height:auto; margin: 5px">
@@ -29,12 +30,9 @@
               </a>
             </button>
           </div>
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default"><updateDiary>수정하기</updateDiary></button>
-          </div>
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default"><deleteDiary>삭제하기</deleteDiary></button>
-          </div>
+          {{{userCheck diaryUser.uNo}}}
+
+          <input type="hidden"  value="{{dNo}}">
         </div>
       </div>
       </center>
@@ -69,5 +67,6 @@
         </div>{{!modal-content}}
       </div>{{!modal-dialog}}
     </div>{{!modal}}
+  </removePoint>
   {{/diaries}}
 </script>

@@ -45,7 +45,9 @@
 
           </center>
         </div>
-
+        <form name="updateForm" method="post">
+            <input type="hidden" id="updateDNo" value="">
+        </form>
 
       <!--기본 라이브러리 추가-->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -79,7 +81,6 @@
             //페이지 로드시 diary 호출            
             $(document).ready(loadDiary());
 
-
             //다이어리 호출 함수
             function loadDiary(){
               //alert('여기는 loadDiary');
@@ -98,7 +99,15 @@
                   var temp = diaryLink.import;
                   console.log(result);
                   var source = temp.querySelector('#entry-template').text;
-
+                       Handlebars.registerHelper('userCheck', function (uNo) {
+                            //alert(rUNo);
+                            var userhtml ="<div class='btn-group' role='group'><updateDiary style='height:transparent'><button type='button' class='btn btn-default'><a>수정하기</a></button></updateDiary></div><div class='btn-group' role='group'><deleteDiary style='height:transparent'><button type='button' class='btn btn-default'><a>삭제하기</a></button></deleteDiary></div>";
+                            if(uNo == user.uNo){
+                                return userhtml;
+                            }else{
+                              return '';
+                            }
+                      });
                       var template = Handlebars.compile(source);
                       var html = template(result);
                       //$('#diaryHandle').append(html);
@@ -107,6 +116,53 @@
                 }
               });
               }
+
+              //[시용]다이어리 삭제.
+              $(document).on("click", "deleteDiary", function(){
+                  var diaryNo  = $(this).parent().next();
+                  //alert(diaryNo.val());
+                  $.ajax({
+                    url: requestURL+'deleteDiary',
+                    method: 'POST',
+                    dataType: 'JSON',
+                    contentType: "application/json; charset=UTF-8",
+                    data: JSON.stringify({
+                       dNo : diaryNo.val()
+                    }),
+                    success: function(result){
+                        if(result.result == true){
+                          //alert("삭제성공");
+                          //location.reload(true);
+                          //alert(diaryNo.val());
+                          $("#deleteDiary"+diaryNo.val()).fadeOut("fast");
+                          //setTimeout($("#deleteDiary"+diaryNo.val()).remove(),1000*2);
+                        }
+                    }
+                    });   
+                });
+
+
+              //[시용]다이어리 수정
+              $(document).on("click", "updateDiary", function(){
+                  var diaryNo  = $(this).parent().next().next();
+                  //alert(diaryNo.val());
+                  $('form[name=updateForm]').children('input').val(diaryNo.val());
+
+                  var test = $('form[name=updateForm]').children('input').val();
+                  //alert(test);
+
+                  //$('form[name=updateForm]').submit();
+                  window.localStorage.setItem("diaryKey", test);
+                  $(window.parent.frames["innerframe"].document.location).attr("href","updateDiary.html");
+                });
+
+
+
+
+
+
+
+                //댓글 가져오기 function 모듈화
                 function callReply(result){
                   var temp = replyLink.import;
                   console.log(result);
@@ -346,13 +402,13 @@
 
 
       // [시용] 다이어리 쓰기 버튼 이벤트처리
-       $(function(){
+   /*    $(function(){
            $("#submitDiary").on("click" , function() {
               fncAddJsonDiary();
               setTimeout( location.reload(true),1000*6);
           });
        
-       });
+       });*/
 
 
 

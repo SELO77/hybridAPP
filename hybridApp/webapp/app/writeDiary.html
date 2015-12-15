@@ -49,7 +49,7 @@
         <textarea class="form-control" placeholder="오늘의 일기를 작성해주세요.."
           style="margin-bottom: 20px" id="dContent" rows="12"></textarea>
         <button class="btn btn-primary pull-right" type="button"
-          id="submitDiary">Post</button>
+          id="submitDiary">일기쓰기</button>
         <span class="fileinput-button  pull-left" style="padding-top: 6px">
           <ul class="list-inline" style="font-size: 23px; text-align: left;">
             <li style="padding-top: 7px"><a href="#">
@@ -57,14 +57,13 @@
                 </a></li>
           </ul> <input type="file" name="files[]" id="fileJARI" multiple>
         </span>
+       <center>
+      <div id="imgJARI"></div>
+      <div id="btnJARI" style="position:absolute"></div>    
+      </center>
       </div>
       <input type="hidden" id="uNo" name="uNo" value="">
     </form>
-  <center>
-
-    <div id="imgJARI"></div>
-    <span id="btnJARI"></span>    
-  </center>
   </div>
   
 
@@ -92,17 +91,10 @@
             var user = getMetaData('user');
 
             //[시용]사진 클릭시 사진 지우기 
-            $(document).on("tap", '.removeImg',function(){
-              $(this).parent().prev().children().remove();
+            $(document).on("tap", '.deleteImg',function(){
+              //$(this).parent().prev().children().remove();
               $(this).remove();
             })
-
-            $(document).on("click", '.removeImg',function(){
-              $(this).parent().prev().children().remove();
-              $(this).remove();
-            })
-
-
 
 
           // [시용] fileUpload를 위한 자바 스크립트 Start
@@ -122,15 +114,16 @@
                               var img = $("<img />");
                               img.attr("name",file[0].name);
                               img.attr("id","multi");
-                              img.attr("style", "width:100px; height:100px; margin-right: 10px;margin-top: 10px;");
+                              img.attr("style", "width:100px; height:100px; margin-right: 10px;margin-top: 5px;");
                               img.attr("src", e.target.result);
                               img.attr("class", "deleteImg");
                               dvPreview.append(img);
 
-                              var btn = $("<button type='button' class='removeImg' <span aria-hidden='true'>&times;</span></button> ");
-                              btn.attr("style", "margin-left:30px; margin-right:40px; margin-top:0px;")
+                              //var btn = $("<button type='btn btn-default' class='removeImg' <span aria-hidden='true'>&times;</span></button> ");
+                              //btn.attr("style", "margin-left:30px; margin-right:40px; margin-top:0px;")
+                              //btn.attr("style", "position:absolute;left:0px;top:0px;")
                               //dvPreview.append(btn);
-                              btnPreview.append(btn);
+                              //dvPreview.append(btn);
                               
                               
                           }
