@@ -4,9 +4,12 @@
 		<div class="col-xs-12 col-sm-12 col-md-12" style="padding: 5px; height: 80px;">
 			<input type="hidden" name="frNo" id="frNo" value="{{frNo}}">
 
-			<span class="img-responsive"style="float: left; max-height: 80px; max-width: 80px; padding: 5px;">
-				<img class="img-thumbnail" src="http://192.168.0.3:8080/resources/thumbnail/user/{{user.uPic}}"/>
+			<span class="col-xs-2 col-sm-4 col-md-4" style="float: left; height: 80px; width: 80px; padding : 0px;">
+				<span class="img-responsive"style="float: left; max-height: 80px; max-width: 80px; padding: 5px;">
+					<img class="img-thumbnail" src="http://192.168.0.3:8080/resources/thumbnail/user/{{user.uPic}}"/>
+				</span>
 			</span>
+
 
 			<span class="col-xs-7 col-sm-10 col-md-10" 
 				style="float: left; max-height: 80px; padding-top: 10px; padding-left:2%; margin-left:3%;">
@@ -21,7 +24,7 @@
 			</friendTag>
 
 			
-			<friendTag class="denyFriend" value="{{frNo}}">
+			<friendTag class="reqDeny" value="{{frNo}}">
 			<span class="col-xs-4 col-sm-5 col-md-5" style="float: left; margin-top: 5px; width: maximum; padding: 1%">
 				<button type="button" class="btn btn-default" style="width: 100%">거부</button>
 			</span>

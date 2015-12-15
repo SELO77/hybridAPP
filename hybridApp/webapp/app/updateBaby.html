@@ -23,7 +23,7 @@
 
 
 </head>
-<body onload="getBaby();">
+<body onload="getBabyList();" style="padding-bottom: 110px; padding-top: 60px;">
 	<!--[if lt IE 8]>
 						<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 						<![endif]-->
@@ -76,7 +76,7 @@
 
 
 		<div style="padding: 10px" align="center">
-			<img src="img/logo40.png" /><br>
+			<!-- <img src="img/logo40.png" /><br> -->
 			<!-- <img src="img/profile1.jpg" width="100"  class="img-circle"   /> -->
 			<!-- <button class="circle"><img src="img/profile1.jpg" width="100"  class="rounded"/></button> -->
 
@@ -91,6 +91,9 @@
 					<!-- <input type="file" name="bPhoto" id="bPhoto" src="img/defaultImage.jpg" class="img-rounded" width="100"> -->
 					<input type="file" id="bPhoto" name="bPhoto" style="display: none">
 					<div id="uploadImage" onclick=$("#bPhoto").click()></div>
+
+					<img id="defaultImg" src="img/baby/defaultImagae.png"
+					class="img-rounded" onclick=$("#bPhoto").click() style="width=100px; height=100px ">
 
 					<!-- <img id="defaultImg" src="img/defaultImage.jpg" width="100px" onclick="imgChange()" class="img-rounded"> -->
 
@@ -182,11 +185,20 @@
 		<!-- [근한] 파일업로드를 위한 js파일 추가 -->
 		<script src="js/vendor/jquery.ui.widget.js"></script>
 		<script src="js/jquery.fileupload.js"></script>
+		<script src="js/jihoon/getMetaData.js"></script>
+
 		<!-- /[근한] 파일업로드를 위한 js파일 추가 끝 -->
 
 
 
 		<script>
+
+						var user=getMetaData('user');
+						var getBPhoto="";
+						var responseURL="diary.html";
+						var babyImage="";
+
+
 						document.addEventListener("backbutton", onBackKeyDown, false);
 						function onBackKeyDown(){
 							 //window.plugins.toast.show('Really Exit?'.'short'.'center',)
@@ -255,51 +267,88 @@
 							//[근한] focus event를 위한 jQuery 추가 끝
 
 
-							//getBaby를 위한 코드ㅜ
-							var getBPhoto="";
-
-									function getBaby(){
+							//getBaby를 위한 코드
+						
+									function getBabyList(){
 										
 										alert("getBaby들어옴");
-										var bNoData={
-												bNo:100043
-											}
-										$.ajax(
-											{
-											url:getMetaData("ip")+"baby/json/getBaby",
+											
+											$.ajax({
+											url:getMetaData("ip")+"baby/json/getUNoBaby",
 											method:"POST",
 											contentType:"application/json",
 											dataType:"json",
-											data:JSON.stringify(bNoData),
+											data:JSON.stringify({uNo:user.uNo}),
 											success:function(result){
-												getBPhoto="img/"+result.baby.bPhoto;
 												console.log(result);
-												alert(result.baby.bNo);
-												$("#bName").val(result.baby.bName);
-												$("#bBirth").val(result.baby.bBirth);
-												$("#height").val(result.baby.height);
-												$("#weight").val(result.baby.weight);
-												alert(getBPhoto);
-												if(result.baby.bSex==1){
+												console.log(user.uNo);
+												//유저가 등록한 아이가 없을 떄
+												if(result.resultCode==0 ){
+													
+												$("#btn01").on("click",function() {
+
+													$("#btn01").text("등록하기");
+								
+													if($("#bName").val()!=null && $("#bName").val()!="") {
+														fncAddJsonDodam();
+													}
+														else{
+														$("#bName").attr({
+															placeholder: '태명,별명도 입력가능'
+														});
+
+														$("#nameCheck").append("이름을 입력하고 등록해주세요.");
+														$("#nameCheck").css("color","red");
+														}
+													});
+												} 									
+
+
+												//아이가 있을때는 get하여 update로
+												if(result.resultCode==1){
+
+													$("#btn01").text("수정하기");
+
+												if(result.baby.bPhoto==null){
+													getbPhoto="img/"+"defaultImage.png";
+												}
+												else if(result.baby.bPhoto!=null){
+												getBPhoto="img/"+result.baby.bPhoto;
+												}
+
+												$("#defaultImg").attr("style","display:none");
+
+
+												///////////////////////////////////////////////
+													$("#btn01").text("수정하기");
+
+												    $("#bName").val(result.baby.bName);
+												    $("#bBirth").val(result.baby.bBirth);
+												    $("#height").val(result.baby.height);
+												    $("#weight").val(result.baby.weight);
+												///////////////////////////////////////////////
+
+												    if(result.baby.bSex==1){
 													$("#male").attr("checked","checked");
-												}
-												else{
+													}
+													else{
 													$("#male").attr("checked","checked");	
-												}
-												if(result.baby.bType=="A"){
+													}
+													if(result.baby.bType=="A"){
 													$("#AType").attr("checked","checked");
-												}
-												else if(result.baby.bType=="B"){
+													}
+													else if(result.baby.bType=="B"){
 													$("#BType").attr("checked","checked");
-												}
-												else if(result.baby.bType=="O"){
+													}
+													else if(result.baby.bType=="O"){
 													$("#OType").attr("checked","checked");
-												}
-												else if(result.baby.bType=="AB"){
+													}
+													else if(result.baby.bType=="AB"){
 													$("#ABType").attr("checked","checked");
-												}
-												/*$("#bPhoto").val(result.baby.bPhoto);*/
-													var img = $("<img />");
+													}				
+													//////////////////////////////////////////////
+
+												var img = $("<img />");
 												img.attr("name",getBPhoto.replace("img/",""));
 												img.attr("id","multi");
 												img.attr("style", "width:100px; height:100px; margin-right:10px; margin-top: 10px;");
@@ -307,47 +356,56 @@
 												img.attr("class","img-rounded");
 
 												$("#uploadImage").append(img);
-											},
+
+												$("defaultImg").attr("style","display:none");					
+
+													$("#btn01").on("click",function() {
+
+													if($("#bName").val()!=null && $("#bName").val()!=""){
+
+													update_baby_test();
+
+													}
+													else{
+														$("#bName").attr({
+														placeholder: '태명,별명도 입력가능'
+														});
+
+														$("#nameCheck").append("이름을 입력하고 등록해주세요.");
+														$("#nameCheck").css("color","red");
+														}
+													});
+
+											}
+										},
 											error:function(){
 												alert("error");
 											}
-											});
 										
-
-
-											
-
-									}
-									//getBaby 끝
-
-
-
-
-							//[근한] 이름 null check를 위한 jQuery 추가
-							$("#btn01").on("click",function() {
-								
-								if($("#bName").val()!=null && $("#bName").val()!=""){
-
-									update_baby_test();
-								}
-								else{
-									$("#bName").attr({
-										placeholder: '태명,별명도 입력가능'
-									});
-
-									$("#nameCheck").append("이름을 입력하고 등록해주세요.");
-									$("#nameCheck").css("color","red");
-								}
-							}); 
-							//[근한] 이름 null check를 위한 jQuery 추가 끝
+											});
+									}//getBaby 끝
 
 
 
 
 							//[시용,근한] fileupload를 위한 javascript 추가
-							var uploadFormData;
 							function update_baby_test(){
-								var formData = {
+
+								var imageLength = $("div#uploadImage > img").length;											
+								for(var i=0 ; i<imageLength; i++){
+									if(i == (imageLength - 1)){
+										babyImage +=$("div#uploadImage > img:eq("+i+")").attr('name');
+									}else{
+										babyImage += $("div#uploadImage > img:eq("+i+")").attr('name') +",";
+									}
+								} 
+
+								$.ajax(
+								{
+									url:getMetaData("ip")+"baby/json/updateBaby",
+									method:"POST",
+									dataType:"application/json",
+									data:JSON.stringify({
 									bNo:100040,
 									bName:$("input[name='bName']").val(),
 									bBirth:$("input[name='bBirth']").val(),
@@ -356,27 +414,61 @@
 									height:$("input[name='height']").val(),
 									weight:$("input[name='weight']").val(),
 									bPhoto:babyImage,
-									uNo:100001
-								}
-
-								uploadFormData = formData;
-
-								$.ajax(
-								{
-									url:getMetaData("ip")+"baby/json/updateBaby",
-									method:"POST",
-									dataType:"application/json",
-									data:JSON.stringify(formData),
-									contentType:"application/json",
+									uNo:user.uNo
+									}),
+									contentType:"json",
 									success:function(){
 										alert(JSON.stringify(formData)+" success");
+										$(window.parent.frames["innerframe"].document.location)
+	           							 .attr("href",responseURL);
 									},
 									error:function(){
-										alert(JSON.stringify(formData));
+										alert("뭔가 에러가 났네....");
 									}
 
 								});
 							}
+
+
+							function  fncAddJsonDodam(){
+								//console.log(formData);
+								var imageLength = $("div#uploadImage > img").length;											
+								for(var i=0 ; i<imageLength; i++){
+									if(i == (imageLength - 1)){
+										babyImage +=$("div#uploadImage > img:eq("+i+")").attr('name');
+									}else{
+										babyImage += $("div#uploadImage > img:eq("+i+")").attr('name') +",";
+									}
+								} 
+								console.log("==babyImage :"+babyImage);		
+								alert('before ajax');									  
+								$.ajax({
+									method:"POST",
+							//		headers : {
+							//			"Accept" : "application/json",
+									contentType : "application/json",
+							//		},
+									data: JSON.stringify({
+										bPhoto : babyImage,
+										bName : $("input[name='bName']").val(),
+										bBirth : $("input[name='bBirth']").val(),
+										bSex : $("input[name='bSex']").val(),
+										bType : $("input[name='bType']").val(),
+										height : $("input[name='height']").val(),
+										weight : $("input[name='weight']").val(),
+										uNo:user.uNo
+									}),
+									url:getMetaData('ip')+"baby/json/addBaby",
+									dataType:'json',
+									success:function(responseData){
+										alert('response.result'+responseData.result);
+										if(responseData.result==true){
+											$(window.parent.frames["innerframe"].document.location)
+								            .attr("href",responseURL);
+										}
+									}
+										 });// /ajax
+									}// end of fnc
 
 
 							$(function(){
@@ -399,6 +491,8 @@
 
 													dvPreview.append(img);
 
+													$("#defaultImg").attr("style","display:none");
+
 												}
 												reader.readAsDataURL(file[0]);
 											} else {
@@ -412,52 +506,6 @@
 											}
 										});
 									}); 
-
-										$(function(){
-											$("#btn01").on("click" , function() {
-												fncAddJsonDodam();
-												/* fncFileUploadTrace(); */
-											});
-
-										});
-
-										var babyImage = $("#uploadImage").attr('name');
-										function  fncAddJsonDodam(){
-
-											var iiii = $("div#uploadImage > img").length;
-											alert(iiii);
-
-
-											
-											/*for(var i=0 ; i<$("div#uploadImage > img").length ; i++){
-												if(i == ($("div#uploadImage > img").length - 1)){
-													babyImage +=$("div#uploadImage > img:eq("+i+")").attr('name');
-												}else{
-													babyImage += $("div#uploadImage > img:eq("+i+")").attr('name') +",";
-												}
-											} */
-											alert(babyImage);
-												  
-												  $.ajax({
-												  	type:"POST",
-												  	async:false,
-												  	headers : {
-												  		"Accept" : "application/json",
-												  		"Content-Type" : "application/json"
-												  	},
-												  	data: JSON.stringify({
-												  		bPhoto : babyImage,
-												  		text : {
-												  			uploadFormData
-												  		},
-												  	}),
-												  	url:getMetaData("ip")+"baby/json/addBaby",
-												  	dataType:"json",
-												  	success:function(data, status){
-
-												  	}
-												  });// /ajax
-												}// end of fnc
 
 
 
@@ -477,15 +525,6 @@
 
 
 												//[시용,근한] fileupload를 위한 javascript 추가 끝
-
-
-											//[근한] fileupload를 위한 이미지버튼 추가
-											function imgChange(){ 
-												$("#bPhoto").onchange=
-												$("#defaultImg").attr("style","display:none");
-												$("#defaultImg").onclick=$("#bPhoto").click();
-											}
-											//[근한] fileupload를 위한 이미지버튼 추가 끝
 
 											function onlyNumber(event){
 												var kc=event.keyCode;
