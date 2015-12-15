@@ -34,24 +34,15 @@
 
 	<!-- [지훈] 회원목록 화면 Start -->
 	<div class="container" style="padding-bottom: 90px; padding-left: 5px; padding-right: 5px;">
-		<div class="input-group">
-			<input type="text" id="searchUser" class="form-control" placeholder="회원 Nick Name 검색" aria-describedby="searchAction"
-			data-toggle="dropdown" aria-haspopup="true">
-			<span class="input-group-addon" id="searchAction">
-				<img src="img/search.png" style="height: 20px; width: 20px;">
-			</span>
-			<ul class="dropdown-menu">
-	        	<li><a href="#">회원 목록</a></li>
-	         	<li role="separator" class="divider" id="user-list"></li>
-
-	         	<li><a href="#" id="users">테스트1</a></li>
-	         	<li><a href="#" id="users">테스트2</a></li>
-	        </ul>
-
-
+		<div class="col-xs-12 col-sm-12 col-md-12" id="appendTarget">
+			<div class="input-group" id="search">
+				<input type="text" class="form-control" id="searchUser" placeholder="회원 Nick Name 검색" aria-describedby="search"
+				data-toggle="dropdown" aria-haspopup="true">
+				<span class="input-group-addon" >
+					<img src="img/search.png" style="height: 20px; width: 20px;">
+				</span>
+			</div>
 		</div>
-
-
 	</div>
 	
 	<!-- [지훈] 회원목록 화면 End -->
@@ -84,33 +75,55 @@
 
 
 		//[지훈] 친구 검색 동적 이벤트 처리
-		$(document).on("keypress", "#searchUser", function(){
+		$(document).on("keyup", "#searchUser", function(){
 			
 			var searchKey = $(this).val();
-			alert(searchKey);
-			alert($(this).parent().after("#users").text());
-
-			/*$.ajax(requestIP+"user/json/getNickUser", {
+			var target = $(this).parent().parent().children('userListTag');
+			
+			$.ajax(requestIP+"user/json/getNickUserList", {
 				method : "post",
 				crossDomain : true,
 				dataType : "json",
 				contentType : "application/json; charset=UTF-8",
 				data : JSON.stringify({
-					nickName : searchKey
+					nickname : searchKey,
+					uNo : user.uNo
 				}),
 				success: function(result){
-					alert(result);
 
-				var Temp = fr_link.import;	*/
+					target.remove();
 
-				/*친구 요청목록 Handlebars 사용부분 */
-				/*var reqSource = Temp.querySelector('#userList_template').text;
-				var reqTemplate = Handlebars.compile(reqSource);
-				var reqHtml = reqTemplate(result);
-				$('#friend_req_list').append(reqHtml);
+					var temp = fr_link.import;	
+					var reqSource = temp.querySelector('#userList_template').text;
+					var reqTemplate = Handlebars.compile(reqSource);
+					var reqHtml = reqTemplate(result);
+					$('#appendTarget').append(reqHtml);
 				}
-			});*/
+			});
+		});
 
+		//[지훈]친구요청 동적 이벤트 처리
+		$(document).on("click", ".friendRequest", function(){
+			var frMate = $(this).parent().children('#frMate').val();
+			var nick = $(this).parent().children('#nick').val();			
+			var target = $(this).parent().parent();
+
+			$.ajax(requestIP+"friend/json/friendRequest", {
+				method : "post",
+				crossDomain : true,
+				dataType : "json",
+				contentType : "application/json; charset=UTF-8",
+				data : JSON.stringify({
+					uNo : user.uNo,
+					frMate : frMate
+				}),
+				success: function(result){
+
+					target.remove();
+					alert(result.message);
+
+					}
+			});
 		});
 
 
