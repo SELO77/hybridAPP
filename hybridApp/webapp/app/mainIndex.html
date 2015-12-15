@@ -2,90 +2,94 @@
 <html class="no-js" lang="">
 <head>
 
-<meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<!-- -->
-<title>DodamDodam</title>
-<meta name="description" content="">
-<meta name="viewport"
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<!-- -->
+	<title>DodamDodam</title>
+	<meta name="description" content="">
+	<meta name="viewport"
 	content="width=device-width, initial-scale=1 minimum-scale=1, maximum-scale=1, user-scalable=no">
-<!-- 모바일 친화적 뷰 설정 -->
+	<!-- 모바일 친화적 뷰 설정 -->
 
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<!-- Place favicon.ico in the root directory -->
-<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
-<link rel="stylesheet" href="css/__main.css">
-<link rel="stylesheet" href="css/slidebars.css">
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<!-- Place favicon.ico in the root directory -->
+	<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" href="css/__main.css">
+	<link rel="stylesheet" href="css/slidebars.css">
 
-<link rel="import" href="import/diaryList.html">
+	<link rel="import" href="import/diaryList.html">
 
-<style type="text/css">
-html, body, iframe {
-	height: 100%;
-}
+	<style type="text/css">
+		html, body, iframe {
+			height: 100%;
+		}
 
-#sb-site {
-	height: 100%;
-}
+		#sb-site {
+			height: 100%;
+		}
 
-.cb-enable, .cb-disable, .cb-enable span, .cb-disable span {
-	background: url(switch.gif) repeat-x;
-	display: block;
-	float: left;
-}
+		.cb-enable, .cb-disable, .cb-enable span, .cb-disable span {
+			background: url(switch.gif) repeat-x;
+			display: block;
+			float: left;
+		}
 
-.cb-enable span, .cb-disable span {
-	line-height: 30px;
-	display: block;
-	background-repeat: no-repeat;
-	font-weight: bold;
-}
+		.cb-enable span, .cb-disable span {
+			line-height: 30px;
+			display: block;
+			background-repeat: no-repeat;
+			font-weight: bold;
+		}
 
-.cb-enable span {
-	background-position: left -90px;
-	padding: 0 10px;
-}
+		.cb-enable span {
+			background-position: left -90px;
+			padding: 0 10px;
+		}
 
-.cb-disable span {
-	background-position: right -180px;
-	padding: 0 10px;
-}
+		.cb-disable span {
+			background-position: right -180px;
+			padding: 0 10px;
+		}
 
-.cb-disable.selected {
-	background-position: 0 -30px;
-}
+		.cb-disable.selected {
+			background-position: 0 -30px;
+		}
 
-.cb-disable.selected span {
-	background-position: right -210px;
-	color: #fff;
-}
+		.cb-disable.selected span {
+			background-position: right -210px;
+			color: #fff;
+		}
 
-.cb-enable.selected {
-	background-position: 0 -60px;
-}
+		.cb-enable.selected {
+			background-position: 0 -60px;
+		}
 
-.cb-enable.selected span {
-	background-position: left -150px;
-	color: #fff;
-}
+		.cb-enable.selected span {
+			background-position: left -150px;
+			color: #fff;
+		}
 
-.switch label {
-	cursor: pointer;
-}
-</style>
+		.switch label {
+			cursor: pointer;
+		}
+	</style>
 
-<!--[SELO77] CSS 추가 부분 -->
-<style>
-.navbar-fixed-bottom>.container>.col-xs-2 {
-	padding: 0px;
-	font-size: 36px;
-	text-align: center;
-}
+	<!--[SELO77] CSS 추가 부분 -->
+	<style>
+		.navbar-fixed-bottom>.container>.col-xs-2 {
+			padding: 0px;
+			font-size: 36px;
+			text-align: center;
+		}
 
-.navbar-fixed-bottom>.container>.col-xs-2>.icon {
-	
-}
-</style>
+		.row{
+			font-size: 30px;
+		}
+		.slideTitle{
+			width:90%;height:48%;border:solid;display:block;margin:auto;text-align:center;
+		}
+
+	</style>
 
 
 
@@ -97,107 +101,141 @@ html, body, iframe {
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
             <![endif]-->
 
-	<header role="banner">
-		<nav role="navigation" class="navbar navbar-default navbar-fixed-top">
-			<div class="container">
+            <header role="banner">
+            	<nav role="navigation" class="navbar navbar-default navbar-fixed-top" style="border-bottom:solid">
+            		<div class="container">
 
-				<div class="navbar-header">
-
-
-					<a href="mainIndex.html"><img src="img/dodam872.png"
-						class="img-responsive img-rounded"
-						style="height: 75%; position: absolute; left: 45%; top: 15%; margin-left: -40px;" /></a>
-				</div>
-				<!-- /.navbar-header -->
-
-			</div>
-			<!--/. container  -->
+            			<div class="navbar-header">
 
 
-		</nav>
+            				<a href="mainIndex.html"><img src="img/dodam872.png"
+            					class="img-responsive img-rounded"
+            					style="height: 75%; position: absolute; left: 45%; top: 15%; margin-left: -40px;" /></a>
+            				</div>
+            				<!-- /.navbar-header -->
+
+            			</div>
+            			<!--/. container  -->
 
 
-		<!-- sb-slidebar contents Start -->
-		<div class="sb-slidebar sb-right"
-			style="background-color: #ffffff; border: 2px solid black; margin-top: 45px">
+            		</nav>
 
-			<ul>
-				<li id="addBaby"><span>Temp Add Baby</span></li>
-			</ul>
+            		<style>
+				@media (max-width: 768px) { /* Slidebar widths on extra small screens. */	
+					.sb-slidebar {
+						width: 70%;
+						background-color: #FFF590;
+						margin-top: 45px;border-left:solid 4px;		
+					}
+				}
 
 
+				
 
-
-
-
-			<div style="position: absolute; top: 70%; left: 50%">
-				<button type="submit"
-					class="btn btn-default btn-default pull-center" id="logout"
-					style="font-weight: bold; border-width: medium; border-color: black">
-					LOGOUT</button>
-			</div>
-		</div>
-		<!-- End Slidebar Contents-->
-
-	</header>
-	<main style="height:95%;"> <!-- .sb-site -->
-	<div id="sb-site" name="sb-site" style="height: device;">
-		<iframe name="innerframe" id="innerframe" scrolling="auto" src=""
-			frameborder="0" style="height: 95%; width: 100%"></iframe>
+            			.slideNavMenu{
+            				text-align: center;
+            			}
+            			.slideNavMenu .slideMenuText{
+					font-size: 25px;
+					font-weight: bold;
+            			}
+            			
+				.slideNavMenu img{
+					width: 34px;					
+				}
 
 
 
-	</div>
-	<!--/. 슬라이드 바 포함 컨텐츠/--> </main>
-	<footer>
-		<!-- 하단 고정 바 -->
-		<div class="navbar navbar-default navbar-fixed-bottom">
-			<div class="container" style="">
-				<span class="col-xs-2"> <icon class="fa fa-home" id="homeBtn"></icon></span> 
-				<span class="col-xs-2"> <icon class="fa fa-book" id="diaryBtn"></icon></span>
-				<span class="col-xs-2"> <icon class="fa fa-pencil-square-o" id="writeDiaryBtn"></icon></span>
-				<span class="col-xs-2"> <icon class="fa fa-calendar"id="calendarBtn"></icon></span> 
-				<span class="col-xs-2"> <icon class="fa fa-users"id="friendBtn"></icon></span>
-				<span class="col-xs-2"> <icon class="fa fa-cog sb-toggle-right"></icon></span>
-			</div>
-		</div>
-		<!-- /.하단 고정 바 -->
-	</footer>
+            		</style>
 
-	<script src="js/vendor/jquery-1.11.3.min.js"></script>
 
-	<!-- plugin.js main.js cordova.js-->
-	<script src="js/plugins.js"></script>
-	<script type="text/javascript" src="cordova.js"></script>
-	<!-- script plug in start -->
-	<script src="js/vendor/modernizr-2.8.3.min.js"></script>
-	<!-- swipe 추가 -->
-	<script text="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
-	<!-- ip 등 meta data 가져오기 -->
-	<script src="js/jihoon/getMetaData.js"></script>
 
-	<!-- 시작 Script by Chan-->
-	<script>
-	
+            		<!-- sb-slidebar contents Start -->
+            		<div class="sb-slidebar sb-right">
+            		
+	            		<div class="row">
+	            			<div class="slideTitle"style=""><strong>For Your Baby</strong></div>
+					<hr style="border:solid 1.5px">
+	            			<div class="slideNavMenu">
+	            				<div id="userInfo"><img src="img/icon/momInfo.png" style="width:36px"><span class="slideMenuText">&nbsp;MOM INFO</span></div>
+	            				<div style="font-size:10px">&nbsp;</div>
+	            				<div id="babyInfo"><img src="img/icon/baby137.png"><span class="slideMenuText">&nbsp;BABY INFO</span></div>
+	            				<div style="font-size:10px">&nbsp;</div>
+	            			</div>
+
+
+
+
+
+	            		</div>
+	            		<!-- /.div row-->
+
+	            		<div style="position: absolute; top: 75%; left: 44%">
+	            			<button type="submit"
+	            			class="btn btn-default btn-default pull-center" id="logout"
+	            			style="font-size:20px;font-weight: bold; border-width: medium; border-color: black;background-color:#FFFEEF">
+	            			LOGOUT</button>
+	            		</div>
+
+	            	</div>
+	            	<!-- End Slidebar Contents-->
+
+            </header>
+            <main style="height:95%;"> <!-- .sb-site -->
+            	<div id="sb-site" name="sb-site" style="height: device;">
+            		<iframe name="innerframe" id="innerframe" scrolling="auto" src=""
+            		frameborder="0" style="height: 95%; width: 100%"></iframe>
+
+
+
+            	</div>
+            	<!--/. 슬라이드 바 포함 컨텐츠/--> </main>
+            	<footer>
+            		<!-- 하단 고정 바 -->
+            		<div class="navbar navbar-default navbar-fixed-bottom">
+            			<div class="container" style="border-top:solid">
+            				<span class="col-xs-2"> <icon class="fa fa-home" id="homeBtn"></icon></span> 
+            				<span class="col-xs-2"> <icon class="fa fa-book" id="diaryBtn"></icon></span>
+            				<span class="col-xs-2"> <icon class="fa fa-pencil-square-o" id="writeDiaryBtn"></icon></span>
+            				<span class="col-xs-2"> <icon class="fa fa-calendar"id="calendarBtn"></icon></span> 
+            				<span class="col-xs-2"> <icon class="fa fa-users"id="friendBtn"></icon></span>
+            				<span class="col-xs-2"> <icon class="fa fa-cog sb-toggle-right"></icon></span>
+            			</div>
+            		</div>
+            		<!-- /.하단 고정 바 -->
+            	</footer>
+
+            	<script src="js/vendor/jquery-1.11.3.min.js"></script>
+
+            	<!-- plugin.js main.js cordova.js-->
+            	<script src="js/plugins.js"></script>
+            	<script type="text/javascript" src="cordova.js"></script>
+            	<!-- script plug in start -->
+            	<script src="js/vendor/modernizr-2.8.3.min.js"></script>
+            	<!-- swipe 추가 -->
+            	<script text="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
+            	<!-- ip 등 meta data 가져오기 -->
+            	<script src="js/jihoon/getMetaData.js"></script>
+
+            	<!-- 시작 Script by Chan-->
+            	<script>
+
 		//////////////
 		//bottom button Event	
 		
 		$('#calendarBtn').on(
-				'click',
-				function() {
+			'click',
+			function() {
 					//self.location ='addBaby.html';
-					$(window.parent.frames["innerframe"].document.location).attr("href", "template.html");
-		});
-
-
-
+					$(window.parent.frames["innerframe"].document.location).attr("href", "calendar.html");
+				});
 
 		$('#addBaby').on(
-				'click',
-				function() {
+			'click',
+			function() {
 					//self.location ='addBaby.html';
 					$(window.parent.frames["innerframe"].document.location)
-							.attr("href", "addBaby.html");
+					.attr("href", "addBaby.html");
 				});
 
 		$('#homeBtn').on('click', function() {
@@ -221,38 +259,38 @@ html, body, iframe {
 
 		//Diary Link 
 		$('a[name="DiaryLink"]').click(
-				function() {
-					$('frame[name="innerframe"]').attr('scrolling', 'auto');
-					/*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
-					$(window.parent.frames["innerframe"].document.location)
-							.attr("href", "diary.html");
-				});
+			function() {
+				$('frame[name="innerframe"]').attr('scrolling', 'auto');
+				/*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
+				$(window.parent.frames["innerframe"].document.location)
+				.attr("href", "diary.html");
+			});
 				//Diary Link 
-		$('#diaryBtn').click(
-				function() {
-					$('frame[name="innerframe"]').attr('scrolling', 'auto');
-					/*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
-					$(window.parent.frames["innerframe"].document.location)
-							.attr("href", "diary.html");
+				$('#diaryBtn').click(
+					function() {
+						$('frame[name="innerframe"]').attr('scrolling', 'auto');
+						/*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
+						$(window.parent.frames["innerframe"].document.location)
+						.attr("href", "diary.html");
 							//self.location = "diary.html";
-				});
-		$('#writeDiaryBtn').click(
-				function() {
-					$('frame[name="innerframe"]').attr('scrolling', 'auto');
-					/*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
-					$(window.parent.frames["innerframe"].document.location)
-							.attr("href", "writeDiary.html");
+						});
+				$('#writeDiaryBtn').click(
+					function() {
+						$('frame[name="innerframe"]').attr('scrolling', 'auto');
+						/*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
+						$(window.parent.frames["innerframe"].document.location)
+						.attr("href", "writeDiary.html");
 					//self.location = "writeDiary.html";
 				});
 
 		//[지훈] friend Link
 		$('#friendBtn').on(
-				'click',
-				function() {
-					$('frame[name="innerframe"]').attr('scrolling', 'auto');
-					$(window.parent.frames["innerframe"].document.location)
-							.attr("href", "friend.html");
-				});
+			'click',
+			function() {
+				$('frame[name="innerframe"]').attr('scrolling', 'auto');
+				$(window.parent.frames["innerframe"].document.location)
+				.attr("href", "friend.html");
+			});
 
 		//logout Function 호출
 		$('button[id="logout"]').click(function() {
@@ -284,7 +322,7 @@ html, body, iframe {
 		var temp = JSON.parse(users);
 
 		$(window.parent.frames["innerframe"].document.location).attr("href",
-				"diary.html");
+			"diary.html");
 	</script>
 
 
@@ -322,36 +360,36 @@ html, body, iframe {
 				'androidEnableCancelButton' : true,
 				'winphoneEnableCancelButton' : true,
 			//'addCancelButtonWithLabel': 'Cancel'
-			};
-			window.plugins.actionsheet.show(options, callback);
-		}
+		};
+		window.plugins.actionsheet.show(options, callback);
+	}
 
-		var callback = function(buttonIndex) {
-			setTimeout(function() {
+	var callback = function(buttonIndex) {
+		setTimeout(function() {
 				//alert('button index clicked: ' + buttonIndex);
 				if (buttonIndex == 2) {
 					navigator.app.exitApp();
 				}
 				;
 			});
-		};
-	</script>
-	<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-	<script>
-		(function(b, o, i, l, e, r) {
-			b.GoogleAnalyticsObject = l;
-			b[l] || (b[l] = function() {
-				(b[l].q = b[l].q || []).push(arguments)
-			});
-			b[l].l = +new Date;
-			e = o.createElement(i);
-			r = o.getElementsByTagName(i)[0];
-			e.src = 'https://www.google-analytics.com/analytics.js';
-			r.parentNode.insertBefore(e, r)
-		}(window, document, 'script', 'ga'));
-		ga('create', 'UA-XXXXX-X', 'auto');
-		ga('send', 'pageview');
-	</script>
+	};
+</script>
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+	(function(b, o, i, l, e, r) {
+		b.GoogleAnalyticsObject = l;
+		b[l] || (b[l] = function() {
+			(b[l].q = b[l].q || []).push(arguments)
+		});
+		b[l].l = +new Date;
+		e = o.createElement(i);
+		r = o.getElementsByTagName(i)[0];
+		e.src = 'https://www.google-analytics.com/analytics.js';
+		r.parentNode.insertBefore(e, r)
+	}(window, document, 'script', 'ga'));
+	ga('create', 'UA-XXXXX-X', 'auto');
+	ga('send', 'pageview');
+</script>
 
 
 </body>
