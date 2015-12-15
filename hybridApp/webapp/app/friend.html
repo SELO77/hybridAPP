@@ -36,7 +36,7 @@
 
 
 </head>
-<body style="padding-top: 0px;">
+<body style="padding-top: 60px;">
 	<!--[if lt IE 8]>
 					<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 			<![endif]-->
@@ -171,6 +171,13 @@
 				.attr("href", "searchFriend.html");
 		});
 
+		//[지훈] 수신거부 목록 동적 이벤트 처리
+		$(document).on("click", "#denyList", function(){
+			$('frame[name="innerframe"]').attr('scrolling', 'auto');
+			$(window.parent.frames["innerframe"].document.location)
+				.attr("href", "denyFriend.html");
+		});
+
 		//[지훈]친구요청 수락 동적 이벤트 처리
 		$(document).on("click", ".aproveFriend", function(){
 			var frNo = $(this).parent().children('#frNo').val();			
@@ -206,7 +213,7 @@
 
 
 		//[지훈]친구요청 거부 동적 이벤트 처리
-		$(document).on("click", ".denyFriend", function(){
+		$(document).on("click", ".reqDeny", function(){
 			var frNo = $(this).parent().children('#frNo').val();			
 			var target = $(this).parent().parent();
 			$.ajax(requestIP+"friend/json/denyFriend", {
@@ -226,6 +233,42 @@
 					target.remove();
 				}
 			});
+		});
+
+
+		//[지훈]친구 수신거부 동적 이벤트 처리
+		$(document).on("click", ".denyFriend", function(){
+
+			var frNo = $(this).parent().children('#frNo').val();			
+			var target = $(this).parent().parent();
+
+			$.ajax(requestIP+"friend/json/denyFriend", {
+				method : "post",
+				crossDomain : true,
+				dataType : "json",
+				contentType : "application/json; charset=UTF-8",
+				data : JSON.stringify({
+					frNo : frNo
+				}),
+				success: function(result){
+					frReqCount = frReqCount-1;
+					
+					$("#req_count").text(frReqCount);
+				
+					//항목 화면에서 제거
+					target.remove();
+				}
+			});
+		});
+
+		//[지훈]친구 일기보기 동적 이벤트 처리
+		$(document).on("click", ".friendDiary", function(){
+
+			var diaryUser = $(this).parent().children('#frNo').val();			
+
+			alert('친구 다이어리보기!');
+				
+			
 		});
 
 

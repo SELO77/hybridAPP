@@ -20,7 +20,7 @@
 		마지막으로 코드 정렬 하면서 작성해주세요. 예) 탭질 잘할것. -->
 <!-- 아래 부분은 CSS 추가 부분 입니다.-->
 <!-- -[지훈] friendSearch List항목 -->
-<link rel="import" href="import/friendSearchList.html">
+<link rel="import" href="import/friendDenyList.html">
 
 
 
@@ -34,14 +34,9 @@
 
 	<!-- [지훈] 회원목록 화면 Start -->
 	<div class="container" style="padding-bottom: 90px; padding-left: 5px; padding-right: 5px;">
-		<div class="col-xs-12 col-sm-12 col-md-12" id="appendTarget">
-			<div class="input-group" id="search">
-				<input type="text" class="form-control" id="searchUser" placeholder="회원 Nick Name 검색" aria-describedby="search"
-				data-toggle="dropdown" aria-haspopup="true">
-				<span class="input-group-addon" >
-					<img src="img/search.png" style="height: 20px; width: 20px;">
-				</span>
-			</div>
+		<div id="denyList">
+			<li class="list-group-item">수신거부 목록
+			</li>
 		</div>
 	</div>
 	
@@ -68,54 +63,42 @@
 
 		// 전역변수 선언
 		var fr_link = document
-				.querySelector('link[href="import/friendSearchList.html"]');
+				.querySelector('link[href="import/friendDenyList.html"]');
 
 		var user = getMetaData("user");
 		var requestIP = getMetaData('ip');
 
+		$.ajax(requestIP+"friend/json/getFriendDenyList", {
+			method : "post",
+			crossDomain : true,
+			dataType : "json",
+			contentType : "application/json; charset=UTF-8",
+			data : JSON.stringify({
+				uNo : user.uNo
+			}),
+			success : function(result) {
+				console.log(result);
+				var denyTemp = fr_link.import;	
 
-		//[지훈] 친구검색 동적 이벤트 처리
-		$(document).on("keyup", "#searchUser", function(){
-			
-			var searchKey = $(this).val();
-			var target = $(this).parent().parent().children('userListTag');
-			
-			$.ajax(requestIP+"friend/json/searchFriendList", {
-				method : "post",
-				crossDomain : true,
-				dataType : "json",
-				contentType : "application/json; charset=UTF-8",
-				data : JSON.stringify({
-					nickname : searchKey,
-					uNo : user.uNo
-				}),
-				success: function(result){
-
-					target.remove();
-
-					var temp = fr_link.import;	
-					var reqSource = temp.querySelector('#userList_template').text;
-					var reqTemplate = Handlebars.compile(reqSource);
-					var reqHtml = reqTemplate(result);
-					$('#appendTarget').append(reqHtml);
-				}
-			});
+				var reqSource = denyTemp.querySelector('#denyList_template').text;
+				var reqTemplate = Handlebars.compile(reqSource);
+				var reqHtml = reqTemplate(result);
+				$('#denyList').append(reqHtml);
+			}
 		});
 
-		//[지훈]친구요청하기 동적 이벤트 처리
-		$(document).on("click", ".friendRequest", function(){
-			var frMate = $(this).parent().children('#frMate').val();
-			var nick = $(this).parent().children('#nick').val();			
+		//[지훈]수신거부 삭제하기 동적 이벤트 처리
+		$(document).on("click", ".deleteFriend", function(){
+			var frNo = $(this).parent().children('#frNo').val();			
 			var target = $(this).parent().parent();
 
-			$.ajax(requestIP+"friend/json/friendRequest", {
+			$.ajax(requestIP+"friend/json/deleteFriend", {
 				method : "post",
 				crossDomain : true,
 				dataType : "json",
 				contentType : "application/json; charset=UTF-8",
 				data : JSON.stringify({
-					uNo : user.uNo,
-					frMate : frMate
+					frNo : frNo
 				}),
 				success: function(result){
 
@@ -124,8 +107,6 @@
 					}
 			});
 		});
-
-
 
 
 	</script>
