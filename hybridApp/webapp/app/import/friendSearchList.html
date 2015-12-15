@@ -1,26 +1,28 @@
 <script id="userList_template" type="text/x-handlebars-template">
-	{{#user}}
-	<friendReqTag>
-		<div class="col-xs-12 col-sm-12 col-md-12" style="padding: 5px; height: 80px;">
-			<input type="hidden" name="frNo" id="frNo" value="{{frNo}}">
+	{{#userList}}
+	<userListTag>
+		<div class="col-xs-12 col-sm-12 col-md-12" style="padding: 0px; height: 50px;">
+			<input type="hidden" name="frMate" id="frMate" value="{{uNo}}">
+			<input type="hidden" name="nick" id="nick" value="{{nickname}}">
 
-			<span class="img-responsive"style="float: left; max-height: 80px; max-width: 80px; padding: 5px;">
-				<img class="img-thumbnail" src="http://192.168.1.2:8080/resources/thumbnail/user/{{user.uPic}}"/>
+			<span class="col-xs-2 col-sm-2 col-md-2" style="padding: 0px; height: 50px;">
+				<span class="img-responsive"style="float: left; max-height: 50px; max-width: 50px; padding: 0px;">
+					<img class="img-thumbnail" src="http://192.168.1.2:8080/resources/thumbnail/user/{{uPic}}"/>
+				</span>
 			</span>
 
-			<span class="col-xs-7 col-sm-10 col-md-10" 
-				style="float: left; max-height: 80px; padding-top: 10px; padding-left:2%; margin-left:3%;">
-				{{user.nickname}}
+			<span class="col-xs-3 col-sm-3 col-md-3"
+				style="float: left; max-height: 50px; padding-top: 10px; padding-left:2%; margin-left:3%;">
+				{{nickname}}
 			</span>
-
 
 			<friendTag class="friendRequest">
-			<span class="col-xs-8 col-sm-10 col-md-10" style="float: left; margin-left: 3%; margin-top: 5px; width: maximum; padding: 1%">
+			<span class="col-xs-6 col-sm-7 col-md-7" style="float: left; margin-left: 3%; margin-top: 5px; width: maximum; padding: 1%">
 				<button type="button" class="btn btn-default" style="width: 100%">친구요청 보내기</button>
 			</span>
 			</friendTag>
 
 		</div> 
-	</friendReqTag>
-	{{/friendReqList}}
+	</userListTag>
+	{{/userList}}
 </script>

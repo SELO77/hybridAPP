@@ -1,0 +1,262 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<!-- -->
+<title>DodamDodam</title>
+<meta name="description" content="">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1 minimum-scale=1, maximum-scale=1, user-scalable=no">
+<!-- 모바일 친화적 뷰 설정 -->
+
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+<link rel="stylesheet" href="css/__main.css">
+<link rel="stylesheet" href="css/bootstrap.css">
+<!-- 현업에 혼자 코딩하는 사람 없습니다....... 가독성 생각해서 작성해주세요.
+		아래 형식들 정리해 놓았으니 HTML 코드 부분 Script 코드 부분 확인하고 작성해주세요.
+		마지막으로 코드 정렬 하면서 작성해주세요. 예) 탭질 잘할것. -->
+<!-- 아래 부분은 CSS 추가 부분 입니다.-->
+<!-- -[작성자] 추가 CSS 설명 -->
+<!-- Calendar 추가 CSS -->
+<link rel="stylesheet" href="css/calendar/clndr.css" type="text/css" />
+<link href="css/calendar/style.css" rel="stylesheet" type="text/css" media="all" />
+
+</head>
+<body>
+
+	<!--[if lt IE 8]>
+					<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+			<![endif]-->
+
+	<!-- HTML 코드 작성 부분 입니다 -->
+	<!-- [작성자] 컨텐츠 내용 -->
+	<style>
+		.content2{
+			margin-top: 20px;			
+		}
+		.content2 .clndr-controls{
+			background-color: rgba(234,5,26,0.5);
+		}	
+
+		.content2, .content1{			
+			margin: auto;
+			width: 100%;			
+		}
+
+		.clndr .clndr-controls .clndr-control-button .clndr-next-button { 
+			position: absolute;
+			right: 12%;
+			top: 44%;
+			width: 8px;
+			height: 15px;
+			text-indent: -4000px;
+			background: url(img/calendar/calender-arw.png) no-repeat -12px 0px;
+			cursor: pointer;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+		}
+		.clndr .clndr-controls .clndr-control-button .clndr-next-button.inactive:hover {
+			cursor: default;
+		}
+		.clndr .clndr-controls .clndr-control-button .clndr-previous-button { 
+			position: absolute;
+			left: 12%;
+			top: 44%;
+			width: 8px;
+			height: 15px;
+			text-indent: -4000px;
+			background: url(img/calendar/calender-arw.png) no-repeat 1px 0px;
+			cursor: pointer;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+		}
+	</style>
+
+
+	<!-- Calendar -->
+	<section>
+		<div class="content2">		
+		<div class="calnder">
+			<div class="column_right_grid calender">
+				<div class="cal1">
+					<div class="clndr">
+						<div class="clndr-controls">
+							<div class="clndr-control-button">
+								<p class="clndr-previous-button" >previous</p>
+							</div>
+							<div class="month">SEPTEMBER 2015</div>
+							<div class="clndr-control-button rightalign">
+								<p class="clndr-next-button">next</p>
+							</div>
+						</div>
+							<table class="clndr-table">	
+								<thead>
+									<tr class="header-days">
+										<td class="header-day">SUN</td>
+										<td class="header-day">MON</td>	
+										<td class="header-day">TUE</td>
+										<td class="header-day">WED</td>
+										<td class="header-day">THU</td>
+										<td class="header-day">FRI</td>
+										<td class="header-day">SAT</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="day past adjacent-month last-month calender-day-2015-04-26"><div class="day-contents">26</div></td>
+										<td class="day past adjacent-month last-month calender-day-2015-04-26"><div class="day-contents">26</div></td>
+										<td class="day past adjacent-month last-month calender-day-2015-04-26"><div class="day-contents">26</div></td>
+										<td class="day past adjacent-month last-month calender-day-2015-04-26"><div class="day-contents">26</div></td>
+										<td class="day past adjacent-month last-month calender-day-2015-04-26"><div class="day-contents">26</div></td>
+										<td class="day past calender-day-2015-05-01"><div class="day-contents">1</div></td>
+										<td class="day past calender-day-2015-05-02"><div class="day-contents">2</div></td>
+									</tr>
+									<tr>
+										<td class="day past calender-day-2015-05-03"><div class="day-contents">3</div></td>
+										<td class="day past calender-day-2015-05-04"><div class="day-contents">4</div></td>
+										<td class="day past calender-day-2015-05-05"><div class="day-contents">5</div></td>
+										<td class="day past calender-day-2015-05-06"><div class="day-contents">6</div></td>
+										<td class="day past calender-day-2015-05-07"><div class="day-contents">7</div></td>
+										<td class="day past calender-day-2015-05-08"><div class="day-contents">8</div></td>
+										<td class="day past calender-day-2015-05-09"><div class="day-contents">9</div></td>
+									</tr>
+									<tr>
+										<td class="day past event calender-day-2015-05-10"><div class="day-contents">10</div></td>
+										<td class="day past event calender-day-2015-05-11"><div class="day-contents">11</div></td>
+										<td class="day past event calender-day-2015-05-12"><div class="day-contents">12</div></td>
+										<td class="day past event calender-day-2015-05-13"><div class="day-contents">13</div></td>
+										<td class="day today event calender-day-2015-05-14"><div class="day-contents">14</div></td>
+										<td class="day calender-day-2015-05-15"><div class="day-contents">15</div></td>
+										<td class="day calender-day-2015-05-16"><div class="day-contents">16</div></td>
+									</tr>
+									<tr>
+										<td class="day calender-day-2015-05-17"><div class="day-contents">17</div></td>
+										<td class="day calender-day-2015-05-18"><div class="day-contents">18</div></td>
+										<td class="day calender-day-2015-05-19"><div class="day-contents">19</div></td>
+										<td class="day calender-day-2015-05-20"><div class="day-contents">20</div></td>
+										<td class="day event calender-day-2015-05-21"><div class="day-contents">21</div></td>
+										<td class="day event calender-day-2015-05-22"><div class="day-contents">22</div></td>
+										<td class="day event calender-day-2015-05-23"><div class="day-contents">23</div></td>
+									</tr>
+									<tr>
+										<td class="day calender-day-2015-05-24"><div class="day-contents">24</div></td>
+										<td class="day calender-day-2015-05-25"><div class="day-contents">25</div></td>
+										<td class="day calender-day-2015-05-26"><div class="day-contents">26</div></td>
+										<td class="day calender-day-2015-05-27"><div class="day-contents">27</div></td>
+										<td class="day calender-day-2015-05-28"><div class="day-contents">28</div></td>
+										<td class="day calender-day-2015-05-29"><div class="day-contents">29</div></td>
+										<td class="day calender-day-2015-05-30"><div class="day-contents">30</div></td>
+									</tr>
+									<tr>
+										<td class="day calender-day-2015-05-31"><div class="day-contents">31</div></td>
+										<td class="day adjacent-month next-month calender-day-2015-06-01"><div class="day-contents">1</div></td>
+										<td class="day adjacent-month next-month calender-day-2015-06-02"><div class="day-contents">2</div></td>
+										<td class="day adjacent-month next-month calender-day-2015-06-03"><div class="day-contents">3</div></td>
+										<td class="day adjacent-month next-month calender-day-2015-06-04"><div class="day-contents">4</div></td>
+										<td class="day adjacent-month next-month calender-day-2015-06-05"><div class="day-contents">5</div></td>
+										<td class="day adjacent-month next-month calender-day-2015-06-06"><div class="day-contents">6</div></td>
+									</tr>
+								</tbody>
+							</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</section>
+
+	<section>
+		<div class="content1">
+		<div class="header2">
+			<h2>Remainders</h2>
+		</div>
+		<div class="remainders">
+			<form>
+			<ul>
+				<li>
+					<input id="Option" type="checkbox">
+					<label class="checkbox" for="Option"></label><p>Lorem Ipsum is simply dummy text.</p>
+				</li>	
+				<li>
+					<input id="option2" type="checkbox" >
+					<label class="checkbox" for="option2"></label><p>It is a long established fact.</p>
+				</li>	
+				<li>
+					<input id="option3" type="checkbox" >
+					<label class="checkbox" for="option3"></label><p>It has survived not only five centuries.</p>
+				</li>
+				<li>
+					<input id="option4" type="checkbox" >
+					<label class="checkbox" for="option4"></label><p>It was popularised in the 1960s.</p>
+				</li>
+			</ul>
+			</form>
+		</div>
+	</div>
+		
+	</section>
+
+
+
+	<script src="js/vendor/jquery-1.11.3.min.js"></script>
+	<script src="js/vendor/jquery.ui.widget.js"></script>
+	<script src="js/bootstrap/bootstrap.min.js"></script>
+	<script src="cordova.js"></script>
+	<!-- script plug in start -->
+	<script src="js/vendor/modernizr-2.8.3.min.js"></script>
+	<!-- bootStrap.js CDN -->
+	
+	<!-- ip 등 meta data 가져오기 -->
+	<script src="js/jihoon/getMetaData.js"></script>
+
+
+	<!--  아래는 스크립트 라이브러리 추가 및 스크립트 작성 영역입니다.-->
+	<!-- [작성자] 추가 라이브러리 요약 -->
+	<!-- 라이브러리 추가는 아래 형식으로 하시오 -->
+	<!-- [SELO77] Calendar 추가 라이브러리 -->
+	<script src="js/calendar/underscore-min.js"></script>
+	<script src= "js/calendar/moment-2.2.1.js"></script>
+	<script src="js/calendar/clndr.js"></script>
+	<script src="js/calendar/main.js"></script>
+	<!-- 스크립트 작성 부분입니다 -->
+	<script>
+		//이 곳을 벗어나 스크립트를 작성하지마시오.
+	</script>
+	<!-- 스크립트 작성 부분 끝입니다. -->
+
+	<script>
+		document.addEventListener("backbutton", onBackKeyDown, false);
+		function onBackKeyDown() {
+			//window.plugins.toast.show('Really Exit?'.'short'.'center',)
+			testLogoutSheet();
+		}
+		//Action sheet
+		function testLogoutSheet() {
+			var options = {
+				'androidTheme' : window.plugins.actionsheet.ANDROID_THEMES.THEME_HOLO_LIGHT,
+				'title' : 'Are you sure to close it?',
+				'buttonLabels' : [ 'No', 'Yes' ],
+				'androidEnableCancelButton' : true,
+				'winphoneEnableCancelButton' : true,
+			//'addCancelButtonWithLabel': 'Cancel'
+			};
+			window.plugins.actionsheet.show(options, callback);
+		}
+
+		var callback = function(buttonIndex) {
+			setTimeout(function() {
+				//alert('button index clicked: ' + buttonIndex);
+				if (buttonIndex == 2) {
+					navigator.app.exitApp();
+				}
+				;
+			});
+		};
+	</script>
+</body>
+</html>
