@@ -1,0 +1,514 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge"> <!-- -->
+  <title>DodamDodam</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1 minimum-scale=1, maximum-scale=1, user-scalable=no"> <!-- 모바일 친화적 뷰 설정 -->
+
+   <meta name="description" content="">
+   <meta name="author" content="">
+  <!-- Place favicon.ico in the root directory -->
+  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+  <link rel="stylesheet" href="css/__main.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+
+  <link rel="import" href="import/diaryList.html" name="diaryImport">
+  <link rel="import" href="import/reply.html" name="replyImport">
+  <link href="css/shop-item.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/fileuploadstyle.css">
+  <link rel="stylesheet" href="css/jquery.fileupload.css">
+  <link rel="stylesheet" href="css/jquery.fileupload-ui.css">
+  <style type="text/css">
+      .modal-backdrop {
+      z-index: -1;
+    }
+    </style>
+        </head>
+      <body  style="padding-bottom: 70px; padding-top: 60px;">
+        <div class="replyAppend"></div>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+            <![endif]-->
+
+            <!-- Add your site or application content here -->   
+         
+                   <!-- .sb-site -->    
+      <!--   <div id="sb-site">
+      main
+        <main role="main" style="margin-top:50px"> -->
+
+          <div class="container" id="diaryHandle" >
+          <center>
+
+          </center>
+        </div>
+        <form name="updateForm" method="post">
+            <input type="hidden" id="updateDNo" value="">
+        </form>
+
+      <!--기본 라이브러리 추가-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
+      <script type="text/javascript" src="cordova.js"></script>
+      <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+      <!-- ip 등 meta data 가져오기 -->
+      <script src="js/jihoon/getMetaData.js"></script>
+       <!-- [시용] 라이브러리 추가 및 스크립트 작성-->    
+      <script src="js/vendor/jquery.ui.widget.js"></script>  
+      <script src="js/jquery.fileupload.js"></script>
+        <!-- bootStrap.js CDN -->
+        <script src="js/bootstrap/bootstrap.min.js"></script>    
+                    
+          
+         
+          <script src="js/handlebars-v4.0.5.js" ></script>
+           
+            <!--[시용] 핸들바스 모듈html 임포트 및 ajax요청으로 userDiaryList 요청-->
+          <script>
+            //전역변수 선언
+            var requestURL = getMetaData("ip")+"diary/json/";
+            var requestIP = getMetaData("ip");
+            //var requestIP="http://192.168.0.3:8080/";
+            var diaryLink = document.querySelector('link[name="diaryImport"]');
+            var replyLink = document.querySelector('link[name="replyImport"]');
+            var user = getMetaData('user');
+            //var userValue = window.localStorage.getItem("userKey");
+            //var user = JSON.parse(userValue);
+            
+            //페이지 로드시 diary 호출            
+            $(document).ready(loadDiary());
+
+            //다이어리 호출 함수
+            function loadDiary(){
+              //alert('여기는 loadDiary');
+             
+              //alert(temp.uNo);
+              $.ajax(requestURL+"getFriendDiaryList",{
+                method: "post",
+                crossDomain : true,
+                dataType : "json",
+                contentType: "application/json; charset=UTF-8",
+                data: JSON.stringify({
+                   uNo : user.uNo
+                }),
+                success: function(result){
+                  //alert("Ajax success");
+                  var temp = diaryLink.import;
+                  console.log(result);
+                  var source = temp.querySelector('#entry-template').text;
+                       Handlebars.registerHelper('userCheck', function (uNo) {
+                            //alert(rUNo);
+                            var userhtml ="<div class='btn-group' role='group'><updateDiary style='height:transparent'><button type='button' class='btn btn-default'><a>수정하기</a></button></updateDiary></div><div class='btn-group' role='group'><deleteDiary style='height:transparent'><button type='button' class='btn btn-default'><a>삭제하기</a></button></deleteDiary></div>";
+                            if(uNo == user.uNo){
+                                return userhtml;
+                            }else{
+                              return '';
+                            }
+                      });
+                      var template = Handlebars.compile(source);
+                      var html = template(result);
+                      //$('#diaryHandle').append(html);
+                      $('#diaryHandle').after(html);
+                  //}
+                }
+              });
+              }
+
+              //[시용]다이어리 삭제.
+              $(document).on("click", "deleteDiary", function(){
+                  var diaryNo  = $(this).parent().next();
+                  //alert(diaryNo.val());
+                  $.ajax({
+                    url: requestURL+'deleteDiary',
+                    method: 'POST',
+                    dataType: 'JSON',
+                    contentType: "application/json; charset=UTF-8",
+                    data: JSON.stringify({
+                       dNo : diaryNo.val()
+                    }),
+                    success: function(result){
+                        if(result.result == true){
+                          //alert("삭제성공");
+                          //location.reload(true);
+                          //alert(diaryNo.val());
+                          $("#deleteDiary"+diaryNo.val()).fadeOut("fast");
+                          //setTimeout($("#deleteDiary"+diaryNo.val()).remove(),1000*2);
+                        }
+                    }
+                    });   
+                });
+
+
+              //[시용]다이어리 수정
+              $(document).on("click", "updateDiary", function(){
+                  var diaryNo  = $(this).parent().next().next();
+                  //alert(diaryNo.val());
+                  $('form[name=updateForm]').children('input').val(diaryNo.val());
+
+                  var test = $('form[name=updateForm]').children('input').val();
+                  //alert(test);
+
+                  //$('form[name=updateForm]').submit();
+                  window.localStorage.setItem("diaryKey", test);
+                  $(window.parent.frames["innerframe"].document.location).attr("href","updateDiary.html");
+                });
+
+
+
+
+
+
+
+                //댓글 가져오기 function 모듈화
+                function callReply(result){
+                  var temp = replyLink.import;
+                  console.log(result);
+                  var source = temp.querySelector('#reply-template').text;
+                        Handlebars.registerHelper('userCheck', function (rUNo) {
+                            //alert(rUNo);
+                            var userhtml ="<strong> <a class='updateReply'>  <span class='fa fa-pencil' aria-hidden='true'></span> </a> </strong>  <strong> <a class='removeReply'> <span class='fa fa-trash-o' aria-hidden='true'></span>  </a> </strong>";
+                            if(rUNo == user.uNo){
+                                return userhtml;
+                            }else{
+                              return '';
+                            }
+                      });
+                      var template = Handlebars.compile(source);
+                      var html = template(result);
+                      console.log(html);
+                      return html;
+                   }
+
+
+           //댓글 가져오기.
+          $(document).on("click", ".callReply", function(){
+             // setTimeout('',1000*6);
+             // $('collapse').dropdown(); 
+              $('deletePoint').remove();
+              var dNo = $(this).children('input').val();
+              var thisBtn = $(this);
+              //alert(dNo);
+              $('updateDelete').remove();
+
+              $.ajax({
+                url: requestIP+'replies/json/getRepliesList',
+                type: 'POST',
+                crossDomain : true,
+                dataType: 'JSON',
+                contentType: "application/json; charset=UTF-8",
+                data: JSON.stringify({
+                  dNo: dNo
+                }),
+                success: function(result){
+                         var html = callReply(result);
+                         $('#appendReply'+dNo).after(html);
+                }
+                });
+              }
+            );
+          
+
+          //[시용] 댓글달기 동적 이벤트 처리
+          $(document).on("click","#reply",function(){
+              var dNo=$(this).prev('input').val();
+              var rContent=$(this).parent().parent().children('#replyButton').children('#insertReply'+dNo);
+              $('updateDelete').remove();
+              $.ajax(requestIP+"replies/json/addReplies",{
+                method: "post",
+                crossDomain : true,
+                dataType : "json",
+                contentType: "application/json; charset=UTF-8",
+                data: JSON.stringify({
+                   rUNo : user.uNo,
+                   dNo : dNo,
+                   rContent : rContent.val() 
+                }),
+                success: function(result){
+
+                        $.ajax(requestIP+"replies/json/getReplyCount",{
+                        method: "post",
+                        crossDomain : true,
+                        dataType : "json",
+                        contentType: "application/json; charset=UTF-8",
+                        data: JSON.stringify({
+                          dNo : dNo
+                        }), success: function(result){
+                            //alert(result);
+                            //alert(result.replyCount);
+                            $('#callReply'+dNo).children('replyCount').text(result.replyCount);
+                            $('#reply'+dNo).children().children().children().children().children('replyCount').text(result.replyCount);
+                        }
+                        });
+
+                        $.ajax({
+                        url: requestIP+'replies/json/getRepliesList',
+                        type: 'POST',
+                        crossDomain : true,
+                        dataType: 'JSON',
+                        contentType: "application/json; charset=UTF-8",
+                        data: JSON.stringify({
+                          dNo: dNo
+                        }),
+                        success: function(result){
+                                $('deletePoint').remove();
+                                 var html = callReply(result);
+                                 $('#appendReply'+dNo).after(html);
+                                 rContent.val('');
+                        }
+                        });
+                      }
+                });
+              });
+
+
+
+        //[시용] 댓글삭제
+        $(document).on("click", ".removeReply", function(){
+              var replySpan=$(this).parent().parent().children($('input[class="hiddenRNo"]'));
+              //alert(replySpan.val());
+              var diarySpan=$(this).parent().parent().children('#'+replySpan.val());
+              alert(diarySpan.val());
+              //alert(replySpan.val());
+              $.ajax(requestIP+"replies/json/deleteReplies",{
+                method: "post",
+                crossDomain : true,
+                dataType : "json",
+                contentType: "application/json; charset=UTF-8",
+                data: JSON.stringify({
+                  rNo : replySpan.val()
+                }),
+                success: function(result){
+                  //alert(result);
+                  if(result){
+                      $.ajax(requestIP+"replies/json/getReplyCount",{
+                        method: "post",
+                        crossDomain : true,
+                        dataType : "json",
+                        contentType: "application/json; charset=UTF-8",
+                        data: JSON.stringify({
+                          dNo : diarySpan.val()
+                        }), success: function(result){
+                            //alert(diarySpan.val());
+                            //alert(result.replyCount);
+                            replySpan.parent().parent().parent().remove();
+                            $('#callReply'+diarySpan.val()).children('replyCount').text(result.replyCount);
+                            $('#reply'+diarySpan.val()).children().children().children().children().children('replyCount').text(result.replyCount);
+                        }
+                    });
+                  }
+                  
+                }
+              });
+        });
+
+
+
+        //[시용] 댓글수정1
+        $(document).on("click", ".updateReply", function(){
+                var replySpan=$(this).parent().parent().children($('input[class="hiddenRNo"]'));
+                var replyNo = replySpan.val();
+                var updateReply = $(this).parent().parent().next();
+                var text = updateReply.text();
+                //alert(replySpan.val());
+                  //alert(text);
+                  replySpan.parent().parent().parent().remove();
+                  $('.updateReply').remove();
+                  var html="<updateDelete><div class=row><div class='col-xs-10 col-sm-10 col-md-10' style='padding-right: 0px;'><input type='text' class='pull-left form-control' id='updateReply' value='"+text+"'></div><div class='col-xs-2 col-sm-2 col-md-2' style='padding-left: 0px;  padding-right: 15px;'><input type='hidden' value='"+replyNo+"'><button type='submit' class='btn btn-default updateButton' id='submit"+replyNo+"'>수정</button></div></div><br></updateDelete>"
+                  $('#update'+replyNo).after(html);
+                  $("#updateReply").focus();
+                 });        
+        
+        //[시용] 댓글수정2
+        $(document).on("click", ".updateButton", function(){
+                var replyNo = $(this).prev().val();
+                //alert(replyNo);
+                var updateContent = $(this).parent().prev().children('input').val();
+                //alert(updateContent);
+                $.ajax({
+                  url: requestIP+"replies/json/updateReplies",
+                  type: 'POST',
+                  dataType: 'JSON',
+                  contentType: "application/json; charset=UTF-8",
+                  data: JSON.stringify({
+                    rNo : replyNo,
+                    rContent : updateContent
+                  }),
+                  success : function(result){
+                      if(result.result != false){
+                        var dNo = result.result.dNo;
+                        $('deletePoint').remove();
+                          $.ajax({
+                          url: requestIP+'replies/json/getRepliesList',
+                          type: 'POST',
+                          crossDomain : true,
+                          dataType: 'JSON',
+                          contentType: "application/json; charset=UTF-8",
+                          data: JSON.stringify({
+                            dNo: dNo
+                          }),
+                          success: function(result){
+                                    $('updateDelete').remove();
+                                   var html = callReply(result);
+                                   $('#appendReply'+dNo).after(html);
+                                   //$('.updateReply').style.display= "inline";
+                                },
+                          fail: function(){
+                                  alert('댓글수정에 실패했습니다.');
+                              }
+                          });
+                      }
+                  }
+                })
+                                
+        });
+
+        // [시용] fileUpload를 위한 자바 스크립트 Start
+        $(function(){
+          $("#fileJARI").change(function () {
+              if (typeof (FileReader) != "undefined") {
+                  var dvPreview = $("#imgJARI");
+                  dvPreview.html("");
+                  var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                  $($(this)[0].files).each(function () {
+                      var file = $(this);
+                      if (regex.test(file[0].name.toLowerCase())) {
+                          var reader = new FileReader();
+                          reader.onload = function (e) {
+                              var img = $("<img />");
+                              img.attr("name",file[0].name);
+                              img.attr("id","multi");
+                              img.attr("style", "width:100px; height:100px; margin-right: 10px;margin-top: 10px;");
+                              img.attr("src", e.target.result);
+                              
+                              dvPreview.append(img);
+                            
+                          }
+                          reader.readAsDataURL(file[0]);
+                      } else {
+                          //디버깅
+                          //alert(file[0].name + " is not a valid image file.");
+                          dvPreview.html("");
+                          return false;
+                      }
+                  });
+              } else {
+                  alert("This browser does not support HTML5 FileReader.");
+              }
+          });
+       });
+      // [시용] fileUpload를 위한 자바 스크립트 end
+      
+
+
+
+      // [시용] 다이어리 쓰기 버튼 이벤트처리
+   /*    $(function(){
+           $("#submitDiary").on("click" , function() {
+              fncAddJsonDiary();
+              setTimeout( location.reload(true),1000*6);
+          });
+       
+       });*/
+
+
+
+       //[시용] 다이어리 ajax 전송
+       function  fncAddJsonDiary(){
+          
+           var length = $("div#imgJARI > img").length;
+           //alert(length);
+          var imgs = "";
+         for(var i=0 ; i<$("div#imgJARI > img").length ; i++){
+         /* for each ($("div.images > img:last").length in obj) */
+         if(i == ($("div#imgJARI > img").length - 1)){
+            imgs +=$("div#imgJARI > img:eq("+i+")").attr('name');
+         }else{
+            imgs += $("div#imgJARI > img:eq("+i+")").attr('name') +",";
+         }
+          } 
+          //디버깅
+          //alert(imgs);
+              var userValue = window.localStorage.getItem("userKey");
+              var user = JSON.parse(userValue);
+             $.ajax({
+                url : requestURL+"addDiary",
+                method:"POST",
+                dataType:"application/json",
+                crossDomain : true,
+                contentType: "application/json;",
+                data: JSON.stringify({
+                   dPic : imgs,
+                   uNo : user.uNo,
+                   dContent : $("#dContent").val(),
+
+                }),
+                success:function(result){
+                  if(result){
+                  alert("ajax success");
+                }
+                }
+             });
+          }
+       
+
+       //[시용, JS, start] : 파일을 서버에 저장하기 위한 AJAX function
+        $(function() { 
+    
+         $('#fileJARI').fileupload({
+              dataType: 'json',
+              url:requestURL+'uploadImg',
+              add: function (e, data) {
+                 //alert('!!!!!');
+                 $("#submitDiary").click(function () {
+                      
+                       data.submit();
+
+                      //location.reload(true);
+
+                   });
+
+              }
+          });
+      });  
+      //[시용, JS, end] : 파일을 서버에 저장하기 위한 AJAX function
+    </script>
+
+
+
+      <!-- 기본 script-->
+      <script>
+          /*document.addEventListener("backbutton", onBackKeyDown, false);
+             function onBackKeyDown(){
+               //window.plugins.toast.show('Really Exit?'.'short'.'center',)
+                testLogoutSheet();      
+             }*/
+
+            //Action sheet
+
+            function testLogoutSheet() {
+              var options = {
+                'androidTheme' : window.plugins.actionsheet.ANDROID_THEMES.THEME_HOLO_LIGHT,
+                'title': 'Are you sure to close it?',
+                'buttonLabels': ['No','Yes'],
+                'androidEnableCancelButton' : true,
+                'winphoneEnableCancelButton' : true,
+                  //'addCancelButtonWithLabel': 'Cancel'
+                };  
+                window.plugins.actionsheet.show(options, callback);
+              }
+
+              var callback = function(buttonIndex) {
+                setTimeout(function() {
+                  //alert('button index clicked: ' + buttonIndex);
+                  if (buttonIndex == 2) {
+                   navigator.app.exitApp();
+                 };
+               });
+              };
+      </script> 
+
+       </body>
+      </html>
