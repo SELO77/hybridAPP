@@ -218,9 +218,7 @@
 					$(window.parent.frames["innerframe"].document.location)
 					.attr("href", "addBaby.html");
 				});
-		$('#homeBtn').on('click', function() {
-			self.location = 'mainIndex.html';
-		});
+		
 		$('iframe').on('click', function() {
 			console.log('sb-site click check');
 			$('sb-toggle-right').mouse();
@@ -243,23 +241,32 @@
 				$(window.parent.frames["innerframe"].document.location)
 				.attr("href", "diary.html");
 			});
-				//Diary Link 
-				$('#diaryBtn').click(
-					function() {
-						$('frame[name="innerframe"]').attr('scrolling', 'auto');
-						/*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
-						$(window.parent.frames["innerframe"].document.location)
-						.attr("href", "diary.html");
-							//self.location = "diary.html";
-						});
-				$('#writeDiaryBtn').click(
-					function() {
-						$('frame[name="innerframe"]').attr('scrolling', 'auto');
-						/*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
-						$(window.parent.frames["innerframe"].document.location)
-						.attr("href", "writeDiary.html");
-					//self.location = "writeDiary.html";
+		//newsfeed Link 
+		$('#homeBtn').click(
+			function() {
+				$('frame[name="innerframe"]').attr('scrolling', 'auto');
+				/*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
+				$(window.parent.frames["innerframe"].document.location)
+				.attr("href", "newsfeed.html");
+					//self.location = "diary.html";
 				});
+		//Diary Link 
+		$('#diaryBtn').click(
+			function() {
+				$('frame[name="innerframe"]').attr('scrolling', 'auto');
+				/*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
+				$(window.parent.frames["innerframe"].document.location)
+				.attr("href", "diary.html");
+					//self.location = "diary.html";
+				});
+		$('#writeDiaryBtn').click(
+			function() {
+				$('frame[name="innerframe"]').attr('scrolling', 'auto');
+				/*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
+				$(window.parent.frames["innerframe"].document.location)
+				.attr("href", "writeDiary.html");
+			//self.location = "writeDiary.html";
+		});
 		//[지훈] friend Link
 		$('#friendBtn').on(
 			'click',

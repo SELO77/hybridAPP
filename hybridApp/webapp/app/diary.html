@@ -215,6 +215,7 @@
           $(document).on("click","#reply",function(){
               var dNo=$(this).prev('input').val();
               var rContent=$(this).parent().parent().children('#replyButton').children('#insertReply'+dNo);
+              $('updateDelete').remove();
               $.ajax(requestIP+"replies/json/addReplies",{
                 method: "post",
                 crossDomain : true,
@@ -303,6 +304,8 @@
               });
         });
 
+
+
         //[시용] 댓글수정1
         $(document).on("click", ".updateReply", function(){
                 var replySpan=$(this).parent().parent().children($('input[class="hiddenRNo"]'));
@@ -313,7 +316,7 @@
                   //alert(text);
                   replySpan.parent().parent().parent().remove();
                   $('.updateReply').remove();
-                  var html="<updateDelete><br><div class=row><div class='col-xs-8 col-sm-8 col-md-8'><input type='text' class='pull-left form-control' id='updateReply' value='"+text+"'></div><div class='col-xs-3 col-sm-3 col-md-3'><input type='hidden' value='"+replyNo+"'><button type='submit' class='btn btn-default updateButton' id='submit"+replyNo+"'>수정</button></div></div></updateDelete>"
+                  var html="<updateDelete><div class=row><div class='col-xs-10 col-sm-10 col-md-10' style='padding-right: 0px;'><input type='text' class='pull-left form-control' id='updateReply' value='"+text+"'></div><div class='col-xs-2 col-sm-2 col-md-2' style='padding-left: 0px;  padding-right: 15px;'><input type='hidden' value='"+replyNo+"'><button type='submit' class='btn btn-default updateButton' id='submit"+replyNo+"'>수정</button></div></div><br></updateDelete>"
                   $('#update'+replyNo).after(html);
                   $("#updateReply").focus();
                  });        

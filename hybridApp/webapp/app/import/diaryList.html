@@ -6,7 +6,7 @@
       <div class="row center-block" id="updateDiary{{dNo}}">
       <center>
       {{#dPics}}
-        <img class="img-rounded" src="http://192.168.0.3:8080/resources/thumbnail/diary/{{this}}" style="width: 40%; height:auto; margin: 5px">
+        <img class="img-rounded" src="http://dodam.java74.com:8080/resources/thumbnail/diary/{{this}}" style="width: 40%; height:auto; margin: 5px">
       {{/dPics}}
       </center>
       </div>
@@ -52,13 +52,13 @@
 
             
           </div> {{!modal-body}}
-          <div class="modal-footer">
-            <div class="col-xs-8 col-sm-10 col-md-10 form-group" id="replyButton">
+          <div class="modal-footer" style="padding-top: 0px;padding-bottom: 2px;padding-left: 0px;padding-right: 0px;">
+            <div class="col-xs-10 col-sm-10 col-md-10 form-group" id="replyButton" style="padding-right: 0px;">
             <label for="insertReply"></label>
             <input type="text" class="form-control" id="insertReply{{dNo}}" placeholder="댓글을 입력하세요." >
             </div>
             <br>
-            <div class="text-right col-xs-2 col-md-2">
+            <div class="text-right col-xs-2 col-md-2 col-sm-2" style="padding-left: 0px;  padding-right: 15px;">
               <input type="hidden" name="dNo" id="dNo" value="{{dNo}}">
               <button type="submit" class="btn btn-default" id="reply">입력</button>
             </div>
