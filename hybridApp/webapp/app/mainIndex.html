@@ -218,6 +218,19 @@
 					$(window.parent.frames["innerframe"].document.location)
 					.attr("href", "addBaby.html");
 				});
+		$('#userInfo').on(
+	            'click',
+	            function() {
+	                  //self.location ='addBaby.html';
+	                  $(window.parent.frames["innerframe"].document.location).attr("href", "userInfo.html");
+	               });
+	      
+	      $('#babyInfo').on(
+	            'click',
+	            function() {
+	                  //self.location ='addBaby.html';
+	                  $(window.parent.frames["innerframe"].document.location).attr("href", "updateBaby.html");
+	               });
 		
 		$('iframe').on('click', function() {
 			console.log('sb-site click check');
