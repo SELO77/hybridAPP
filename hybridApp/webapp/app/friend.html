@@ -178,6 +178,22 @@
 				.attr("href", "denyFriend.html");
 		});
 
+		//[지훈]친구 일기보기 동적 이벤트 처리
+		$(document).on("click", ".friendDiary", function(){
+
+			var diaryUser = $(this).parent().children('#frNo').val();			
+			window.localStorage.setItem("frDiaryKey", diaryUser);
+	
+
+			$('frame[name="innerframe"]').attr('scrolling', 'auto');
+			$(window.parent.frames["innerframe"].document.location)
+				.attr("href", "friendDiary.html");
+
+				
+			
+		});
+
+
 		//[지훈]친구요청 수락 동적 이벤트 처리
 		$(document).on("click", ".aproveFriend", function(){
 			var frNo = $(this).parent().children('#frNo').val();			
@@ -261,15 +277,6 @@
 			});
 		});
 
-		//[지훈]친구 일기보기 동적 이벤트 처리
-		$(document).on("click", ".friendDiary", function(){
-
-			var diaryUser = $(this).parent().children('#frNo').val();			
-
-			alert('친구 다이어리보기!');
-				
-			
-		});
 
 
 
