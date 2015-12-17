@@ -75,6 +75,11 @@
 			-moz-user-select: none;
 			-ms-user-select: none;
 		}
+		
+		.day-contents .fa{
+			color: pink;
+		}
+
 	</style>
 
 
@@ -123,7 +128,9 @@
 										<td class="day past calender-day-2015-05-06"><div class="day-contents">6</div></td>
 										<td class="day past calender-day-2015-05-07"><div class="day-contents">7</div></td>
 										<td class="day past calender-day-2015-05-08"><div class="day-contents">8</div></td>
-										<td class="day past calender-day-2015-05-09"><div class="day-contents">9</div></td>
+										<td class="day past calender-day-2015-05-09">
+											<div class="day-contents">9</div>											
+										</td>
 									</tr>
 									<tr>
 										<td class="day past event calender-day-2015-05-10"><div class="day-contents">10</div></td>
@@ -206,7 +213,6 @@
 	<script src="js/vendor/jquery-1.11.3.min.js"></script>
 	<script src="js/vendor/jquery.ui.widget.js"></script>
 	<script src="js/bootstrap/bootstrap.min.js"></script>
-	<script src="cordova.js"></script>
 	<!-- script plug in start -->
 	<script src="js/vendor/modernizr-2.8.3.min.js"></script>
 	<!-- bootStrap.js CDN -->
@@ -226,6 +232,39 @@
 	<!-- 스크립트 작성 부분입니다 -->
 	<script>
 		//이 곳을 벗어나 스크립트를 작성하지마시오.
+		//Calendar
+			
+		var requestURL = getMetaData('ip')+'diary/json/';
+		var user = getMetaData('user');
+		console.log('requestURL :'+requestURL);
+		console.log('user.uNo :'+user.uNo);	
+		var requestData = {
+			uNo: user.uNo,
+			dDate: "2015-12-08"
+		}
+		$.ajax({
+			url: requestURL+'getDiaryListForCalender',
+			type: 'POST',
+			contentType: 'application/json',			
+			dataType: 'json',
+			data: JSON.stringify(requestData),
+			success: function(responseData, status){
+				console.log('status :'+status);
+				if ( status == 'success' ) {
+					console.log('Ajax Success');
+					console.log('list.length :'+responseData.list.length);
+
+					for (var i = 0; i < responseData.list.length; i++) {
+						$('.calendar-day-'+responseData.list[i].dDate).find('.fa-star').remove();
+						$('.calendar-day-'+responseData.list[i].dDate).children().after('<div class="day-contents"><span class="fa fa-star"></span></div>');	
+					};
+
+				};
+			}// /.success
+		});// /ajax
+
+
+
 	</script>
 	<!-- 스크립트 작성 부분 끝입니다. -->
 
@@ -253,8 +292,7 @@
 				//alert('button index clicked: ' + buttonIndex);
 				if (buttonIndex == 2) {
 					navigator.app.exitApp();
-				}
-				;
+				}				
 			});
 		};
 	</script>
