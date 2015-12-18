@@ -47,25 +47,54 @@
       enctype="multipart/form-data">
       <div class="form-group" style="padding: 5px; margin-bottom: 0">
         <textarea class="form-control" placeholder="오늘의 일기를 작성해주세요.."
-          style="margin-bottom: 20px" id="dContent" rows="12"></textarea>
+          style="margin-bottom: 10px" id="dContent" rows="12"></textarea>
         <button class="btn btn-primary pull-right" type="button"
           id="submitDiary">일기쓰기</button>
         <span class="fileinput-button  pull-left" style="padding-top: 6px">
-          <ul class="list-inline" style="font-size: 23px; text-align: left;">
+          <ul class="list-inline" style="font-size: 23px; text-align: left; margin-bottom: 0px;">
             <li style="padding-top: 7px"><a href="#">
                 <li><a href=""> <i class="glyphicon glyphicon-camera"></i>
                 </a></li>
           </ul> <input type="file" name="files[]" id="fileJARI" multiple>
         </span>
-       <center>
-      <div id="imgJARI"></div>
-      <div id="btnJARI" style="position:absolute"></div>    
-      </center>
       </div>
       <input type="hidden" id="uNo" name="uNo" value="">
     </form>
   </div>
-  
+<center>
+
+<div id="imgJARI"></div>
+<div id="btnJARI" style="position:absolute"></div>
+
+<!-- <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  Indicators
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
+
+  Wrapper for slides
+  <div class="carousel-inner" role="listbox">
+   
+    
+
+  </div>
+
+  Controls
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div> -->
+
+
+
+</center>
 
 
 
@@ -90,6 +119,9 @@
             var replyLink = document.querySelector('link[name="replyImport"]');
             var user = getMetaData('user');
 
+
+
+
             //[시용]사진 클릭시 사진 지우기 
             $(document).on("tap", '.deleteImg',function(){
               //$(this).parent().prev().children().remove();
@@ -111,7 +143,8 @@
                       if (regex.test(file[0].name.toLowerCase())) {
                           var reader = new FileReader();
                           reader.onload = function (e) {
-                              var img = $("<img />");
+                              //var img = $("<div class='item'><img name='"+file[0].name+"' id='multi' style='width:100px; height:100px; margin-right: 10px;margin-top: 5px;' src='"+e.target.result+"' class='deleteImg'/></div>");
+                              var img= $("<img />");
                               img.attr("name",file[0].name);
                               img.attr("id","multi");
                               img.attr("style", "width:100px; height:100px; margin-right: 10px;margin-top: 5px;");

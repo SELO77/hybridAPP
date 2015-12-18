@@ -41,30 +41,30 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
             <![endif]-->
 
-  <div class="well"
+ <div class="well"
     style="padding: 15px; padding-bottom: 3px; margin-left: 15px; margin-right: 15px;">
     <form class="form-horizontal" role="form"
       enctype="multipart/form-data">
       <div class="form-group" style="padding: 5px; margin-bottom: 0">
-        <textarea class="form-control" placeholder="오늘의 일기를 작성해주세요.."
-          style="margin-bottom: 20px" id="dContent" rows="12"></textarea>
+        <textarea class="form-control" placeholder="수정할 내용을 입력해주세요.."
+          style="margin-bottom: 10px" id="dContent" rows="12"></textarea>
         <button class="btn btn-primary pull-right" type="button"
           id="submitDiary">일기수정</button>
         <span class="fileinput-button  pull-left" style="padding-top: 6px">
-          <ul class="list-inline" style="font-size: 23px; text-align: left;">
+          <ul class="list-inline" style="font-size: 23px; text-align: left; margin-bottom: 0px;">
             <li style="padding-top: 7px"><a href="#">
                 <li><a href=""> <i class="glyphicon glyphicon-camera"></i>
                 </a></li>
           </ul> <input type="file" name="files[]" id="fileJARI" multiple>
         </span>
-        <center>
-          <div id="imgJARI"></div>
-          <div id="btnJARI" style="position: absolute"></div>
-        </center>
       </div>
       <input type="hidden" id="uNo" name="uNo" value="">
     </form>
   </div>
+<center>
+<div id="imgJARI"></div>
+<div id="btnJARI" style="position:absolute"></div>     
+</center>
 
 
 

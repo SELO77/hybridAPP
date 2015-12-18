@@ -4,18 +4,26 @@
   <div class="col-md-8 col-md-offset-2">
     <div class="thumbnail" id="appendDiary{{dNo}}">
       <div class="row center-block" id="updateDiary{{dNo}}">
-      <center>
-      {{#dPics}}
-        <img class="img-rounded" src="http://dodam.java74.com:8080/resources/thumbnail/diary/{{this}}" style="width: 40%; height:auto; margin: 5px">
-      {{/dPics}}
-      </center>
+        <div class="row center-block">
+          <div class="col-xs-3 col-sm-3 col-md-3">
+          <img class="img-rounded pull-left" src="http://dodam.java74.com:8080/resources/thumbnail/user/{{diaryUser.uPic}}" style="width: 80%; height:auto; margin: 5px; border: 1px solid #ccc;">
+          </div>
+          <div class="col-xs-5 col-sm-5 col-md-5" style="padding-top:5px; padding-left:5px">
+            <a>{{diaryUser.nickname}}</a>
+            <font style="color:#8C8C8C; font-size:5px"><br>{{dDate}}</font>
+          </div>
+        </div>
+        
       </div>
       <div class="caption-full">
-        <h3><a href="#">{{dTag}}</a></h3>
-        <p><strong>{{dDate}}</strong></p>
+        <h4><a href="#">{{dTag}}</a></h4>
         <p>{{dContent}}</p>
+        <center>
+        {{#dPics}}
+          <img class="img-rounded" src="http://dodam.java74.com:8080/resources/thumbnail/diary/{{this}}" style="width: 40%; height:auto; margin: 5px">
+        {{/dPics}}
+        </center>
       </div>
-      <br>
       <center>
       <div class="row ratings" id="replyCount" style="width:100%; padding-left:0; padding-right:0;">
          <div class="btn-group btn-group-justified" role="group" aria-label="..." style="width:transparent">
