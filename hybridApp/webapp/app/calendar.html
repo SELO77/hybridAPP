@@ -25,7 +25,7 @@
 <link href="css/calendar/style.css" rel="stylesheet" type="text/css" media="all" />
 
 </head>
-<body>
+<body onload="calToday();">
 
 	<!--[if lt IE 8]>
 					<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -230,6 +230,9 @@
 	<script src="js/calendar/clndr.js"></script>
 	<script src="js/calendar/main.js"></script>
 	<!-- 스크립트 작성 부분입니다 -->
+	<!-- SELO 작성 라이브러리 추가 -->
+	<script src="js/calendar/calendarBySELO.js"></script>
+
 	<script>
 		//이 곳을 벗어나 스크립트를 작성하지마시오.
 		//Calendar
@@ -237,33 +240,29 @@
 		var requestURL = getMetaData('ip')+'diary/json/';
 		var user = getMetaData('user');
 		console.log('requestURL :'+requestURL);
-		console.log('user.uNo :'+user.uNo);	
-		var requestData = {
-			uNo: user.uNo,
-			dDate: "2015-12-08"
+		console.log('user.uNo :'+user.uNo);
+		var arrayDate;
+
+		function calToday () {
+
+			console.log( 'today day :'+$('.today').children().text()+' month :' +$('.month').text());	
+			arrayDate = [$('.today').children().text(), $('.month').text()];
+			console.log('arrayDate :'+arrayDate);
+
+
+			getDiaryListForCalender( arrayDate[0], arrayDate[1] );
+
+			
 		}
-		$.ajax({
-			url: requestURL+'getDiaryListForCalender',
-			type: 'POST',
-			contentType: 'application/json',			
-			dataType: 'json',
-			data: JSON.stringify(requestData),
-			success: function(responseData, status){
-				console.log('status :'+status);
-				if ( status == 'success' ) {
-					console.log('Ajax Success');
-					console.log('list.length :'+responseData.list.length);
-
-					for (var i = 0; i < responseData.list.length; i++) {
-						$('.calendar-day-'+responseData.list[i].dDate).find('.fa-star').remove();
-						$('.calendar-day-'+responseData.list[i].dDate).children().after('<div class="day-contents"><span class="fa fa-star"></span></div>');	
-					};
-
-				};
-			}// /.success
-		});// /ajax
+		// calendarBySELO.js reference
+		 
+		
 
 
+		
+		
+ 		
+		 						
 
 	</script>
 	<!-- 스크립트 작성 부분 끝입니다. -->
