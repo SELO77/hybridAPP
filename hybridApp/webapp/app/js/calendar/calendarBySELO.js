@@ -105,11 +105,13 @@ $(function() {
 				//DailyDiary 서버에서 받아서 뿌리
 				console.log(' responseData.list.length :'+responseData.list.length);
 				if (responseData.list.length > 0) {
-					console.log('DiaryList is not null');
-
+					console.log('Some DiaryList');
+					dailyDiaryListByHB(responseData);
 				} else{
-					console.log('DiaryList is null');
-					
+					console.log('no Diary');
+					$('#noDiary').remove();
+					$('.dailyDiaryList').remove();
+					$('.remainders form ul').after('<h1 id="noDiary" style="text-align:center;font-size:20px;font-weight:bold">No Diary on this day</h1>');
 				}				
 
 			}
@@ -117,6 +119,28 @@ $(function() {
 
 	});// /on
 	
+	function dailyDiaryListByHB (list) {
+		console.log('==dailyDiaryListByHB() start');
+		$('#noDiary').remove();
+		$('.dailyDiaryList').remove();
+		console.log('====diaryList.length :'+list.length);
+
+		// console.log('====document.querySelector("link[name="dailyDiaryList"]") :'+document.querySelector('link[name="dailyDiaryList"]'));
+		// var handlebarsSource = document.querySelector('link[name="dailyDiaryList"]').import.querySelector('#entry-template').text;
+		// var handlebarsTemplate = Handlebars.compile(handlebarsSource);                     	
+ 		// $('.remainders form ul').after( handlebarsTemplate(diaryList) );	
+  		var diaryList = list.list;
+		for (i in diaryList) {
+			var content = diaryList[i].dContent
+			if (content.length >30) {
+				content = diaryList[i].dContent.substr(0,30)+'<span style="color:#dddddd">...more<span>';
+			};			
+			var eachContent ='<li class="dailyDiaryList"><input id="Option" type="checkbox"><label class="checkbox" for="Option"></label><p>'+content+'</p></li>';
+			$('.remainders form ul').after(eachContent);
+		}
+	}// /dailyDiaryListByHB function()
+
+
 });// /oN Load
 
 

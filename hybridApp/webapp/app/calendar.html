@@ -23,6 +23,7 @@
 <!-- Calendar 추가 CSS -->
 <link rel="stylesheet" href="css/calendar/clndr.css" type="text/css" />
 <link href="css/calendar/style.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="import" href="import/dailyDiaryList.html" name="dailyDiaryList">
 
 </head>
 <body onload="calToday();">
@@ -179,33 +180,32 @@
 
 	<section>
 		<div class="content1">
-		<div class="header2">
-			<h2>Remainders</h2>
-		</div>
-		<div class="remainders">
-			<form>
-			<ul>
-				<li>
-					<input id="Option" type="checkbox">
-					<label class="checkbox" for="Option"></label><p>Lorem Ipsum is simply dummy text.</p>
-				</li>	
-				<li>
-					<input id="option2" type="checkbox" >
-					<label class="checkbox" for="option2"></label><p>It is a long established fact.</p>
-				</li>	
-				<li>
-					<input id="option3" type="checkbox" >
-					<label class="checkbox" for="option3"></label><p>It has survived not only five centuries.</p>
-				</li>
-				<li>
-					<input id="option4" type="checkbox" >
-					<label class="checkbox" for="option4"></label><p>It was popularised in the 1960s.</p>
-				</li>
-			</ul>
-			</form>
-		</div>
-	</div>
-		
+			<div class="header2">
+				<h2>Remainders</h2>
+			</div>
+			<div class="remainders">
+				<form>
+				<ul>
+					<!-- <li>
+						<input id="Option" type="checkbox">
+						<label class="checkbox" for="Option"></label><p>Lorem Ipsum is simply dummy text.</p>
+					</li>	
+					<li>
+						<input id="option2" type="checkbox" >
+						<label class="checkbox" for="option2"></label><p>It is a long established fact.</p>
+					</li>	
+					<li>
+						<input id="option3" type="checkbox" >
+						<label class="checkbox" for="option3"></label><p>It has survived not only five centuries.</p>
+					</li>
+					<li>
+						<input id="option4" type="checkbox" >
+						<label class="checkbox" for="option4"></label><p>It was popularised in the 1960s.</p>
+					</li> -->
+				</ul>
+				</form>
+			</div>
+		</div>		
 	</section>
 
 
@@ -230,7 +230,9 @@
 	<script src="js/calendar/clndr.js"></script>
 	<script src="js/calendar/main.js"></script>
 	<!-- 스크립트 작성 부분입니다 -->
+
 	<!-- SELO 작성 라이브러리 추가 -->
+	<script src="js/handlebars-v4.0.5.js" ></script>
 	<script src="js/calendar/calendarBySELO.js"></script>
 
 	<script>
@@ -255,14 +257,6 @@
 			
 		}
 		// calendarBySELO.js reference
-		 
-		
-
-
-		
-		
- 		
-		 						
 
 	</script>
 	<!-- 스크립트 작성 부분 끝입니다. -->
