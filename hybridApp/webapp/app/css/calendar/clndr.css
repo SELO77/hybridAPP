@@ -19,7 +19,6 @@
 }
 .clndr .clndr-controls .month {
     text-align: center;
-    color: #fff;
     font-size: 1.3em;
 }
 
@@ -70,8 +69,10 @@
   	color: #FFF;
 }
 .cal1 .clndr .clndr-table tr .day.today.event {
-    background:rgba(206,108,134,1);
-    color: #FFF;
+    background:#FFF050;
+    color: black;
+    font-weight: bold;
+    border:solid;
     border-radius: 4px;
 }
 .day.today.event:hover{

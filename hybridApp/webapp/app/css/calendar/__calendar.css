@@ -2,13 +2,19 @@
 	.content2{
 		margin-top: 20px;			
 	}
-	.content2 .clndr-controls{
-		background-color: rgba(234,5,26,0.5);
+	.content2 .clndr-controls, .content1{
+		background-color: #FFF590;
+
 	}	
 
 	.content2, .content1{			
 		margin: auto;
-		width: 100%;			
+		width: 100%;	
+
+	}
+	.header2 h2, .month{
+		color:black;
+		font-weight: bold;
 	}
 
 	.clndr .clndr-controls .clndr-control-button .clndr-next-button { 
