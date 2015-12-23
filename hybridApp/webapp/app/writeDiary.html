@@ -2,69 +2,69 @@
 <html class="no-js" lang="en">
 <head>
 
-<meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<!-- -->
-<title>DodamDodam</title>
-<meta name="description" content="">
-<meta name="viewport"
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <!-- -->
+  <title>DodamDodam</title>
+  <meta name="description" content="">
+  <meta name="viewport"
   content="width=device-width, initial-scale=1 minimum-scale=1, maximum-scale=1, user-scalable=no">
-<!-- 모바일 친화적 뷰 설정 -->
+  <!-- 모바일 친화적 뷰 설정 -->
 
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<!-- Place favicon.ico in the root directory -->
-<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
-<link rel="stylesheet" href="css/__main.css">
-<link rel="stylesheet" href="css/slidebars.css">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <!-- Place favicon.ico in the root directory -->
+  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+  <link rel="stylesheet" href="css/__main.css">
+  <link rel="stylesheet" href="css/slidebars.css">
 
-<!--시용 css-->
-<link href="css/shop-item.css" rel="stylesheet">
-<link rel="stylesheet" href="css/bootstrap.css">
-<link rel="stylesheet" href="css/fileuploadstyle.css">
-<link rel="stylesheet" href="css/jquery.fileupload.css">
-<link rel="stylesheet" href="css/jquery.fileupload-ui.css">
-<!-- [SELO77] css -->
-<style>
-#defaultImg {
-  border-width: thin;
-  border-style: solid;
-  width: 100px;
-}
+  <!--시용 css-->
+  <link href="css/shop-item.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/fileuploadstyle.css">
+  <link rel="stylesheet" href="css/jquery.fileupload.css">
+  <link rel="stylesheet" href="css/jquery.fileupload-ui.css">
+  <!-- [SELO77] css -->
+  <style>
+    #defaultImg {
+      border-width: thin;
+      border-style: solid;
+      width: 100px;
+    }
 
-.form-group span {
-  font-size: 14px;
-}
-</style>
+    .form-group span {
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body style="padding-bottom: 110px;padding-top: 60px;">
   <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
             <![endif]-->
 
-  <div class="well"
-    style="padding: 15px; padding-bottom: 3px; margin-left: 15px; margin-right: 15px;">
-    <form class="form-horizontal" role="form"
-      enctype="multipart/form-data">
-      <div class="form-group" style="padding: 5px; margin-bottom: 0">
-        <textarea class="form-control" placeholder="오늘의 일기를 작성해주세요.."
-          style="margin-bottom: 10px" id="dContent" rows="12"></textarea>
-        <button class="btn btn-primary pull-right" type="button"
-          id="submitDiary">일기쓰기</button>
-        <span class="fileinput-button  pull-left" style="padding-top: 6px">
-          <ul class="list-inline" style="font-size: 23px; text-align: left; margin-bottom: 0px;">
-            <li style="padding-top: 7px"><a href="#">
-                <li><a href=""> <i class="glyphicon glyphicon-camera"></i>
-                </a></li>
-          </ul> <input type="file" name="files[]" id="fileJARI" multiple>
-        </span>
-      </div>
-      <input type="hidden" id="uNo" name="uNo" value="">
-    </form>
-  </div>
-<center>
+            <div class="well"
+            style="padding: 15px; padding-bottom: 3px; margin-left: 15px; margin-right: 15px;">
+            <form class="form-horizontal" role="form"
+            enctype="multipart/form-data">
+            <div class="form-group" style="padding: 5px; margin-bottom: 0">
+              <textarea class="form-control" placeholder="오늘의 일기를 작성해주세요.."
+              style="margin-bottom: 10px" id="dContent" rows="12"></textarea>
+              <button class="btn btn-primary pull-right" type="button"
+              id="submitDiary">일기쓰기</button>
+              <span class="fileinput-button  pull-left" style="padding-top: 6px">
+                <ul class="list-inline" style="font-size: 23px; text-align: left; margin-bottom: 0px;">
+                  <li style="padding-top: 7px"><a href="#">
+                    <li><a href=""> <i class="glyphicon glyphicon-camera"></i>
+                    </a></li>
+                  </ul> <input type="file" name="files[]" id="fileJARI" multiple>
+                </span>
+              </div>
+              <input type="hidden" id="uNo" name="uNo" value="">
+            </form>
+          </div>
+          <center>
 
-<div id="imgJARI"></div>
-<div id="btnJARI" style="position:absolute"></div>
+            <div id="imgJARI"></div>
+            <div id="btnJARI" style="position:absolute"></div>
 
 <!-- <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   Indicators
@@ -98,28 +98,63 @@
 
 
 
-  <script src="js/vendor/jquery-1.11.3.min.js"></script>
-  <!-- script plug in start -->
-  <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+<script src="js/vendor/jquery-1.11.3.min.js"></script>
+<!-- script plug in start -->
+<script src="js/vendor/modernizr-2.8.3.min.js"></script>
 
-  <!-- [시용] 라이브러리 추가 및 스크립트 작성-->
-  <script src="js/vendor/jquery.ui.widget.js"></script>
-  <script src="js/jquery.fileupload.js"></script>
-  <!-- bootStrap.js CDN -->
-  <script src="js/bootstrap/bootstrap.min.js"></script>
+<!-- [시용] 라이브러리 추가 및 스크립트 작성-->
+<script src="js/vendor/jquery.ui.widget.js"></script>
+<script src="js/jquery.fileupload.js"></script>
+<!-- bootStrap.js CDN -->
+<script src="js/bootstrap/bootstrap.min.js"></script>
 
-  <!-- ip 등 meta data 가져오기 -->
-  <script src="js/jihoon/getMetaData.js"></script>
+<!-- ip 등 meta data 가져오기 -->
+<script src="js/jihoon/getMetaData.js"></script>
 
-  <script>
-            var requestURL = getMetaData("ip")+"diary/json/";
-            var requestIP = getMetaData("ip");
+<script>
+  var requestURL = getMetaData("ip")+"diary/json/";
+  var requestIP = getMetaData("ip");
             //var requestIP="http://192.168.0.3:8080/";
             var diaryLink = document.querySelector('link[name="diaryImport"]');
             var replyLink = document.querySelector('link[name="replyImport"]');
             var user = getMetaData('user');
 
 
+            //[SELO77] 해쉬태그를 위한 키이벤트
+          
+            var hashTags = [];
+            $('textarea').keydown(function() {
+              console.log("======START=============");
+              var textareaVal = $('textarea').val();
+              var textareaLength = textareaVal.length;
+
+              //console.log('textarea keydown');
+              console.log('textarea.text() :'+textareaVal);
+              console.log('textarea length :'+textareaLength);
+
+              if (textareaVal.indexOf("#") != -1) {
+                console.log('client keydwon #!!! it start hashTag');
+                console.log('textareaVal.indexOf("#") :'+textareaVal.indexOf("#"));
+                var startHashTagIndex = textareaVal.indexOf("#");
+
+                var tempForHashTag = textareaVal.slice(startHashTagIndex);
+                console.log('tempForHashTag :'+tempForHashTag);
+                //var endHashTagIndex =textareaLength;
+                //console.log('textareaVal.substring() :'+textareaVal.substring(startHashTagIndex,endHashTagIndex));
+                
+                if (tempForHashTag.indexOf(" ") != -1) {
+                  console.log('==tempForHashTag.indexOf(" ") :'+tempForHashTag.indexOf(" "));
+                  console.log('==tempForHashTag.slice(startHashTagIndex, tempForHashTag.indexOf(" ")) :'+tempForHashTag.slice(0, tempForHashTag.indexOf(" ")));
+                  hashTags.push( tempForHashTag.slice(0, tempForHashTag.indexOf(" ")) );
+
+
+                };
+              };//outter if
+              for (i in hashTags) {
+                console.log('hashTags['+i+'] :'+hashTags[i]);
+              };              
+              console.log("=======END============");
+            });// /.textarea.keydown
 
 
             //[시용]사진 클릭시 사진 지우기 
@@ -130,19 +165,19 @@
 
 
           // [시용] fileUpload를 위한 자바 스크립트 Start
-        $(function(){
-          $("#fileJARI").change(function () {
+          $(function(){
+            $("#fileJARI").change(function () {
               if (typeof (FileReader) != "undefined") {
-                  var dvPreview = $("#imgJARI");
-                  dvPreview.html("");
-                  var btnPreview = $("#btnJARI");
+                var dvPreview = $("#imgJARI");
+                dvPreview.html("");
+                var btnPreview = $("#btnJARI");
 
-                  var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
-                  $($(this)[0].files).each(function () {
-                      var file = $(this);
-                      if (regex.test(file[0].name.toLowerCase())) {
-                          var reader = new FileReader();
-                          reader.onload = function (e) {
+                var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                $($(this)[0].files).each(function () {
+                  var file = $(this);
+                  if (regex.test(file[0].name.toLowerCase())) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
                               //var img = $("<div class='item'><img name='"+file[0].name+"' id='multi' style='width:100px; height:100px; margin-right: 10px;margin-top: 5px;' src='"+e.target.result+"' class='deleteImg'/></div>");
                               var img= $("<img />");
                               img.attr("name",file[0].name);
@@ -159,106 +194,105 @@
                               //dvPreview.append(btn);
                               
                               
-                          }
-                          reader.readAsDataURL(file[0]);
-                      } else {
+                            }
+                            reader.readAsDataURL(file[0]);
+                          } else {
                           //디버깅
                           //alert(file[0].name + " is not a valid image file.");
                           dvPreview.html("");
                           return false;
-                      }
-                  });
-              } else {
-                  alert("This browser does not support HTML5 FileReader.");
-              }
-          });
-       });
+                        }
+                      });
+} else {
+  alert("This browser does not support HTML5 FileReader.");
+}
+});
+});
       // [시용] fileUpload를 위한 자바 스크립트 end
       
 
 
 
       // [시용] 다이어리 쓰기 버튼 이벤트처리
-       $(function(){
-           $("#submitDiary").on("click" , function() {
-              fncAddJsonDiary();
+      $(function(){
+       $("#submitDiary").on("click" , function() {
+        fncAddJsonDiary();
               //setTimeout( location.reload(true),1000*6);
-              setTimeout( goDiaryPage,1000*2);
-                  
-             
-       });
+              setTimeout( goDiaryPage,1000*2);              
+            });
 
 
 
        //[시용] 다이어리 ajax 전송
        function  fncAddJsonDiary(){
-          
-          var length = $("div#imgJARI > img").length;
+        
+        var length = $("div#imgJARI > img").length;
            //alert(length);
-          var imgs = "";
-         for(var i=0 ; i<$("div#imgJARI > img").length ; i++){
-         /* for each ($("div.images > img:last").length in obj) */
-         if(i == ($("div#imgJARI > img").length - 1)){
-            imgs +=$("div#imgJARI > img:eq("+i+")").attr('name');
-         }else{
-            imgs += $("div#imgJARI > img:eq("+i+")").attr('name') +",";
-         }
+           var imgs = "";
+           for(var i=0 ; i<$("div#imgJARI > img").length ; i++){
+             /* for each ($("div.images > img:last").length in obj) */
+             if(i == ($("div#imgJARI > img").length - 1)){
+              imgs +=$("div#imgJARI > img:eq("+i+")").attr('name');
+            }else{
+              imgs += $("div#imgJARI > img:eq("+i+")").attr('name') +",";
+            }
           } 
           //디버깅
           //alert(imgs);
-              var userValue = window.localStorage.getItem("userKey");
-              var user = JSON.parse(userValue);
-             $.ajax({
-                url : requestURL+"addDiary",
-                method:"POST",
-                dataType:"application/json",
-                crossDomain : true,
-                contentType: "application/json;",
-                data: JSON.stringify({
-                   dPic : imgs,
-                   uNo : user.uNo,
-                   dContent : $("#dContent").val()
-                }),
-                success:function(result){
-                  if(result.result){
-                  alert("ajax success");
-                }
-                }
-             });
-                       
-          }
-       
+          var userValue = window.localStorage.getItem("userKey");
+          var user = JSON.parse(userValue);
+          $.ajax({
+            url : requestURL+"addDiary",
+            method:"POST",
+            dataType:"application/json",
+            crossDomain : true,
+            contentType: "application/json;",
+            data: JSON.stringify({
+             dPic : imgs,
+             uNo : user.uNo,
+             dContent : $("#dContent").val(),
+             dTag : hashTags[0]
+           }),
+            success:function(result){
+              if(result.result){
+                alert("ajax success");
+              }
+            }
+          });
+          
+        }
+        
 
        //[시용, JS, start] : 파일을 서버에 저장하기 위한 AJAX function
-        $(function() { 
-    
+       $(function() { 
+        
          $('#fileJARI').fileupload({
-              dataType: 'json',
-              url:requestURL+'uploadImg',
-              add: function (e, data) {
+          dataType: 'json',
+          url:requestURL+'uploadImg',
+          add: function (e, data) {
                  //alert('!!!!!');
                  $("#submitDiary").click(function () {
-                      
-                       data.submit();
+                  
+                   data.submit();
 
                       //location.reload(true);
 
-          setTimeout( goDiaryPage,1000*2);
-                   });
+                      setTimeout( goDiaryPage,1000*2);
+                    });
 
-              }
-          });
+               }
+             });
 
-          });
+       });
 
-      }); 
-      function goDiaryPage(){
+     }); 
+function goDiaryPage(){
         //self.location = "diary.html";
         $(window.parent.frames["innerframe"].document.location)
-              .attr("href", "diary.html");
+        .attr("href", "diary.html");
       } 
       //[시용, JS, end] : 파일을 서버에 저장하기 위한 AJAX function
     </script>
 
-</body>
-</html>
+  </body>
+  </html>
