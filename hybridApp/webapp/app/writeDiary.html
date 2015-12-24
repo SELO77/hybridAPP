@@ -2,71 +2,97 @@
 <html class="no-js" lang="en">
 <head>
 
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <!-- -->
-  <title>DodamDodam</title>
-  <meta name="description" content="">
-  <meta name="viewport"
-  content="width=device-width, initial-scale=1 minimum-scale=1, maximum-scale=1, user-scalable=no">
-  <!-- 모바일 친화적 뷰 설정 -->
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<!-- -->
+<title>DodamDodam</title>
+<meta name="description" content="">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1 minimum-scale=1, maximum-scale=1, user-scalable=no">
+<!-- 모바일 친화적 뷰 설정 -->
 
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <!-- Place favicon.ico in the root directory -->
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!-- Place favicon.ico in the root directory -->
 
-  <link rel="stylesheet" href="css/__main.css">
-  <link rel="stylesheet" href="css/slidebars.css">
+<link rel="stylesheet" href="css/__main.css">
+<link rel="stylesheet" href="css/slidebars.css">
 
-  <!--시용 css-->
-  <link href="css/shop-item.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/bootstrap.css">
-  <link rel="stylesheet" href="css/fileuploadstyle.css">
-  <link rel="stylesheet" href="css/jquery.fileupload.css">
-  <link rel="stylesheet" href="css/jquery.fileupload-ui.css">
-  <!-- [SELO77] css -->
-  <style>
-    #defaultImg {
-      border-width: thin;
-      border-style: solid;
-      width: 100px;
-    }
+<!--시용 css-->
+<link href="css/shop-item.css" rel="stylesheet">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/fileuploadstyle.css">
+<link rel="stylesheet" href="css/jquery.fileupload.css">
+<link rel="stylesheet" href="css/jquery.fileupload-ui.css">
+<!-- [SELO77] css -->
+<style>
+#defaultImg {
+	border-width: thin;
+	border-style: solid;
+	width: 100px;
+}
 
-    .form-group span {
-      font-size: 14px;
-    }
-  </style>
+.form-group span {
+	font-size: 14px;
+}
+</style>
 </head>
-<body style="padding-bottom: 110px;padding-top: 60px;">
-  <!--[if lt IE 8]>
+<body style="padding-bottom: 110px; padding-top: 60px;">
+	<!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
             <![endif]-->
+	<script>
+				var user = JSON.parse(window.localStorage.getItem("userKey"));
+				$.ajax({
+					url:"http://192.168.0.3:8080/baby/json/getUNoBaby",
+					method:"POST",
+					contentType:"application/json",
+					dataType:"json",
+					data:JSON.stringify({uNo:user.uNo}),
+					success:function(result){
+						console.log(result);
+						console.log(user.uNo);
+						//유저가 등록한 아이가 없을 떄
+						if(result.resultCode==0 ){
+							alert("등록된 아기가 없기때문에 아기등록 화면으로 이동합니다.");
+							$(window.parent.frames["innerframe"].document.location).attr("href", "addBaby.html");
+						} 									
 
-            <div class="well"
-            style="padding: 15px; padding-bottom: 3px; margin-left: 15px; margin-right: 15px;">
-            <form class="form-horizontal" role="form"
-            enctype="multipart/form-data">
-            <div class="form-group" style="padding: 5px; margin-bottom: 0">
-              <textarea class="form-control" placeholder="오늘의 일기를 작성해주세요.."
-              style="margin-bottom: 10px" id="dContent" rows="12"></textarea>
-              <button class="btn btn-primary pull-right" type="button"
-              id="submitDiary">일기쓰기</button>
-              <span class="fileinput-button  pull-left" style="padding-top: 6px">
-                <ul class="list-inline" style="font-size: 23px; text-align: left; margin-bottom: 0px;">
-                  <li style="padding-top: 7px"><a href="#">
-                    <li><a href=""> <i class="glyphicon glyphicon-camera"></i>
-                    </a></li>
-                  </ul> <input type="file" name="files[]" id="fileJARI" multiple accept="image/*;"capture="camera" >
-                </span>
-              </div>
-              <input type="hidden" id="uNo" name="uNo" value="">
-            </form>
-          </div>
-          <center>
+					},
+					error:function(){
+						alert("error");
+					}
+				
+					});
+				
+			</script>
+	<div class="well"
+		style="padding: 15px; padding-bottom: 3px; margin-left: 15px; margin-right: 15px;">
+		<form class="form-horizontal" role="form"
+			enctype="multipart/form-data">
+			<div class="form-group" style="padding: 5px; margin-bottom: 0">
+				<textarea class="form-control" placeholder="오늘의 일기를 작성해주세요.."
+					style="margin-bottom: 10px" id="dContent" rows="12"></textarea>
+				<button class="btn btn-primary pull-right" type="button"
+					id="submitDiary">일기쓰기</button>
+				<span class="fileinput-button  pull-left" style="padding-top: 6px">
+					<ul class="list-inline"
+						style="font-size: 23px; text-align: left; margin-bottom: 0px;">
+						<li style="padding-top: 7px"><a href="#">
+								<li><a href=""> <i class="glyphicon glyphicon-camera"></i>
+								</a></li>
+					</ul> <input type="file" name="files[]" id="fileJARI" multiple
+					accept="image/*;" capture="camera">
+				</span>
+			</div>
+			<input type="hidden" id="uNo" name="uNo" value="">
+		</form>
+	</div>
+	<center>
 
-            <div id="imgJARI"></div>
-            <div id="btnJARI" style="position:absolute"></div>
+		<div id="imgJARI"></div>
+		<div id="btnJARI" style="position: absolute"></div>
 
-<!-- <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+		<!-- <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   Indicators
   <ol class="carousel-indicators">
     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -94,25 +120,26 @@
 
 
 
-</center>
+	</center>
 
 
 
-<script src="js/vendor/jquery-1.11.3.min.js"></script>
-<!-- script plug in start -->
-<script src="js/vendor/modernizr-2.8.3.min.js"></script>
+	<script src="js/vendor/jquery-1.11.3.min.js"></script>
+	<!-- script plug in start -->
+	<script src="js/vendor/modernizr-2.8.3.min.js"></script>
 
-<!-- [시용] 라이브러리 추가 및 스크립트 작성-->
-<script src="js/vendor/jquery.ui.widget.js"></script>
-<script src="js/jquery.fileupload.js"></script>
-<!-- bootStrap.js CDN -->
-<script src="js/bootstrap/bootstrap.min.js"></script>
-<script src="js/jquery.mobile-1.4.5.min.js"></script>
+	<!-- [시용] 라이브러리 추가 및 스크립트 작성-->
+	<script src="js/vendor/jquery.ui.widget.js"></script>
+	<script src="js/jquery.fileupload.js"></script>
+	<!-- bootStrap.js CDN -->
+	<script src="js/bootstrap/bootstrap.min.js"></script>
+	<script src="js/jquery.mobile-1.4.5.min.js"></script>
 
-<!-- ip 등 meta data 가져오기 -->
-<script src="js/jihoon/getMetaData.js"></script>
+	<!-- ip 등 meta data 가져오기 -->
+	<script src="js/jihoon/getMetaData.js"></script>
 
-<script>
+	<script>
+$.mobile.autoInitializePage = false;
   var requestURL = getMetaData("ip")+"diary/json/";
   var requestIP = getMetaData("ip");
             //var requestIP="http://192.168.0.3:8080/";
@@ -295,5 +322,5 @@ function goDiaryPage(){
       //[시용, JS, end] : 파일을 서버에 저장하기 위한 AJAX function
     </script>
 
-  </body>
-  </html>
+</body>
+</html>

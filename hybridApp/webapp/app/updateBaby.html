@@ -199,34 +199,7 @@
 						var babyImage="";
 
 
-						document.addEventListener("backbutton", onBackKeyDown, false);
-						function onBackKeyDown(){
-							 //window.plugins.toast.show('Really Exit?'.'short'.'center',)
-							 testLogoutSheet();
-							}
-
-						//Action sheet
-
-
-						function testLogoutSheet() {
-							var options = {
-								'androidTheme' : window.plugins.actionsheet.ANDROID_THEMES.THEME_HOLO_LIGHT,
-								'title': 'Are you sure to close it?',
-								'buttonLabels': ['No','Yes'],
-								'androidEnableCancelButton' : true,
-								'winphoneEnableCancelButton' : true,
-									//'addCancelButtonWithLabel': 'Cancel'
-								};
-								window.plugins.actionsheet.show(options, callback);
-							}
-
-							var callback = function(buttonIndex) {
-								setTimeout(function() {
-									if (buttonIndex == 2) {
-										navigator.app.exitApp();
-									};
-								});
-							};
+					
 
 
 							//[근한] focus event를 위한 jQuery 추가
