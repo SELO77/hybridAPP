@@ -46,7 +46,7 @@
 			}
 		
 </script>
-	<!-- 아래 태그 내부는  facebook javascript SDK 사용을 위한 코드-->
+
 	
 
 
@@ -173,12 +173,7 @@
 										</div>
 										<div style="margin: 8px"></div>
 
-										<button type="button" id="facebookLoginButton"
-										scope="public_profile,email" 
-										class="btn btn-primary btn-md btn-block">FaceBook Login</button>
 
-			<!-- <fb:login-button type="button" scope="public_profile,email" onclick="checkLoginState();"  style=
-			class="">Facebook Login</fb:login-button> -->
 
 
 			<hr>
@@ -208,7 +203,6 @@
 
 	<!-- ip 등 meta data 가져오기 -->
 	<script src="js/jihoon/getMetaData.js"></script>
-	<!-- facebook  관련 -->
 
 	
 
@@ -501,25 +495,6 @@ $('#nickname').focus(function() {
 
 						</script>	
 
-
-						<script>
-
-		window.fbAsyncInit = function() {
-			FB.init({
-				appId      : '1681810372061784',
-				xfbml      : true,
-				version    : 'v2.5'
-			});
-		};
-
-		(function(d, s, id){
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id)) {return;}
-			js = d.createElement(s); js.id = id;
-			js.src = "http://connect.facebook.net/en_US/sdk.js";
-			fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));
-	</script>			
 
 					</div>
 				</body>
