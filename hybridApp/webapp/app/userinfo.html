@@ -52,25 +52,19 @@
 						<div class="row">
 							<!-- left column -->
 							<div>&nbsp;</div>
-							<div class="col-md-3">
-								<div class="text-center">
-									<img src="img/siba.jpg" class="avatar img-round" alt="avatar" style="width:200px;height:200" onclick=$("#uPhoto").click();>	
-									<div>&nbsp;</div>
-									<input type="file" class="form-control" style="display:none" id="uPhoto">
-
-								</div>
-							</div>
 
 							<!-- edit form column -->
 							<div class="col-md-9 personal-info">
-								<div class="alert alert-info alert-dismissable" id="popup">
-									<a class="panel-close close" data-dismiss="alert">×</a> 
-									<i class="fa fa-coffee"></i>
-									사진을 등록하고 더 많은 유저와 소통하세요.
-								</div>
 
 
 								<form class="form-horizontal" role="form">
+
+									<div class="form-group" align="center">
+										<input type="file" id="uPhoto" name="bPhoto" style="display:none" accpet="image/*;" capture="camera">
+										<div id="uploadImage" onclick=$("#uPhoto").click()></div>
+									</div>
+
+
 									<div class="form-group">
 										<label class="col-lg-3 control-label "><span class="fa fa-envelope"></span>&nbsp;이메일</label>
 										<div class="col-lg-8">
@@ -79,7 +73,7 @@
 									</div>
 									
 									<div class="form-group">
-										<label class="col-lg-3 control-label"><span class="fa fa-smile-o"></span>&nbsp;별명</label>
+										<label class="col-lg-3 control-label"><span class="fa fa-smile-o"></span>&nbsp;닉네임</label>
 										<div class="col-lg-8">
 											<input class="form-control" type="text" value="" id="nickname">
 										</div>
@@ -151,6 +145,9 @@
 	<script>
 
 		var user=getMetaData("user");
+		var getuPhoto="";
+		var responseURL="mainIndex.html";
+		var userImage="";
 
 
 		document.addEventListener("backbutton", onBackKeyDown, false);
@@ -183,9 +180,6 @@
 
 
 	function getUser(){
-
-		alert("getUser::");
-
 			$.ajax({
 				url:getMetaData("ip")+"user/json/getUser",
 				method:"POST",
@@ -195,11 +189,29 @@
 				success:function(result){
 					console.log(result);
 
+					if(result.user.uPic==null) {
+						getuPhoto="img/siba.jpg"
+					}
+
+					if(result.user.uPic!=null) {
+						getuPhoto="http://192.168.1.4:8080/resources/img/user/"+result.user.uPic;
+					}
+
+
 					$("#email").val(result.user.mail);
 					$("#nickname").val(result.user.nickname);
 
-					$("#currentPassword").focusout(function() {
-						if($("#currentPassword").val()!=result.user.password) {
+					var img = $("<img />");
+						img.attr("name",getuPhoto.replace("img/",""));
+						img.attr("id","multi");
+						img.attr("style", "width:100px; height:100px; margin-right:10px; margin-top: 10px;");
+						img.attr("src",getuPhoto);
+						img.attr("class","img-rounded");
+
+						$("#uploadImage").append(img);
+
+					$("#currentPassword").keyup(function() {
+						if($("#currentPassword").val()!=result.user.password && $("#currentPassword").val()!=null) {
 							$("#currentPasswordCheck").css("color","red");
 							if($("#currentPasswordCheck").children().length==0){
 							$("#currentPasswordCheck")
@@ -211,8 +223,9 @@
 						}
 					});
 
-					$("#submit").on("click",function(){
-						if($("#changePassword").val()!=$("#checkPassword").val()) {
+
+						$("#changePasswordCheck").keyup(function(){					
+							if($("#changePassword").val()!=$("#checkPassword").val()) {
 							console.log($("#changePassword").val()+"::"+$("#checkPassword").val());
 							$("#changePasswordCheck").css("color","red");
 							if($("#changePasswordCheck").children().length==0){
@@ -220,8 +233,22 @@
 							.append("<text id=alertChangePassword>&nbsp&nbsp&nbsp변경한 비밀번호와 일치하지 않습니다.</text>");
 							}
 						}
-						else{
-							$("#alertChangePassword").remove();
+							else{
+								$("#alertChangePassword").remove();
+							}
+						});
+
+
+					$("#submit").on("click",function(){
+
+							var imageLength = $("div#uploadImage > img").length;											
+							for(var i=0 ; i<imageLength; i++){
+								if(i == (imageLength - 1)){
+									userImage +=$("div#uploadImage > img:eq("+i+")").attr('name');
+								}else{
+									userImage += $("div#uploadImage > img:eq("+i+")").attr('name') +",";
+								}
+							} 
 
 							$.ajax({
 							url:getMetaData("ip")+"user/json/updateUser",
@@ -233,21 +260,70 @@
 								mail:$("#email").val(),
 								nickname:$("#nickname").val(),
 								password:$("#changePassword").val(),
-								uPic:user.uPic,
+								uPic:userImage,
 								uBirth:user.uBirth
 							}),
-							success:function(result){
-								alert("success:: "+result.result);
+							success:function(responseData){
 								$(window.parent.frames["innerframe"].document.location)
 				           		.attr("href","mainIndex.html");
 								}
 							});
-						}
 					});
 
 				}
 			});
 	}
+
+
+							$(function(){
+								$("#uPhoto").change(function () {
+									if (typeof (FileReader) != "undefined") {
+										var dvPreview = $("#uploadImage");
+										dvPreview.html("");
+										var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+										$($(this)[0].files).each(function () {
+											var file = $(this);
+											if (regex.test(file[0].name.toLowerCase())) {
+												var reader = new FileReader();
+												reader.onload = function (e) {
+													var img = $("<img />");
+													img.attr("name",file[0].name);
+													img.attr("id","multi");
+													img.attr("style", "width:100px; height:100px; margin-right: 10px;margin-top: 10px;");
+													img.attr("src", e.target.result);
+													img.attr("class","img-rounded");
+
+													dvPreview.append(img);
+
+												}
+												reader.readAsDataURL(file[0]);
+											} else {
+												alert(file[0].name + " is not a valid image file.");
+												dvPreview.html("");
+												return false;
+											}
+										});
+									} else {
+										alert("This browser does not support HTML5 FileReader.");
+											}
+										});
+									}); 
+
+
+
+												$(function() { 
+
+													$('#uPhoto').fileupload({
+														dataType: 'json',
+														url:getMetaData("ip")+"user/json/uploadImg",
+														add: function (e, data) {
+															$("#submit").click(function () {
+
+																data.submit();
+															});
+														}
+													});
+												}); 
 
 
 </script>

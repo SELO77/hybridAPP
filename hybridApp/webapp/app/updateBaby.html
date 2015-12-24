@@ -89,7 +89,7 @@
 
 				<div class="form-group" align="center">
 					<!-- <input type="file" name="bPhoto" id="bPhoto" src="img/defaultImage.jpg" class="img-rounded" width="100"> -->
-					<input type="file" id="bPhoto" name="bPhoto" style="display: none">
+					<input type="file" id="bPhoto" name="bPhoto" style="display: none" accept="image/*;"capture="camera">
 					<div id="uploadImage" onclick=$("#bPhoto").click()></div>
 
 					<img id="defaultImg" src="img/baby/defaultImagae.png"
@@ -199,7 +199,34 @@
 						var babyImage="";
 
 
-					
+						document.addEventListener("backbutton", onBackKeyDown, false);
+						function onBackKeyDown(){
+							 //window.plugins.toast.show('Really Exit?'.'short'.'center',)
+							 testLogoutSheet();
+							}
+
+						//Action sheet
+
+
+						function testLogoutSheet() {
+							var options = {
+								'androidTheme' : window.plugins.actionsheet.ANDROID_THEMES.THEME_HOLO_LIGHT,
+								'title': 'Are you sure to close it?',
+								'buttonLabels': ['No','Yes'],
+								'androidEnableCancelButton' : true,
+								'winphoneEnableCancelButton' : true,
+									//'addCancelButtonWithLabel': 'Cancel'
+								};
+								window.plugins.actionsheet.show(options, callback);
+							}
+
+							var callback = function(buttonIndex) {
+								setTimeout(function() {
+									if (buttonIndex == 2) {
+										navigator.app.exitApp();
+									};
+								});
+							};
 
 
 							//[근한] focus event를 위한 jQuery 추가
@@ -243,8 +270,6 @@
 							//getBaby를 위한 코드
 						
 									function getBabyList(){
-										
-										alert("getBaby들어옴");
 											
 											$.ajax({
 											url:getMetaData("ip")+"baby/json/getUNoBaby",
@@ -283,10 +308,10 @@
 													$("#btn01").text("수정하기");
 
 												if(result.baby.bPhoto==null){
-													getbPhoto="img/"+"defaultImage.png";
+													getBPhoto="img/baby/defaultImagae.png";
 												}
 												else if(result.baby.bPhoto!=null){
-												getBPhoto="img/"+result.baby.bPhoto;
+												getBPhoto="http://192.168.1.4:8080/resources/img/baby/"+result.baby.bPhoto;
 												}
 
 												$("#defaultImg").attr("style","display:none");
@@ -377,7 +402,8 @@
 								{
 									url:getMetaData("ip")+"baby/json/updateBaby",
 									method:"POST",
-									dataType:"application/json",
+									contentType:"application/json",
+									dataType:"json",
 									data:JSON.stringify({
 									bNo:100040,
 									bName:$("input[name='bName']").val(),
@@ -389,11 +415,11 @@
 									bPhoto:babyImage,
 									uNo:user.uNo
 									}),
-									contentType:"json",
-									success:function(){
-										alert(JSON.stringify(formData)+" success");
+									success:function(responseData){
+										if(responseData.result==true){
 										$(window.parent.frames["innerframe"].document.location)
 	           							 .attr("href",responseURL);
+	           							}
 									},
 									error:function(){
 										alert("뭔가 에러가 났네....");
