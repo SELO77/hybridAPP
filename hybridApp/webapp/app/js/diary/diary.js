@@ -18,7 +18,7 @@
                   var source = temp.querySelector('#entry-template').text;
                         Handlebars.registerHelper('userCheck', function (uNo, dNo) {
                             //alert(rUNo);
-                            var userhtml ="<div class='dropdown pull-right' style='padding-right: 20px;'><i class='fa fa-cog'data-toggle='dropdown'/><div class='dropdown-menu' role='menu' aria-labelledby='dLabel' style='padding-top: 0px;padding-bottom: 0px;'><p style='margin-bottom: 0px;'><input type='hidden' value='"+dNo+"'><updateDiary style='height:transparent'><button type='button' class='btn btn-default'  style='width:100%'><a>수정하기</a></button></updateDiary></p><p style='margin-bottom: 0px;'><input type='hidden' value='"+dNo+"'><deleteDiary style='height:transparent'><button type='button' class='btn btn-default' style='width:100%'><a>삭제하기</a></button></deleteDiary></p></div></div>";
+                            var userhtml ="<div class='dropdown pull-right' style='padding-right: 20px;padding-top: 10px;'><i class='fa fa-cog'data-toggle='dropdown'/><div class='dropdown-menu' role='menu' aria-labelledby='dLabel' style='padding-top: 0px;padding-bottom: 0px;'><p style='margin-bottom: 0px;'><input type='hidden' value='"+dNo+"'><updateDiary style='height:transparent'><button type='button' class='btn btn-default'  style='width:100%'><a>수정하기</a></button></updateDiary></p><p style='margin-bottom: 0px;'><input type='hidden' value='"+dNo+"'><deleteDiary style='height:transparent'><button type='button' class='btn btn-default' style='width:100%'><a>삭제하기</a></button></deleteDiary></p></div></div>";
                             
                             if(uNo == user.uNo){
                                 return userhtml;
@@ -38,6 +38,30 @@
                             }
                             return likehtml;
                       });
+       
+                      Handlebars.registerHelper('picCheck', function (dPics) {
+                            //alert(rUNo);
+                            var returnHtml =' ';
+                            if(dPics.length ==1){
+                              returnHtml = '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'+dPics[0]+'" style="width: 100%; height:auto; margin: 0">';
+                              return returnHtml;
+                            }else{
+                              if(dPics.length%2 == 0){
+                                
+                                for(var i = 0; i<dPics.length; i++){
+                                returnHtml += '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'+dPics[i]+'" style="width: 50%; height:auto; padding: 3px; ">';
+                                }
+
+                              }else{
+                                returnHtml += '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'+dPics[0]+'" style="width: 100%; height:auto;">';
+                                
+                                for(var i = 1; i<dPics.length; i++){
+                                returnHtml += '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'+dPics[i]+'" style="width: 50%; height:auto; padding: 3px">';
+                                }
+                              }
+                              return returnHtml;
+                            }
+                      });
                       var template = Handlebars.compile(source);
                       var html = template(result);
                       //$('#diaryHandle').append(html);
@@ -48,7 +72,7 @@
               }
 
               //[좋아요 누르기]
-              $(document).on("click", "insertLike", function(){
+              $(document).on("tap", "insertLike", function(){
                 var likes = $(this);
                 var diaryNo = $(this).prev('input');
                 //alert(diaryNo.val());
@@ -87,7 +111,7 @@
               });
 
               //[좋아요취소 누르기]
-              $(document).on("click", "deleteLike", function(){
+              $(document).on("tap", "deleteLike", function(){
                 var likes = $(this);
                 var diaryNo = $(this).prev('input');
                 //alert(diaryNo.val());
@@ -127,7 +151,7 @@
 
 
               //[시용]다이어리 삭제.
-              $(document).on("click", "deleteDiary", function(){
+              $(document).on("tap", "deleteDiary", function(){
                   var diaryNo  = $(this).prev('input');
                   //alert(diaryNo.val());
                   $.ajax({
@@ -152,7 +176,7 @@
 
 
               //[시용]다이어리 수정
-              $(document).on("click", "updateDiary", function(){
+              $(document).on("tap", "updateDiary", function(){
                   var diaryNo  = $(this).prev('input');
                   //console.log(diaryNo.val());
                   $('form[name=updateForm]').children('input').val(diaryNo.val());

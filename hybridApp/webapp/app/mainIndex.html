@@ -13,7 +13,7 @@
 
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
 	<!-- Place favicon.ico in the root directory -->
-	<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+	<!-- <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"> -->
 	<link rel="stylesheet" href="css/__main.css">
 	<link rel="stylesheet" href="css/slidebars.css">
 
@@ -23,6 +23,7 @@
 		html, body, iframe {
 			height: 100%;
 		}
+		
 		#sb-site {
 			height: 100%;
 		}
@@ -83,7 +84,7 @@
 
 </head>
 
-<body style="overflow: hidden">
+<body style="overflow: hidden" onload="diaryLoad();">
 
 	<!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -167,8 +168,8 @@
             <main style="height:100%"> <!-- .sb-site -->
             	<div id="sb-site" name="sb-site" style="height: device;">
             		<iframe name="innerframe" id="innerframe" scrolling="auto" src=""
-            		frameborder="0" style="height: 95%; width: 100%"></iframe>
-
+            		frameborder="0" style="height: 95%; width: 100%"></iframe> 
+				
 
 
             	</div>
@@ -189,7 +190,7 @@
             	</footer>
 
             	<script src="js/vendor/jquery-1.11.3.min.js"></script>
-
+				
             	<!-- plugin.js main.js cordova.js-->
             	<script src="js/plugins.js"></script>
             	<script type="text/javascript" src="cordova.js"></script>
@@ -199,9 +200,10 @@
             	<script text="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
             	<!-- ip 등 meta data 가져오기 -->
             	<script src="js/jihoon/getMetaData.js"></script>
-
+				
             	<!-- 시작 Script by Chan-->
             	<script>
+
 		//////////////
 		//bottom button Event	
 		
@@ -243,19 +245,12 @@
 
 
 	<script type="text/javascript">
+		
 		function setIFrameHeight(obj) {
 			obj.height = obj.contentWindow.document.body.scrollHeight;
 		}
-		//Diary Link 
-		$('a[name="DiaryLink"]').click(
-			function() {
-				$('frame[name="innerframe"]').attr('scrolling', 'auto');
-				/*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
-				$(window.parent.frames["innerframe"].document.location)
-				.attr("href", "diary.html");
-			});
 		//newsfeed Link 
-		$('#homeBtn').click(
+		$('#homeBtn').on('click',
 			function() {
 				$('frame[name="innerframe"]').attr('scrolling', 'auto');
 				/*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
@@ -264,15 +259,17 @@
 					//self.location = "diary.html";
 				});
 		//Diary Link 
-		$('#diaryBtn').click(
+		$('#diaryBtn').on(
+			'click',
 			function() {
 				$('frame[name="innerframe"]').attr('scrolling', 'auto');
-				/*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
-				$(window.parent.frames["innerframe"].document.location)
-				.attr("href", "diary.html");
+				//$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");
+				$(window.parent.frames["innerframe"].document.location).attr("href", "diary.html");
 					//self.location = "diary.html";
 				});
-		$('#writeDiaryBtn').click(
+				
+		$('#writeDiaryBtn').on(
+			'click',
 			function() {
 				$('frame[name="innerframe"]').attr('scrolling', 'auto');
 				/*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
@@ -289,36 +286,29 @@
 				.attr("href", "friend.html");
 			});
 		//logout Function 호출
-		$('button[id="logout"]').click(function() {
+		$('button[id="logout"]').on(
+			'click', function() {
 			$('frame[name="innerframe"]').attr('scrolling', 'auto');
 			/*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
 			window.localStorage.removeItem("userKey");
 			self.location = "index.html";
 		});
-		$(".cb-enable").click(function() {
-			var parent = $(this).parents('.switch');
-			$('.cb-disable', parent).removeClass('selected');
-			$(this).addClass('selected');
-			$('.checkbox', parent).attr('checked', true);
-		});
-		$(".cb-disable").click(function() {
-			var parent = $(this).parents('.switch');
-			$('.cb-enable', parent).removeClass('selected');
-			$(this).addClass('selected');
-			$('.checkbox', parent).attr('checked', false);
-		});
+
 		$('frame[name="innerframe"]').attr('scrolling', 'auto');
 		/*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
 		//$(window.parent.frames["innerframe"].document.location).attr("href","diary.html");
 		var users = window.localStorage.getItem("userKey");
 		console.log(users);
 		var temp = JSON.parse(users);
-		$(window.parent.frames["innerframe"].document.location).attr("href",
-			"diary.html");
+		function diaryLoad(){
+			$('frame[name="innerframe"]').attr('scrolling', 'auto');
+			$(window.parent.frames["innerframe"].document.location).attr("href", "diary.html");
+		}
 	</script>
 
 
 	<script type="text/javascript">
+	$.slidebars();
 		//Swipeleft to remove a post
 		// $("").swipe({
 		//   swipeLeft:function(event,direction,distance,duration,fingerCount){
@@ -327,8 +317,8 @@
 		//   thereshold:0
 		// });// /.swipe
 		//slidebar( sidebar )
-		$.slidebars();
-		document.addEventListener("deviceready", onDeviceReady, false);
+		
+		/*document.addEventListener("deviceready", onDeviceReady, false);
 		function onDeviceReady() {
 			//loadDiary();
 		}
@@ -357,7 +347,7 @@
 				}
 				;
 			});
-	};
+	};*/
 </script>
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 <script>

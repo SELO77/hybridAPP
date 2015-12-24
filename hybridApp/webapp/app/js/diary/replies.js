@@ -20,7 +20,7 @@
 
 
            //댓글 가져오기.
-          $(document).on("click", ".callReply", function(){
+          $(document).on("tap", ".callReply", function(){
              // setTimeout('',1000*6);
              // $('collapse').dropdown(); 
               $('deletePoint').remove();
@@ -48,7 +48,7 @@
           
 
           //[시용] 댓글달기 동적 이벤트 처리
-          $(document).on("click","#reply",function(){
+          $(document).on("tap","#reply",function(){
               var dNo=$(this).prev('input').val();
               var rContent=$(this).parent().parent().children('#replyButton').children('#insertReply'+dNo);
               $('updateDelete').remove();
@@ -60,7 +60,7 @@
                 data: JSON.stringify({
                    rUNo : user.uNo,
                    dNo : dNo,
-                   rContent : rContent.val() 
+                   rContent : rContent.val()
                 }),
                 success: function(result){
 
@@ -73,7 +73,7 @@
                           dNo : dNo
                         }), success: function(result){
                             //alert(result);
-                            alert($('#callReply'+dNo).text());
+                            //alert($('#callReply'+dNo).text());
                             $('#callReply'+dNo).text(result.replyCount);
                             //$('replyCount[id=reply'+dNo+']').text(result.replyCount);
                             $('#reply'+dNo).children().children().children().children().children('replyCount').text(result.replyCount);
@@ -103,7 +103,7 @@
 
 
         //[시용] 댓글삭제
-        $(document).on("click", ".removeReply", function(){
+        $(document).on("tap", ".removeReply", function(){
               var replySpan=$(this).parent().parent().children($('input[class="hiddenRNo"]'));
               //alert(replySpan.val());
               var diarySpan=$(this).parent().parent().children('#'+replySpan.val());
@@ -119,7 +119,7 @@
                 }),
                 success: function(result){
                   //alert(result);
-                  if(result){
+                  if(result.result){
                       $.ajax(requestIP+"replies/json/getReplyCount",{
                         method: "post",
                         crossDomain : true,
@@ -146,7 +146,7 @@
 
 
         //[시용] 댓글수정1
-        $(document).on("click", ".updateReply", function(){
+        $(document).on("tap", ".updateReply", function(){
                 var replySpan=$(this).parent().parent().children($('input[class="hiddenRNo"]'));
                 var replyNo = replySpan.val();
                 var updateReply = $(this).parent().parent().next();
@@ -161,7 +161,7 @@
                  });        
         
         //[시용] 댓글수정2
-        $(document).on("click", ".updateButton", function(){
+        $(document).on("tap", ".updateButton", function(){
                 var replyNo = $(this).prev().val();
                 //alert(replyNo);
                 var updateContent = $(this).parent().prev().children('input').val();
@@ -189,10 +189,11 @@
                             dNo: dNo
                           }),
                           success: function(result){
-                                    $('updateDelete').remove();
+                                   $('deletePoint').remove();
+                                   $('updateDelete').remove();
                                    var html = callReply(result);
                                    $('#appendReply'+dNo).after(html);
-                                   //$('.updateReply').style.display= "inline";
+                                   
                                 },
                           fail: function(){
                                   alert('댓글수정에 실패했습니다.');
