@@ -266,6 +266,12 @@
 	                  //self.location ='addBaby.html';
 	                  $(window.parent.frames["innerframe"].document.location).attr("href", "updateBaby.html");
 	               });
+	      $('#all_diary').on(
+	            'click',
+	            function() {
+	                  //self.location ='addBaby.html';
+	                  $(window.parent.frames["innerframe"].document.location).attr("href", "allDiary.html");
+	               });
 		
 		$('iframe').on('click', function() {
 			console.log('sb-site click check');
@@ -351,14 +357,14 @@
 				$(window.parent.frames["innerframe"].document.location)
 				.attr("href", "friend.html");
 			});
-		//logout Function 호출
+		/*//logout Function 호출
 		$('button[id="logout"]').on(
 			'click', function() {
 			$('frame[name="innerframe"]').attr('scrolling', 'auto');
-			/*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
+			$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");
 			window.localStorage.removeItem("userKey");
 			self.location = "index.html";
-		});
+		});*/
 
 		$('frame[name="innerframe"]').attr('scrolling', 'auto');
 		/*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
@@ -368,7 +374,7 @@
 		var temp = JSON.parse(users);
 		function diaryLoad(){
 			$('frame[name="innerframe"]').attr('scrolling', 'auto');
-			$(window.parent.frames["innerframe"].document.location).attr("href", "diary.html");
+			$(window.parent.frames["innerframe"].document.location).attr("href", "allDiary.html");
 		}
 	</script>
 
