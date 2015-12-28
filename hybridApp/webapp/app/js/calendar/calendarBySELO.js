@@ -48,7 +48,7 @@ function calTodayDate( todayDay, todayMonth ) {
 
 	if ( monthSplited[0] == "December") {
 		tempMonth = 12;
-	} else if ( monthSplited[1] == "January") {
+	} else if ( monthSplited[0] == "January") {
 		tempMonth = 1;
 	} else if ( monthSplited[0] == "February") {
 		tempMonth = 2;
@@ -126,31 +126,21 @@ $(function() {
 
 		// console.log('====document.querySelector("link[name="dailyDiaryList"]") :'+document.querySelector('link[name="dailyDiaryList"]'));
 		// var handlebarsSource = document.querySelector('link[name="dailyDiaryList"]').import.querySelector('#entry-template').text;
-		// var handlebarsTemplate = Handlebars.compile(handlebarsSource);                     	
+		// var handlebarsTemplate = Handlebars.compile(handlebarsSource);
  		// $('.remainders form ul').after( handlebarsTemplate(diaryList) );	
   		var diaryList = list.list;
   		console.log('====diaryList.length :'+diaryList.length);
 		for (i in diaryList) {
 			var content = '<li style="font-size:18px">'+diaryList[i].dContent.substr(0,30)+'<span style="color:#dddddd">...more<span></li>';
-			var eachContent ='<div class="dailyDiaryList" data-toggle="modal" data-target="#myModal"><input type="hidden" name="dNo" value='+diaryList[i].dNo+'>'+content+'</div>';
+			var eachContent ='<div class="dailyDiaryList"><input type="hidden" name="dNo" value='+diaryList[i].dNo+'>'+content+'</div>';
 			$('.remainders form #addDailyDiaryPoint').after(eachContent);
 		}
 
 		$('.dailyDiaryList').on('click', function(event) {
-			var dNoo = $(this).children('input[type="hidden"]').val();
-			console.log('click and dNo :'+dNoo);
-			$.ajax({
-				url: requestURL+'getDiary',
-				type: 'POST',
-				contentType: 'application/json',
-				dataType: 'json',
-				data: JSON.stringify({dNo: dNoo}),
-				success: function(responseData) {
-					console.log("==getDiary Success==");
-					console.log(responseData.diary.dContent);
-					$('.modal-body-dContent').text(responseData.diary.dContent);					
-				}
-			});// /.ajax
+			var dNo = $(this).children('input[type="hidden"]').val();
+			console.log('click and dNo :'+dNo);
+			window.localStorage.setItem('dNo', dNo);
+			$(window.parent.frames["innerframe"].document.location).attr("href", "getDiary.html");
 			
 		});// /clickFnc
 
