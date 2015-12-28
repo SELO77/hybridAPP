@@ -22,21 +22,24 @@
 <!-- -[지훈] friend List항목 2EA -->
 <link rel="import" href="import/friendReqList.html">
 <link rel="import" href="import/friendList.html">
+<link rel="import" href="dailyState.html">
+<link rel="stylesheet" href="css/friend_menu.css">
 
 <!-- [지훈] style 설정  -->
 <style type="text/css">
 	.modal-backdrop{
 		z-index: -1;
 	}
-	img{
+
+	/*img{
 		box-shadow: 3px 3px 10px rgba(0, 0, 0, .8);
-	}
+	}*/
 
 </style>
 
 
 </head>
-<body style="padding-top: 60px;">
+<body style="padding-top: 50px;">
 	<!--[if lt IE 8]>
 					<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 			<![endif]-->
@@ -45,57 +48,78 @@
 	<!-- [지훈] 친구 관리 화면 Start -->
 	<div class="container" style="padding-bottom: 30px; padding-left: 0px; padding-right: 0px;">
 		<div id="friend_req_list">
-			<li class="list-group-item">친구 요청 <span class="badge"
-				id="req_count">+</span>
+			<li class="list-group-item" 
+				style="padding-top: 2px; padding-bottom: 2px; margin-bottom: 5px; border-color: #e95849; background-color: #F4C6C1; color:#e95849;">
+				<small>친구 요청</small>
+				<span class="badge"	id="req_count" style="background-color: #FFFEEF; color: #e95849">+</span>
 			</li>
 		</div>
 
 		<div id="friend_list">
-			&nbsp;
+			<small>&nbsp;</small>
 			<!-- &nbsp; 지우면  <li class="list-group-item"> 상하 크기 커짐! 지우지말것! -->
-			<li class="list-group-item">내 친구 목록<span class="badge"
-				id="fr_count">+</span>
+			<li class="list-group-item" 
+				style="padding-top: 2px; padding-bottom: 2px; margin-bottom: 5px; border-color: #e95849; background-color: #F4C6C1; color:#e95849;">
+				<small>내 친구 목록</small>
+				<span class="badge"	id="fr_count" style="background-color: #FFFEEF; color: #e95849">+</span>
 			</li>
 		</div>
 
-		<div data-toggle="modal" data-target="#fr_option_modal">
-			<img src="img/add_friend.jpg" id="fr_option" style="border-radius: 50px;
-																position: fixed; bottom: 30px; right: 2%; height: 50px; width: 50px;">
+		<!-- <div data-toggle="modal" data-target="#fr_option_modal">
+			<img src="img/add_friend.jpg" id="fr_option" style="border-radius: 45px;
+																position: fixed; bottom: 30px; left: 2%; height: 45px; width: 45px;">
 			</img>
+		</div> -->
+
+		<div id='fr_menu'>
+		  	<div id="searchFriend"> <i>
+				<img src="img/search-friend.png" style="height: 45px; width: 45px; border-radius: 45px;"></img></i> </div>
+		  	<div id="denyList"> <i>
+				<img src="img/deny-friend.jpg" style="height: 45px; width: 45px; border-radius: 45px;"></img></i> 
+			</div>
+		  <div class='fmenu'>
+		    <div class='share' id='fr_toggle' data-rot='-180'>
+		      <div> <img src="img/add_friend.jpg" style="height: 45px; width : 45px; border-radius: 45px"></div> 
+		    </div>
+		  </div>
 		</div>
+	</div>
+
 
 	</div>
 
 	<!-- Modal -->
-	<div class="modal fade" id="fr_option_modal" role="dialog">
-		<div class="modal-dialog" style="position: fixed; bottom: 90px; right: 2%;">
+	<!-- <div class="modal fade" id="fr_option_modal" role="dialog">
+		<div class="modal-dialog" style="position: fixed; bottom: 90px; left: 2%;">
 
-			<!-- Modal content-->
+			
 			<div id="searchFriend">
-				<img src="img/search-friend.jpg" style="border-radius: 40px; height: 40px; width: 40px; 
-														position: relative; left: -50px; bottom: -35px;">
-				</img>
-				<div class="modal-content" style="margin-bottom: 5px;">
-					<div class="modal-body" style="padding: 0px;">
-						<span><big>&nbsp;친구 검색&nbsp;</big></span>
-					</div>
-				</div>
-			</div>
-
-
-			<div id="denyList">
-				<img src="img/deny-friend.jpg" style="border-radius: 40px; height: 40px; width: 40px; 
-														position: relative; left: -50px; bottom: -33px;">
-				</img>
+				
 				<div class="modal-content">
 					<div class="modal-body" style="padding: 0px;">
-						<span style="text-height: 15px"><big>&nbsp;거부 목록&nbsp;</big></span>
+						<img src="img/search-friend.png" style="border-radius: 5px; height: 35px; width: 35px; 
+														position: relative;">
+						</img>
+						<span style="text-align: center">&nbsp;친구 검색&nbsp;&nbsp;</span>
 					</div>
 				</div>
 			</div>
+					<small><br></small>
+
+			<div id="denyList">
+				<div class="modal-content">
+					<div class="modal-body" style="padding: 0px;">
+					<img src="img/deny-friend.jpg" style="border-radius: 5px; height: 35px; width: 35px; 
+														position: relative;">
+					</img>
+						<span style="text-align: center">&nbsp;차단 목록&nbsp;&nbsp;</span>
+					</div>
+				</div>
+			</div>			
 		</div>
-	</div>
- 
+	</div> -->
+
+
 	
 	<!-- [지훈] 친구 관리 화면 End -->
 
@@ -115,6 +139,8 @@
 	<!-- 라이브러리 추가는 아래 형식으로 하시오 -->
 	<script src="js/handlebars-v4.0.5.js"></script>
 	<!-- 스크립트 작성 부분입니다 -->
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script> 
+
 	<script>
 		//이 곳을 벗어나 스크립트를 작성하지마시오.
 
@@ -126,10 +152,31 @@
 
 		var user = getMetaData("user");
 		var requestIP = getMetaData('ip');
+		var photoIP = getMetaData('photoIP');
+
+		//[지훈] 수신거부 목록 동적 이벤트 처리
+		$(document).on("click", "#denyList", function(){
+			$('frame[name="innerframe"]').attr('scrolling', 'auto');
+			$(window.parent.frames["innerframe"].document.location)
+				.attr("href", "denyFriend.html");
+		});
+
+		//[지훈] 친구 검색 동적 이벤트 처리
+		$(document).on("click", "#searchFriend", function(){
+			$('frame[name="innerframe"]').attr('scrolling', 'auto');
+			$(window.parent.frames["innerframe"].document.location)
+				.attr("href", "searchFriend.html");
+		});
+		
 
 		//친구요청, 목록 count 동적 이벤트 처리를 위한 변수
 		var frReqCount;
 		var frCount;
+
+		var ds_link = document
+				.querySelector('link[href="dailyState.html"]');
+		var htmltemp = Handlebars.compile(ds_link.import.querySelector('#ds_test').text);
+			$('#ds_modal_content').after(htmltemp);
 
 		$.ajax(requestIP+"friend/json/getFriendList", {
 			method : "post",
@@ -143,6 +190,8 @@
 
 				frReqCount = result.frReqCount;
 				frCount = result.frCount;
+
+				result.photoIP = photoIP;
 
 				$("#req_count").text(frReqCount);
 				$("#fr_count").text(frCount);
@@ -158,39 +207,36 @@
 
 				/*친구 목록 Handlebars 사용부분 */
 				var frSource = frTemp.querySelector('#friend_template').text;
-				var reqTemplate = Handlebars.compile(frSource);
-				var frHtml = reqTemplate(result);
+				var frTemplate = Handlebars.compile(frSource);
+				var frHtml = frTemplate(result);
 				$('#friend_list').append(frHtml);
 			}
 		});
 
-		//[지훈] 친구 검색 동적 이벤트 처리
-		$(document).on("click", "#searchFriend", function(){
-			$('frame[name="innerframe"]').attr('scrolling', 'auto');
-			$(window.parent.frames["innerframe"].document.location)
-				.attr("href", "searchFriend.html");
-		});
 
-		//[지훈] 수신거부 목록 동적 이벤트 처리
-		$(document).on("click", "#denyList", function(){
-			$('frame[name="innerframe"]').attr('scrolling', 'auto');
-			$(window.parent.frames["innerframe"].document.location)
-				.attr("href", "denyFriend.html");
-		});
+
+		//모달 테스트
+		/*$(document).on("load", "#dailyState_modal", function(){
+		
+			var ds_link = document
+				.querySelector('link[href="dailyState.html"]');
+
+			$('#ds_modal_content').append(ds_link.import.text);
+
+		});*/
+
+		
 
 		//[지훈]친구 일기보기 동적 이벤트 처리
 		$(document).on("click", ".friendDiary", function(){
 
 			var diaryUser = $(this).parent().children('#frNo').val();			
 			window.localStorage.setItem("frDiaryKey", diaryUser);
-	
 
 			$('frame[name="innerframe"]').attr('scrolling', 'auto');
 			$(window.parent.frames["innerframe"].document.location)
 				.attr("href", "friendDiary.html");
 
-				
-			
 		});
 
 
@@ -251,7 +297,6 @@
 			});
 		});
 
-
 		//[지훈]친구 차단 동적 이벤트 처리
 		$(document).on("click", ".denyFriend", function(){
 
@@ -276,11 +321,42 @@
 				}
 			});
 		});
-
-
-
-
 	</script>
+
+	<!-- [지훈] RotateMenu Script 시작 -->
+	<script>
+	$(document).ready(function(ev) {
+	  var toggle = $('#fr_toggle');
+	  var menu = $('#fr_menu');
+	  var rot;
+	  
+	  $('#fr_toggle').on('click', function(ev) {
+	    rot = parseInt($(this).data('rot')) + 180;
+	    menu.css('transform', 'rotate(' + rot + 'deg)');
+	    menu.css('webkitTransform', 'rotate(' + rot + 'deg)');
+	    if ((rot / 180) % 2 == 0) {
+	      //Moving in
+	      toggle.parent().addClass('fr_active');
+	      toggle.addClass('close');
+	    } else {
+	      //Moving Out
+	      toggle.parent().removeClass('fr_active');
+	      toggle.removeClass('close');
+	    }
+	    $(this).data('rot', rot);
+	  });
+
+	  menu.on('transitionend webkitTransitionEnd oTransitionEnd', function() {
+	    if ((rot / 180) % 2 == 0) {
+	      $('#fr_menu div i').addClass('fr_animate');
+	    } else {
+	      $('#fr_menu div i').removeClass('fr_animate');
+	    }
+	  });
+	  
+	});
+	</script>
+	<!-- [지훈] RotateMenu Script 끝 -->
 	<!-- 스크립트 작성 부분 끝입니다. -->
 
 	<script>

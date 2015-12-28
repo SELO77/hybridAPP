@@ -21,11 +21,11 @@
 <!-- 아래 부분은 CSS 추가 부분 입니다.-->
 <!-- -[지훈] friendSearch List항목 -->
 <link rel="import" href="import/friendDenyList.html">
-
+<link rel="stylesheet" href="css/friend_menu.css">
 
 
 </head>
-<body style="padding-top: 60px;">
+<body style="padding-top: 50px;">
 	<!--[if lt IE 8]>
 					<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 			<![endif]-->
@@ -33,12 +33,29 @@
 	<!-- HTML 코드 작성 부분 입니다 -->
 
 	<!-- [지훈] 회원목록 화면 Start -->
-	<div class="container" style="padding-bottom: 90px; padding-left: 5px; padding-right: 5px;">
+	<div class="container" style="padding-bottom: 30px; padding-left: 0px; padding-right: 0px;">
 		<div id="denyList">
-			<li class="list-group-item">수신거부 목록
+			<li class="list-group-item"
+				style="padding-top: 2px; padding-bottom: 2px; margin-bottom: 5px; border-color: #e95849; background-color: #F4C6C1; color:#e95849;">
+			수신거부 목록
 			</li>
 		</div>
+
+		<div id='fr_menu'>
+		  	<div id="searchFriend"> <i>
+				<img src="img/search-friend.png" style="height: 45px; width: 45px; border-radius: 45px;"></img></i> </div>
+		  	<div id="denyList"> <i>
+				<img src="img/deny-friend.jpg" style="height: 45px; width: 45px; border-radius: 45px;"></img></i> 
+			</div>
+		  <div class='fmenu'>
+		    <div class='share' id='fr_toggle' data-rot='-180'>
+		      <div> <img src="img/add_friend.jpg" style="height: 45px; width : 45px; border-radius: 45px"></div> 
+		    </div>
+		  </div>
+		</div>
 	</div>
+
+	
 	
 	<!-- [지훈] 회원목록 화면 End -->
 
@@ -67,6 +84,20 @@
 
 		var user = getMetaData("user");
 		var requestIP = getMetaData('ip');
+
+		//[지훈] 수신거부 목록 동적 이벤트 처리
+		$(document).on("click", "#denyList", function(){
+			$('frame[name="innerframe"]').attr('scrolling', 'auto');
+			$(window.parent.frames["innerframe"].document.location)
+				.attr("href", "denyFriend.html");
+		});
+
+		//[지훈] 친구 검색 동적 이벤트 처리
+		$(document).on("click", "#searchFriend", function(){
+			$('frame[name="innerframe"]').attr('scrolling', 'auto');
+			$(window.parent.frames["innerframe"].document.location)
+				.attr("href", "searchFriend.html");
+		});
 
 		$.ajax(requestIP+"friend/json/getFriendDenyList", {
 			method : "post",
@@ -107,9 +138,41 @@
 					}
 			});
 		});
-
-
 	</script>
+	<!-- [지훈] RotateMenu Script 시작 -->
+	<script>
+	$(document).ready(function(ev) {
+	  var toggle = $('#fr_toggle');
+	  var menu = $('#fr_menu');
+	  var rot;
+	  
+	  $('#fr_toggle').on('click', function(ev) {
+	    rot = parseInt($(this).data('rot')) + 180;
+	    menu.css('transform', 'rotate(' + rot + 'deg)');
+	    menu.css('webkitTransform', 'rotate(' + rot + 'deg)');
+	    if ((rot / 180) % 2 == 0) {
+	      //Moving in
+	      toggle.parent().addClass('fr_active');
+	      toggle.addClass('close');
+	    } else {
+	      //Moving Out
+	      toggle.parent().removeClass('fr_active');
+	      toggle.removeClass('close');
+	    }
+	    $(this).data('rot', rot);
+	  });
+
+	  menu.on('transitionend webkitTransitionEnd oTransitionEnd', function() {
+	    if ((rot / 180) % 2 == 0) {
+	      $('#fr_menu div i').addClass('fr_animate');
+	    } else {
+	      $('#fr_menu div i').removeClass('fr_animate');
+	    }
+	  });
+	  
+	});
+	</script>
+	<!-- [지훈] RotateMenu Script 끝 -->
 	<!-- 스크립트 작성 부분 끝입니다. -->
 
 	<script>
