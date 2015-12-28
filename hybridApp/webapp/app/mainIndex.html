@@ -174,17 +174,18 @@
 
 
 	            	<!-- [지훈] ratate menu start-->
-		            <div id='ss_menu'>
-					  <div id="warning"> <i><img src="img/warning.png" style="height: 45px; width : 45px; border-radius: 45px"></img></i> </div>
-					  <div id="all_diary"> <i><img src="img/all_diary.png" style="height: 45px; width : 45px; border-radius: 45px"></img></i> </div>
-					  <div id="user_info"> <i><img src="img/user_info.png" style="height: 45px; width : 45px; border-radius: 45px"></img></i> </div>
-					  <div class='menu'>
-					    <div class='share' id='ss_toggle' data-rot='180'>
-					      <div> <img src="img/option.png" style="height: 45px; width : 45px; border-radius: 45px"></div> </div>
-					    </div>
-					  </div>
+		            <div id='ss_menu' data-rot='180'>
+						<div id="warning"> <i><img src="img/warning.png" style="height: 45px; width : 45px; border-radius: 45px"></img></i> </div>
+						<div id="all_diary"> <i><img src="img/all_diary.png" style="height: 45px; width : 45px; border-radius: 45px"></img></i></div>
+						<div id="user_info"> <i><img src="img/user_info.png" style="height: 45px; width : 45px; border-radius: 45px"></img></i></div>
+						
+						<div class='menu'>
+							<div class='share' id='ss_toggle'>
+							<div> <img src="img/option.png" style="height: 45px; width : 45px; border-radius: 45px"></div> </div>
+						</div>
 					</div>
 					<!-- [지훈] ratate menu end-->
+					</div>
 					
 					
 
@@ -226,6 +227,39 @@
             	<script text="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
             	<!-- ip 등 meta data 가져오기 -->
             	<script src="js/jihoon/getMetaData.js"></script>
+
+
+            	<!-- [지훈] RotateMenu Script 시작 -->
+				<script>
+				$(document).ready(function(ev) {
+				  var rot;
+				  
+				  $('#ss_menu').on('click', function(ev) {
+				    rot = parseInt($(this).data('rot'));
+				    $('#ss_menu').css('transform', 'rotate(' + rot + 'deg)');
+				    $('#ss_menu').css('webkitTransform', 'rotate(' + rot + 'deg)');
+				    if ((rot / 180) % 2 == 0) {
+				      //Moving in
+				      $('#ss_toggle').parent().addClass('ss_active');
+				      $('#ss_toggle').addClass('close');
+				    } else {
+				      //Moving Out
+				      $('#ss_toggle').parent().removeClass('ss_active');
+				      $('#ss_toggle').removeClass('close');
+				    }
+				    $(this).data('rot', rot);
+				  });
+
+				  $('#ss_menu').on('transitionend webkitTransitionEnd oTransitionEnd', function() {
+				    if ((rot / 180) % 2 == 0) {
+				      $('#ss_menu div i').addClass('ss_animate');
+				    } else {
+				      $('#ss_menu div i').removeClass('ss_animate');
+				    }
+				  });
+				});
+				</script>
+				<!-- [지훈] RotateMenu Script 끝 -->
 				
             	<!-- 시작 Script by Chan-->
             	<script>
