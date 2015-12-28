@@ -1,0 +1,249 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<!-- -->
+<title>DodamDodam</title>
+<meta name="description" content="">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1 minimum-scale=1, maximum-scale=1, user-scalable=no">
+<!-- 모바일 친화적 뷰 설정 -->
+
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!-- Place favicon.ico in the root directory -->
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+<link rel="stylesheet" href="css/__main.css">
+<link rel="stylesheet" href="css/slidebars.css">
+<!-- [SELO77] css -->
+<style>
+#uploadUImage {
+	width: 100px;
+	height: 100px;
+	margin-right: 10px;
+	position:relative;top:60px;
+}
+
+#uploadBImage {
+	width: 100px;
+	height: 100px;
+	margin-right: 10px;
+	position:relative;top:70px;
+}
+
+.form-group span {
+	font-size: 14px;
+}
+</style>
+</head>
+<body style="padding-bottom: 110px;">
+	<!--[if lt IE 8]>
+						<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+						<![endif]-->
+
+	<div style="padding: 0px 40px;">
+		<form role="form">
+
+			<div class="form-group" align="center">
+				<input type="file" id="uPhoto" name="bPhoto" style="display: none" accpet="image/*;" capture="camera">
+				<div id="uploadUImage" onclick=$("#uPhoto").click()></div>
+			</div>
+
+			<div class="form-group">
+				<span style="position:relative;top:70px"><icon class="fa fa-envelope"></icon>&nbsp;이메일</span>
+				<span style="position:relative;left:47px;top:70px" id="email"></span>
+			</div>
+
+			<div class="form-group">
+				<span style="position:relative;top:70px"><icon class="fa fa-user"></icon>&nbsp;닉네임</span>
+				<span style="position:relative;left:50px;top:70px" id="nickname"></span>
+			</div>
+
+			<div class="form-group" >
+				<span style="position:relative;top:70px"><icon class="fa fa-calendar-check-o"></icon>&nbsp;가입일자</span>
+				<span style="position:relative;left:33px;top:70px" id="reg_date"></span>
+			</div>		
+
+
+			<div class="form-group" align="center">
+				<input type="file" id="bPhoto" name="bPhoto" style="display: none" accpet="image/*;" capture="camera">
+				<div id="uploadBImage" onclick=$("#bPhoto").click()></div>
+			</div>
+
+			<div class="form-group">
+				<span style="position:relative;top:75px"><icon class="fa fa-envelope"></icon>&nbsp;이름</span>
+				<span style="position:relative;left:43px;top:75px" id="bName"></span>
+			</div>
+
+			<div class="form-group">
+				<span style="position:relative;top:75px"><icon class="fa fa-user"></icon>&nbsp;생년월일</span>
+				<span style="position:relative;left:20px;top:75px" id="bBirth"></span>
+			</div>
+
+			<div class="form-group" align="center">
+				<button type="button" class="btn btn-primary" style="position:relative;top:75px" id="uUpdate">회원정보 수정</button>
+				<button type="button" class="btn btn-primary" style="position:relative;top:75px" id="bUpdate">아이정보 수정</button>
+			</div>
+
+			<div class="form-group" align="center">
+				<button type="button" class="btn btn-primary" style="position:relative;top:75px" id="logout">로그아웃</button>
+			</div>			
+
+		</form>
+
+	</div>
+
+	<!-- 메인 html끝 [진영]-->
+
+	<script src="js/vendor/jquery-1.11.3.min.js"></script>
+
+
+
+
+
+	<!-- script plug in start -->
+	<script src="js/vendor/modernizr-2.8.3.min.js"></script>
+
+	<!-- [근한] 파일업로드를 위한 js파일 추가 -->
+	<script src="js/vendor/jquery.ui.widget.js"></script>
+	<script src="js/jquery.fileupload.js"></script>
+	<!-- /[근한] 파일업로드를 위한 js파일 추가 끝 -->
+
+	<!-- ip 등 meta data 가져오기 -->
+	<script src="js/jihoon/getMetaData.js"></script>
+
+
+	<script>
+
+
+				var user=getMetaData('user');
+				var responseURL="mainIndex.html";
+				var uUpdatePage="userinfo.html";
+				var bUpdatePage="updateBaby.html";
+				var userImage="";
+				var babyImage="";
+				var getuPhoto="";
+				var getbPhoto="";
+
+
+				$("#uUpdate").on("click",function(){
+					$(window.parent.frames["innerframe"].document.location).attr("href","userinfo.html");
+				});
+
+
+				$("#bUpdate").on("click",function(){
+					$(window.parent.frames["innerframe"].document.location).attr("href","updateBaby.html");
+				});
+
+
+				$("#logout").on("click",function(){
+					$('frame[name="innerframe"]').attr('scrolling','auto');
+					window.localStorage.removeItem("userKey");
+					self.location="index.html";
+				});
+
+
+				document.addEventListener("backbutton", onBackKeyDown, false);
+				function onBackKeyDown(){
+					 testLogoutSheet();
+				}
+
+				//Action sheet
+
+				function testLogoutSheet() {
+					var options = {
+						'androidTheme' : window.plugins.actionsheet.ANDROID_THEMES.THEME_HOLO_LIGHT,
+						'title': 'Are you sure to close it?',
+						'buttonLabels': ['No','Yes'],
+						'androidEnableCancelButton' : true,
+						'winphoneEnableCancelButton' : true,
+							//'addCancelButtonWithLabel': 'Cancel'
+						};
+								window.plugins.actionsheet.show(options, callback);
+					}
+
+					var callback = function(buttonIndex) {
+						setTimeout(function() {
+							if (buttonIndex == 2) {
+								navigator.app.exitApp();
+							};
+						});
+					};
+
+
+					$.ajax({
+						url:getMetaData("ip")+"user/json/getUser",
+						method:"POST",
+						contentType:"application/json",
+						dataType:"json",
+						data:JSON.stringify({uNo:user.uNo}),
+						success:function(result){
+							console.log(result);
+
+							if(result.user.uPic=="default.jpg") {
+								getuPhoto="http://192.168.1.4:8080/resources/img/user/back.jpg";
+							}
+
+							else if(result.user.uPic!=null && result.user.uPic!="") {
+								getuPhoto="http://192.168.1.4:8080/resources/img/user/"+result.user.uPic;
+							}
+
+							$("#email").text(result.user.mail);
+							$("#nickname").text(result.user.nickname);
+							$("#reg_date").text(result.user.regDate);
+
+							var img = $("<img />");
+							img.attr("name",getuPhoto.replace("img/",""));
+							img.attr("id","multi");
+							img.attr("style", "width:100px; height:100px; margin-right:10px; margin-top: 10px;");
+							img.attr("src",getuPhoto);
+							img.attr("class","img-rounded");
+
+							$("#uploadUImage").append(img);
+						}					
+					});
+
+
+					$.ajax({
+						url:getMetaData("ip")+"baby/json/getUNoBaby",
+						method:"POST",
+						contentType:"application/json",
+						dataType:"json",
+						data:JSON.stringify({uNo:user.uNo}),
+						success:function(result){
+							console.log(result);
+
+						    if(result.baby.bPhoto==null) {
+								getbPhoto="http://192.168.1.4:8080/resources/img/baby/baby1.jpg";
+							}
+
+							else if(result.baby.bPhoto!=null && result.baby.bPhoto!="") {
+								getbPhoto="http://192.168.1.4:8080/resources/img/baby/"+result.baby.bPhoto;
+							}
+
+							$("#bName").text(result.baby.bName);
+							$("#bBirth").text(result.baby.bBirth);
+
+							var img = $("<img />");
+							img.attr("name",getbPhoto.replace("img/",""));
+							img.attr("id","multi");
+							img.attr("style", "width:100px; height:100px; margin-right:10px; margin-top: 10px;");
+							img.attr("src",getbPhoto);
+							img.attr("class","img-rounded");
+
+							$("#uploadBImage").append(img);
+						}					
+					});					
+
+
+
+
+
+
+
+		</script>
+
+	</div>
+</body>
+</html>

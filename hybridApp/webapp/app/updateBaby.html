@@ -282,10 +282,10 @@
 												console.log(user.uNo);
 												//유저가 등록한 아이가 없을 떄
 												if(result.resultCode==0 ){
-													
+												
+												$("#btn01").text("등록하기");												
+	
 												$("#btn01").on("click",function() {
-
-													$("#btn01").text("등록하기");
 								
 													if($("#bName").val()!=null && $("#bName").val()!="") {
 														fncAddJsonDodam();

@@ -189,11 +189,11 @@
 				success:function(result){
 					console.log(result);
 
-					if(result.user.uPic==null) {
-						getuPhoto="img/siba.jpg"
+					if(result.user.uPic=="default.jpg") {
+						getuPhoto="http://192.168.1.4:8080/resources/img/user/back.jpg"
 					}
 
-					if(result.user.uPic!=null) {
+					if(result.user.uPic!="default.jpg") {
 						getuPhoto="http://192.168.1.4:8080/resources/img/user/"+result.user.uPic;
 					}
 
