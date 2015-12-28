@@ -154,29 +154,14 @@
 		var requestIP = getMetaData('ip');
 		var photoIP = getMetaData('photoIP');
 
-		//[지훈] 수신거부 목록 동적 이벤트 처리
-		$(document).on("click", "#denyList", function(){
-			$('frame[name="innerframe"]').attr('scrolling', 'auto');
-			$(window.parent.frames["innerframe"].document.location)
-				.attr("href", "denyFriend.html");
-		});
-
-		//[지훈] 친구 검색 동적 이벤트 처리
-		$(document).on("click", "#searchFriend", function(){
-			$('frame[name="innerframe"]').attr('scrolling', 'auto');
-			$(window.parent.frames["innerframe"].document.location)
-				.attr("href", "searchFriend.html");
-		});
+		
 		
 
 		//친구요청, 목록 count 동적 이벤트 처리를 위한 변수
 		var frReqCount;
 		var frCount;
 
-		var ds_link = document
-				.querySelector('link[href="dailyState.html"]');
-		var htmltemp = Handlebars.compile(ds_link.import.querySelector('#ds_test').text);
-			$('#ds_modal_content').after(htmltemp);
+		
 
 		$.ajax(requestIP+"friend/json/getFriendList", {
 			method : "post",
@@ -224,6 +209,21 @@
 			$('#ds_modal_content').append(ds_link.import.text);
 
 		});*/
+
+		//[지훈] 수신거부 목록 동적 이벤트 처리
+		$(document).on("click", "#denyList", function(){
+			$('frame[name="innerframe"]').attr('scrolling', 'auto');
+			$(window.parent.frames["innerframe"].document.location)
+				.attr("href", "denyFriend.html");
+		});
+
+		//[지훈] 친구 검색 동적 이벤트 처리
+		$(document).on("click", "#searchFriend", function(){
+			$('frame[name="innerframe"]').attr('scrolling', 'auto');
+			$(window.parent.frames["innerframe"].document.location)
+				.attr("href", "searchFriend.html");
+		});
+		
 
 		
 
@@ -360,11 +360,6 @@
 	<!-- 스크립트 작성 부분 끝입니다. -->
 
 	<script>
-		document.addEventListener("backbutton", onBackKeyDown, false);
-		function onBackKeyDown() {
-			//window.plugins.toast.show('Really Exit?'.'short'.'center',)
-			testLogoutSheet();
-		}
 		//Action sheet
 		function testLogoutSheet() {
 			var options = {
