@@ -151,7 +151,7 @@
 					</section>
 
 					<!-- Modal -->
-					<section>
+					<!-- <section>
 						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="border:solid">
 							<div class="modal-dialog" role="document">
 								<div class="modal-content" style="margin-top:60px">
@@ -167,13 +167,13 @@
 									</div>
 									<div class="modal-footer" style="background-color:#FFFEEF;font-weight:bold;border:solid">
 										<button type="button" class="btn btn-default" data-dismiss="modal" style="background-color:#FFF590;font-weight:bold;border:solid">Close</button>
-										<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+										<button type="button" class="btn btn-primary">Save changes</button>
 									</div>
 								</div>
 							</div>
 						</div>
 					</section>
-
+					 -->
 
 
 					<script src="js/vendor/jquery-1.11.3.min.js"></script>
@@ -227,33 +227,6 @@
 	</script>
 	<!-- 스크립트 작성 부분 끝입니다. -->
 
-	<script>
-		document.addEventListener("backbutton", onBackKeyDown, false);
-		function onBackKeyDown() {
-			//window.plugins.toast.show('Really Exit?'.'short'.'center',)
-			testLogoutSheet();
-		}
-		//Action sheet
-		function testLogoutSheet() {
-			var options = {
-				'androidTheme' : window.plugins.actionsheet.ANDROID_THEMES.THEME_HOLO_LIGHT,
-				'title' : 'Are you sure to close it?',
-				'buttonLabels' : [ 'No', 'Yes' ],
-				'androidEnableCancelButton' : true,
-				'winphoneEnableCancelButton' : true,
-			//'addCancelButtonWithLabel': 'Cancel'
-		};
-		window.plugins.actionsheet.show(options, callback);
-	}
-
-	var callback = function(buttonIndex) {
-		setTimeout(function() {
-				//alert('button index clicked: ' + buttonIndex);
-				if (buttonIndex == 2) {
-					navigator.app.exitApp();
-				}				
-			});
-	};
-</script>
+	
 </body>
 </html>

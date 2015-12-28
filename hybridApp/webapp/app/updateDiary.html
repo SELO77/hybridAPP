@@ -102,7 +102,7 @@
                  dNo : dNo
               }),
                 success:function(result){
-                  var diary = result.diary;
+                  var diary = result.diaries[0];
                   $('textarea').val(diary.dContent);
                   //alert(diary.dPic);
                   for(var i =0; i<diary.dPic.split(",").length; i++){
