@@ -4,132 +4,156 @@ function loadDiary(args) {
 
 	//alert(temp.uNo);
 	$
-			.ajax(
-					requestURL + args,
-					{
-						method : "post",
-						crossDomain : true,
-						dataType : "json",
-						contentType : "application/json; charset=UTF-8",
-						data : JSON.stringify({
-							uNo : user.uNo
-						}),
-						success : function(result) {
+	.ajax(
+		requestURL + args,
+		{
+			method : "post",
+			crossDomain : true,
+			dataType : "json",
+			contentType : "application/json; charset=UTF-8",
+			data : JSON.stringify({
+				uNo : user.uNo
+			}),
+			success : function(result) {
 							//alert("Ajax success");
 							var temp = diaryLink.import;
 							console.log(result);
 							var source = temp.querySelector('#entry-template').text;
 							Handlebars
-									.registerHelper(
-											'userCheck',
-											function(uNo, dNo) {
+							.registerHelper(
+								'userCheck',
+								function(uNo, dNo) {
 												//alert(rUNo);
 												var userhtml = "<div class='dropdown pull-right' style='padding-right: 20px;padding-top: 10px;'><i class='fa fa-cog'data-toggle='dropdown'/><div class='dropdown-menu' role='menu' aria-labelledby='dLabel' style='padding-top: 0px;padding-bottom: 0px;'><p style='margin-bottom: 0px;'><input type='hidden' value='"
-														+ dNo
-														+ "'><updateDiary style='height:transparent'><button type='button' class='btn btn-default'  style='width:100%'><a>수정하기</a></button></updateDiary></p><p style='margin-bottom: 0px;'><input type='hidden' value='"
-														+ dNo
-														+ "'><deleteDiary style='height:transparent'><button type='button' class='btn btn-default' style='width:100%'><a>삭제하기</a></button></deleteDiary></p></div></div>";
+												+ dNo
+												+ "'><updateDiary style='height:transparent'><button type='button' class='btn btn-default'  style='width:100%'><a>수정하기</a></button></updateDiary></p><p style='margin-bottom: 0px;'><input type='hidden' value='"
+												+ dNo
+												+ "'><deleteDiary style='height:transparent'><button type='button' class='btn btn-default' style='width:100%'><a>삭제하기</a></button></deleteDiary></p></div></div>";
 
 												if (uNo == user.uNo) {
 													return userhtml;
 												} else {
 													return '';
 												}
-											});
+											});//end of helper userCheck
 
-							Handlebars
-									.registerHelper(
-											'likeCheck',
-											function(likeList) {
+
+							// [SELO77]  dContent에서 Tag효과 주는 로직 추가.
+							Handlebars.registerHelper('dContentForTag', function (dContent) {
+								console.log('== dContent Parsing for HashTag == dContent:'+dContent);
+
+								var startTagIndex = dContent.indexOf("#");
+								var temp = dContent.slice(startTagIndex);
+								var endTagIndex = temp.indexOf(" ");
+
+								var hashTags = temp.slice(0, endTagIndex);
+								console.log('hashTags :'+hashTags);
+
+								var hashTagList = hashTags.split("#");
+								hashTagList.splice(0, 1);
+
+								for( i in hashTagList){
+									var temp = '<strong class="hashTag">#'+hashTagList[i]+'</strong>';
+									hashTagList[i] = temp;
+								}
+
+								return dContent.replace(hashTags,hashTagList.toString().replace(/,/gi,"")); 
+}); // /Handlebars.registerHelper('dContentForTag'		
+
+Handlebars
+.registerHelper(
+	'likeCheck',
+	function(likeList) {
 												//alert(rUNo);
 												var likehtml = "<insertLike><a><i class='fa fa-thumbs-o-up'/> 좋아요</a></insertLike>";
 
 												for (var i = 0; i < likeList.length; i++) {
 													if (likeList[i].uNo == user.uNo
-															&& likeList[i].lState == 1) {
+														&& likeList[i].lState == 1) {
 														likehtml = "<deleteLike><a><i class='fa fa-thumbs-o-up'/> 좋아요취소</a></deleteLike>";
-													}
 												}
-												return likehtml;
-											});
+											}
+											return likehtml;
+										});
 
-							Handlebars
-									.registerHelper(
-											'picCheck',
-											function(dPics) {
+Handlebars
+.registerHelper(
+	'picCheck',
+	function(dPics) {
 												//alert(rUNo);
 												var returnHtml = ' ';
 												if (dPics.length == 0
-														|| dPics[0].trim() == '') {
+													|| dPics[0].trim() == '') {
 													return returnHtml;
-												}
-												if (dPics.length == 1) {
-													returnHtml = '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'
-															+ dPics[0]
-															+ '" style="width: 100%; height:auto; margin: 0">';
-													return returnHtml;
-												} else {
-													if (dPics.length % 2 == 0) {
+											}
+											if (dPics.length == 1) {
+												returnHtml = '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'
+												+ dPics[0]
+												+ '" style="width: 100%; height:auto; margin: 0">';
+												return returnHtml;
+											} else {
+												if (dPics.length % 2 == 0) {
 
-														for (var i = 0; i < dPics.length; i++) {
-															returnHtml += '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'
-																	+ dPics[i]
-																	+ '" style="width: 50%; height:auto; padding: 3px; ">';
-														}
-
-													} else {
+													for (var i = 0; i < dPics.length; i++) {
 														returnHtml += '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'
-																+ dPics[0]
-																+ '" style="width: 100%; height:auto;">';
-
-														for (var i = 1; i < dPics.length; i++) {
-															returnHtml += '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'
-																	+ dPics[i]
-																	+ '" style="width: 50%; height:auto; padding: 3px">';
-														}
+														+ dPics[i]
+														+ '" style="width: 50%; height:auto; padding: 3px; ">';
 													}
-													return returnHtml;
+
+												} else {
+													returnHtml += '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'
+													+ dPics[0]
+													+ '" style="width: 100%; height:auto;">';
+
+													for (var i = 1; i < dPics.length; i++) {
+														returnHtml += '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'
+														+ dPics[i]
+														+ '" style="width: 50%; height:auto; padding: 3px">';
+													}
 												}
-											});
-							var template = Handlebars.compile(source);
-							var html = template(result);
+												return returnHtml;
+											}
+										});
+var template = Handlebars.compile(source);
+var html = template(result);
 							//$('#diaryHandle').append(html);
 							$('#diaryHandle').after(html);
 							//}
-						}
+						}//end of ajax
 					});
-}
+}//end of loadDiary
+
 //다이어리 하나만 보기
 function getDiary(args) {
 	//alert('여기는 loadDiary');
 
 	//alert(temp.uNo);
 	$
-			.ajax(
-					requestURL + 'getDiary',
-					{
-						method : "post",
-						crossDomain : true,
-						dataType : "json",
-						contentType : "application/json; charset=UTF-8",
-						data : JSON.stringify({
-							dNo : args
-						}),
-						success : function(result) {
+	.ajax(
+		requestURL + 'getDiary',
+		{
+			method : "post",
+			crossDomain : true,
+			dataType : "json",
+			contentType : "application/json; charset=UTF-8",
+			data : JSON.stringify({
+				dNo : args
+			}),
+			success : function(result) {
 							//alert("Ajax success");
 							var temp = diaryLink.import;
 							console.log(result);
 							var source = temp.querySelector('#entry-template').text;
 							Handlebars
-									.registerHelper(
-											'userCheck',
-											function(uNo, dNo) {
+							.registerHelper(
+								'userCheck',
+								function(uNo, dNo) {
 												//alert(rUNo);
 												var userhtml = "<div class='dropdown pull-right' style='padding-right: 20px;padding-top: 10px;'><i class='fa fa-cog'data-toggle='dropdown'/><div class='dropdown-menu' role='menu' aria-labelledby='dLabel' style='padding-top: 0px;padding-bottom: 0px;'><p style='margin-bottom: 0px;'><input type='hidden' value='"
-														+ dNo
-														+ "'><updateDiary style='height:transparent'><button type='button' class='btn btn-default'  style='width:100%'><a>수정하기</a></button></updateDiary></p><p style='margin-bottom: 0px;'><input type='hidden' value='"
-														+ dNo
-														+ "'><deleteDiary style='height:transparent'><button type='button' class='btn btn-default' style='width:100%'><a>삭제하기</a></button></deleteDiary></p></div></div>";
+												+ dNo
+												+ "'><updateDiary style='height:transparent'><button type='button' class='btn btn-default'  style='width:100%'><a>수정하기</a></button></updateDiary></p><p style='margin-bottom: 0px;'><input type='hidden' value='"
+												+ dNo
+												+ "'><deleteDiary style='height:transparent'><button type='button' class='btn btn-default' style='width:100%'><a>삭제하기</a></button></deleteDiary></p></div></div>";
 
 												if (uNo == user.uNo) {
 													return userhtml;
@@ -139,61 +163,61 @@ function getDiary(args) {
 											});
 
 							Handlebars
-									.registerHelper(
-											'likeCheck',
-											function(likeList) {
+							.registerHelper(
+								'likeCheck',
+								function(likeList) {
 												//alert(rUNo);
 												var likehtml = "<insertLike><a><i class='fa fa-thumbs-o-up'/> 좋아요</a></insertLike>";
 
 												for (var i = 0; i < likeList.length; i++) {
 													if (likeList[i].uNo == user.uNo
-															&& likeList[i].lState == 1) {
+														&& likeList[i].lState == 1) {
 														likehtml = "<deleteLike><a><i class='fa fa-thumbs-o-up'/> 좋아요취소</a></deleteLike>";
-													}
 												}
-												return likehtml;
-											});
+											}
+											return likehtml;
+										});
 
 							Handlebars
-									.registerHelper(
-											'picCheck',
-											function(dPics) {
+							.registerHelper(
+								'picCheck',
+								function(dPics) {
 												//alert(rUNo);
 												var returnHtml = ' ';
 												if (dPics.length == 0
-														|| dPics[0].trim() == '') {
+													|| dPics[0].trim() == '') {
 													return returnHtml;
-												}
-												if (dPics.length == 1) {
-													returnHtml = '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'
-															+ dPics[0]
-															+ '" style="width: 100%; height:auto; margin: 0">';
-													return returnHtml;
-												} else {
-													if (dPics.length % 2 == 0) {
+											}
+											if (dPics.length == 1) {
+												returnHtml = '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'
+												+ dPics[0]
+												+ '" style="width: 100%; height:auto; margin: 0">';
+												return returnHtml;
+											} else {
+												if (dPics.length % 2 == 0) {
 
-														for (var i = 0; i < dPics.length; i++) {
-															returnHtml += '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'
-																	+ dPics[i]
-																	+ '" style="width: 50%; height:auto; padding: 3px; ">';
-														}
-
-													} else {
+													for (var i = 0; i < dPics.length; i++) {
 														returnHtml += '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'
-																+ dPics[0]
-																+ '" style="width: 100%; height:auto;">';
-
-														for (var i = 1; i < dPics.length; i++) {
-															returnHtml += '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'
-																	+ dPics[i]
-																	+ '" style="width: 50%; height:auto; padding: 3px">';
-														}
+														+ dPics[i]
+														+ '" style="width: 50%; height:auto; padding: 3px; ">';
 													}
-													return returnHtml;
+
+												} else {
+													returnHtml += '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'
+													+ dPics[0]
+													+ '" style="width: 100%; height:auto;">';
+
+													for (var i = 1; i < dPics.length; i++) {
+														returnHtml += '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'
+														+ dPics[i]
+														+ '" style="width: 50%; height:auto; padding: 3px">';
+													}
 												}
-											});
-							var template = Handlebars.compile(source);
-							var html = template(result);
+												return returnHtml;
+											}
+										});
+var template = Handlebars.compile(source);
+var html = template(result);
 							//$('#diaryHandle').append(html);
 							$('#diaryHandle').after(html);
 							//}
@@ -202,111 +226,111 @@ function getDiary(args) {
 }
 //[좋아요 누르기]
 $(document)
-		.on(
-				"tap",
-				"insertLike",
-				function() {
-					var likes = $(this);
-					var diaryNo = $(this).prev('input');
+.on(
+	"tap",
+	"insertLike",
+	function() {
+		var likes = $(this);
+		var diaryNo = $(this).prev('input');
 					//alert(diaryNo.val());
 					$
-							.ajax({
-								url : requestIP + "like/json/insertLike",
-								method : 'POST',
-								dataType : 'JSON',
-								contentType : "application/json; charset=UTF-8",
-								data : JSON.stringify({
-									dNo : diaryNo.val(),
-									uNo : user.uNo
-								}),
-								success : function(result) {
-									if (result.result == true) {
+					.ajax({
+						url : requestIP + "like/json/insertLike",
+						method : 'POST',
+						dataType : 'JSON',
+						contentType : "application/json; charset=UTF-8",
+						data : JSON.stringify({
+							dNo : diaryNo.val(),
+							uNo : user.uNo
+						}),
+						success : function(result) {
+							if (result.result == true) {
 										//alert($(this).parent().children('insertLike').text);
 										likes.parent().children('insertLike')
-												.remove();
+										.remove();
 
 										$
-												.ajax({
-													url : requestIP
-															+ "like/json/countLike",
-													method : 'POST',
-													dataType : 'JSON',
-													contentType : "application/json; charset=UTF-8",
-													data : JSON.stringify({
-														dNo : diaryNo.val(),
-													}),
-													success : function(result) {
+										.ajax({
+											url : requestIP
+											+ "like/json/countLike",
+											method : 'POST',
+											dataType : 'JSON',
+											contentType : "application/json; charset=UTF-8",
+											data : JSON.stringify({
+												dNo : diaryNo.val(),
+											}),
+											success : function(result) {
 														//alert(result.likeCount);
 														$(
-																'likeCount[id='
-																		+ diaryNo
-																				.val()
-																		+ ']')
-																.text(
-																		result.likeCount);
+															'likeCount[id='
+															+ diaryNo
+															.val()
+															+ ']')
+														.text(
+															result.likeCount);
 														diaryNo
-																.after("<deleteLike><a><i class='fa fa-thumbs-o-up'/> 좋아요취소</a></deleteLike>");
+														.after("<deleteLike><a><i class='fa fa-thumbs-o-up'/> 좋아요취소</a></deleteLike>");
 													}
 												});
 
 									}
 								}
 							});
-				});
+});
 
 //[좋아요취소 누르기]
 $(document)
-		.on(
-				"tap",
-				"deleteLike",
-				function() {
-					var likes = $(this);
-					var diaryNo = $(this).prev('input');
+.on(
+	"tap",
+	"deleteLike",
+	function() {
+		var likes = $(this);
+		var diaryNo = $(this).prev('input');
 					//alert(diaryNo.val());
 					$
-							.ajax({
-								url : requestIP + "like/json/deleteLike",
-								method : 'POST',
-								dataType : 'JSON',
-								contentType : "application/json; charset=UTF-8",
-								data : JSON.stringify({
-									dNo : diaryNo.val(),
-									uNo : user.uNo
-								}),
-								success : function(result) {
-									if (result.result == true) {
+					.ajax({
+						url : requestIP + "like/json/deleteLike",
+						method : 'POST',
+						dataType : 'JSON',
+						contentType : "application/json; charset=UTF-8",
+						data : JSON.stringify({
+							dNo : diaryNo.val(),
+							uNo : user.uNo
+						}),
+						success : function(result) {
+							if (result.result == true) {
 										//alert($(this).parent().children('deleteLike').text);
 										likes.parent().children('deleteLike')
-												.remove();
+										.remove();
 
 										$
-												.ajax({
-													url : requestIP
-															+ "like/json/countLike",
-													method : 'POST',
-													dataType : 'JSON',
-													contentType : "application/json; charset=UTF-8",
-													data : JSON.stringify({
-														dNo : diaryNo.val(),
-													}),
-													success : function(result) {
+										.ajax({
+											url : requestIP
+											+ "like/json/countLike",
+											method : 'POST',
+											dataType : 'JSON',
+											contentType : "application/json; charset=UTF-8",
+											data : JSON.stringify({
+												dNo : diaryNo.val(),
+											}),
+											success : function(result) {
 														//alert(result.likeCount);
 														$(
-																'likeCount[id='
-																		+ diaryNo
-																				.val()
-																		+ ']')
-																.text(
-																		result.likeCount);
+															'likeCount[id='
+															+ diaryNo
+															.val()
+															+ ']')
+														.text(
+															result.likeCount);
 														diaryNo
-																.after("<insertLike><a><i class='fa fa-thumbs-o-up'/> 좋아요</a></insertLike>");
+														.after("<insertLike><a><i class='fa fa-thumbs-o-up'/> 좋아요</a></insertLike>");
 													}
 												});
 
 									}
 								}
 							});
-				});
+});
 
 //[시용]다이어리 삭제.
 $(document).on("tap", "deleteDiary", function() {
@@ -334,10 +358,10 @@ $(document).on("tap", "deleteDiary", function() {
 
 //[시용]다이어리 수정
 $(document).on(
-		"tap",
-		"updateDiary",
-		function() {
-			var diaryNo = $(this).prev('input');
+	"tap",
+	"updateDiary",
+	function() {
+		var diaryNo = $(this).prev('input');
 			//alert(diaryNo.val());
 			//console.log(diaryNo.val());
 			$('form[name=updateForm]').children('input').val(diaryNo.val());
@@ -348,5 +372,22 @@ $(document).on(
 			$('form[name=updateForm]').submit();
 			window.localStorage.setItem("diaryKey", test);
 			$(window.parent.frames["innerframe"].document.location).attr(
-					"href", "updateDiary.html");
+				"href", "updateDiary.html");
 		});
+
+//[SELO77] HashTag를 tap시 검색 event처리
+$(document).on('tap', '.hashTag', function(event) {
+	event.preventDefault();
+	console.log('==Click!! on HashTag==');
+	console.log( $(this).text() );
+
+	$.getJSON(requestURL+'getDiaryListByTag', { dTag: $(this).text() }, function(json, textStatus) {
+		console.log('textStatus :'+textStatus);
+		console.log('responseData :'+json);
+
+
+
+	});
+
+							});// /hashTag Click fnc	
+

@@ -149,9 +149,10 @@ $.mobile.autoInitializePage = false;
 
 
             //[SELO77] 해쉬태그를 위한 키이벤트
-          
+            var diaryContent;
+            var dTagToServer;
             var hashTags = [];
-            $('textarea').keydown(function() {
+            $('textarea').keyup(function() {
               console.log("======START=============");
               var textareaVal = $('textarea').val();
               var textareaLength = textareaVal.length;
@@ -173,16 +174,21 @@ $.mobile.autoInitializePage = false;
                 if (tempForHashTag.indexOf(" ") != -1) {
                   console.log('==tempForHashTag.indexOf(" ") :'+tempForHashTag.indexOf(" "));
                   console.log('==tempForHashTag.slice(startHashTagIndex, tempForHashTag.indexOf(" ")) :'+tempForHashTag.slice(0, tempForHashTag.indexOf(" ")));
-                  hashTags.push( tempForHashTag.slice(0, tempForHashTag.indexOf(" ")) );
 
+                  hashTags.push( tempForHashTag.slice(0, tempForHashTag.indexOf(" ")) );           
+                }
 
-                };
               };//outter if
               for (i in hashTags) {
                 console.log('hashTags['+i+'] :'+hashTags[i]);
-              };              
+              };       
+
+                  console.log('== hashTags[hashTags.length-1] :'+hashTags[hashTags.length-1]);
+              dTagToServer = hashTags[hashTags.length-1];
               console.log("=======END============");
-            });// /.textarea.keydown
+
+              
+            });// /.textarea.keyUP
 
 
             //[시용]사진 클릭시 사진 지우기 
