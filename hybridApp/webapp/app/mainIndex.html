@@ -16,6 +16,8 @@
 	<!-- <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"> -->
 	<link rel="stylesheet" href="css/__main.css">
 	<link rel="stylesheet" href="css/slidebars.css">
+	<!-- [지훈]Rotate Menu용 CSS -->
+	<link rel="stylesheet" href="css/etc_menu.css">
 
 	<link rel="import" href="import/diaryList.html">
 
@@ -77,6 +79,13 @@
 		}
 		.slideTitle{
 			width:90%;height:48%;border:solid;display:block;margin:auto;text-align:center;
+		}
+	</style>
+
+	<!-- [지훈] Rotate Menu용 -->
+	<style>
+		#ss_menu {
+			z-index: 1000;
 		}
 	</style>
 
@@ -163,6 +172,24 @@
 	            	</div>
 	            	<!-- End Slidebar Contents-->
 
+
+	            	<!-- [지훈] ratate menu start-->
+		            <div id='ss_menu'>
+					  <div> <i class="fa fa-facebook-official" id="warning"></i> </div>
+					  <div> <i class="fa fa-twitter" id="all_diary"></i> </div>
+					  <div> <i class="fa fa-linkedin" id="user_info"></i> </div>
+					  <!-- <div> <i class="fa fa-google-plus"></i> </div>
+					  <div> <i class="fa fa-google-plus"></i> </div> -->
+					  <div class='menu'>
+					    <div class='share' id='ss_toggle' data-rot='180'>
+					      <div> <img src="img/add_friend.jpg" style="height: 50px; width : 50px; border-radius: 50px"></div> </div>
+					    </div>
+					  </div>
+					</div>
+					<!-- [지훈] ratate menu end-->
+					
+					
+
             </header>
             <!-- layOut  main에 스타일 주지마세 -->
             <main style="height:100%"> <!-- .sb-site -->
@@ -178,12 +205,13 @@
             		<!-- 하단 고정 바 -->
             		<div class="navbar navbar-default navbar-fixed-bottom" style="background-color: #000000;">
             			<div class="container" style="border-top:solid">
+            				<span class="col-xs-1"> </span>
             				<span class="col-xs-2"> <icon class="fa fa-home" id="homeBtn" style="color: #ffffff"></icon></span> 
             				<span class="col-xs-2"> <icon class="fa fa-book" id="diaryBtn" style="color: #ffffff"></icon></span>
             				<span class="col-xs-2"> <icon class="fa fa-pencil-square-o" id="writeDiaryBtn" style="color: #ffffff"></icon></span>
             				<span class="col-xs-2"> <icon class="fa fa-calendar"id="calendarBtn" style="color: #ffffff"></icon></span> 
             				<span class="col-xs-2"> <icon class="fa fa-users"id="friendBtn" style="color: #ffffff"></icon></span>
-            				<span class="col-xs-2"> <icon class="fa fa-cog sb-toggle-right" style="color: #ffffff"></icon></span>
+            				<span class="col-xs-1"> </span>
             			</div>
             		</div>
             		<!-- /.하단 고정 바 -->
@@ -241,7 +269,40 @@
 	</script>
 	<!-- 새로 스크립트 끝 -->
 
+	<!-- [지훈] RotateMenu Script 시작 -->
+	<script>
+	$(document).ready(function(ev) {
+	  var toggle = $('#ss_toggle');
+	  var menu = $('#ss_menu');
+	  var rot;
+	  
+	  $('#ss_toggle').on('click', function(ev) {
+	    rot = parseInt($(this).data('rot')) - 180;
+	    menu.css('transform', 'rotate(' + rot + 'deg)');
+	    menu.css('webkitTransform', 'rotate(' + rot + 'deg)');
+	    if ((rot / 180) % 2 == 0) {
+	      //Moving in
+	      toggle.parent().addClass('ss_active');
+	      toggle.addClass('close');
+	    } else {
+	      //Moving Out
+	      toggle.parent().removeClass('ss_active');
+	      toggle.removeClass('close');
+	    }
+	    $(this).data('rot', rot);
+	  });
 
+	  menu.on('transitionend webkitTransitionEnd oTransitionEnd', function() {
+	    if ((rot / 180) % 2 == 0) {
+	      $('#ss_menu div i').addClass('ss_animate');
+	    } else {
+	      $('#ss_menu div i').removeClass('ss_animate');
+	    }
+	  });
+	  
+	});
+	</script>
+	<!-- [지훈] RotateMenu Script 끝 -->
 
 
 	<script type="text/javascript">
