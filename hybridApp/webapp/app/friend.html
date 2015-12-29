@@ -22,6 +22,8 @@
 <!-- -[지훈] friend List항목 2EA -->
 <link rel="import" href="import/friendReqList.html">
 <link rel="import" href="import/friendList.html">
+<link rel="import" href="import/sendFriendList.html">
+
 <link rel="import" href="dailyState.html">
 <link rel="stylesheet" href="css/friend_menu.css">
 
@@ -46,21 +48,31 @@
 
 	<!-- HTML 코드 작성 부분 입니다 -->
 	<!-- [지훈] 친구 관리 화면 Start -->
-	<div class="container" style="padding-bottom: 30px; padding-left: 0px; padding-right: 0px;">
+	<div class="container" style="padding-bottom: 60px; padding-left: 0px; padding-right: 0px;">
 		<div id="friend_req_list">
 			<li class="list-group-item" 
 				style="padding-top: 2px; padding-bottom: 2px; margin-bottom: 5px; border-color: #e95849; background-color: #F4C6C1; color:#e95849;">
-				<small>친구 요청</small>
+				<small>받은 요청</small>
 				<span class="badge"	id="req_count" style="background-color: #FFFEEF; color: #e95849">+</span>
 			</li>
 		</div>
 
-		<div id="friend_list">
-			<small>&nbsp;</small>
+		<div id="send_list">
+		&nbsp;
 			<!-- &nbsp; 지우면  <li class="list-group-item"> 상하 크기 커짐! 지우지말것! -->
 			<li class="list-group-item" 
 				style="padding-top: 2px; padding-bottom: 2px; margin-bottom: 5px; border-color: #e95849; background-color: #F4C6C1; color:#e95849;">
-				<small>내 친구 목록</small>
+				<small>보낸 요청</small>
+				<span class="badge"	id="send_count" style="background-color: #FFFEEF; color: #e95849">+</span>
+			</li>
+		</div>
+
+		<div id="friend_list">
+		&nbsp;
+			<!-- &nbsp; 지우면  <li class="list-group-item"> 상하 크기 커짐! 지우지말것! -->
+			<li class="list-group-item" 
+				style="padding-top: 2px; padding-bottom: 2px; margin-bottom: 5px; border-color: #e95849; background-color: #F4C6C1; color:#e95849;">
+				<small>친구 목록</small>
 				<span class="badge"	id="fr_count" style="background-color: #FFFEEF; color: #e95849">+</span>
 			</li>
 		</div>
@@ -149,6 +161,8 @@
 				.querySelector('link[href="import/friendReqList.html"]');
 		var fr_link = document
 				.querySelector('link[href="import/friendList.html"]');
+		var send_link = document
+				.querySelector('link[href="import/sendFriendList.html"]');	
 
 		var user = getMetaData("user");
 		var requestIP = getMetaData('ip');
@@ -160,7 +174,7 @@
 		//친구요청, 목록 count 동적 이벤트 처리를 위한 변수
 		var frReqCount;
 		var frCount;
-
+		var sendCount;
 		
 
 		$.ajax(requestIP+"friend/json/getFriendList", {
@@ -173,28 +187,38 @@
 			}),
 			success : function(result) {
 
+				console.log(result);
 				frReqCount = result.frReqCount;
 				frCount = result.frCount;
+				sendCount = result.sendCount;
 
 				result.photoIP = photoIP;
 
 				$("#req_count").text(frReqCount);
+				$("#send_count").text(sendCount);
 				$("#fr_count").text(frCount);
 
 				var frReqTemp = fr_req_link.import;
 				var frTemp = fr_link.import;	
+				var sendTemp = send_link.import;
 
-				/*친구 요청목록 Handlebars 사용부분 */
+				/*받은 요청 Handlebars 사용부분 */
 				var reqSource = frReqTemp.querySelector('#friendReqList_template').text;
 				var reqTemplate = Handlebars.compile(reqSource);
 				var reqHtml = reqTemplate(result);
-				$('#friend_req_list').append(reqHtml);
+				$('#friend_req_list').after(reqHtml);
+
+				/*보낸 요청 Handlebars 사용부분 */
+				var sendSource = sendTemp.querySelector('#sendReq_template').text;
+				var sendTemplate = Handlebars.compile(sendSource);
+				var sendHtml = sendTemplate(result);
+				$('#send_list').after(sendHtml);
 
 				/*친구 목록 Handlebars 사용부분 */
 				var frSource = frTemp.querySelector('#friend_template').text;
 				var frTemplate = Handlebars.compile(frSource);
 				var frHtml = frTemplate(result);
-				$('#friend_list').append(frHtml);
+				$('#friend_list').after(frHtml);
 			}
 		});
 

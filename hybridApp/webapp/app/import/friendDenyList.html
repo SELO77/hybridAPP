@@ -1,25 +1,26 @@
 <script id="denyList_template" type="text/x-handlebars-template">
 	{{#denyList}}
 	<denyListTag>
-		<div class="col-xs-12 col-sm-12 col-md-12" style="padding: 5px; height: 80px;">
+		<div class="col-xs-12 col-sm-12 col-md-12" style="padding: 0px; height: 50px;">
 			<input type="hidden" name="frNo" id="frNo" value="{{frNo}}">
 
-			<span class="col-xs-2 col-sm-3 col-md-3" style="float: left; height: 80px; width: 80px; padding : 0px;">
-				<span class="img-responsive"style="float: left; max-height: 80px; max-width: 80px; padding: 5px;">
+			<span class="col-xs-1 col-sm-1 col-md-1" style="float: left; margin-left: 1%; height: 50px; width: 50px; padding : 1px;">
+				<span class="img-responsive"style="float: left; max-height: 50px; max-width: 50px; padding: 1px;">
 					<img class="img-thumbnail" src="http://192.168.0.3:8080/resources/thumbnail/user/{{user.uPic}}"/>
 				</span>
 			</span>
 			
-			<span class="col-xs-7 col-sm-10 col-md-10" 
-				style="float: left; max-height: 80px; padding-top: 10px; padding-left:2%; margin-left:3%;">
-				{{user.nickname}}
+			<span class="col-xs-3 col-sm-3 col-md-3" 
+				style="float: left; max-height: 5px; padding-top: 14px; padding-left:1%; margin-left:0px;">
+				<small>{{user.nickname}}</small>
 			</span>
 
 			<friendTag class="deleteFriend">
-			<span class="col-xs-8 col-sm-10 col-md-10" style="float: left; margin-left: 3%; margin-top: 5px; width: maximum; padding: 1%">
+			<span class="col-xs-7 col-sm-7 col-md-7" style="float: left; margin-left: 0%; margin-top: 10px; width: maximum; padding: 0%">
 				<button type="button" class="btn btn-default" style="width: 100%">삭제하기</button>
 			</span>
 			</friendTag>
+
 		</div> 
 	</denyListTag>
 	{{/denyList}}
