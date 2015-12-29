@@ -1,0 +1,45 @@
+body{
+	background-color:#faa97a;			
+	color:white;
+}	
+
+.mainLogo img{
+	width:98%;
+}
+
+.modal{
+	color: black;
+}
+
+#loginButton{
+	background-color: white;
+	border-color: white;
+	color: #faa97a;
+	font-weight: bold;
+}
+
+.makeNewAccount{
+	border: solid;
+	padding :10px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+//*Media Query*//
+@media ( min-device-height : 299px) and (max-device-height: 580px) {
+			div.mainLogo {
+				margin: 5% 0 5% 0;
+			}
+		}
+
+		@media ( min-device-height : 580px) and (max-device-height: 729px) {
+			div.mainLogo {
+				margin: 25% 0 20% 0;
+			}
+		}
+
+		@media all and (min-device-height: 730px) {
+			div.mainLogo {
+				margin: 45% 0 20% 0;
+			}
+		}	
