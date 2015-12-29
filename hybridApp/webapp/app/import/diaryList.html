@@ -33,7 +33,7 @@
       </div>
       <div class="caption-full" style="padding-top: 0px;padding-left: 0px;padding-right: 0px;">
         <h4><a href="#">{{dTag}}</a></h4>
-        <p>{{{dContentForTag dContent}}}</p>
+        <p>{{dContent}}</p>
         <center>
           {{{picCheck dPics}}}
         </center>
@@ -55,7 +55,8 @@
             </button>
           </div>
           <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default" style="padding-bottom:6; padding-top:6; border:0;"><a><i class="fa fa-share"/> 공유하기</a></button>
+            <input type="hidden" value="{{dNo}}">
+            <button type="button" class="btn btn-default" style="padding-bottom:6; padding-top:6; border:0;" id="shareDiary" ><a><i class="fa fa-share"/> 공유하기</a></button>
           </div>
 
           {{!userCheck}}
