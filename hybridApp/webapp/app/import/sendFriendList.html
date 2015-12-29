@@ -1,0 +1,27 @@
+<script id="sendReq_template" type="text/x-handlebars-template">
+	{{#sendList}}
+	<sendListTag>
+		<div class="col-xs-12 col-sm-12 col-md-12" style="padding: 0px; height: 50px;">
+			<input type="hidden" name="frNo" id="frNo" value="{{frNo}}">
+
+			<span class="col-xs-1 col-sm-1 col-md-1" style="float: left; margin-left: 1%; height: 50px; width: 50px; padding : 1px;">
+				<span class="img-responsive"style="float: left; max-height: 50px; max-width: 50px; padding: 1px;">
+					<img class="img-thumbnail" src="http://192.168.0.3:8080/resources/thumbnail/user/{{user.uPic}}"/>
+				</span>
+			</span>
+			
+			<span class="col-xs-3 col-sm-3 col-md-3" 
+				style="float: left; max-height: 5px; padding-top: 14px; padding-left:1%; margin-left:0px;">
+				<small>{{user.nickname}}</small>
+			</span>
+
+			<friendTag class="cancelFriend">
+			<span class="col-xs-7 col-sm-7 col-md-7" style="float: left; margin-left: 0%; margin-top: 10px; width: maximum; padding: 0%">
+				<button type="button" class="btn btn-default" style="width: 100%">요청 취소</button>
+			</span>
+			</friendTag>
+
+		</div> 
+	</sendListTag>
+	{{/sendList}}
+</script>
