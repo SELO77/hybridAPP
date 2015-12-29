@@ -1,0 +1,9 @@
+공유 플러그인 : cordova plugin add cordova-plugin-x-socialsharing, cordova prepare
+config.xml에
+ 	<feature name="SocialSharing">
+	 <param name="android-package" value="nl.xservices.plugins.SocialSharing" />
+	</feature>
+추가 </widget> 위에
+
+파일 업로드 : cordova plugin add org.apache.cordova.file
+		cordova plugin add org.apache.cordova.file-transfer
