@@ -193,8 +193,23 @@
 
 						var user=getMetaData('user');
 						var getBPhoto="";
-						var responseURL="diary.html";
+						var responseURL="userOption.html";
 						var babyImage="";
+						var bSexResult="";
+						var bSex=document.getElementsByName("bSex");
+						for (var i=0; i<bSex.length; i++) {
+							if(radio[i].checked==true) {
+								bSexResult=bSex[i].value;
+							}
+						} 
+
+						var bTypeResult="";
+						var bType=document.getElementsByName("bType");
+						for (var i=0; i<bType.length; i++) {
+							if(radio[i].checked==true) {
+								bTypeResult=bType[i].value;
+							}
+						}
 
 
 						document.addEventListener("backbutton", onBackKeyDown, false);
@@ -284,7 +299,7 @@
 												$("#btn01").text("등록하기");	
 
 												var img = $("<img />");
-												img.attr("name",getBPhoto.replace("img/",""));
+												img.attr("name","baby1.jpg");
 												img.attr("id","multi");
 												img.attr("style", "width:100px; height:100px; margin-right:10px; margin-top: 10px;");
 												img.attr("src","http://192.168.1.4:8080/resources/img/baby/baby1.jpg");
@@ -366,7 +381,43 @@
 
 													if($("#bName").val()!=null && $("#bName").val()!=""){
 
-													update_baby_test();
+													var imageLength = $("div#uploadImage > img").length;											
+														for(var i=0 ; i<imageLength; i++){
+															if(i == (imageLength - 1)){
+																babyImage +=$("div#uploadImage > img:eq("+i+")").attr('name');
+															}else{
+																babyImage += $("div#uploadImage > img:eq("+i+")").attr('name') +",";
+															}
+														} 
+
+														$.ajax(
+														{
+															url:getMetaData("ip")+"baby/json/updateBaby",
+															method:"POST",
+															contentType:"application/json",
+															dataType:"json",
+															data:JSON.stringify({
+															bNo:result.baby.bNo,
+															bName:$("input[name='bName']").val(),
+															bBirth:$("input[name='bBirth']").val(),
+															bSex:$("input[name='bSex']:checked").val(),
+															bType:$("input[name='bType']:checked").val(),
+															height:$("input[name='height']").val(),
+															weight:$("input[name='weight']").val(),
+															bPhoto:babyImage,
+															uNo:user.uNo
+															}),
+															success:function(responseData){
+																if(responseData.result==true){
+																$(window.parent.frames["innerframe"].document.location)
+							           							 .attr("href",responseURL);
+							           							}
+															},
+															error:function(){
+																alert("뭔가 에러가 났네....");
+															}
+
+														});
 
 													}
 													else{
@@ -387,51 +438,6 @@
 										
 											});
 									}//getBaby 끝
-
-
-
-
-							//[시용,근한] fileupload를 위한 javascript 추가
-							function update_baby_test(){
-
-								var imageLength = $("div#uploadImage > img").length;											
-								for(var i=0 ; i<imageLength; i++){
-									if(i == (imageLength - 1)){
-										babyImage +=$("div#uploadImage > img:eq("+i+")").attr('name');
-									}else{
-										babyImage += $("div#uploadImage > img:eq("+i+")").attr('name') +",";
-									}
-								} 
-
-								$.ajax(
-								{
-									url:getMetaData("ip")+"baby/json/updateBaby",
-									method:"POST",
-									contentType:"application/json",
-									dataType:"json",
-									data:JSON.stringify({
-									bNo:100040,
-									bName:$("input[name='bName']").val(),
-									bBirth:$("input[name='bBirth']").val(),
-									bSex:$("input[name='bSex']").val(),
-									bType:$("input[name='bType']").val(),
-									height:$("input[name='height']").val(),
-									weight:$("input[name='weight']").val(),
-									bPhoto:babyImage,
-									uNo:user.uNo
-									}),
-									success:function(responseData){
-										if(responseData.result==true){
-										$(window.parent.frames["innerframe"].document.location)
-	           							 .attr("href",responseURL);
-	           							}
-									},
-									error:function(){
-										alert("뭔가 에러가 났네....");
-									}
-
-								});
-							}
 
 
 							function  fncAddJsonDodam(){
@@ -456,8 +462,8 @@
 										bPhoto : babyImage,
 										bName : $("input[name='bName']").val(),
 										bBirth : $("input[name='bBirth']").val(),
-										bSex : $("input[name='bSex']").val(),
-										bType : $("input[name='bType']").val(),
+										bSex : $("input[name='bSex']:checked").val(),
+										bType : $("input[name='bType']:checked").val(),
 										height : $("input[name='height']").val(),
 										weight : $("input[name='weight']").val(),
 										uNo:user.uNo

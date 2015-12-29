@@ -26,7 +26,7 @@
 }
 
 #uploadBImage {
-	width: 100px;
+	width: 250px;
 	height: 100px;
 	margin-right: 10px;
 	position:relative;top:70px;
@@ -46,8 +46,7 @@
 		<form role="form">
 
 			<div class="form-group" align="center">
-				<input type="file" id="uPhoto" name="bPhoto" style="display: none" accpet="image/*;" capture="camera">
-				<div id="uploadUImage" onclick=$("#uPhoto").click()></div>
+				<div id="uploadUImage"></div>
 			</div>
 
 			<div class="form-group">
@@ -67,17 +66,16 @@
 
 
 			<div class="form-group" align="center">
-				<input type="file" id="bPhoto" name="bPhoto" style="display: none" accpet="image/*;" capture="camera">
-				<div id="uploadBImage" onclick=$("#bPhoto").click()></div>
+				<div id="uploadBImage"></div>
 			</div>
 
-			<div class="form-group">
-				<span style="position:relative;top:75px"><icon class="fa fa-envelope"></icon>&nbsp;이름</span>
+			<div class="form-group" id="babyName">
+				<span style="position:relative;top:75px"><icon class="fa fa-user"></icon>&nbsp;이름</span>
 				<span style="position:relative;left:43px;top:75px" id="bName"></span>
 			</div>
 
-			<div class="form-group">
-				<span style="position:relative;top:75px"><icon class="fa fa-user"></icon>&nbsp;생년월일</span>
+			<div class="form-group" id="babyBirth">
+				<span style="position:relative;top:75px"><icon class="fa fa-calendar"></icon>&nbsp;생년월일</span>
 				<span style="position:relative;left:20px;top:75px" id="bBirth"></span>
 			</div>
 
@@ -87,7 +85,7 @@
 			</div>
 
 			<div class="form-group" align="center">
-				<button type="button" class="btn btn-primary" style="position:relative;top:75px" id="logout">로그아웃</button>
+				<button type="button" class="btn btn-default" style="position:relative;top:75px" id="logout">로그아웃</button>
 			</div>			
 
 		</form>
@@ -212,6 +210,8 @@
 						dataType:"json",
 						data:JSON.stringify({uNo:user.uNo}),
 						success:function(result){
+
+							if(result.resultCode==1) {
 							console.log(result);
 
 						    if(result.baby.bPhoto==null) {
@@ -233,7 +233,30 @@
 							img.attr("class","img-rounded");
 
 							$("#uploadBImage").append(img);
-						}					
+							}
+
+							if(result.resultCode==0) {
+								var img = $("<img />");
+								img.attr("name","default");
+								img.attr("id","multi");
+								img.attr("style", "width:250px; height:100px; margin-right:10px; margin-top: 10px;");
+								img.attr("src","http://192.168.1.4:8080/resources/img/baby/defaultcamera.jpg");
+								img.attr("class","img-rounded");
+								img.attr("align","center");
+
+								$("#uploadBImage").append(img);
+
+								$("#babyName").remove();
+								$("#babyBirth").remove();
+								$("#bUpdate").remove();
+
+								$("#uploadBImage").on("click",function(){
+									$(window.parent.frames["innerframe"].document.location).attr("href","updateBaby.html");
+								});
+
+							}
+
+						}				
 					});					
 
 
