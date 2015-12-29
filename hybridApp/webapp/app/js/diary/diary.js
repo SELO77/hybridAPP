@@ -35,7 +35,48 @@ function loadDiary(args) {
 												} else {
 													return '';
 												}
+							
 											});
+
+							// [SELO77] dContent에서 Tag효과 주는 로직 추가.
+							Handlebars
+									.registerHelper(
+											'dContentForTag',
+											function(dContent) {
+												console
+														.log('== dContent Parsing for HashTag == dContent:'
+																+ dContent);
+
+												var startTagIndex = dContent
+														.indexOf("#");
+												var temp = dContent
+														.slice(startTagIndex);
+												var endTagIndex = temp
+														.indexOf(" ");
+
+												var hashTags = temp.slice(0,
+														endTagIndex);
+												console.log('hashTags :'
+														+ hashTags);
+
+												var hashTagList = hashTags
+														.split("#");
+												hashTagList.splice(0, 1);
+
+												for (i in hashTagList) {
+													var temp = '<strong class="hashTag">#'
+															+ hashTagList[i]
+															+ '</strong>';
+													hashTagList[i] = temp;
+												}
+
+												return dContent.replace(
+														hashTags, hashTagList
+																.toString()
+																.replace(/,/gi,
+																		""));
+											}); // /Handlebars.registerHelper('dContentForTag'
+
 
 							Handlebars.registerHelper(
 											'likeCheck',
@@ -221,6 +262,47 @@ function getDiary(args) {
 													return '';
 												}
 											});
+
+							// [SELO77] dContent에서 Tag효과 주는 로직 추가.
+							Handlebars
+									.registerHelper(
+											'dContentForTag',
+											function(dContent) {
+												console
+														.log('== dContent Parsing for HashTag == dContent:'
+																+ dContent);
+
+												var startTagIndex = dContent
+														.indexOf("#");
+												var temp = dContent
+														.slice(startTagIndex);
+												var endTagIndex = temp
+														.indexOf(" ");
+
+												var hashTags = temp.slice(0,
+														endTagIndex);
+												console.log('hashTags :'
+														+ hashTags);
+
+												var hashTagList = hashTags
+														.split("#");
+												hashTagList.splice(0, 1);
+
+												for (i in hashTagList) {
+													var temp = '<strong class="hashTag">#'
+															+ hashTagList[i]
+															+ '</strong>';
+													hashTagList[i] = temp;
+												}
+
+												return dContent.replace(
+														hashTags, hashTagList
+																.toString()
+																.replace(/,/gi,
+																		""));
+											}); // /Handlebars.registerHelper('dContentForTag'
+
+
 
 							Handlebars
 									.registerHelper(
@@ -434,3 +516,22 @@ $(document).on(
 			$(window.parent.frames["innerframe"].document.location).attr(
 					"href", "updateDiary.html");
 		});
+
+
+//[SELO77] HashTag를 tap시 검색 event처리
+$(document).on('tap', '.hashTag', function(event) {
+	event.preventDefault();
+	console.log('==Click!! on HashTag==');
+	console.log($(this).text());
+
+	$.getJSON(requestURL + 'getDiaryListByTag', {
+		dTag : $(this).text()
+	}, function(json, textStatus) {
+		console.log('textStatus :' + textStatus);
+		console.log('responseData :' + json);
+
+	});
+
+});// /hashTag Click fnc
+
+
