@@ -92,8 +92,6 @@
 					<input type="file" id="bPhoto" name="bPhoto" style="display: none" accept="image/*;"capture="camera">
 					<div id="uploadImage" onclick=$("#bPhoto").click()></div>
 
-					<img id="defaultImg" src="img/baby/defaultImagae.png"
-					class="img-rounded" onclick=$("#bPhoto").click() style="width=100px; height=100px ">
 
 					<!-- <img id="defaultImg" src="img/defaultImage.jpg" width="100px" onclick="imgChange()" class="img-rounded"> -->
 
@@ -283,7 +281,16 @@
 												//유저가 등록한 아이가 없을 떄
 												if(result.resultCode==0 ){
 												
-												$("#btn01").text("등록하기");												
+												$("#btn01").text("등록하기");	
+
+												var img = $("<img />");
+												img.attr("name",getBPhoto.replace("img/",""));
+												img.attr("id","multi");
+												img.attr("style", "width:100px; height:100px; margin-right:10px; margin-top: 10px;");
+												img.attr("src","http://192.168.1.4:8080/resources/img/baby/baby1.jpg");
+												img.attr("class","img-rounded");
+
+												$("#uploadImage").append(img);											
 	
 												$("#btn01").on("click",function() {
 								
@@ -308,13 +315,11 @@
 													$("#btn01").text("수정하기");
 
 												if(result.baby.bPhoto==null){
-													getBPhoto="img/baby/defaultImagae.png";
+													getBPhoto="http://192.168.1.4:8080/resources/img/baby/baby1.jpg";
 												}
 												else if(result.baby.bPhoto!=null){
 												getBPhoto="http://192.168.1.4:8080/resources/img/baby/"+result.baby.bPhoto;
 												}
-
-												$("#defaultImg").attr("style","display:none");
 
 
 												///////////////////////////////////////////////
