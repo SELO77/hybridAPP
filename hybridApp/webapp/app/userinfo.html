@@ -110,7 +110,7 @@
 											<input type="button" class="btn btn-primary" id="submit" 
 											value="확 인" style="width:70px">
 
-											<input type="reset" class="btn btn-default" value="취 소" style="width:70px;position:absolute;right:5%">
+											<input type="button"  id="cancel" class="btn btn-default" value="취 소" style="width:70px;position:absolute;right:5%">
 										</div>
 									</div>
 								</form>
@@ -178,6 +178,11 @@
 			});
 	};
 
+	$("#cancel").on("click",function(){
+		$(window.parent.frames["innerframe"].document.location)
+		.attr("href","userOption.html");		
+	})
+
 
 	function getUser(){
 			$.ajax({
@@ -202,7 +207,8 @@
 					$("#nickname").val(result.user.nickname);
 
 					var img = $("<img />");
-						img.attr("name",getuPhoto.replace("img/",""));
+						//img.attr("name",getuPhoto.replace("img/",""));
+						img.attr("name",getuPhoto.split("/")[6]);
 						img.attr("id","multi");
 						img.attr("style", "width:100px; height:100px; margin-right:10px; margin-top: 10px;");
 						img.attr("src",getuPhoto);
@@ -250,24 +256,46 @@
 								}
 							} 
 
-							$.ajax({
-							url:getMetaData("ip")+"user/json/updateUser",
-							method:"POST",
-							dataType:"json",
-							contentType:"application/json",
-							data:JSON.stringify({
-								uNo:user.uNo,
-								mail:$("#email").val(),
-								nickname:$("#nickname").val(),
-								password:$("#changePassword").val(),
-								uPic:userImage,
-								uBirth:user.uBirth
-							}),
-							success:function(responseData){
-								$(window.parent.frames["innerframe"].document.location)
-				           		.attr("href","mainIndex.html");
-								}
-							});
+							if($("#changePassword").val()=="" && $("#checkPassword").val()==""){
+								$.ajax({
+								url:getMetaData("ip")+"user/json/updateUser",
+								method:"POST",
+								dataType:"json",
+								contentType:"application/json",
+								data:JSON.stringify({
+									uNo:user.uNo,
+									mail:$("#email").val(),
+									nickname:$("#nickname").val(),
+									password:$("#currentPassword").val(),
+									uPic:userImage,
+									uBirth:user.uBirth
+								}),
+								success:function(responseData){
+									$(window.parent.frames["innerframe"].document.location)
+					           		.attr("href","userOption.html");
+									}
+								});
+							}
+							else{
+								$.ajax({
+								url:getMetaData("ip")+"user/json/updateUser",
+								method:"POST",
+								dataType:"json",
+								contentType:"application/json",
+								data:JSON.stringify({
+									uNo:user.uNo,
+									mail:$("#email").val(),
+									nickname:$("#nickname").val(),
+									password:$("#changePassword").val(),
+									uPic:userImage,
+									uBirth:user.uBirth
+								}),
+								success:function(responseData){
+									$(window.parent.frames["innerframe"].document.location)
+					           		.attr("href","userOption.html");
+									}
+								});
+							}
 					});
 
 				}

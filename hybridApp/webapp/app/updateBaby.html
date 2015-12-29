@@ -92,7 +92,6 @@
 					<input type="file" id="bPhoto" name="bPhoto" style="display: none" accept="image/*;"capture="camera">
 					<div id="uploadImage" onclick=$("#bPhoto").click()></div>
 
-
 					<!-- <img id="defaultImg" src="img/defaultImage.jpg" width="100px" onclick="imgChange()" class="img-rounded"> -->
 
 					<!-- <input type="image" class="img-rounded" id="imageb" onclick="$('#bPhoto').click();" src="img/defaultImage.jpg" width="100" onchange="babyImg();"> -->
@@ -195,21 +194,6 @@
 						var getBPhoto="";
 						var responseURL="userOption.html";
 						var babyImage="";
-						var bSexResult="";
-						var bSex=document.getElementsByName("bSex");
-						for (var i=0; i<bSex.length; i++) {
-							if(radio[i].checked==true) {
-								bSexResult=bSex[i].value;
-							}
-						} 
-
-						var bTypeResult="";
-						var bType=document.getElementsByName("bType");
-						for (var i=0; i<bType.length; i++) {
-							if(radio[i].checked==true) {
-								bTypeResult=bType[i].value;
-							}
-						}
 
 
 						document.addEventListener("backbutton", onBackKeyDown, false);
@@ -296,17 +280,16 @@
 												//유저가 등록한 아이가 없을 떄
 												if(result.resultCode==0 ){
 												
-												$("#btn01").text("등록하기");	
-
+												$("#btn01").text("등록하기");												
+	
 												var img = $("<img />");
-												img.attr("name","baby1.jpg");
 												img.attr("id","multi");
 												img.attr("style", "width:100px; height:100px; margin-right:10px; margin-top: 10px;");
 												img.attr("src","http://192.168.1.4:8080/resources/img/baby/baby1.jpg");
 												img.attr("class","img-rounded");
 
-												$("#uploadImage").append(img);											
-	
+												$("#uploadImage").append(img);
+
 												$("#btn01").on("click",function() {
 								
 													if($("#bName").val()!=null && $("#bName").val()!="") {
@@ -335,6 +318,8 @@
 												else if(result.baby.bPhoto!=null){
 												getBPhoto="http://192.168.1.4:8080/resources/img/baby/"+result.baby.bPhoto;
 												}
+
+												$("#defaultImg").attr("style","display:none");
 
 
 												///////////////////////////////////////////////
@@ -381,7 +366,7 @@
 
 													if($("#bName").val()!=null && $("#bName").val()!=""){
 
-													var imageLength = $("div#uploadImage > img").length;											
+														var imageLength = $("div#uploadImage > img").length;											
 														for(var i=0 ; i<imageLength; i++){
 															if(i == (imageLength - 1)){
 																babyImage +=$("div#uploadImage > img:eq("+i+")").attr('name');
@@ -390,8 +375,7 @@
 															}
 														} 
 
-														$.ajax(
-														{
+														$.ajax({
 															url:getMetaData("ip")+"baby/json/updateBaby",
 															method:"POST",
 															contentType:"application/json",
@@ -438,6 +422,50 @@
 										
 											});
 									}//getBaby 끝
+
+
+
+
+							//[시용,근한] fileupload를 위한 javascript 추가
+							function update_baby_test(){
+
+								var imageLength = $("div#uploadImage > img").length;											
+								for(var i=0 ; i<imageLength; i++){
+									if(i == (imageLength - 1)){
+										babyImage +=$("div#uploadImage > img:eq("+i+")").attr('name');
+									}else{
+										babyImage += $("div#uploadImage > img:eq("+i+")").attr('name') +",";
+									}
+								} 
+
+								$.ajax({
+									url:getMetaData("ip")+"baby/json/updateBaby",
+									method:"POST",
+									contentType:"application/json",
+									dataType:"json",
+									data:JSON.stringify({
+									bNo:100040,
+									bName:$("input[name='bName']").val(),
+									bBirth:$("input[name='bBirth']").val(),
+									bSex:$("input[name='bSex']:checked").val(),
+									bType:$("input[name='bType']:checked").val(),
+									height:$("input[name='height']").val(),
+									weight:$("input[name='weight']").val(),
+									bPhoto:babyImage,
+									uNo:user.uNo
+									}),
+									success:function(responseData){
+										if(responseData.result==true){
+										$(window.parent.frames["innerframe"].document.location)
+	           							 .attr("href",responseURL);
+	           							}
+									},
+									error:function(){
+										alert("뭔가 에러가 났네....");
+									}
+
+								});
+							}
 
 
 							function  fncAddJsonDodam(){
@@ -500,8 +528,6 @@
 													img.attr("class","img-rounded");
 
 													dvPreview.append(img);
-
-													$("#defaultImg").attr("style","display:none");
 
 												}
 												reader.readAsDataURL(file[0]);
