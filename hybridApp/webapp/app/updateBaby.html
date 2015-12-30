@@ -194,9 +194,10 @@
 						var getBPhoto="";
 						var responseURL="userOption.html";
 						var babyImage="";
+						var fileURL="http://192.168.0.3:8080/dodam_upload/baby/";
 
 
-						/* document.addEventListener("backbutton", onBackKeyDown, false);
+/*						document.addEventListener("backbutton", onBackKeyDown, false);
 						function onBackKeyDown(){
 							 //window.plugins.toast.show('Really Exit?'.'short'.'center',)
 							 testLogoutSheet();
@@ -223,7 +224,7 @@
 										navigator.app.exitApp();
 									};
 								});
-							}; */
+							};*/
 
 
 							//[근한] focus event를 위한 jQuery 추가
@@ -285,7 +286,7 @@
 												var img = $("<img />");
 												img.attr("id","multi");
 												img.attr("style", "width:100px; height:100px; margin-right:10px; margin-top: 10px;");
-												img.attr("src","http://192.168.1.4:8080/resources/img/baby/baby1.jpg");
+												img.attr("src",fileURL+"baby1.jpg");
 												img.attr("class","img-rounded");
 
 												$("#uploadImage").append(img);
@@ -313,10 +314,10 @@
 													$("#btn01").text("수정하기");
 
 												if(result.baby.bPhoto==null){
-													getBPhoto="http://192.168.1.4:8080/resources/img/baby/baby1.jpg";
+													getBPhoto=fileURL+"baby1.jpg";
 												}
 												else if(result.baby.bPhoto!=null){
-												getBPhoto="http://192.168.1.4:8080/resources/img/baby/"+result.baby.bPhoto;
+												getBPhoto=fileURL+result.baby.bPhoto;
 												}
 
 												$("#defaultImg").attr("style","display:none");
@@ -358,9 +359,7 @@
 												img.attr("src",getBPhoto);
 												img.attr("class","img-rounded");
 
-												$("#uploadImage").append(img);
-
-												$("defaultImg").attr("style","display:none");					
+												$("#uploadImage").append(img);		
 
 													$("#btn01").on("click",function() {
 

@@ -123,6 +123,8 @@
 				var babyImage="";
 				var getuPhoto="";
 				var getbPhoto="";
+				var userFileURL="http://192.168.0.3:8080/dodam_upload/user/";
+				var babyFileURL="http://192.168.0.3:8080/dodam_upload/baby/";
 
 
 				$("#uUpdate").on("click",function(){
@@ -180,11 +182,11 @@
 							console.log(result);
 
 							if(result.user.uPic=="default.jpg") {
-								getuPhoto="http://192.168.1.4:8080/resources/img/user/back.jpg";
+								getuPhoto=userFileURL+"back.jpg";
 							}
 
 							else if(result.user.uPic!=null && result.user.uPic!="") {
-								getuPhoto="http://192.168.1.4:8080/resources/img/user/"+result.user.uPic;
+								getuPhoto=userFileURL+result.user.uPic;
 							}
 
 							$("#email").text(result.user.mail);
@@ -215,11 +217,11 @@
 							console.log(result);
 
 						    if(result.baby.bPhoto==null) {
-								getbPhoto="http://192.168.1.4:8080/resources/img/baby/baby1.jpg";
+								getbPhoto=babyFileURL+"baby1.jpg";
 							}
 
 							else if(result.baby.bPhoto!=null && result.baby.bPhoto!="") {
-								getbPhoto="http://192.168.1.4:8080/resources/img/baby/"+result.baby.bPhoto;
+								getbPhoto=babyFileURL+result.baby.bPhoto;
 							}
 
 							$("#bName").text(result.baby.bName);
@@ -240,7 +242,7 @@
 								img.attr("name","default");
 								img.attr("id","multi");
 								img.attr("style", "width:250px; height:100px; margin-right:10px; margin-top: 10px;");
-								img.attr("src","http://192.168.1.4:8080/resources/img/baby/defaultcamera.jpg");
+								img.attr("src",babyFileURL+"defaultcamera.jpg");
 								img.attr("class","img-rounded");
 								img.attr("align","center");
 
