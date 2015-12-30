@@ -25,7 +25,7 @@
 
 
 </head>
-<body style="padding-top: 60px;">
+<body style="padding-top: 60px; background-color: #fffff7;">
 	<!--[if lt IE 8]>
 					<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 			<![endif]-->
@@ -37,8 +37,8 @@
 		<div class="col-xs-12 col-sm-12 col-md-12" id="appendTarget">
 			<div class="input-group" id="search">
 				<input type="text" class="form-control" id="searchUser" placeholder="회원 Nick Name 검색" aria-describedby="search"
-				data-toggle="dropdown" aria-haspopup="true" style="border-color: #e95849; padding: 0px;">
-				<span class="input-group-addon" style="border-color: #e95849; color: ">
+				data-toggle="dropdown" aria-haspopup="true" style="border-color: #e95849; background-color: #ffeee3; padding: 0px;">
+				<span class="input-group-addon" style="border-color: #e95849; background-color: #faa97a ">
 					<img src="img/search.png" style="height: 20px; width: 20px;">
 				</span>
 			</div>
@@ -48,11 +48,11 @@
 		  	<div id="searchFriend"> <i>
 				<img src="img/search-friend.png" style="height: 45px; width: 45px; border-radius: 45px;"></img></i> </div>
 		  	<div id="denyList"> <i>
-				<img src="img/deny-friend.jpg" style="height: 45px; width: 45px; border-radius: 45px;"></img></i> 
+				<img src="img/deny-friend.png" style="height: 45px; width: 45px; border-radius: 45px;"></img></i> 
 			</div>
 		  <div class='fmenu'>
 		    <div class='share' id='fr_toggle' data-rot='-180'>
-		      <div> <img src="img/add_friend.jpg" style="height: 45px; width : 45px; border-radius: 45px"></div> 
+		      <div> <img src="img/add_friend.png" style="height: 45px; width : 45px; border-radius: 45px"></div> 
 		    </div>
 		  </div>
 		</div>
@@ -116,7 +116,7 @@
 					uNo : user.uNo
 				}),
 				success: function(result){
-
+					console.log(result);
 					target.remove();
 
 					var temp = fr_link.import;	
