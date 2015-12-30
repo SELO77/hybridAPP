@@ -25,6 +25,17 @@ body{
 	margin-bottom: 10px;
 }
 
+.modal-header, .modal-footer{
+	background-color: #ff7d52;
+}
+
+.modal-content{
+	background-color: #faa97a;
+	color: white;
+}
+
+
+
 //*Media Query*//
 @media ( min-device-height : 299px) and (max-device-height: 580px) {
 			div.mainLogo {
