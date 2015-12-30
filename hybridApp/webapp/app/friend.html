@@ -321,6 +321,30 @@
 			});
 		});
 
+		//[지훈]요청 취소하기 동적 이벤트 처리
+		$(document).on("click", ".cancelFriend", function(){
+			var frNo = $(this).parent().children('#frNo').val();			
+			var target = $(this).parent().parent();
+			alert('click!');
+			$.ajax(requestIP+"friend/json/deleteFriend", {
+				method : "post",
+				crossDomain : true,
+				dataType : "json",
+				contentType : "application/json; charset=UTF-8",
+				data : JSON.stringify({
+					uNo : user.uNo,
+					frNo : frNo,
+				}),
+				success: function(result){
+					sendCount = sendCount-1;
+					target.remove();
+					alert(result.message);
+					
+					$("#send_count").text(sendCount);
+					}
+			});
+		});
+
 		//[지훈]친구 차단 동적 이벤트 처리
 		$(document).on("click", ".denyFriend", function(){
 

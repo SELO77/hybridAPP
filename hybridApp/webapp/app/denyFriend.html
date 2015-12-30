@@ -129,7 +129,8 @@
 				dataType : "json",
 				contentType : "application/json; charset=UTF-8",
 				data : JSON.stringify({
-					frNo : frNo
+					uNo : user.uNo,
+					frNo : frNo,
 				}),
 				success: function(result){
 
@@ -176,7 +177,7 @@
 	<!-- 스크립트 작성 부분 끝입니다. -->
 
 	<script>
-		/*document.addEventListener("backbutton", onBackKeyDown, false);
+		document.addEventListener("backbutton", onBackKeyDown, false);
 		function onBackKeyDown() {
 			//window.plugins.toast.show('Really Exit?'.'short'.'center',)
 			testLogoutSheet();
@@ -202,7 +203,7 @@
 				}
 				;
 			});
-		};*/
+		};
 	</script>
 </body>
 </html>
