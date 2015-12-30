@@ -254,7 +254,7 @@
 								var img = $("<img />");
 								img.attr("name","default");
 								img.attr("id","multi");
-								img.attr("style", "width:300px; height:200px; margin-right:10px; margin-top: 10px;");
+								img.attr("style", "width:300px; height:200px; margin-right:10px;");
 								img.attr("src",babyFileURL+"defaultcamera.jpg");
 								img.attr("class","img-rounded");
 								img.attr("align","center");
@@ -265,6 +265,8 @@
 								$("#babyBirth").remove();
 								$("#bUpdate").remove();
 								$("#sBabyResult").remove();
+
+								$("#logout").attr("style","position:relative;top:100px; border: 3px solid #F4C6C1; border-radius: 20px;")
 
 								$("#uploadBImage").on("click",function(){
 									$(window.parent.frames["innerframe"].document.location).attr("href","updateBaby.html");
