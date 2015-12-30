@@ -19,21 +19,24 @@
 <!-- [SELO77] css -->
 <style>
 #uploadUImage {
-	width: 100px;
-	height: 100px;
+	width: 150px;
+	height: 150px;
 	margin-right: 10px;
 	position:relative;top:60px;
 }
 
 #uploadBImage {
-	width: 250px;
-	height: 100px;
-	margin-right: 10px;
+	width: 300px;
+	height: 200px;
+	margin-left: 10px;
 	position:relative;top:70px;
 }
 
 .form-group span {
 	font-size: 14px;
+}
+.uploadUImage{
+	float: left;
 }
 </style>
 </head>
@@ -45,47 +48,56 @@
 	<div style="padding: 0px 40px;">
 		<form role="form">
 
-			<div class="form-group" align="center">
-				<div id="uploadUImage"></div>
+			<div class="form-group" align="left">
+				<span id="uploadUImage"></span>
 			</div>
 
-			<div class="form-group">
-				<span style="position:relative;top:70px"><icon class="fa fa-envelope"></icon>&nbsp;이메일</span>
-				<span style="position:relative;left:47px;top:70px" id="email"></span>
-			</div>
 
 			<div class="form-group">
-				<span style="position:relative;top:70px"><icon class="fa fa-user"></icon>&nbsp;닉네임</span>
-				<span style="position:relative;left:50px;top:70px" id="nickname"></span>
+				<span style="position:relative;top:40px;left:10px"><icon class="fa fa-user"></icon></span>
+				<span style="position:relative;left:25px;top:40px" id="nickname"></span>
 			</div>
+
 
 			<div class="form-group" >
-				<span style="position:relative;top:70px"><icon class="fa fa-calendar-check-o"></icon>&nbsp;가입일자</span>
-				<span style="position:relative;left:33px;top:70px" id="reg_date"></span>
-			</div>		
+				<span style="position:relative;top:40px;left:10px"><icon class="fa fa-calendar-check-o"></icon></span>
+				<span style="position:relative;left:25px;top:40px" id="reg_date"></span>
+			</div>	
 
+			<div class="form-group" >
+				<span style="position:relative;top:40px;left:10px"><icon class="fa fa-calendar-check-o"></icon></span>
+				<span style="position:relative;left:25px;top:40px">123123</span>
+			</div>	
 
-			<div class="form-group" align="center">
+			<div class="form-group" >
+				<button type="button" class="btn btn-primary" style="position:relative;top:40px;left25px; border: 3px solid #F4C6C1; border-radius: 20px; background-color:#FE8275;" id="uUpdate">회원정보 수정</button>
+			</div>
+
+			<div class="form-group" align="right">
 				<div id="uploadBImage"></div>
 			</div>
 
-			<div class="form-group" id="babyName">
-				<span style="position:relative;top:75px"><icon class="fa fa-user"></icon>&nbsp;이름</span>
-				<span style="position:relative;left:43px;top:75px" id="bName"></span>
+			<div class="form-group" id="babyName" style="margin-left: 10px;">
+				<span style="position:relative;bottom:15px;"><icon class="fa fa-user"></icon></span>
+				<span style="position:relative;left:15px;bottom:15px;" id="bName"></span>
 			</div>
 
-			<div class="form-group" id="babyBirth">
-				<span style="position:relative;top:75px"><icon class="fa fa-calendar"></icon>&nbsp;생년월일</span>
-				<span style="position:relative;left:20px;top:75px" id="bBirth"></span>
+			<div class="form-group" id="babyBirth" style="margin-left: 10px;">
+				<span style="position:relative;bottom:15px;"><icon class="fa fa-calendar"></icon></span>
+				<span style="position:relative;left:15px;bottom:15px;" id="bBirth"></span>
+			</div>
+
+			<div class="form-group" id="sBabyResult" style="margin-left: 10px;">
+				<span style="position:relative;bottom:15px;"><icon class="fa fa-calendar"></icon></span>
+				<span style="position:relative;left:15px;bottom:15px;" id="sBResult"></span>
+			</div>			
+
+			<div class="form-group" style="margin-left:10px;">
+				<button type="button" class="btn btn-primary" id="bUpdate" style="position:relative;bottom:10px; border: 3px solid #F4C6C1; border-radius: 20px; background-color:#FE8275;">아이정보 수정</button>
 			</div>
 
 			<div class="form-group" align="center">
-				<button type="button" class="btn btn-primary" style="position:relative;top:75px" id="uUpdate">회원정보 수정</button>
-				<button type="button" class="btn btn-primary" style="position:relative;top:75px" id="bUpdate">아이정보 수정</button>
-			</div>
-
-			<div class="form-group" align="center">
-				<button type="button" class="btn btn-default" style="position:relative;top:75px" id="logout">로그아웃</button>
+				<button type="button" class="btn btn-default" style="position:relative;top:50px; border: 3px solid #F4C6C1; border-radius: 20px;" id="logout">로그아웃</button>
 			</div>			
 
 		</form>
@@ -196,7 +208,7 @@
 							var img = $("<img />");
 							img.attr("name",getuPhoto.replace("img/",""));
 							img.attr("id","multi");
-							img.attr("style", "width:100px; height:100px; margin-right:10px; margin-top: 10px;");
+							img.attr("style", "width:150px; height:150px; margin-right:10px; margin-top: 70px; border: 5px solid #F4C6C1; float: left; border-radius:30px 30px 5px 30px");
 							img.attr("src",getuPhoto);
 							img.attr("class","img-rounded");
 
@@ -226,11 +238,12 @@
 
 							$("#bName").text(result.baby.bName);
 							$("#bBirth").text(result.baby.bBirth);
+							$("#sBResult").text(result.baby.weight+"kg / "+result.baby.height+"cm");
 
 							var img = $("<img />");
 							img.attr("name",getbPhoto.replace("img/",""));
 							img.attr("id","multi");
-							img.attr("style", "width:100px; height:100px; margin-right:10px; margin-top: 10px;");
+							img.attr("style", "width:150px; height:150px; margin-right:10px; border: 5px solid #F4C6C1; float: right; border-radius:5px 30px 30px 30px");
 							img.attr("src",getbPhoto);
 							img.attr("class","img-rounded");
 
@@ -241,7 +254,7 @@
 								var img = $("<img />");
 								img.attr("name","default");
 								img.attr("id","multi");
-								img.attr("style", "width:250px; height:100px; margin-right:10px; margin-top: 10px;");
+								img.attr("style", "width:300px; height:200px; margin-right:10px; margin-top: 10px;");
 								img.attr("src",babyFileURL+"defaultcamera.jpg");
 								img.attr("class","img-rounded");
 								img.attr("align","center");
@@ -251,6 +264,7 @@
 								$("#babyName").remove();
 								$("#babyBirth").remove();
 								$("#bUpdate").remove();
+								$("#sBabyResult").remove();
 
 								$("#uploadBImage").on("click",function(){
 									$(window.parent.frames["innerframe"].document.location).attr("href","updateBaby.html");
