@@ -18,25 +18,9 @@
 <link rel="stylesheet" href="css/slidebars.css">
 <!-- [SELO77] css -->
 <style>
-#uploadUImage {
-	width: 150px;
-	height: 150px;
-	margin-right: 10px;
-	position:relative;top:60px;
-}
-
-#uploadBImage {
-	width: 300px;
-	height: 200px;
-	margin-left: 10px;
-	position:relative;top:70px;
-}
 
 .form-group span {
 	font-size: 14px;
-}
-.uploadUImage{
-	float: left;
 }
 </style>
 </head>
@@ -48,7 +32,7 @@
 	<div style="padding: 0px 40px;">
 		<form role="form">
 
-			<div class="form-group" align="left">
+			<!-- <div class="form-group" align="left">
 				<span id="uploadUImage"></span>
 			</div>
 
@@ -77,29 +61,88 @@
 				<div id="uploadBImage"></div>
 			</div>
 
-			<div class="form-group" id="babyName" style="margin-left: 10px;">
-				<span style="position:relative;bottom:15px;"><icon class="fa fa-user"></icon></span>
-				<span style="position:relative;left:15px;bottom:15px;" id="bName"></span>
+		    <div class="form-group" id="babyName" style="margin-left: 10px;">
+				<span style="position:relative;bottom:138px;"><icon class="fa fa-user"></icon></span>
+				<span style="position:relative;left:15px;bottom:138px;" id="bName"></span>
 			</div>
 
 			<div class="form-group" id="babyBirth" style="margin-left: 10px;">
-				<span style="position:relative;bottom:15px;"><icon class="fa fa-calendar"></icon></span>
-				<span style="position:relative;left:15px;bottom:15px;" id="bBirth"></span>
+				<span style="position:relative;bottom:138px;"><icon class="fa fa-calendar"></icon></span>
+				<span style="position:relative;left:15px;bottom:138px;" id="bBirth"></span>
 			</div>
 
 			<div class="form-group" id="sBabyResult" style="margin-left: 10px;">
-				<span style="position:relative;bottom:15px;"><icon class="fa fa-calendar"></icon></span>
-				<span style="position:relative;left:15px;bottom:15px;" id="sBResult"></span>
+				<span style="position:relative;bottom:138px;"><icon class="fa fa-calendar"></icon></span>
+				<span style="position:relative;left:15px;bottom:138px;" id="sBResult"></span>
 			</div>			
 
 			<div class="form-group" style="margin-left:10px;">
-				<button type="button" class="btn btn-primary" id="bUpdate" style="position:relative;bottom:10px; border: 3px solid #F4C6C1; border-radius: 20px; background-color:#FE8275;">아이정보 수정</button>
+				<button type="button" class="btn btn-primary" id="bUpdate" style="position:relative;bottom:133px; border: 3px solid #F4C6C1; border-radius: 20px; background-color:#FE8275;">아이정보 수정</button>
 			</div>
 
-			<div class="form-group" align="center">
-				<button type="button" class="btn btn-default" style="position:relative;top:50px; border: 3px solid #F4C6C1; border-radius: 20px;" id="logout">로그아웃</button>
-			</div>			
+		    <div class="form-group" align="center">
+				<button type="button" class="btn btn-default" style="border: 3px solid #F4C6C1; border-radius: 20px;" id="logout">로그아웃</button>
+			</div>  -->			
 
+			<div class="row" style="margin-top:25%">
+			  <div class="col-xs-6">
+			  	<span id="uploadUImage"></span>
+			  </div>
+			  <div class="col-xs-6" style="padding-top:3%">
+			    <div class="form-group" >
+			  		<span style="margin-left:10%;"><icon class="fa fa-user"></icon></span>
+					<span style="margin-left:10%;" id="nickname"></span>
+				</div>
+				<div class="form-group" >
+					<span style="margin-left:10%;"><icon class="fa fa-calendar-check-o"></icon></span>
+					<span style="margin-left:10%;" id="reg_date"></span>
+				</div>	
+				<div class="form-group" >
+					<span style="margin-left:10%;"><icon class="fa fa-calendar-check-o"></icon></span>
+					<span style="margin-left:10%;">123123</span>
+				</div>	
+				<div class="form-group" >
+					<button type="button" class="btn btn-primary" style="margin-left:10%; border: 3px solid #F4C6C1; border-radius: 20px; background-color:#FE8275;" id="uUpdate">회원정보 수정</button>
+				</div>
+			  </div>
+			</div>
+
+			<div class="row" >
+
+			   <div class="col-xs-6" style="margin-top:20%">
+			     <div class="form-group" id="babyName" style="margin-left: 10%;">
+					<span ><icon class="fa fa-user"></icon></span>
+					<span  id="bName"></span>
+				 </div>
+				 <div class="form-group" id="babyBirth" style="margin-left: 10%;">
+					<span ><icon class="fa fa-calendar"></icon></span>
+					<span  id="bBirth"></span>
+				 </div>
+
+				 <div class="form-group" id="sBabyResult" style="margin-left: 10%;">
+					<span ><icon class="fa fa-calendar"></icon></span>
+					<span id="sBResult"></span>
+				 </div>			
+
+				 <div class="form-group" style="margin-left:10%;">
+					<button type="button" class="btn btn-primary" id="bUpdate" style="border: 3px solid #F4C6C1; border-radius: 20px; background-color:#FE8275;">아이정보 수정</button>
+				 </div>
+			   </div>
+
+			   <div class="col-xs-6">
+			   	  <div class="form-group">
+					 <div id="uploadBImage"></div>
+				  </div>
+			   </div>
+			 </div>
+
+			 <div class="row">
+			 	<div class="col-xs-12">
+			 		<div class="form-group" align="center">
+						<button type="button" class="btn btn-default" style="border: 3px solid #F4C6C1; border-radius: 20px; margin-top:5%;" id="logout">로그아웃</button>
+					</div>
+			 	</div>
+			 </div>
 		</form>
 
 	</div>
@@ -208,7 +251,7 @@
 							var img = $("<img />");
 							img.attr("name",getuPhoto.replace("img/",""));
 							img.attr("id","multi");
-							img.attr("style", "width:150px; height:150px; margin-right:10px; margin-top: 70px; border: 5px solid #F4C6C1; float: left; border-radius:30px 30px 5px 30px");
+							img.attr("style", "width:100%; height:auto; margin-right:10px; border: 5px solid #F4C6C1;border-radius:30px 30px 5px 30px");
 							img.attr("src",getuPhoto);
 							img.attr("class","img-rounded");
 
@@ -243,7 +286,7 @@
 							var img = $("<img />");
 							img.attr("name",getbPhoto.replace("img/",""));
 							img.attr("id","multi");
-							img.attr("style", "width:150px; height:150px; margin-right:10px; border: 5px solid #F4C6C1; float: right; border-radius:5px 30px 30px 30px");
+							img.attr("style", "width:100%; height:100%; margin-top:40%; border: 5px solid #F4C6C1; border-radius:5px 30px 30px 30px");
 							img.attr("src",getbPhoto);
 							img.attr("class","img-rounded");
 
@@ -254,7 +297,7 @@
 								var img = $("<img />");
 								img.attr("name","default");
 								img.attr("id","multi");
-								img.attr("style", "width:300px; height:200px; margin-right:10px;");
+								img.attr("style", "width:300px; height:200px; margin-right:10px; margin-top: 10px;");
 								img.attr("src",babyFileURL+"defaultcamera.jpg");
 								img.attr("class","img-rounded");
 								img.attr("align","center");
@@ -265,8 +308,6 @@
 								$("#babyBirth").remove();
 								$("#bUpdate").remove();
 								$("#sBabyResult").remove();
-
-								$("#logout").attr("style","position:relative;top:100px; border: 3px solid #F4C6C1; border-radius: 20px;")
 
 								$("#uploadBImage").on("click",function(){
 									$(window.parent.frames["innerframe"].document.location).attr("href","updateBaby.html");
