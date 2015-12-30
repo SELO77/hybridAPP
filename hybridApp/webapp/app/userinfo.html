@@ -200,7 +200,7 @@
 					}
 
 					if(result.user.uPic!="default.jpg") {
-						getuPhoto=fileURL+"result.user.uPic";
+						getuPhoto=fileURL+result.user.uPic;
 					}
 
 
@@ -209,7 +209,7 @@
 
 					var img = $("<img />");
 						//img.attr("name",getuPhoto.replace("img/",""));
-						img.attr("name",getuPhoto.split("/")[6]);
+						img.attr("name",getuPhoto.split("/")[5]);
 						img.attr("id","multi");
 						img.attr("style", "width:100px; height:100px; margin-right:10px; margin-top: 10px;");
 						img.attr("src",getuPhoto);
@@ -218,11 +218,11 @@
 						$("#uploadImage").append(img);
 
 					$("#currentPassword").keyup(function() {
-						if($("#currentPassword").val()!=result.user.password && $("#currentPassword").val()!=null) {
+						if($("#currentPassword").val()!=result.user.password && $("#currentPassword").val()!="") {
 							$("#currentPasswordCheck").css("color","red");
 							if($("#currentPasswordCheck").children().length==0){
 							$("#currentPasswordCheck")
-							.append("<text id='alertPassword'>&nbsp&nbsp&nbsp비밀번호가 일치하지 않습니다.</text>");
+							.append("<text id='alertPassword'>&nbsp&nbsp&nbsp 현재 비밀번호와 일치하지 않습니다.</text>");
 							}
 						}
 						else{
@@ -257,7 +257,16 @@
 								}
 							} 
 
-							if($("#changePassword").val()=="" && $("#checkPassword").val()==""){
+							if($("#currentPassword").val()=="") {
+								$("#currentPassword").focusin();
+								$("#currentPasswordCheck").css("color","red");
+								if($("#currentPasswordCheck").children().length==0){
+								$("#currentPasswordCheck")
+								.append("<text id='alertPassword'>&nbsp&nbsp&nbsp현재 비밀번호와 일치하지 않습니다.</text>");
+							}
+							}
+
+							else if(($("#changePassword").val()=="" && $("#checkPassword").val()=="") && $("#currentPassword").val()!=""){
 								$.ajax({
 								url:getMetaData("ip")+"user/json/updateUser",
 								method:"POST",
@@ -277,7 +286,7 @@
 									}
 								});
 							}
-							else{
+							else if($("#currentPassword").val()!=""){
 								$.ajax({
 								url:getMetaData("ip")+"user/json/updateUser",
 								method:"POST",
