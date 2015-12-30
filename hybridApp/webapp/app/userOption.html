@@ -140,7 +140,7 @@
 				$("#logout").on("click",function(){
 					$('frame[name="innerframe"]').attr('scrolling','auto');
 					window.localStorage.removeItem("userKey");
-					$(window.parent.location).attr("href","index.html");
+					self.location="index.html";
 				});
 
 
