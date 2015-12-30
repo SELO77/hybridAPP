@@ -1,4 +1,6 @@
 //다이어리 호출 함수
+var imgSrc = "http://192.168.0.3:8080/thumbnail_upload/diary/";
+
 function loadDiary(args) {
 	
 	$
@@ -102,11 +104,11 @@ function loadDiary(args) {
 												} else {
 													for (var i = 0; i < dPics.length; i++) {
 														if (i != dPics.length - 1) {
-															returnImg += 'http://192.168.0.3:8080/resources/thumbnail/diary/'
+															returnImg += imgSrc
 																	+ dPics[i]
 																	+ ',';
 														} else {
-															returnImg += 'http://192.168.0.3:8080/resources/thumbnail/diary/'
+															returnImg += imgSrc
 																	+ dPics[i];
 														}
 													}
@@ -125,27 +127,27 @@ function loadDiary(args) {
 													return returnHtml;
 												}
 												if (dPics.length == 1) {
-													returnHtml = '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'
-															+ dPics[0]
+													returnHtml = '<img class="img" src="'
+															+imgSrc+ dPics[0]
 															+ '" style="width: 100%; height:auto; margin: 0">';
 													return returnHtml;
 												} else {
 													if (dPics.length % 2 == 0) {
 
 														for (var i = 0; i < dPics.length; i++) {
-															returnHtml += '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'
-																	+ dPics[i]
+															returnHtml += '<img class="img" src="'
+																	+ imgSrc+dPics[i]
 																	+ '" style="width: 50%; height:auto; padding: 3px; ">';
 														}
 
 													} else {
-														returnHtml += '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'
-																+ dPics[0]
+														returnHtml += '<img class="img" src="'
+																+ imgSrc+dPics[0]
 																+ '" style="width: 100%; height:auto;">';
 
 														for (var i = 1; i < dPics.length; i++) {
-															returnHtml += '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'
-																	+ dPics[i]
+															returnHtml += '<img class="img" src="'
+																	+ imgSrc+dPics[i]
 																	+ '" style="width: 50%; height:auto; padding: 3px">';
 														}
 													}
@@ -193,7 +195,7 @@ $(document)
 												for (var i = 0; i < diary.dPics.length; i++) {
 
 													resultImg
-															.push("http://192.168.0.3:8080/resources/thumbnail/diary/"
+															.push(imgSrc
 																	+ diary.dPics[i]);
 
 												}
@@ -325,27 +327,27 @@ function getDiary(args) {
 													return returnHtml;
 												}
 												if (dPics.length == 1) {
-													returnHtml = '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'
-															+ dPics[0]
+													returnHtml = '<img class="img" src="'
+															+ imgSrc+dPics[0]
 															+ '" style="width: 100%; height:auto; margin: 0">';
 													return returnHtml;
 												} else {
 													if (dPics.length % 2 == 0) {
 
 														for (var i = 0; i < dPics.length; i++) {
-															returnHtml += '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'
-																	+ dPics[i]
+															returnHtml += '<img class="img" src="'
+																	+ imgSrc+dPics[i]
 																	+ '" style="width: 50%; height:auto; padding: 3px; ">';
 														}
 
 													} else {
-														returnHtml += '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'
-																+ dPics[0]
+														returnHtml += '<img class="img" src="'
+																+ imgSrc+dPics[0]
 																+ '" style="width: 100%; height:auto;">';
 
 														for (var i = 1; i < dPics.length; i++) {
-															returnHtml += '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'
-																	+ dPics[i]
+															returnHtml += '<img class="img" src="'
+																	+ imgSrc+dPics[i]
 																	+ '" style="width: 50%; height:auto; padding: 3px">';
 														}
 													}
@@ -462,27 +464,27 @@ function getDiaryListByTag(args) {
 												return returnHtml;
 											}
 											if (dPics.length == 1) {
-												returnHtml = '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'
-														+ dPics[0]
+												returnHtml = '<img class="img" src="'
+														+ imgSrc+dPics[0]
 														+ '" style="width: 100%; height:auto; margin: 0">';
 												return returnHtml;
 											} else {
 												if (dPics.length % 2 == 0) {
 
 													for (var i = 0; i < dPics.length; i++) {
-														returnHtml += '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'
-																+ dPics[i]
+														returnHtml += '<img class="img" src="'
+																+ imgSrc+dPics[i]
 																+ '" style="width: 50%; height:auto; padding: 3px; ">';
 													}
 
 												} else {
-													returnHtml += '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'
-															+ dPics[0]
+													returnHtml += '<img class="img" src="'
+															+ imgSrc+dPics[0]
 															+ '" style="width: 100%; height:auto;">';
 
 													for (var i = 1; i < dPics.length; i++) {
-														returnHtml += '<img class="img" src="http://192.168.0.3:8080/resources/thumbnail/diary/'
-																+ dPics[i]
+														returnHtml += '<img class="img" src="'
+																+ imgSrc+dPics[i]
 																+ '" style="width: 50%; height:auto; padding: 3px">';
 													}
 												}
