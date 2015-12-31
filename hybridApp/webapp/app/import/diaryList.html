@@ -16,7 +16,7 @@
           <span>
             <img class="img-rounded pull-left" src="http://192.168.0.3:8080/dodam_upload/user/{{diaryUser.uPic}}" style="width: 48px; height:auto; border: 1px solid #ccc;">
             </span> 
-            <span style="margin-left:10px">{{diaryUser.nickname}}</span>          
+            <span style="margin-left:10px;font-weight:bold">{{diaryUser.nickname}}</span>          
         </div>              
 
       </div>
@@ -26,7 +26,7 @@
           {{{picCheck dPics}}}
         </center>
       </div>
-      <font style="font-size:12px; color:#BDBDBD;">좋아요<likeCount id="{{dNo}}">{{likeCount}}</likeCount> 댓글 <replyCount id="callReply{{dNo}}">{{replyCount}}</replyCount>개</font>
+      <font style="margin-left:10px;font-size:12px; color:#BDBDBD;">좋아요<likeCount id="{{dNo}}">{{likeCount}}</likeCount> 댓글 <replyCount id="callReply{{dNo}}">{{replyCount}}</replyCount>개</font>
       <center>
       <hr style="margin-top:0px; margin-bottom: 0px;">
       <div class="row ratings" id="replyCount" style="width:100%; padding-left:0; padding-right:0;">
@@ -38,7 +38,7 @@
             <button type="button" class="btn btn-default callReply" data-toggle="modal" data-target="#reply{{dNo}}"  style="padding-bottom:6; padding-top:6; border:0;">
               <input type="hidden" name="dNo" id="dNo" value="{{dNo}}">
               <a aria-expanded="false" aria-controls="collapseExample{{dNo}}" >
-              <i class="fa fa-commenting-o" /> 댓글
+              <i class="fa fa-commenting-o" /> 댓글...
               </a>
             </button>
           </div>
