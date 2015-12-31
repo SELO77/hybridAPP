@@ -368,7 +368,7 @@ $(document).on(
 
 							}
 							window.plugins.socialsharing.share(null,
-									diary.dContent, resultImg, diary.dContent);
+									diary.dContent+'by.도담도담', resultImg, diary.dContent+'by.도담도담');
 						}
 					});
 		})

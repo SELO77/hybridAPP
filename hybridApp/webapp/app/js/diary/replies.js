@@ -20,7 +20,7 @@
 
 
            //댓글 가져오기.
-          $(document).on("tap", ".callReply", function(){
+          $(document).on("click", ".callReply", function(){
              // setTimeout('',1000*6);
              // $('collapse').dropdown(); 
               $('deletePoint').remove();
@@ -48,7 +48,7 @@
           
 
           //[시용] 댓글달기 동적 이벤트 처리
-          $(document).on("tap","#reply",function(){
+          $(document).on("click","#reply",function(){
               var dNo=$(this).prev('input').val();
               var rContent=$(this).parent().parent().children('#replyButton').children('#insertReply'+dNo);
               $('updateDelete').remove();
@@ -103,7 +103,7 @@
 
 
         //[시용] 댓글삭제
-        $(document).on("tap", ".removeReply", function(){
+        $(document).on("click", ".removeReply", function(){
               var replySpan=$(this).parent().parent().children($('input[class="hiddenRNo"]'));
               //alert(replySpan.val());
               var diarySpan=$(this).parent().parent().children('#'+replySpan.val());
@@ -146,7 +146,7 @@
 
 
         //[시용] 댓글수정1
-        $(document).on("tap", ".updateReply", function(){
+        $(document).on("click", ".updateReply", function(){
                 var replySpan=$(this).parent().parent().children($('input[class="hiddenRNo"]'));
                 var replyNo = replySpan.val();
                 var updateReply = $(this).parent().parent().next();
@@ -161,7 +161,7 @@
                  });        
         
         //[시용] 댓글수정2
-        $(document).on("tap", ".updateButton", function(){
+        $(document).on("click", ".updateButton", function(){
                 var replyNo = $(this).prev().val();
                 //alert(replyNo);
                 var updateContent = $(this).parent().prev().children('input').val();
