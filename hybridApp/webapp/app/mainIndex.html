@@ -106,7 +106,7 @@
 
 </head>
 
-<body style="overflow: hidden" onload="diaryLoad();">
+<body style="overflow: hidden" onload="diaryLoad()">
 
 	<!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -252,6 +252,7 @@
             	<script text="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
             	<!-- ip 등 meta data 가져오기 -->
             	<script src="js/jihoon/getMetaData.js"></script>
+            	<script type="text/javascript" src="js/SocialSharing.js"></script>
 
 
             	<!-- [지훈] RotateMenu Script 시작 -->
@@ -437,49 +438,6 @@
 		}
 	</script>
 
-
-	<script type="text/javascript">
-	$.slidebars();
-		//Swipeleft to remove a post
-		// $("").swipe({
-		//   swipeLeft:function(event,direction,distance,duration,fingerCount){
-		//     $(this).remove();
-		//   },
-		//   thereshold:0
-		// });// /.swipe
-		//slidebar( sidebar )
-		
-		/*document.addEventListener("deviceready", onDeviceReady, false);
-		function onDeviceReady() {
-			//loadDiary();
-		}
-		document.addEventListener("backbutton", onBackKeyDown, false);
-		function onBackKeyDown() {
-			//window.plugins.toast.show('Really Exit?'.'short'.'center',)
-			testLogoutSheet();
-		}
-		//Action sheet
-		function testLogoutSheet() {
-			var options = {
-				'androidTheme' : window.plugins.actionsheet.ANDROID_THEMES.THEME_HOLO_LIGHT,
-				'title' : 'Are you sure to close it?',
-				'buttonLabels' : [ 'No', 'Yes' ],
-				'androidEnableCancelButton' : true,
-				'winphoneEnableCancelButton' : true,
-			//'addCancelButtonWithLabel': 'Cancel'
-		};
-		window.plugins.actionsheet.show(options, callback);
-	}
-	var callback = function(buttonIndex) {
-		setTimeout(function() {
-				//alert('button index clicked: ' + buttonIndex);
-				if (buttonIndex == 2) {
-					navigator.app.exitApp();
-				}
-				;
-			});
-	};*/
-</script>
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 <script>
 	(function(b, o, i, l, e, r) {
