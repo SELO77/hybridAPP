@@ -167,6 +167,13 @@ function loadDiary(args) {
 					});
 }
 
+//[시용]diaryList에서 userdiary 보기
+$(document).on("click", "#getDiary", function(){
+	var dNo = $(this).prev().val();
+	window.localStorage.setItem('frDiaryKey', dNo);
+	$(window.parent.frames["innerframe"].document.location).attr("href", "friendDiary.html");
+})
+
 //[시용]friend Diary
 function friendDiary(args) {
 	
