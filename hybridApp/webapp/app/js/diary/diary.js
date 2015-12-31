@@ -24,8 +24,8 @@ function loadDiary(args) {
 											'userCheck',
 											function(uNo, dNo) {
 												// alert(rUNo);
-												var userhtml = "<div class='dropdown pull-right' style='padding-right:5px;padding-top: 7px;float:right'><img src='img/btn_update.png' style='width:20px; height:20px;' data-toggle='dropdown'><!--<i class='fa fa-cog' data-toggle='dropdown'/>--><div class='dropdown-menu' role='menu' aria-labelledby='dLabel' style='padding-top: 0px;padding-bottom: 0px;'><p style='margin-bottom: 0px;'><input type='hidden' value='"+dNo+"'><updateDiary style='height:transparent'><button type='button' class='btn btn-default'  style='width:100%'><a>수정하기</a></button></updateDiary></p><p style='margin-bottom: 0px;'><input type='hidden' value='"+dNo+"'><deleteDiary style='height:transparent'><button type='button' class='btn btn-default' style='width:100%'><a>삭제하기</a></button></deleteDiary></p></div></div>";
-
+												var userhtml = "<div class='dropdown pull-right' style='padding-right:5px;padding-top: 7px;float:right'><img src='img/btn_update.png' style='width:20px; height:20px;' data-toggle='dropdown'><!--<i class='fa fa-cog' data-toggle='dropdown'/>--><div class='dropdown-menu' role='menu' aria-labelledby='dLabel' style='padding-top: 0px;padding-bottom: 0px;'><p style='margin-bottom: 0px;'><input type='hidden' value='"+dNo+"'><updateDiary style='height:transparent'><button type='button' class='btn btn-default'  style='width:100%'><a>수정</a></button></updateDiary></p><p style='margin-bottom: 0px;'><input type='hidden' value='"+dNo+"'><deleteDiary style='height:transparent'><button type='button' class='btn btn-default' style='width:100%'><a>삭제</a></button></deleteDiary></p></div></div>";
+																							
 												if (uNo == user.uNo) {
 													return userhtml;
 												} else {
@@ -194,7 +194,7 @@ function friendDiary(args) {
 											'userCheck',
 											function(uNo, dNo) {
 												// alert(rUNo);
-												var userhtml = "<div class='dropdown pull-right' style='padding-right:5px;padding-top: 7px;float:right'><img src='img/btn_update.png' style='width:20px; height:20px;' data-toggle='dropdown'><!--<i class='fa fa-cog' data-toggle='dropdown'/>--><div class='dropdown-menu' role='menu' aria-labelledby='dLabel' style='padding-top: 0px;padding-bottom: 0px;'><p style='margin-bottom: 0px;'><input type='hidden' value='"+dNo+"'><updateDiary style='height:transparent'><button type='button' class='btn btn-default'  style='width:100%'><a>수정하기</a></button></updateDiary></p><p style='margin-bottom: 0px;'><input type='hidden' value='"+dNo+"'><deleteDiary style='height:transparent'><button type='button' class='btn btn-default' style='width:100%'><a>삭제하기</a></button></deleteDiary></p></div></div>";
+												var userhtml = "<div class='dropdown pull-right' style='padding-right:5px;padding-top: 7px;float:right'><img src='img/btn_update.png' style='width:20px; height:20px;' data-toggle='dropdown'><!--<i class='fa fa-cog' data-toggle='dropdown'/>--><div class='dropdown-menu' role='menu' aria-labelledby='dLabel' style='padding-top: 0px;padding-bottom: 0px;'><p style='margin-bottom: 0px;'><input type='hidden' value='"+dNo+"'><updateDiary style='height:transparent'><button type='button' class='btn btn-default'  style='width:100%'><a>수정</a></button></updateDiary></p><p style='margin-bottom: 0px;'><input type='hidden' value='"+dNo+"'><deleteDiary style='height:transparent'><button type='button' class='btn btn-default' style='width:100%'><a>삭제</a></button></deleteDiary></p></div></div>";
 
 												if (uNo == user.uNo) {
 													return userhtml;
@@ -412,7 +412,7 @@ function getDiary(args) {
 											'userCheck',
 											function(uNo, dNo) {
 												// alert(rUNo);
-												var userhtml = "<div class='dropdown pull-right' style='padding-right:5px;padding-top: 7px;float:right;'><img src='img/btn_update.png' style='width:20px; height:20px;' data-toggle='dropdown'><!--<i class='fa fa-cog' data-toggle='dropdown'/>--><div class='dropdown-menu' role='menu' aria-labelledby='dLabel' style='padding-top: 0px;padding-bottom: 0px;'><p style='margin-bottom: 0px;'><input type='hidden' value='"+dNo+"'><updateDiary style='height:transparent'><button type='button' class='btn btn-default'  style='width:100%'><a>수정하기</a></button></updateDiary></p><p style='margin-bottom: 0px;'><input type='hidden' value='"+dNo+"'><deleteDiary style='height:transparent'><button type='button' class='btn btn-default' style='width:100%'><a>삭제하기</a></button></deleteDiary></p></div></div>";
+												var userhtml = "<div class='dropdown pull-right' style='padding-right:5px;padding-top: 7px;float:right'><img src='img/btn_update.png' style='width:20px; height:20px;' data-toggle='dropdown'><!--<i class='fa fa-cog' data-toggle='dropdown'/>--><div class='dropdown-menu' role='menu' aria-labelledby='dLabel' style='padding-top: 0px;padding-bottom: 0px;'><p style='margin-bottom: 0px;'><input type='hidden' value='"+dNo+"'><updateDiary style='height:transparent'><button type='button' class='btn btn-default'  style='width:100%'><a>수정</a></button></updateDiary></p><p style='margin-bottom: 0px;'><input type='hidden' value='"+dNo+"'><deleteDiary style='height:transparent'><button type='button' class='btn btn-default' style='width:100%'><a>삭제</a></button></deleteDiary></p></div></div>";
 
 												if (uNo == user.uNo) {
 													return userhtml;
@@ -528,20 +528,6 @@ function getDiary(args) {
 }
 
 
-// .ajax(
-// 					requestURL + 'getDiary',
-// 					{
-// 						method : "post",
-// 						crossDomain : true,
-// 						dataType : "json",
-// 						contentType : "application/json; charset=UTF-8",
-// 						data : JSON.stringify({
-// 							dNo : args
-// 						}),
-// 						success : function(result) {
-
-
-
 // getDiaryListByTag
 function getDiaryListByTag(args) {
 	console.log('==getDiaryListByTag(args)== args:' + args);
@@ -563,7 +549,7 @@ function getDiaryListByTag(args) {
 										'userCheck',
 										function(uNo, dNo) {
 											// alert(rUNo);
-											var userhtml = "<div class='dropdown pull-right' style='padding-right:5px;padding-top: 7px;float:right'><img src='img/btn_update.png' style='width:20px; height:20px;' data-toggle='dropdown'><!--<i class='fa fa-cog' data-toggle='dropdown'/>--><div class='dropdown-menu' role='menu' aria-labelledby='dLabel' style='padding-top: 0px;padding-bottom: 0px;'><p style='margin-bottom: 0px;'><input type='hidden' value='"+dNo+"'><updateDiary style='height:transparent'><button type='button' class='btn btn-default'  style='width:100%'><a>수정하기</a></button></updateDiary></p><p style='margin-bottom: 0px;'><input type='hidden' value='"+dNo+"'><deleteDiary style='height:transparent'><button type='button' class='btn btn-default' style='width:100%'><a>삭제하기</a></button></deleteDiary></p></div></div>";
+											var userhtml = "<div class='dropdown pull-right' style='padding-right:5px;padding-top: 7px;float:right'><img src='img/btn_update.png' style='width:20px; height:20px;' data-toggle='dropdown'><!--<i class='fa fa-cog' data-toggle='dropdown'/>--><div class='dropdown-menu' role='menu' aria-labelledby='dLabel' style='padding-top: 0px;padding-bottom: 0px;'><p style='margin-bottom: 0px;'><input type='hidden' value='"+dNo+"'><updateDiary style='height:transparent'><button type='button' class='btn btn-default'  style='width:100%'><a>수정</a></button></updateDiary></p><p style='margin-bottom: 0px;'><input type='hidden' value='"+dNo+"'><deleteDiary style='height:transparent'><button type='button' class='btn btn-default' style='width:100%'><a>삭제</a></button></deleteDiary></p></div></div>";
 
 											if (uNo == user.uNo) {
 												return userhtml;
@@ -634,7 +620,7 @@ function getDiaryListByTag(args) {
 								.registerHelper(
 										'picCheck',
 										function(dPics) {
-											// alert(rUNo);
+
 											var returnHtml = ' ';
 											if (dPics.length == 0
 													|| dPics[0].trim() == '') {
@@ -681,145 +667,6 @@ function getDiaryListByTag(args) {
 }// /getDiaryListByTag
 
 
-// getDiaryListByTag
-// function getDiaryListByTag(args) {
-// 	console.log('==getDiaryListByTag(args)== args:' + args);
-// 	$
-// 			.getJSON(
-// 					requestURL + 'getDiaryListByTag',
-// 					{
-// 						dTag : args
-// 					},
-// 					function(json, textStatus) {
-// 						console.log('textStatus :' + textStatus);
-// 						console.log('responseData :' + json);
-// 						var temp = diaryLink.import;
-// 						var source = temp.querySelector('#entry-template').text;
-// 						Handlebars
-// 								.registerHelper(
-// 										'userCheck',
-// 										function(uNo, dNo) {
-// 											// alert(rUNo);
-// 											var userhtml = "<div class='dropdown pull-right' style='padding-right: 20px;padding-top: 10px;'><i class='fa fa-cog'data-toggle='dropdown'/><div class='dropdown-menu' role='menu' aria-labelledby='dLabel' style='padding-top: 0px;padding-bottom: 0px;'><p style='margin-bottom: 0px;'><input type='hidden' value='"
-// 													+ dNo
-// 													+ "'><updateDiary style='height:transparent'><button type='button' class='btn btn-default'  style='width:100%'><a>수정하기</a></button></updateDiary></p><p style='margin-bottom: 0px;'><input type='hidden' value='"
-// 													+ dNo
-// 													+ "'><deleteDiary style='height:transparent'><button type='button' class='btn btn-default' style='width:100%'><a>삭제하기</a></button></deleteDiary></p></div></div>";
-
-// 											if (uNo == user.uNo) {
-// 												return userhtml;
-// 											} else {
-// 												return '';
-// 											}
-// 										});// helper
-
-// 						// [SELO77] dContent에서 Tag효과 주는 로직 추가.
-// 						Handlebars
-// 								.registerHelper(
-// 										'dContentForTag',
-// 										function(dContent) {
-// 											console
-// 													.log('== dContent Parsing for HashTag == dContent:'
-// 															+ dContent);
-
-// 											var startTagIndex = dContent
-// 													.indexOf("#");
-// 											var temp = dContent
-// 													.slice(startTagIndex);
-// 											var endTagIndex = temp.indexOf(" ");
-
-// 											var hashTags = temp.slice(0,
-// 													endTagIndex);
-// 											console
-// 													.log('hashTags :'
-// 															+ hashTags);
-
-// 											var hashTagList = hashTags
-// 													.split("#");
-// 											hashTagList.splice(0, 1);
-
-// 											for (i in hashTagList) {
-// 												var temp = '<strong style="color:#125688" class="hashTag">#'
-// 														+ hashTagList[i]
-// 														+ '</strong>';
-// 												hashTagList[i] = temp;
-// 											}
-
-// 											return dContent
-// 													.replace(
-// 															hashTags,
-// 															hashTagList
-// 																	.toString()
-// 																	.replace(
-// 																			/,/gi,
-// 																			""));
-// 										}); // /Handlebars.registerHelper('dContentForTag'
-
-// 						Handlebars
-// 								.registerHelper(
-// 										'likeCheck',
-// 										function(likeList) {
-// 											// alert(rUNo);
-// 											var likehtml = "<insertLike><a><i class='fa fa-thumbs-o-up'/> 좋아요</a></insertLike>";
-
-// 											for (var i = 0; i < likeList.length; i++) {
-// 												if (likeList[i].uNo == user.uNo
-// 														&& likeList[i].lState == 1) {
-// 													likehtml = "<deleteLike><a><i class='fa fa-thumbs-o-up'/> 좋아요취소</a></deleteLike>";
-// 												}
-// 											}
-// 											return likehtml;
-// 										});// helper
-
-// 						Handlebars
-// 								.registerHelper(
-// 										'picCheck',
-// 										function(dPics) {
-// 											// alert(rUNo);
-// 											var returnHtml = ' ';
-// 											if (dPics.length == 0
-// 													|| dPics[0].trim() == '') {
-// 												return returnHtml;
-// 											}
-// 											if (dPics.length == 1) {
-// 												returnHtml = '<img class="img" src="'
-// 														+ imgSrc
-// 														+ dPics[0]
-// 														+ '" style="width: 100%; height:auto; margin: 0">';
-// 												return returnHtml;
-// 											} else {
-// 												if (dPics.length % 2 == 0) {
-
-// 													for (var i = 0; i < dPics.length; i++) {
-// 														returnHtml += '<img class="img" src="'
-// 																+ imgSrc
-// 																+ dPics[i]
-// 																+ '" style="width: 50%; height:auto; padding: 3px; ">';
-// 													}
-
-// 												} else {
-// 													returnHtml += '<img class="img" src="'
-// 															+ imgSrc
-// 															+ dPics[0]
-// 															+ '" style="width: 100%; height:auto;">';
-
-// 													for (var i = 1; i < dPics.length; i++) {
-// 														returnHtml += '<img class="img" src="'
-// 																+ imgSrc
-// 																+ dPics[i]
-// 																+ '" style="width: 50%; height:auto; padding: 3px">';
-// 													}
-// 												}
-// 												return returnHtml;
-// 											}
-// 										});// helper
-// 						var template = Handlebars.compile(source);
-// 						var html = template(json);
-// 						$('#diaryHandle').after(html);
-
-// 					});// success function
-// }// /getDiaryListByTag
-
 // [좋아요 누르기]
 $(document)
 		.on(
@@ -828,7 +675,7 @@ $(document)
 				function() {
 					var likes = $(this);
 					var diaryNo = $(this).prev('input');
-					// alert(diaryNo.val());
+
 					$
 							.ajax({
 								url : requestIP + "like/json/insertLike",
@@ -841,7 +688,7 @@ $(document)
 								}),
 								success : function(result) {
 									if (result.result == true) {
-										// alert($(this).parent().children('insertLike').text);
+
 										likes.parent().children('insertLike')
 												.remove();
 
@@ -856,7 +703,7 @@ $(document)
 														dNo : diaryNo.val(),
 													}),
 													success : function(result) {
-														// alert(result.likeCount);
+
 														$(
 																'likeCount[id='
 																		+ diaryNo
@@ -882,7 +729,7 @@ $(document)
 				function() {
 					var likes = $(this);
 					var diaryNo = $(this).prev('input');
-					// alert(diaryNo.val());
+
 					$
 							.ajax({
 								url : requestIP + "like/json/deleteLike",
@@ -895,7 +742,7 @@ $(document)
 								}),
 								success : function(result) {
 									if (result.result == true) {
-										// alert($(this).parent().children('deleteLike').text);
+
 										likes.parent().children('deleteLike')
 												.remove();
 
@@ -910,7 +757,7 @@ $(document)
 														dNo : diaryNo.val(),
 													}),
 													success : function(result) {
-														// alert(result.likeCount);
+
 														$(
 																'likeCount[id='
 																		+ diaryNo
@@ -931,7 +778,7 @@ $(document)
 // [시용]다이어리 삭제.
 $(document).on("tap", "deleteDiary", function() {
 	var diaryNo = $(this).prev('input');
-	// alert(diaryNo.val());
+
 	$.ajax({
 		url : requestURL + 'deleteDiary',
 		method : 'POST',
@@ -942,11 +789,9 @@ $(document).on("tap", "deleteDiary", function() {
 		}),
 		success : function(result) {
 			if (result.result == true) {
-				// alert("삭제성공");
-				// location.reload(true);
-				// alert(diaryNo.val());
+
 				$("#deleteDiary" + diaryNo.val()).fadeOut("fast");
-				// setTimeout($("#deleteDiary"+diaryNo.val()).remove(),1000*2);
+
 			}
 		}
 	});
@@ -958,12 +803,10 @@ $(document).on(
 		"updateDiary",
 		function() {
 			var diaryNo = $(this).prev('input');
-			// alert(diaryNo.val());
-			// console.log(diaryNo.val());
+
 			$('form[name=updateForm]').children('input').val(diaryNo.val());
 
 			var test = $('form[name=updateForm]').children('input').val();
-			// alert(test);
 
 			$('form[name=updateForm]').submit();
 			window.localStorage.setItem("diaryKey", test);
@@ -972,7 +815,6 @@ $(document).on(
 		});
 
 // [SELO77] HashTag를 tap시 검색 event처리
-//
 
 $(document).on(
 		'tap',
