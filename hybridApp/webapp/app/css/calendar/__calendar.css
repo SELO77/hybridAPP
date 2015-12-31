@@ -3,17 +3,19 @@
 		margin-top: 20px;			
 	}
 	.content2 .clndr-controls, .content1{
-		background-color: #FFF590;
+		background-color: #fe8275;
+	}
 
-	}	
 
 	.content2, .content1{			
 		margin: auto;
 		width: 100%;	
-
+	}
+	.header2{
+		background-color: initial;
 	}
 	.header2 h2, .month{
-		color:black;
+		color:white;
 		font-weight: bold;
 	}
 
