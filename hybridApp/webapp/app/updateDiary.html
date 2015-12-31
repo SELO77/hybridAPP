@@ -232,6 +232,7 @@
                    uNo : user.uNo,
                    dContent : $("#dContent").val(),
                    dNo : dNo,
+                   dTag : hashTags[0],
                    dCode : 'self'
                 }),
                 success:function(result){
@@ -273,7 +274,50 @@
         $(window.parent.frames["innerframe"].document.location)
               .attr("href", "diary.html");
       } 
-      //[시용, JS, end] : 파일을 서버에 저장하기 위한 AJAX function
+     
+      //[SELO77] 해쉬태그를 위한 키이벤트
+      var diaryContent;
+      var dTagToServer;
+      var hashTags = [];
+      $('textarea').keyup(function() {
+        console.log("======START=============");
+        var textareaVal = $('textarea').val();
+        var textareaLength = textareaVal.length;
+
+        //console.log('textarea keydown');
+        console.log('textarea.text() :'+textareaVal);
+        console.log('textarea length :'+textareaLength);
+
+        if (textareaVal.indexOf("#") != -1) {
+          console.log('client keydwon #!!! it start hashTag');
+          console.log('textareaVal.indexOf("#") :'+textareaVal.indexOf("#"));
+          var startHashTagIndex = textareaVal.indexOf("#");
+
+          var tempForHashTag = textareaVal.slice(startHashTagIndex);
+          console.log('tempForHashTag :'+tempForHashTag);
+          //var endHashTagIndex =textareaLength;
+          //console.log('textareaVal.substring() :'+textareaVal.substring(startHashTagIndex,endHashTagIndex));
+          
+          if (tempForHashTag.indexOf(" ") != -1) {
+            console.log('==tempForHashTag.indexOf(" ") :'+tempForHashTag.indexOf(" "));
+            console.log('==tempForHashTag.slice(startHashTagIndex, tempForHashTag.indexOf(" ")) :'+tempForHashTag.slice(0, tempForHashTag.indexOf(" ")));
+
+            hashTags.push( tempForHashTag.slice(0, tempForHashTag.indexOf(" ")) );           
+          }
+
+        };//outter if
+        for (i in hashTags) {
+          console.log('hashTags['+i+'] :'+hashTags[i]);
+        };       
+
+            console.log('== hashTags[hashTags.length-1] :'+hashTags[hashTags.length-1]);
+        dTagToServer = hashTags[hashTags.length-1];
+        console.log("=======END============");
+
+        
+      });// /.textarea.keyUP
+      
+      
     </script>
 
 </body>
