@@ -254,12 +254,11 @@
 		//[지훈]친구 일기보기 동적 이벤트 처리
 		$(document).on("click", ".friendDiary", function(){
 
-			var diaryUser = $(this).parent().children('#frNo').val();			
+			var diaryUser = $(this).parent().children('#frMate').val();			
 			window.localStorage.setItem("frDiaryKey", diaryUser);
 
 			$('frame[name="innerframe"]').attr('scrolling', 'auto');
-			$(window.parent.frames["innerframe"].document.location)
-				.attr("href", "friendDiary.html");
+			$(window.parent.frames["innerframe"].document.location).attr("href", "friendDiary.html");
 
 		});
 
