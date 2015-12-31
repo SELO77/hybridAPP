@@ -2,7 +2,7 @@
 var imgSrc = "http://192.168.0.3:8080/thumbnail_upload/diary/";
 
 function loadDiary(args) {
-	
+
 	$
 			.ajax(
 					requestURL + args,
@@ -64,7 +64,7 @@ function loadDiary(args) {
 												hashTagList.splice(0, 1);
 
 												for (i in hashTagList) {
-													var temp = '<strong class="hashTag">#'
+													var temp = '<strong style="color:#125688" class="hashTag">#'
 															+ hashTagList[i]
 															+ '</strong>';
 													hashTagList[i] = temp;
@@ -128,7 +128,8 @@ function loadDiary(args) {
 												}
 												if (dPics.length == 1) {
 													returnHtml = '<img class="img" src="'
-															+imgSrc+ dPics[0]
+															+ imgSrc
+															+ dPics[0]
 															+ '" style="width: 100%; height:auto; margin: 0">';
 													return returnHtml;
 												} else {
@@ -136,18 +137,21 @@ function loadDiary(args) {
 
 														for (var i = 0; i < dPics.length; i++) {
 															returnHtml += '<img class="img" src="'
-																	+ imgSrc+dPics[i]
+																	+ imgSrc
+																	+ dPics[i]
 																	+ '" style="width: 50%; height:auto; padding: 3px; ">';
 														}
 
 													} else {
 														returnHtml += '<img class="img" src="'
-																+ imgSrc+dPics[0]
+																+ imgSrc
+																+ dPics[0]
 																+ '" style="width: 100%; height:auto;">';
 
 														for (var i = 1; i < dPics.length; i++) {
 															returnHtml += '<img class="img" src="'
-																	+ imgSrc+dPics[i]
+																	+ imgSrc
+																	+ dPics[i]
 																	+ '" style="width: 50%; height:auto; padding: 3px">';
 														}
 													}
@@ -163,51 +167,45 @@ function loadDiary(args) {
 					});
 }
 
-$(document)
-		.on(
-				'tap',
-				'#shareDiary',
-				function() {
-					var dNo = $(this).prev('input').val();
-					// alert(dNo);
-					$
-							.ajax(
-									requestURL + 'getDiary',
-									{
-										method : "post",
-										crossDomain : true,
-										dataType : "json",
-										contentType : "application/json; charset=UTF-8",
-										data : JSON.stringify({
-											dNo : dNo
-										}),
-										success : function(result) {
-											console.log(result.diaries);
-											var diary = result.diaries[0];
-											console.log('diary' + diary);
-											// console.log('diary to
-											// json'+JSON.parseJSON(diary));
-											var resultImg = [];
-											if (diary.dPics.length == 0
-													|| diary.dPics[0].trim() == '') {
-												returnImg = "";
-											} else {
-												for (var i = 0; i < diary.dPics.length; i++) {
+$(document).on(
+		'tap',
+		'#shareDiary',
+		function() {
+			var dNo = $(this).prev('input').val();
+			// alert(dNo);
+			$.ajax(requestURL + 'getDiary',
+					{
+						method : "post",
+						crossDomain : true,
+						dataType : "json",
+						contentType : "application/json; charset=UTF-8",
+						data : JSON.stringify({
+							dNo : dNo
+						}),
+						success : function(result) {
+							console.log(result.diaries);
+							var diary = result.diaries[0];
+							console.log('diary' + diary);
+							// console.log('diary to
+							// json'+JSON.parseJSON(diary));
+							var resultImg = [];
+							if (diary.dPics.length == 0
+									|| diary.dPics[0].trim() == '') {
+								returnImg = "";
+							} else {
+								for (var i = 0; i < diary.dPics.length; i++) {
 
-													resultImg
-															.push(imgSrc
-																	+ diary.dPics[i]);
+									resultImg.push(imgSrc + diary.dPics[i]);
 
-												}
-												console.log(resultImg);
+								}
+								console.log(resultImg);
 
-											}
-											window.plugins.socialsharing.share(
-													null, diary.dContent,
-													resultImg, diary.dContent);
-										}
-									});
-				})
+							}
+							window.plugins.socialsharing.share(null,
+									diary.dContent, resultImg, diary.dContent);
+						}
+					});
+		})
 
 /*
  * function diaryShare(){ var dNo = $(this).prev('input').val(); alert(dNo);
@@ -287,7 +285,7 @@ function getDiary(args) {
 												hashTagList.splice(0, 1);
 
 												for (i in hashTagList) {
-													var temp = '<strong class="hashTag">#'
+													var temp = '<strong style="color:#125688" class="hashTag">#'
 															+ hashTagList[i]
 															+ '</strong>';
 													hashTagList[i] = temp;
@@ -328,7 +326,8 @@ function getDiary(args) {
 												}
 												if (dPics.length == 1) {
 													returnHtml = '<img class="img" src="'
-															+ imgSrc+dPics[0]
+															+ imgSrc
+															+ dPics[0]
 															+ '" style="width: 100%; height:auto; margin: 0">';
 													return returnHtml;
 												} else {
@@ -336,18 +335,21 @@ function getDiary(args) {
 
 														for (var i = 0; i < dPics.length; i++) {
 															returnHtml += '<img class="img" src="'
-																	+ imgSrc+dPics[i]
+																	+ imgSrc
+																	+ dPics[i]
 																	+ '" style="width: 50%; height:auto; padding: 3px; ">';
 														}
 
 													} else {
 														returnHtml += '<img class="img" src="'
-																+ imgSrc+dPics[0]
+																+ imgSrc
+																+ dPics[0]
 																+ '" style="width: 100%; height:auto;">';
 
 														for (var i = 1; i < dPics.length; i++) {
 															returnHtml += '<img class="img" src="'
-																	+ imgSrc+dPics[i]
+																	+ imgSrc
+																	+ dPics[i]
 																	+ '" style="width: 50%; height:auto; padding: 3px">';
 														}
 													}
@@ -421,7 +423,7 @@ function getDiaryListByTag(args) {
 											hashTagList.splice(0, 1);
 
 											for (i in hashTagList) {
-												var temp = '<strong class="hashTag">#'
+												var temp = '<strong style="color:#125688" class="hashTag">#'
 														+ hashTagList[i]
 														+ '</strong>';
 												hashTagList[i] = temp;
@@ -465,7 +467,8 @@ function getDiaryListByTag(args) {
 											}
 											if (dPics.length == 1) {
 												returnHtml = '<img class="img" src="'
-														+ imgSrc+dPics[0]
+														+ imgSrc
+														+ dPics[0]
 														+ '" style="width: 100%; height:auto; margin: 0">';
 												return returnHtml;
 											} else {
@@ -473,18 +476,21 @@ function getDiaryListByTag(args) {
 
 													for (var i = 0; i < dPics.length; i++) {
 														returnHtml += '<img class="img" src="'
-																+ imgSrc+dPics[i]
+																+ imgSrc
+																+ dPics[i]
 																+ '" style="width: 50%; height:auto; padding: 3px; ">';
 													}
 
 												} else {
 													returnHtml += '<img class="img" src="'
-															+ imgSrc+dPics[0]
+															+ imgSrc
+															+ dPics[0]
 															+ '" style="width: 100%; height:auto;">';
 
 													for (var i = 1; i < dPics.length; i++) {
 														returnHtml += '<img class="img" src="'
-																+ imgSrc+dPics[i]
+																+ imgSrc
+																+ dPics[i]
 																+ '" style="width: 50%; height:auto; padding: 3px">';
 													}
 												}
