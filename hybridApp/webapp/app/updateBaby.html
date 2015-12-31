@@ -285,11 +285,13 @@
 	
 												var img = $("<img />");
 												img.attr("id","multi");
-												img.attr("style", "width:100px; height:100px; margin-right:10px; margin-top: 10px;");
+												img.attr("style", "width:40%; height:auto; margin-right:10px; margin-top: 10px;");
 												img.attr("src",fileURL+"baby1.jpg");
 												img.attr("class","img-rounded");
 
 												$("#uploadImage").append(img);
+
+												$("#multi").css("height",$("#multi").css("width"));
 
 												$("#btn01").on("click",function() {
 								
@@ -353,11 +355,13 @@
 												var img = $("<img />");
 												img.attr("name",getBPhoto.split("/")[5]);
 												img.attr("id","multi");
-												img.attr("style", "width:100px; height:100px; margin-right:10px; margin-top: 10px;");
+												img.attr("style", "width:40%; height:auto; margin-right:10px; margin-top: 10px;");
 												img.attr("src",getBPhoto);
 												img.attr("class","img-rounded");
 
-												$("#uploadImage").append(img);		
+												$("#uploadImage").append(img);	
+
+												$("#multi").css("height",$("#multi").css("width"));	
 
 													$("#btn01").on("click",function() {
 
@@ -477,11 +481,13 @@
 													var img = $("<img />");
 													img.attr("name",file[0].name);
 													img.attr("id","multi");
-													img.attr("style", "width:100px; height:100px; margin-right: 10px;margin-top: 10px;");
+													img.attr("style", "width:40%; height:auto; margin-right: 10px;margin-top: 10px;");
 													img.attr("src", e.target.result);
 													img.attr("class","img-rounded");
 
 													dvPreview.append(img);
+
+													$("#multi").css("height",$("#multi").css("width"));
 
 												}
 												reader.readAsDataURL(file[0]);
