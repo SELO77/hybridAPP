@@ -131,7 +131,7 @@ $(function() {
   		var diaryList = list.list;
   		console.log('====diaryList.length :'+diaryList.length);
 		for (i in diaryList) {
-			var content = '<li style="font-size:18px">'+diaryList[i].dContent.substr(0,30)+'<span style="color:#dddddd">...more<span></li>';
+			var content = '<li style="color:white">'+diaryList[i].dContent.substr(0,30)+'<span style="color:#dddddd">...more<span></li>';
 			var eachContent ='<div class="dailyDiaryList"><input type="hidden" name="dNo" value='+diaryList[i].dNo+'>'+content+'</div>';
 			$('.remainders form #addDailyDiaryPoint').after(eachContent);
 		}
