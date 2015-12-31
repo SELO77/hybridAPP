@@ -24,11 +24,7 @@ function loadDiary(args) {
 											'userCheck',
 											function(uNo, dNo) {
 												// alert(rUNo);
-												var userhtml = "<div class='dropdown pull-right' style='padding-right: 20px;padding-top: 10px;'><i class='fa fa-cog'data-toggle='dropdown'/><div class='dropdown-menu' role='menu' aria-labelledby='dLabel' style='padding-top: 0px;padding-bottom: 0px;'><p style='margin-bottom: 0px;'><input type='hidden' value='"
-														+ dNo
-														+ "'><updateDiary style='height:transparent'><button type='button' class='btn btn-default'  style='width:100%'><a>수정하기</a></button></updateDiary></p><p style='margin-bottom: 0px;'><input type='hidden' value='"
-														+ dNo
-														+ "'><deleteDiary style='height:transparent'><button type='button' class='btn btn-default' style='width:100%'><a>삭제하기</a></button></deleteDiary></p></div></div>";
+												var userhtml = "<div class='dropdown pull-right' style='padding-right: 20px;padding-top: 7px;'><img src='img/btn_update.png' style='width:20px; height:20px;' data-toggle='dropdown'><!--<i class='fa fa-cog' data-toggle='dropdown'/>--><div class='dropdown-menu' role='menu' aria-labelledby='dLabel' style='padding-top: 0px;padding-bottom: 0px;'><p style='margin-bottom: 0px;'><input type='hidden' value='"+dNo+"'><updateDiary style='height:transparent'><button type='button' class='btn btn-default'  style='width:100%'><a>수정하기</a></button></updateDiary></p><p style='margin-bottom: 0px;'><input type='hidden' value='"+dNo+"'><deleteDiary style='height:transparent'><button type='button' class='btn btn-default' style='width:100%'><a>삭제하기</a></button></deleteDiary></p></div></div>";
 
 												if (uNo == user.uNo) {
 													return userhtml;
@@ -198,11 +194,7 @@ function friendDiary(args) {
 											'userCheck',
 											function(uNo, dNo) {
 												// alert(rUNo);
-												var userhtml = "<div class='dropdown pull-right' style='padding-right: 20px;padding-top: 10px;'><i class='fa fa-cog'data-toggle='dropdown'/><div class='dropdown-menu' role='menu' aria-labelledby='dLabel' style='padding-top: 0px;padding-bottom: 0px;'><p style='margin-bottom: 0px;'><input type='hidden' value='"
-														+ dNo
-														+ "'><updateDiary style='height:transparent'><button type='button' class='btn btn-default'  style='width:100%'><a>수정하기</a></button></updateDiary></p><p style='margin-bottom: 0px;'><input type='hidden' value='"
-														+ dNo
-														+ "'><deleteDiary style='height:transparent'><button type='button' class='btn btn-default' style='width:100%'><a>삭제하기</a></button></deleteDiary></p></div></div>";
+												var userhtml = "<div class='dropdown pull-right' style='padding-right: 20px;padding-top: 7px;'><img src='img/btn_update.png' style='width:20px; height:20px;' data-toggle='dropdown'><!--<i class='fa fa-cog' data-toggle='dropdown'/>--><div class='dropdown-menu' role='menu' aria-labelledby='dLabel' style='padding-top: 0px;padding-bottom: 0px;'><p style='margin-bottom: 0px;'><input type='hidden' value='"+dNo+"'><updateDiary style='height:transparent'><button type='button' class='btn btn-default'  style='width:100%'><a>수정하기</a></button></updateDiary></p><p style='margin-bottom: 0px;'><input type='hidden' value='"+dNo+"'><deleteDiary style='height:transparent'><button type='button' class='btn btn-default' style='width:100%'><a>삭제하기</a></button></deleteDiary></p></div></div>";
 
 												if (uNo == user.uNo) {
 													return userhtml;
@@ -420,11 +412,7 @@ function getDiary(args) {
 											'userCheck',
 											function(uNo, dNo) {
 												// alert(rUNo);
-												var userhtml = "<div class='dropdown pull-right' style='padding-right: 20px;padding-top: 10px;'><i class='fa fa-cog'data-toggle='dropdown'/><div class='dropdown-menu' role='menu' aria-labelledby='dLabel' style='padding-top: 0px;padding-bottom: 0px;'><p style='margin-bottom: 0px;'><input type='hidden' value='"
-														+ dNo
-														+ "'><updateDiary style='height:transparent'><button type='button' class='btn btn-default'  style='width:100%'><a>수정하기</a></button></updateDiary></p><p style='margin-bottom: 0px;'><input type='hidden' value='"
-														+ dNo
-														+ "'><deleteDiary style='height:transparent'><button type='button' class='btn btn-default' style='width:100%'><a>삭제하기</a></button></deleteDiary></p></div></div>";
+												var userhtml = "<div class='dropdown pull-right' style='padding-right: 20px;padding-top: 7px;'><img src='img/btn_update.png' style='width:20px; height:20px;' data-toggle='dropdown'><!--<i class='fa fa-cog' data-toggle='dropdown'/>--><div class='dropdown-menu' role='menu' aria-labelledby='dLabel' style='padding-top: 0px;padding-bottom: 0px;'><p style='margin-bottom: 0px;'><input type='hidden' value='"+dNo+"'><updateDiary style='height:transparent'><button type='button' class='btn btn-default'  style='width:100%'><a>수정하기</a></button></updateDiary></p><p style='margin-bottom: 0px;'><input type='hidden' value='"+dNo+"'><deleteDiary style='height:transparent'><button type='button' class='btn btn-default' style='width:100%'><a>삭제하기</a></button></deleteDiary></p></div></div>";
 
 												if (uNo == user.uNo) {
 													return userhtml;
@@ -575,11 +563,7 @@ function getDiaryListByTag(args) {
 										'userCheck',
 										function(uNo, dNo) {
 											// alert(rUNo);
-											var userhtml = "<div class='dropdown pull-right' style='padding-right: 20px;padding-top: 10px;'><i class='fa fa-cog'data-toggle='dropdown'/><div class='dropdown-menu' role='menu' aria-labelledby='dLabel' style='padding-top: 0px;padding-bottom: 0px;'><p style='margin-bottom: 0px;'><input type='hidden' value='"
-													+ dNo
-													+ "'><updateDiary style='height:transparent'><button type='button' class='btn btn-default'  style='width:100%'><a>수정하기</a></button></updateDiary></p><p style='margin-bottom: 0px;'><input type='hidden' value='"
-													+ dNo
-													+ "'><deleteDiary style='height:transparent'><button type='button' class='btn btn-default' style='width:100%'><a>삭제하기</a></button></deleteDiary></p></div></div>";
+											var userhtml = "<div class='dropdown pull-right' style='padding-right: 20px;padding-top: 7px;'><img src='img/btn_update.png' style='width:20px; height:20px;' data-toggle='dropdown'><!--<i class='fa fa-cog' data-toggle='dropdown'/>--><div class='dropdown-menu' role='menu' aria-labelledby='dLabel' style='padding-top: 0px;padding-bottom: 0px;'><p style='margin-bottom: 0px;'><input type='hidden' value='"+dNo+"'><updateDiary style='height:transparent'><button type='button' class='btn btn-default'  style='width:100%'><a>수정하기</a></button></updateDiary></p><p style='margin-bottom: 0px;'><input type='hidden' value='"+dNo+"'><deleteDiary style='height:transparent'><button type='button' class='btn btn-default' style='width:100%'><a>삭제하기</a></button></deleteDiary></p></div></div>";
 
 											if (uNo == user.uNo) {
 												return userhtml;
