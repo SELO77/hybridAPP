@@ -17,149 +17,114 @@
 <link rel="stylesheet" href="css/__main.css">
 <link rel="stylesheet" href="css/slidebars.css">
 
+<style>
+			
 
+	.container{
+		padding: 0 25px 0 25px;
+	}
 
+	label{
+		margin-bottom: 0px
+	}
 
+	.form-group {
+   		margin-bottom: 5px; 
+	}
+			
 
+				
 
-</head>
-<body onload="getBabyList();" style="padding-bottom: 110px; padding-top: 60px;">
-	<!--[if lt IE 8]>
-						<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-						<![endif]-->
-
-	<!-- Add your site or application content here -->
-
-	<!-- .sb-site -->
-	<!--   <div id="sb-site">
-			main
-			<main role="main" style="margin-top:50px"> -->
-
-	<div class="container" id="diaryHandle">
-		<!-- <div class="row"> -->
-		<style type="text/css">
-.onepost1 {
-	border: 1px solid;
-	/*border-radius: 8px;*/
-	margin-top: 20px;
-	padding: 0 10px 15px 10px;
-}
-
-.posttop {
-	margin: 10px 0 10px 0
-}
-
-.contents {
-	/*border-radius: 50%;*/
-	width: 95%;
-	height: auto;
-	margin: 0 10px 0 10px;
-}
-
-.postimg {
-	border-radius: 5px;
-}
-
-.text1 {
-	margin-top: 10px;
-}
-
-.postprofileimg {
-	width: 30px;
-	height: auto;
-}
 </style>
 
-		<!-- 메인 html시작 [진영]-->
+</head>
 
-		<br>
+<body onload="getBabyList();" style="padding-bottom: 50px; padding-top: 60px; background-color: #fffff7;">
+
+		<div class="container">
+			<div class="row">
+
+				<!-- edit form column -->
+				<div class="col-md-9 personal-info">
 
 
-		<div style="padding: 10px" align="center">
-			<!-- <img src="img/logo40.png" /><br> -->
-			<!-- <img src="img/profile1.jpg" width="100"  class="img-circle"   /> -->
-			<!-- <button class="circle"><img src="img/profile1.jpg" width="100"  class="rounded"/></button> -->
+					<form class="form-horizontal" role="form">
+
+						<div class="form-group" align="center">
+							<input type="file" id="bPhoto" name="bPhoto" style="display: none" accept="image/*;"capture="camera">
+							<div id="uploadImage" onclick=$("#bPhoto").click()></div>
+						</div>
 
 
+						<div class="form-group">
+							<label class="col-lg-3 control-label "><span class="fa fa-heart-o"></span>&nbsp;이름</label>
+							<div class="col-lg-8">
+								<input type="text" class="form-control" name="bName" id="bName" style="border-right: 0; border-top: 0px; border-left: 0px; boder-bottom: 1px;" placeholder="태명,별명도 입력가능" style="color:#ff0000">
+							<div id="nameCheck"></div>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="col-lg-3 control-label"><span class="fa fa-calendar"></span>&nbsp;생일</label>
+							<div class="col-lg-8">
+								<input type="text" class="form-control" name="bBirth" id="bBirth" style="border-right: 0; border-top: 0px; border-left: 0px; boder-bottom: 1px;" placeholder="-을 제외한 8자리 숫자만 입력해주세요." onkeydown="onlyNumber(event)">
+							</div>
+						</div>
 
+						<div class="form-group">
+							<div class="col-xs-6">
+							<label class="col-lg-3 control-label" style="margin-left:-10%"><span class="fa fa-arrows-v"></span>&nbsp;키</label>
+							<input type="text" class="form-control" name="height" id="height" style="border-right: 0; border-top: 0px; border-left: 0px; boder-bottom: 1px;" placeholder="키             (cm)">
+							</div>
+							<div class="col-xs-6">
+							<label class="col-lg-3 control-label" style="margin-left:-10%"><span class="fa fa-star-heart-full"></span>&nbsp;체중</label>					  
+						    <input type="text" class="form-control" name="weight" id="weight" style="border-right: 0; border-top: 0px; border-left: 0px; boder-bottom: 1px;" placeholder="체중          (kg)">
+							</div>
+						</div>
+
+						<div class="form-group" style="margin-top:5%">
+							<div class="col-xs-6">
+							<label class="col-lg-3 control-label" style="margin-left:10%"><span class="fa fa-lock"></span>&nbsp;성별</label>
+							<div class="col-lg-8">
+								<label class="radio-inline"> <input type="radio"
+									name="bSex" id="male" value="1"><span class="fa fa-mars"></span>
+								</label> <label class="radio-inline"> <input type="radio"
+									name="bSex" id="female" value="2"><span
+									class="fa fa-venus"></span>
+								</label>
+							</div>
+							</div>
+							<div class="col-xs-6">
+							<label class="col-lg-3 control-label" style="margin-left:10%"><span class="fa fa-lock">
+							</span>&nbsp;혈액형</label>
+							<div class="col-lg-8">
+								<label class="radio-inline"> <input type="radio"
+									name="bType" id="AType" value="A">A형
+								</label> <label class="radio-inline"> <input type="radio"
+									name="bType" id="BType" value="B">B형
+								</label> <!-- <label class="radio-inline"> <input type="radio"
+									name="bType" id="OType" value="O">O형
+								</label> <label class="radio-inline"> <input type="radio"
+									name="bType" id="ABType" value="AB">AB형
+								</label>  -->
+							</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-3 control-label"></label>
+							<div class="col-md-8">
+								<input type="button" class="btn btn-primary" id="btn01" 
+								value="확 인" style="width:70px;position:absolute;left:25%; border: 3px solid #F4C6C1; 
+								border-radius: 20px; background-color:#FE8275;">
+
+								<input type="button"  id="cancel" class="btn btn-default" value="취 소" style="width:70px;position:absolute;right:25%; border: 3px solid #F4C6C1; border-radius: 20px;">
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
-
-		<div class="modal-body" style="padding: 0px 50px;">
-			<form role="form">
-
-				<div class="form-group" align="center">
-					<!-- <input type="file" name="bPhoto" id="bPhoto" src="img/defaultImage.jpg" class="img-rounded" width="100"> -->
-					<input type="file" id="bPhoto" name="bPhoto" style="display: none" accept="image/*;"capture="camera">
-					<div id="uploadImage" onclick=$("#bPhoto").click()></div>
-
-					<!-- <img id="defaultImg" src="img/defaultImage.jpg" width="100px" onclick="imgChange()" class="img-rounded"> -->
-
-					<!-- <input type="image" class="img-rounded" id="imageb" onclick="$('#bPhoto').click();" src="img/defaultImage.jpg" width="100" onchange="babyImg();"> -->
-
-				</div>
-
-				<div class="form-group">
-					<span style="font-size: 12px;">&nbsp;이름</span> <input type="text"
-						class="form-control" name="bName" id="bName"
-						style="border-right: 0; border-top: 0px; border-left: 0px; boder-bottom: 1px;"
-						placeholder="태명,별명도 입력가능" style="color:#ff0000">
-					<div id="nameCheck"></div>
-				</div>
-
-				<div class="form-group">
-					<span style="font-size: 12px;">&nbsp;생일</span> <input type="text"
-						class="form-control" name="bBirth" id="bBirth"
-						style="border-right: 0; border-top: 0px; border-left: 0px; boder-bottom: 1px;"
-						placeholder="ex(2015-12-07)" onkeydown="onlyNumber(event)">
-				</div>
-				<div class="form-group">
-					<span style="font-size: 12px;">&nbsp;키</span> <input type="text"
-						class="form-control" name="height" id="height"
-						style="border-right: 0; border-top: 0px; border-left: 0px; boder-bottom: 1px;"
-						placeholder="키             (cm)">
-				</div>
-				<div class="form-group">
-					<span style="font-size: 12px;">&nbsp;체중</span> <input type="text"
-						class="form-control" name="weight" id="weight"
-						style="border-right: 0; border-top: 0px; border-left: 0px; boder-bottom: 1px;"
-						placeholder="체중          (kg)">
-				</div>
-				<div class="form-group" align="center">
-					<h5>
-						<span class="fa fa-venus-mars"></span>성별
-					</h5>
-					<label class="radio-inline"> <input type="radio"
-						name="bSex" id="male" value="1"><span class="fa fa-mars"></span>
-					</label> <label class="radio-inline"> <input type="radio"
-						name="bSex" id="female" value="2"><span
-						class="fa fa-venus"></span>
-					</label>
-				</div>
-				<div class="form-group" align="center">
-					<h5>
-						<span class="fa fa-heartbeat"></span>혈액형
-					</h5>
-					<label class="radio-inline"> <input type="radio"
-						name="bType" id="AType" value="A">A형
-					</label> <label class="radio-inline"> <input type="radio"
-						name="bType" id="BType" value="B">B형
-					</label> <label class="radio-inline"> <input type="radio"
-						name="bType" id="OType" value="O">O형
-					</label> <label class="radio-inline"> <input type="radio"
-						name="bType" id="ABType" value="AB">AB형
-					</label>
-				</div>
-
-				<button type="button"
-					class="btn btn-primary btn-lg btn-block ; fa  " id="btn01" style="">수정하기</button>
-
-			</form>
-		</div>
-
-		<!-- 메인 html끝 [진영]-->
-
-
-
 
 
 
@@ -226,6 +191,11 @@
 								});
 							};*/
 
+								$("#cancel").on("click",function(){
+									$(window.parent.frames["innerframe"].document.location)
+									.attr("href","userOption.html");		
+								});
+
 
 							//[근한] focus event를 위한 jQuery 추가
 							$("#bName").focusout(function(){
@@ -281,11 +251,11 @@
 												//유저가 등록한 아이가 없을 떄
 												if(result.resultCode==0 ){
 												
-												$("#btn01").text("등록하기");												
+												$("#btn01").val("등 록");												
 	
 												var img = $("<img />");
 												img.attr("id","multi");
-												img.attr("style", "width:40%; height:auto; margin-right:10px; margin-top: 10px;");
+												img.attr("style", "width:40%; height:auto; margin-right:10px; border: 5px solid #F4C6C1; border-radius:20px 20px 20px 20px");
 												img.attr("src",fileURL+"baby1.jpg");
 												img.attr("class","img-rounded");
 
@@ -313,7 +283,7 @@
 												//아이가 있을때는 get하여 update로
 												if(result.resultCode==1){
 
-													$("#btn01").text("수정하기");
+													$("#btn01").val("수 정");
 
 												if(result.baby.bPhoto==null){
 													getBPhoto=fileURL+"baby1.jpg";
@@ -324,7 +294,7 @@
 
 
 												///////////////////////////////////////////////
-													$("#btn01").text("수정하기");
+													$("#btn01").val("수 정");
 
 												    $("#bName").val(result.baby.bName);
 												    $("#bBirth").val(result.baby.bBirth);
@@ -355,7 +325,7 @@
 												var img = $("<img />");
 												img.attr("name",getBPhoto.split("/")[5]);
 												img.attr("id","multi");
-												img.attr("style", "width:40%; height:auto; margin-right:10px; margin-top: 10px;");
+												img.attr("style", "width:40%; height:auto; margin-right:10px; border: 5px solid #F4C6C1; border-radius:20px 20px 20px 20px");
 												img.attr("src",getBPhoto);
 												img.attr("class","img-rounded");
 
@@ -481,7 +451,7 @@
 													var img = $("<img />");
 													img.attr("name",file[0].name);
 													img.attr("id","multi");
-													img.attr("style", "width:40%; height:auto; margin-right: 10px;margin-top: 10px;");
+													img.attr("style", "width:40%; height:auto; margin-right: 10px; border: 5px solid #F4C6C1; border-radius:20px 20px 20px 20px");
 													img.attr("src", e.target.result);
 													img.attr("class","img-rounded");
 

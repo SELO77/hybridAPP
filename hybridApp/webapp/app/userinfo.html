@@ -41,7 +41,7 @@
 		</style>
 
 	</head>
-	<body style="padding-bottom: 60px; padding-top: 60px" onload="getUser();">
+	<body style="padding-bottom: 60px; padding-top: 60px; background-color: #fffff7;" onload="getUser();" >
 	<!--[if lt IE 8]>
 					<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 					<![endif]-->
@@ -50,8 +50,6 @@
 					<!-- [작성자] 컨텐츠 내용 -->
 					<div class="container">
 						<div class="row">
-							<!-- left column -->
-							<div>&nbsp;</div>
 
 							<!-- edit form column -->
 							<div class="col-md-9 personal-info">
@@ -60,7 +58,7 @@
 								<form class="form-horizontal" role="form">
 
 									<div class="form-group" align="center">
-										<input type="file" id="uPhoto" name="bPhoto" style="display:none" accpet="image/*;" capture="camera">
+										<input type="file" id="uPhoto" name="uPhoto" style="display:none" accpet="image/*;" capture="camera">
 										<div id="uploadImage" onclick=$("#uPhoto").click()></div>
 									</div>
 
@@ -108,16 +106,16 @@
 										<label class="col-md-3 control-label"></label>
 										<div class="col-md-8">
 											<input type="button" class="btn btn-primary" id="submit" 
-											value="확 인" style="width:70px">
+											value="확 인" style="width:70px;position:absolute;left:25%; border: 3px solid #F4C6C1; 
+											border-radius: 20px; background-color:#FE8275;">
 
-											<input type="button"  id="cancel" class="btn btn-default" value="취 소" style="width:70px;position:absolute;right:5%">
+											<input type="button"  id="cancel" class="btn btn-default" value="취 소" style="width:70px;position:absolute;right:25%; border: 3px solid #F4C6C1; border-radius: 20px;">
 										</div>
 									</div>
 								</form>
 							</div>
 						</div>
 					</div>
-					<hr>
 
 
 
@@ -221,7 +219,7 @@
 						//img.attr("name",getuPhoto.replace("img/",""));
 						img.attr("name",getuPhoto.split("/")[5]);
 						img.attr("id","multi");
-						img.attr("style", "width:30%; height:auto; display:block; margin-right:10px; margin-top: 10px;");
+						img.attr("style", "width:30%; height:auto; display:block; margin-right:10px; margin-top: 10px; border: 5px solid #F4C6C1; border-radius:20px 20px 20px 20px");
 						img.attr("src",getuPhoto);
 						img.attr("class","img-rounded");
 
@@ -340,7 +338,7 @@
 													var img = $("<img />");
 													img.attr("name",file[0].name);
 													img.attr("id","multi");
-													img.attr("style", "width:30%; height:auto; margin-right: 10px;margin-top: 10px;");
+													img.attr("style", "width:30%; height:auto; margin-right: 10px;margin-top: 10px; border: 5px solid #F4C6C1; border-radius:20px 20px 20px 20px");
 													img.attr("src", e.target.result);
 													img.attr("class","img-rounded");
 
