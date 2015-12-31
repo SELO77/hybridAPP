@@ -179,6 +179,16 @@
 			});
 	}; */
 
+	function getImgSize(obj,img_src) {
+		var img_temp=new Image();
+		img_temp.src=img_src;
+		if(img_temp.width>img_temp.height){
+			obj.height=img_temp.width;
+		}
+	}
+
+
+
 	$("#cancel").on("click",function(){
 		$(window.parent.frames["innerframe"].document.location)
 		.attr("href","userOption.html");		
@@ -211,11 +221,14 @@
 						//img.attr("name",getuPhoto.replace("img/",""));
 						img.attr("name",getuPhoto.split("/")[5]);
 						img.attr("id","multi");
-						img.attr("style", "width:100px; height:100px; margin-right:10px; margin-top: 10px;");
+						img.attr("style", "width:30%; height:auto; display:block; margin-right:10px; margin-top: 10px;");
 						img.attr("src",getuPhoto);
 						img.attr("class","img-rounded");
 
 						$("#uploadImage").append(img);
+
+						$("#multi").css("height",$("#multi").css("width"));
+
 
 					$("#currentPassword").keyup(function() {
 						if($("#currentPassword").val()!=result.user.password && $("#currentPassword").val()!="") {
@@ -327,11 +340,13 @@
 													var img = $("<img />");
 													img.attr("name",file[0].name);
 													img.attr("id","multi");
-													img.attr("style", "width:100px; height:100px; margin-right: 10px;margin-top: 10px;");
+													img.attr("style", "width:30%; height:auto; margin-right: 10px;margin-top: 10px;");
 													img.attr("src", e.target.result);
 													img.attr("class","img-rounded");
 
 													dvPreview.append(img);
+
+													$("#multi").css("height",$("#multi").css("width"));
 
 												}
 												reader.readAsDataURL(file[0]);
@@ -346,6 +361,17 @@
 											}
 										});
 									}); 
+
+
+									function getImgSize(obj,img_src) {
+										var img_temp=new Image();
+										img_temp.src=img_src;
+										if(img_temp.width>img_temp.height){
+											obj.height=img_temp.width;
+										}
+									}
+
+
 
 
 
