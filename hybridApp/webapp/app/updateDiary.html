@@ -41,31 +41,34 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
             <![endif]-->
 
- <div class="well"
+  <div class="well"
     style="padding: 15px; padding-bottom: 3px; margin-left: 15px; margin-right: 15px; background-color: #ffeee3; border-color: #ffb280;">
     <form class="form-horizontal" role="form"
       enctype="multipart/form-data">
       <div class="form-group" style="padding: 5px; margin-bottom: 0">
-        <textarea class="form-control" placeholder="수정할 내용을 입력해주세요.."
+        <textarea class="form-control" placeholder="수정할 내용을 적어주세요.."
           style="margin-bottom: 10px; border-color: #ffb280;" id="dContent" rows="12"></textarea>
         <button class="btn btn-primary pull-right" type="button" 
           style="font-weight:bold; border-color: #FE8275; background-color: #FE8275; color:#fffff0; padding : 4px;"
-          id="submitDiary">일기수정</button>
+          id="submitDiary">수정하기</button>
         <span class="fileinput-button  pull-left" style="padding-top: 0px; margin-top: -5px;">
-          <ul class="list-inline" style="font-size: 23px; text-align: left; margin-bottom: 0px;">
+          <ul class="list-inline"
+            style="font-size: 23px; text-align: left; margin-bottom: 0px;">
             <li style="padding-top: 7px"><a href="#">
-                <li><a href=""><img src="img/btn_camera.png" style="width: 40px; height: 40px;">
+                <li><a href=""> <img src="img/btn_camera.png" style="width: 40px; height: 40px;">
                 </a></li>
-          </ul> <input type="file" name="files[]" id="fileJARI" multiple>
+          </ul> <input type="file" name="files[]" id="fileJARI" multiple
+          accept="image/*;" capture="camera">
         </span>
       </div>
       <input type="hidden" id="uNo" name="uNo" value="">
     </form>
   </div>
-<center>
-<div id="imgJARI"></div>
-<div id="btnJARI" style="position:absolute"></div>     
-</center>
+  <center>
+
+    <div id="imgJARI"></div>
+    <div id="btnJARI" style="position: absolute"></div>   
+  </center>
 
 
 
@@ -85,6 +88,7 @@
   <script src="js/jihoon/getMetaData.js"></script>
 
   <script>
+  $.mobile.autoInitializePage = false;
             var requestURL = getMetaData("ip")+"diary/json/";
             var requestIP = getMetaData("ip");
             //var requestIP="http://192.168.0.3:8080/";
@@ -228,8 +232,7 @@
                    uNo : user.uNo,
                    dContent : $("#dContent").val(),
                    dNo : dNo,
-                   dCode : 'self',
-                   dTag : '#탁구는 무슨'
+                   dCode : 'self'
                 }),
                 success:function(result){
                   if(result.result){
