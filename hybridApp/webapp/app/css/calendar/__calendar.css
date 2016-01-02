@@ -23,10 +23,10 @@
 		position: absolute;
 		right: 12%;
 		top: 44%;
-		width: 8px;
+		width: 10px;
 		height: 15px;
 		text-indent: -4000px;
-		background: url(img/calendar/calender-arw.png) no-repeat -12px 0px;
+		background: url(../../img/calendar/calender-arw.png) no-repeat -12px 0px;
 		cursor: pointer;
 		-webkit-user-select: none;
 		-moz-user-select: none;
@@ -35,14 +35,14 @@
 	.clndr .clndr-controls .clndr-control-button .clndr-next-button.inactive:hover {
 		cursor: default;
 	}
-	.clndr .clndr-controls .clndr-control-button .clndr-previous-button { 
+	.clndr .clndr-controls .clndr-control-button .clndr-previous-button { 		
 		position: absolute;
 		left: 12%;
 		top: 44%;
-		width: 8px;
+		width: 10px;
 		height: 15px;
 		text-indent: -4000px;
-		background: url(img/calendar/calender-arw.png) no-repeat 1px 0px;
+		background: url(../../img/calendar/calender-arw.png) no-repeat 1px 0px;
 		cursor: pointer;
 		-webkit-user-select: none;
 		-moz-user-select: none;
