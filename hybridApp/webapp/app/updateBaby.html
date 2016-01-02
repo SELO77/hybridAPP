@@ -406,8 +406,7 @@
 										babyImage += $("div#uploadImage > img:eq("+i+")").attr('name') +",";
 									}
 								} 
-								console.log("==babyImage :"+babyImage);		
-								alert('before ajax');									  
+								console.log("==babyImage :"+babyImage);										  
 								$.ajax({
 									method:"POST",
 							//		headers : {
@@ -427,7 +426,6 @@
 									url:getMetaData('ip')+"baby/json/addBaby",
 									dataType:'json',
 									success:function(responseData){
-										alert('response.result'+responseData.result);
 										if(responseData.result==true){
 											$(window.parent.frames["innerframe"].document.location)
 								            .attr("href",responseURL);
