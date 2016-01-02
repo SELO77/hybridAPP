@@ -178,7 +178,8 @@
 
 	            	<!-- [지훈] ratate menu start-->
 		            <div id='ss_menu' data-rot='180'>
-						<div id="warning"> <i><img src="img/warning.png" style="height: 45px; width : 45px; border-radius: 45px"></img></i> </div>
+						<div data-toggle="modal" data-target="#serch_HashTag_modal" id="serch_HashTag"> 
+						<i><img src="img/hashTag.png" style="height: 45px; width : 45px; border-radius: 45px"></img></i> </div>
 						<div id="all_diary"> <i><img src="img/all_diary.png" style="height: 45px; width : 45px; border-radius: 45px"></img></i></div>
 						<div id="user_info"> <i><img src="img/user_info.png" style="height: 45px; width : 45px; border-radius: 45px"></img></i></div>
 						
@@ -188,7 +189,26 @@
 						</div>
 					</div>
 					<!-- [지훈] ratate menu end-->
+					<!-- [지훈] HashTag 검색용 모달 -->
+					<!-- Modal -->
+					<div class="modal fade" id="serch_HashTag_modal" role="dialog">
+						<div class="modal-dialog" style="position: fixed; top: 60px; left: 2%;">	
+							<div class="modal-content" style="border-radius: 20%;">
+								<div class="modal-body" style="padding: 0px; background-color:#e95849; border-radius: 10%;">
+									<div class="input-group" id="search" style="background-color: #faa97a; border-radius: 10%;">
+										<input type="text" class="form-control" id="searchTag" placeholder="HashTag 검색" aria-describedby="search"
+											
+											style="border-color: #e95849; background-color: #ffeee3; padding-left: 10px;">
+										<span class="input-group-addon" id="hashTag_serch"
+												style="border-color: #e95849; background-color: #faa97a; border-right-width: 0px; ">
+											<img src="img/search.png" style="height: 20px; width: 20px;">
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
+		
 					
 					
 
@@ -253,39 +273,6 @@
             	<!-- ip 등 meta data 가져오기 -->
             	<script src="js/jihoon/getMetaData.js"></script>
             	<script type="text/javascript" src="js/SocialSharing.js"></script>
-
-
-            	<!-- [지훈] RotateMenu Script 시작 -->
-				<script>
-				$(document).ready(function(ev) {
-				  var rot;
-				  
-				  $('#ss_menu').on('click', function(ev) {
-				    rot = parseInt($(this).data('rot'));
-				    $('#ss_menu').css('transform', 'rotate(' + rot + 'deg)');
-				    $('#ss_menu').css('webkitTransform', 'rotate(' + rot + 'deg)');
-				    if ((rot / 180) % 2 == 0) {
-				      //Moving in
-				      $('#ss_toggle').parent().addClass('ss_active');
-				      $('#ss_toggle').addClass('close');
-				    } else {
-				      //Moving Out
-				      $('#ss_toggle').parent().removeClass('ss_active');
-				      $('#ss_toggle').removeClass('close');
-				    }
-				    $(this).data('rot', rot);
-				  });
-
-				  $('#ss_menu').on('transitionend webkitTransitionEnd oTransitionEnd', function() {
-				    if ((rot / 180) % 2 == 0) {
-				      $('#ss_menu div i').addClass('ss_animate');
-				    } else {
-				      $('#ss_menu div i').removeClass('ss_animate');
-				    }
-				  });
-				});
-				</script>
-				<!-- [지훈] RotateMenu Script 끝 -->
 				
             	<!-- 시작 Script by Chan-->
             	<script>
@@ -293,16 +280,14 @@
 		//////////////
 		//bottom button Event	
 		
-		$('#user_info').on(
-			'click',
-			function() {
-					//self.location ='addBaby.html';
-					$(window.parent.frames["innerframe"].document.location).attr("href", "userOption.html");
-				});		
-		
 		$('#calendarBtn').on(
 			'click',
 			function() {
+				//[지훈] rotate 메뉴 닫기위한 if문
+				if (( $('#ss_menu').data('rot') / 180) % 2 == 0) {
+					$('#ss_menu').click();
+				};
+
 					//self.location ='addBaby.html';
 					$(window.parent.frames["innerframe"].document.location).attr("href", "calendar.html");
 				});
@@ -375,6 +360,19 @@
 	</script>
 	<!-- [지훈] RotateMenu Script 끝 -->
 
+	<!-- [지훈] HashTag 검색 이벤트 처리 시작-->
+	<script>
+	$('#hashTag_serch').on('click', function() {
+		var dTag = $(this).parent().children('#searchTag').val();
+		$('#serch_HashTag_modal').click();
+		$(this).parent().children('#searchTag').val('');
+			window.localStorage.setItem('dTag', dTag);
+			$(window.parent.frames["innerframe"].document.location).attr(
+					"href", "diaryListByTag.html");
+	});
+	</script>
+	<!-- [지훈] HashTag 검색 이벤트 처리 끝-->
+
 
 	<script type="text/javascript">
 		
@@ -384,6 +382,11 @@
 		//newsfeed Link 
 		$('#homeBtn').on('click',
 			function() {
+				//[지훈] rotate 메뉴 닫기위한 if문
+				if (( $('#ss_menu').data('rot') / 180) % 2 == 0) {
+					$('#ss_menu').click();
+				};
+
 				$('frame[name="innerframe"]').attr('scrolling', 'auto');
 				/*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
 				$(window.parent.frames["innerframe"].document.location)
@@ -394,6 +397,11 @@
 		$('#diaryBtn').on(
 			'click',
 			function() {
+				//[지훈] rotate 메뉴 닫기위한 if문
+				if (( $('#ss_menu').data('rot') / 180) % 2 == 0) {
+					$('#ss_menu').click();
+				};
+
 				$('frame[name="innerframe"]').attr('scrolling', 'auto');
 				//$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");
 				$(window.parent.frames["innerframe"].document.location).attr("href", "diary.html");
@@ -403,6 +411,11 @@
 		$('#writeDiaryBtn').on(
 			'click',
 			function() {
+				//[지훈] rotate 메뉴 닫기위한 if문
+				if (( $('#ss_menu').data('rot') / 180) % 2 == 0) {
+					$('#ss_menu').click();
+				};
+
 				$('frame[name="innerframe"]').attr('scrolling', 'auto');
 				/*$(window.parent.frames["innerframe"].document.location).attr("href","alert.html");*/
 				$(window.parent.frames["innerframe"].document.location)
@@ -413,6 +426,11 @@
 		$('#friendBtn').on(
 			'click',
 			function() {
+				//[지훈] rotate 메뉴 닫기위한 if문
+				if (( $('#ss_menu').data('rot') / 180) % 2 == 0) {
+					$('#ss_menu').click();
+				};
+
 				$('frame[name="innerframe"]').attr('scrolling', 'auto');
 				$(window.parent.frames["innerframe"].document.location)
 				.attr("href", "friend.html");
