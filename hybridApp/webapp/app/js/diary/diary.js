@@ -778,23 +778,40 @@ $(document)
 // [시용]다이어리 삭제.
 $(document).on("tap", "deleteDiary", function() {
 	var diaryNo = $(this).prev('input');
+	
+		//[시용] Diary 삭제 Confirm Dialog
 
-	$.ajax({
-		url : requestURL + 'deleteDiary',
-		method : 'POST',
-		dataType : 'JSON',
-		contentType : "application/json; charset=UTF-8",
-		data : JSON.stringify({
-			dNo : diaryNo.val()
-		}),
-		success : function(result) {
-			if (result.result == true) {
 
-				$("#deleteDiary" + diaryNo.val()).fadeOut("fast");
+		var r = confirm("일기를 삭제하시겠습니까?");
+		if (r == true) {
+		    $.ajax({
+					url : requestURL + 'deleteDiary',
+					method : 'POST',
+					dataType : 'JSON',
+					contentType : "application/json; charset=UTF-8",
+					data : JSON.stringify({
+						dNo : diaryNo.val()
+					}),
+					success : function(result) {
+						if (result.result == true) {
 
-			}
+							$("#deleteDiary" + diaryNo.val()).fadeOut("fast");
+						//window.plugins.toast.showLongBottom('일기가 삭제되었습니다.', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)});
+						window.plugins.toast.showWithOptions(
+						    {
+						      message: "일기가 삭제되었습니다.",
+						      duration: "short",
+						      position: "bottom",
+						      addPixelsY: -40  
+						    }   
+						  );
+						}
+					}
+				});
+		} else {
+		   return;
 		}
-	});
+	
 });
 
 // [시용]다이어리 수정

@@ -83,6 +83,7 @@
   <!-- bootStrap.js CDN -->
   <script src="js/bootstrap/bootstrap.min.js"></script>
   <script src="js/jquery.mobile-1.4.5.min.js"></script>
+  <script type="text/javascript" src="js/Toast.js"></script>
 
   <!-- ip 등 meta data 가져오기 -->
   <script src="js/jihoon/getMetaData.js"></script>
@@ -194,12 +195,22 @@
       // [시용] 다이어리 수정 버튼 이벤트처리
        $(function(){
            $("#submitDiary").on("click" , function() {
+              var cf = confirm("일기를 수정하시겠습니까?");
+              if(cf == true){
               fncUpdateJsonDiary();
-              //setTimeout( location.reload(true),1000*6);
               setTimeout( goDiaryPage,1000*2);
-                  
-             
-       });
+              window.plugins.toast.showWithOptions(
+                {
+                  message: "일기가 수정되었습니다.",
+                  duration: "short",
+                  position: "bottom",
+                  addPixelsY: -40  
+                }   
+              );
+              }else{
+                return;
+              }
+           });
 
 
 
@@ -237,7 +248,7 @@
                 }),
                 success:function(result){
                   if(result.result){
-                  alert("ajax success");
+                  //alert("ajax success");
                 }
                 }
              });
@@ -259,7 +270,7 @@
 
                       //location.reload(true);
 
-          setTimeout( goDiaryPage,1000*2);
+                      setTimeout( goDiaryPage,1000*2);
                    });
 
               }
