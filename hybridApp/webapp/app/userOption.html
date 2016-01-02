@@ -55,8 +55,8 @@ div img {
 					<span id="reg_date"></span>
 				</div>	
 				<div class="form-group" >
-					<span><icon class="fa fa-calendar-check-o"></icon></span>
-					<span>123123</span>
+					<span><icon class="fa fa-birthday-cake"></icon></span>
+					<span id="birth"></span>
 				</div>	
 				<div class="form-group" >
 					<button type="button" class="btn btn-primary" style="border: 3px solid #F4C6C1; border-radius: 20px; background-color:#FE8275;" id="uUpdate">회원정보 수정</button>
@@ -72,12 +72,12 @@ div img {
 					<span  id="bName"></span>
 				 </div>
 				 <div class="form-group" id="babyBirth" style="margin-left:20%">
-					<span ><icon class="fa fa-calendar"></icon></span>
+					<span ><icon class="fa fa-birthday-cake"></icon></span>
 					<span  id="bBirth"></span>
 				 </div>
 
 				 <div class="form-group" id="sBabyResult" style="margin-left:20%">
-					<span ><icon class="fa fa-calendar"></icon></span>
+					<span ><icon class="fa fa-line-chart"></icon></span>
 					<span id="sBResult"></span>
 				 </div>			
 
@@ -86,7 +86,7 @@ div img {
 				 </div>
 			   </div>
 
-			   <div class="col-xs-6" style="margin-top:20%" id="babyNewImage">
+			   <div class="col-xs-6" style="margin-top:18%" id="babyNewImage">
 			   	  <div class="form-group">
 					 <div id="uploadBImage" align="right"></div>
 				  </div>
@@ -204,6 +204,7 @@ div img {
 							$("#email").text(result.user.mail);
 							$("#nickname").text(result.user.nickname);
 							$("#reg_date").text(result.user.regDate);
+							$("#birth").text(result.user.uBirth);
 
 							var img = $("<img />");
 							img.attr("name",getuPhoto.replace("img/",""));

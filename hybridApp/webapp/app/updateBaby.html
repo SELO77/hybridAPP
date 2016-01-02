@@ -65,7 +65,7 @@
 						</div>
 						
 						<div class="form-group">
-							<label class="col-lg-3 control-label"><span class="fa fa-calendar"></span>&nbsp;생일</label>
+							<label class="col-lg-3 control-label"><span class="fa fa-birthday-cake"></span>&nbsp;생일</label>
 							<div class="col-lg-8">
 								<input type="text" class="form-control" name="bBirth" id="bBirth" style="border-right: 0; border-top: 0px; border-left: 0px; boder-bottom: 1px;" placeholder="-을 제외한 8자리 숫자만 입력해주세요." onkeydown="onlyNumber(event)">
 							</div>
@@ -77,36 +77,39 @@
 							<input type="text" class="form-control" name="height" id="height" style="border-right: 0; border-top: 0px; border-left: 0px; boder-bottom: 1px;" placeholder="키             (cm)">
 							</div>
 							<div class="col-xs-6">
-							<label class="col-lg-3 control-label" style="margin-left:-10%"><span class="fa fa-star-heart-full"></span>&nbsp;체중</label>					  
+							<label class="col-lg-3 control-label" style="margin-left:-10%"><span class="fa fa-heartbeat"></span>&nbsp;체중</label>					  
 						    <input type="text" class="form-control" name="weight" id="weight" style="border-right: 0; border-top: 0px; border-left: 0px; boder-bottom: 1px;" placeholder="체중          (kg)">
 							</div>
 						</div>
 
 						<div class="form-group" style="margin-top:5%">
-							<div class="col-xs-6">
-							<label class="col-lg-3 control-label" style="margin-left:10%"><span class="fa fa-lock"></span>&nbsp;성별</label>
+							<div class="col-xs-5">
+							<label class="col-lg-3 control-label" style="margin-left:15%"><span class="fa fa-venus-mars"></span>&nbsp;성별</label>
 							<div class="col-lg-8">
 								<label class="radio-inline"> <input type="radio"
-									name="bSex" id="male" value="1"><span class="fa fa-mars"></span>
+									name="bSex" id="male" value="1"><span class="fa fa-male"></span>
 								</label> <label class="radio-inline"> <input type="radio"
 									name="bSex" id="female" value="2"><span
-									class="fa fa-venus"></span>
+									class="fa fa-female"></span>
 								</label>
 							</div>
 							</div>
-							<div class="col-xs-6">
-							<label class="col-lg-3 control-label" style="margin-left:10%"><span class="fa fa-lock">
+							<div class="col-xs-7" style="padding-left:0px;padding-right: 0px;">
+							<label class="col-lg-3 control-label" style="margin-left:25%"><span class="fa fa-flask">
 							</span>&nbsp;혈액형</label>
 							<div class="col-lg-8">
 								<label class="radio-inline"> <input type="radio"
-									name="bType" id="AType" value="A">A형
-								</label> <label class="radio-inline"> <input type="radio"
-									name="bType" id="BType" value="B">B형
-								</label> <!-- <label class="radio-inline"> <input type="radio"
-									name="bType" id="OType" value="O">O형
-								</label> <label class="radio-inline"> <input type="radio"
-									name="bType" id="ABType" value="AB">AB형
-								</label>  -->
+									name="bType" id="AType" value="A">A
+								</label> 
+								<label class="radio-inline"> <input type="radio"
+									name="bType" id="BType" value="B">B
+								</label>
+								<label class="radio-inline"> <input type="radio"
+									name="bType" id="OType" value="O">O
+								</label>
+								 <label class="radio-inline"> <input type="radio"
+									name="bType" id="ABType" value="AB">AB
+								</label>
 							</div>
 							</div>
 						</div>
@@ -208,7 +211,7 @@
 
 							$("#bBirth").focusout(function(){
 								$("#bBirth").attr({
-									placeholder: 'ex(2015-12-07)'
+									placeholder: '-을 제외한 8자리 숫자만 입력해주세요.'
 								});
 							});
 
