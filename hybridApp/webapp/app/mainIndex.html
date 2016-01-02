@@ -279,6 +279,12 @@
 
 		//////////////
 		//bottom button Event	
+		$('#user_info').on(
+			'click',
+			function() {
+					//self.location ='addBaby.html';
+					$(window.parent.frames["innerframe"].document.location).attr("href", "userOption.html");
+				});	
 		
 		$('#calendarBtn').on(
 			'click',

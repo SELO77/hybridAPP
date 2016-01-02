@@ -19,6 +19,7 @@
 			<span class="col-xs-7 col-sm-7 col-md-7" style="padding : 0px; margin-top: 10px;">
 				<input type="hidden" name="frNo" id="frNo" value="{{frNo}}">
 				<friendTag class="aproveFriend">
+				<input type="hidden" name="userNick" id="userNick" value="{{user.nickname}}">
 				<span class="col-xs-6 col-sm-6 col-md-6" style="float: left; width: maximum; padding: 1%">
 					<button type="button" class="btn btn-default" 
 							style="font-weight:bold; width: 100%; height: 30px; border-color: #FE8275; background-color: #FE8275; color:#fffff0; padding : 0px;">
@@ -27,7 +28,8 @@
 				</friendTag>
 
 				
-				<friendTag class="reqDeny" value="{{frNo}}">
+				<friendTag class="reqDeny">
+				<input type="hidden" name="userNick" id="userNick" value="{{user.nickname}}">
 				<span class="col-xs-6 col-sm-6 col-md-6" style="float: left; width: maximum; padding: 1%">
 					<button type="button" class="btn btn-default" 
 							style="font-weight:bold; width: 100%; height: 30px; border-color: #e8e8e8; background-color: #e8e8e8; color : #7a7171; padding : 0px;">
