@@ -122,7 +122,23 @@
 		$(document).on("click", ".deleteFriend", function(){
 			var frNo = $(this).parent().children('#frNo').val();			
 			var target = $(this).parent().parent();
+			var userNick = $(this).children('#userNick').val();
+			var cf = confirm(userNick+"님을 차단목록에서 삭제하시겠습니까?");
+              if(cf == true){
+              	deleteFriend(frNo, target);
+              	window.plugins.toast.showWithOptions(
+                {
+                  message: userNick+"님이 삭제되었습니다.",
+                  duration: "short",
+                  position: "bottom",
+                  addPixelsY: -40  
+                });
+              }else{
+                return;
+              }
+          });
 
+		function deleteFriend(frNo, target){
 			$.ajax(requestIP+"friend/json/deleteFriend", {
 				method : "post",
 				crossDomain : true,
@@ -138,7 +154,7 @@
 					alert(result.message);
 					}
 			});
-		});
+		};
 	</script>
 	<!-- [지훈] RotateMenu Script 시작 -->
 	<script>
