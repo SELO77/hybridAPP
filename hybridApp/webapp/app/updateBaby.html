@@ -259,7 +259,7 @@
 												var img = $("<img />");
 												img.attr("id","multi");
 												img.attr("style", "width:40%; height:auto; margin-right:10px; border: 5px solid #F4C6C1; border-radius:20px 20px 20px 20px");
-												img.attr("src",fileURL+"baby1.jpg");
+												img.attr("src",fileURL+"defaultcamera.jpg");
 												img.attr("class","img-rounded");
 
 												$("#uploadImage").append(img);
@@ -289,7 +289,7 @@
 													$("#btn01").val("수 정");
 
 												if(result.baby.bPhoto==null){
-													getBPhoto=fileURL+"baby1.jpg";
+													getBPhoto=fileURL+"defaultcamera.jpg";
 												}
 												else if(result.baby.bPhoto!=null){
 												getBPhoto=fileURL+result.baby.bPhoto;
@@ -309,7 +309,7 @@
 													$("#male").attr("checked","checked");
 													}
 													else{
-													$("#male").attr("checked","checked");	
+													$("#female").attr("checked","checked");	
 													}
 													if(result.baby.bType=="A"){
 													$("#AType").attr("checked","checked");

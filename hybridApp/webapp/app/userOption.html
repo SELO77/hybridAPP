@@ -55,10 +55,6 @@ div img {
 					<span id="reg_date"></span>
 				</div>	
 				<div class="form-group" >
-					<span><icon class="fa fa-birthday-cake"></icon></span>
-					<span id="birth"></span>
-				</div>	
-				<div class="form-group" >
 					<button type="button" class="btn btn-primary" style="border: 3px solid #F4C6C1; border-radius: 20px; background-color:#FE8275;" id="uUpdate">회원정보 수정</button>
 				</div>
 			  </div>
@@ -204,7 +200,7 @@ div img {
 							$("#email").text(result.user.mail);
 							$("#nickname").text(result.user.nickname);
 							$("#reg_date").text(result.user.regDate);
-							$("#birth").text(result.user.uBirth);
+							$("#mail").text(result.user.mail);
 
 							var img = $("<img />");
 							img.attr("name",getuPhoto.replace("img/",""));
@@ -240,7 +236,7 @@ div img {
 
 							$("#bName").text(result.baby.bName);
 							$("#bBirth").text(result.baby.bBirth);
-							$("#sBResult").text(result.baby.weight+"kg / "+result.baby.height+"cm");
+							$("#sBResult").text(result.baby.height+"cm / "+result.baby.weight+"kg");
 
 							var img = $("<img />");
 							img.attr("name",getbPhoto.replace("img/",""));
